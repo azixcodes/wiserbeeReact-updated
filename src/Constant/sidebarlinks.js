@@ -1,42 +1,52 @@
+import {
+  dashboardSvg,
+  coursesSvg,
+  classScheduleSvg,
+  gradeBookSvg,
+  examsSvg,
+  communitySvg,
+  messagesSvg,
+  settingsSvg,
+} from "./svgs";
 export const links = [
   {
     label: "Dashboard",
     path: "/",
-    icon: "",
+    icon: dashboardSvg,
   },
   {
     label: "Courses",
     path: "/courses",
-    icon: "",
+    icon: coursesSvg,
   },
   {
     label: "Class Schedule",
     path: "/class-schedule",
-    icon: "",
+    icon: classScheduleSvg,
   },
   {
     label: "Grade Book",
     path: "/grade-book",
-    icon: "",
+    icon: gradeBookSvg,
   },
   {
     label: "Exams",
     path: "/exams",
-    icon: "",
+    icon: examsSvg,
   },
   {
     label: "Community",
     path: "/community",
-    icon: "",
+    icon: communitySvg,
   },
   {
     label: "Message",
     path: "/messages",
-    icon: "",
+    icon: messagesSvg,
   },
   {
     label: "Account Setting",
     path: "/account-setting",
-    icon: "",
+    icon: settingsSvg,
   },
 ];
