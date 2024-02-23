@@ -1,6 +1,9 @@
 :root {
   --bg-primary: #463c77;
 }
+.cursor-pointer {
+  cursor: pointer;
+}
 /* .................<Sidebar starts>....................... */
 
 .sidebarWrapper {
@@ -9,9 +12,131 @@
   border-radius: 15px;
   background-color: var(--bg-primary);
   height: 100vh;
-  width: 15%;
+  width: 18%;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  padding: 40px 8px;
+}
+.sidebarLogo img {
+  width: 143px;
+  height: 81px;
+  max-width: 90%;
+  object-fit: cover;
+}
+.divider {
+  background-color: #979797b8;
+  height: 1px;
+  width: 100%;
+}
+.sidebarLink {
+  height: 50px;
+  border-radius: 7px;
+  padding: 0 10px;
+  cursor: pointer;
+}
+.sidebarLink:hover {
+  background-color: #585085;
+}
+.sidebarToggle {
+  height: 30px;
+  width: 30px;
+  background-color: #463c77;
+  position: absolute;
+  right: -14px;
+  top: 60px;
+  display: flex;
+  justify-content: centere;
+  align-items: center;
+  color: white;
+  border: 1px solid #463c77;
+  box-shadow: -6px 0px 22px 0px #191e4566;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+/* .................<Sidebar ends>....................... */
+/* .................<Navbar Starts>....................... */
+
+.navbarWrapper {
+  height: 88px;
+
+  padding: 5px 0;
+}
+.searchBox {
+  height: 38px;
+  border: 1px solid #5f5f5f4a;
+  border-radius: 6px;
+}
+.routeName {
+  width: 20%;
+  height: 100%;
+}
+.menuItems {
+  width: 40%;
+  flex-grow: 1;
+  height: 100%;
+}
+.navbarWrapper .searchBox input {
+  outline: none;
+  border: none;
+}
+.searchBoxWrapper {
+  width: 40%;
+  height: 100%;
+}
+.chip {
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background-color: #f93c65;
+  top: -12px;
+  right: -6px;
+  padding: 10px;
+}
+.navAvatar {
+  height: 44px;
+  width: 44px;
+  border-radius: 50%;
+  background-color: #ebebeb;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+.userSection {
+  /* width: 100%; */
+  flex-grow: 1;
+  white-space: nowrap;
+  gap: 8px;
+}
+.userDropdownIcon {
+  position: absolute;
+  right: -50px;
+}
+.flagsDropdown {
+  position: absolute;
+  padding: 12px 10px;
+  top: 24px;
+  width: 130px;
+  right: -4px;
   display: flex;
   flex-direction: column;
-  padding: 40px 2px;
+  justify-content: space-between;
+  gap: 5px;
+  height: 120px;
+  max-height: 120px;
+  background-color: #ebebeb;
+  overflow-y: scroll;
+  border-radius: 7px;
+  box-shadow: 0px 22px 0px #ebebeb;
 }
-/* .................<Sidebar ends>....................... */
+.flagList {
+  /* background-color: red; */
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 4px 3px;
+}
+.flagList:hover {
+  background-color: rgb(214, 205, 205);
+}
+/* .................<Navbar ends>....................... */
