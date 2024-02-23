@@ -1,0 +1,17 @@
+:root {
+  --bg-primary: #463c77;
+}
+/* .................<Sidebar starts>....................... */
+
+.sidebarWrapper {
+  position: relative;
+  margin: 5px 5px;
+  border-radius: 15px;
+  background-color: var(--bg-primary);
+  height: 100vh;
+  width: 15%;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 2px;
+}
+/* .................<Sidebar ends>....................... */
