@@ -12,6 +12,7 @@ const AppRouter = () => {
       <Route path="/" element={<ProtectedRoute Component={SignIn}/>} />
       <Route path="/home" element={<ProtectedRoute Component={Home}/>} />
       <Route path="/sign-in" element={<SignIn />} />
+      <Route path="/sign-in" element={<SignIn />} />
       <Route path="/sign-up" element={<SignUp />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
