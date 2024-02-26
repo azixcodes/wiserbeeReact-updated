@@ -1,7 +1,13 @@
+@font-face {
+  font-family: "PoppinsReg";
+  src: url("./assets/Poppins-Regular.ttf");
+}
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: PoppinsReg;
 }
 body {
   background-color: #f8f8f8;
@@ -37,6 +43,7 @@ body {
 .form-switch .form-check-input {
 
 }
+
 /* primery button */
 .welcomeBox {
   background-color: rgba(214, 212, 225, 0.5);
@@ -93,7 +100,7 @@ body {
 
 .CoursesDetails {
   /* background-color: white; */
-  padding: 10px;
+  /* padding: 10px; */
   width: 70%;
 }
 .CoursesDetails h3 {
@@ -233,4 +240,10 @@ body {
   padding: 0 30px;
 
   gap: 20px;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

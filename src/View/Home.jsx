@@ -134,7 +134,7 @@ const Home = () => {
           ))}
         </div>
         <div className="taskListView customShadow align-self-start">
-          <h4>Tasks</h4>
+          <h4 className="mb-4">Tasks</h4>
           <TaskNotifications />
         </div>
       </div>
