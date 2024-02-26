@@ -7,6 +7,48 @@ import * as images from "../Constant/images";
 import TaskNotifications from "../Components/Home/TaskNotifications";
 
 const Home = () => {
+  const EntrollCourseValue = [
+    {
+      id:'1',
+      heading:'Courses',
+      price:'1,240'
+    },
+    {
+      id:'2',
+      heading:'Courses',
+      price:'1,240'
+    },
+    {
+      id:'3',
+      heading:'Courses',
+      price:'1,240'
+    },
+    {
+      id:'4',
+      heading:'Courses',
+      price:'1,240'
+    }
+  ]
+  const CoursesListValue = [
+    {
+      id:'1',
+      imgesLect:images.courseImges,
+      tagLect:"4D Animation",
+      headingLect:"Learning Maxon 4D Training Course",
+      pragraphLect:"Always stay updated in your student portal",
+      durationLect:"15 Lessons (10h 5m)",
+      completedLect:"65%"
+    },
+    {
+      id:'1',
+      imgesLect:images.courseImges2,
+      tagLect:"4D Animation",
+      headingLect:"Learning Maxon 4D Training Course",
+      pragraphLect:"Always stay updated in your student portal",
+      durationLect:"15 Lessons (10h 5m)",
+      completedLect:"65%"
+    },
+  ]
   return (
     <section className="dashboardWrapper d-flex flex-column">
       <div className="welcomeBox">
@@ -20,10 +62,9 @@ const Home = () => {
               <p>Always stay updated in your student portal</p>
             </div>
             <div className="welcomeTilles d-flex justify-content-start mt-5 flex-wrap">
-              <EntrollCourseTiles heading={"Courses"} price={"1,240"} />
-              <EntrollCourseTiles heading={"Courses"} price={"1,240"} />
-              <EntrollCourseTiles heading={"Courses"} price={"1,240"} />
-              <EntrollCourseTiles heading={"Courses"} price={"1,240"} />
+              {EntrollCourseValue.map((item,index)=>(
+                <EntrollCourseTiles id={index} heading={item.heading} price={item.price} />
+              ))}
             </div>
           </div>
         </div>
@@ -31,14 +72,18 @@ const Home = () => {
       <div className="courseTaskWrapper d-flex w-100  gap-4">
         <div className="CoursesDetails">
           <h3>My Courses</h3>
-          <CoursesList
-            imgesLect={images.courseImges}
-            tagLect={"4D Animation"}
-            headingLect={"Always stay updated in your student portal"}
-            pragraphLect={"Always stay updated in your student portal"}
-            durationLect={"15 Lessons (10h 5m)"}
-            completedLect={"65%"}
+          {CoursesListValue.map((item,index)=>(
+            <CoursesList
+            id={index}
+            imgesLect={item.imgesLect}
+            tagLect={item.tagLect}
+            headingLect={item.headingLect}
+            pragraphLect={item.pragraphLect}
+            durationLect={item.durationLect}
+            completedLect={item.completedLect}
           />
+          ))}
+          
         </div>
         <div className="taskListView">
           <h4>Tasks</h4>
