@@ -30,6 +30,13 @@ body {
 :not(.btn-check) + .btn:active:focus-visible {
   box-shadow: #c5bbfa;
 }
+.form-check-input:focus{
+  border-color: #493f7b;
+  box-shadow: 0 0 0 0.25rem rgba(73, 63, 123,.25)
+}
+.form-switch .form-check-input {
+
+}
 /* primery button */
 .welcomeBox {
   background-color: rgba(214, 212, 225, 0.5);
