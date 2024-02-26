@@ -4,7 +4,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { Link } from "react-router-dom";
 import "../usman.css";
 
-const SignUp = () => {
+const ResetPassword = () => {
   // Password States
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -37,42 +37,23 @@ const SignUp = () => {
           </div>
           <div className="sign_in_box">
             <div className="row sign_in_box2">
-              <div className="col-lg-12 col-md-12 col-sm-12">
+              <div className="col-lg-1 col-md-1 col-sm-1"></div>
+              <div className="col-lg-10 col-md-10 col-sm-10">
                 <div className="bg-white signin_box rounded-4">
                   <div className="pt-3 ps-4 pe-4">
                     <h3 className="poppins-bold sign_in_heading mt-3">
-                      Sign Up
+                      Reset Password
                     </h3>
-                    <p className="poppins-regular sign_in_paragraph">
-                      Please enter the information below to signup.
+                    <p className="poppins-regular reset_psw_paragraph">
+                      Enter your new password and confirm password to reset
+                      password.
                     </p>
-                    <div className="mt-3">
-                      <input
-                        type="text"
-                        className="sign_in_input"
-                        placeholder="Enter Your Full Name"
-                      />
-                    </div>
-                    <div className="mt-3">
-                      <input
-                        type="email"
-                        className="sign_in_input"
-                        placeholder="Enter Your Email"
-                      />
-                    </div>
-                    <div className="mt-3">
-                      <input
-                        type="number"
-                        className="sign_in_input"
-                        placeholder="Enter Your Phone Number"
-                      />
-                    </div>
-                    <div className="mt-3">
+                    <div className="mt-4">
                       <div className="input-group">
                         <input
                           type={showPassword ? "text" : "password"}
                           className="sign_in_input password-input"
-                          placeholder="Enter Your Password"
+                          placeholder="New Password"
                           value={password}
                           onChange={handlePasswordChange}
                         />
@@ -90,7 +71,7 @@ const SignUp = () => {
                         <input
                           type={showConfirmPassword ? "text" : "password"}
                           className="sign_in_input password-input"
-                          placeholder="Enter Your Confirm Password"
+                          placeholder="Confirm Password"
                           value={confirmPassword}
                           onChange={handleConfirmPasswordChange}
                         />
@@ -103,17 +84,15 @@ const SignUp = () => {
                         </button>
                       </div>
                     </div>
-                    <Link className="text-decoration-none" to="/sign-in">
-                    <div className="d-grid gap-2 mt-4">
+                    <div className="d-grid gap-2 mt-4 pt-3 pb-3">
                       <button
                         className="btn sign_in_btn pt-3 pb-3 text-uppercase poppins-semibold rounded-3"
                         type="button"
                       >
-                        Signup
+                        RESET PASSWORD
                       </button>
                     </div>
-                    </Link>
-                    <div className="mt-3 pb-1">
+                    <div className="mt-1 pb-1">
                       <p className="text-center">
                         Already have an account? &nbsp;
                         <Link
@@ -127,6 +106,7 @@ const SignUp = () => {
                   </div>
                 </div>
               </div>
+              <div className="col-lg-1 col-md-1 col-sm-1"></div>
             </div>
           </div>
         </div>
@@ -135,4 +115,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default ResetPassword;

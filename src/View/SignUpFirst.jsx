@@ -9,7 +9,7 @@ import {
 } from "../Constant/svgs";
 import "../usman.css";
 
-const Sign = () => {
+const SignUpFirst = () => {
   const [activeIndex, setActiveIndex] = useState(null);
 
   const handleMainBoxClick = (index) => {
@@ -32,11 +32,10 @@ const Sign = () => {
                 <div className="bg-white signin_box rounded-4">
                   <div className="pt-3 ps-4 pe-4">
                     <h3 className="poppins-bold sign_in_heading mt-3">
-                      Login As
+                    Sign Up As
                     </h3>
                     <p className="poppins-regular sign_in_paragraph">
-                      Please selecting your role from four distinct options.
-                    </p>
+                    Please selecting your role from four distinct options.                    </p>
                     {options.map((option, index) => (
                       <div className="pt-3" key={index}>
                         <div
@@ -63,15 +62,15 @@ const Sign = () => {
                         </div>
                       </div>
                     ))}
-                    <Link className="text-decoration-none" to="/sign-in">
-                      <div className="d-grid gap-2 mt-4 pt-4 pb-3">
-                        <button
-                          className="btn sign_in_btn pt-3 pb-3 text-uppercase poppins-semibold rounded-3"
-                          type="button"
-                        >
-                          Continue
-                        </button>
-                      </div>
+                    <Link className="text-decoration-none" to="/sign-up">
+                    <div className="d-grid gap-2 mt-4 pt-4 pb-3">
+                      <button
+                        className="btn sign_in_btn pt-3 pb-3 text-uppercase poppins-semibold rounded-3"
+                        type="button"
+                      >
+                        Continue
+                      </button>
+                    </div>
                     </Link>
                   </div>
                 </div>
@@ -85,4 +84,4 @@ const Sign = () => {
   );
 };
 
-export default Sign;
+export default SignUpFirst

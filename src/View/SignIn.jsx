@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import * as images from "../Constant/images";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff } from 'lucide-react';
 import { Link } from "react-router-dom";
 import "../usman.css";
 
-const SignUp = () => {
-  // Password States
+const SignIn = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
@@ -16,18 +15,6 @@ const SignUp = () => {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-
-  // Confirm Password States
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
-  const handleConfirmPasswordChange = (e) => {
-    setConfirmPassword(e.target.value);
-  };
-
-  const toggleConfirmPasswordVisibility = () => {
-    setShowConfirmPassword(!showConfirmPassword);
-  };
   return (
     <>
       <div className="signin_page">
@@ -37,42 +24,28 @@ const SignUp = () => {
           </div>
           <div className="sign_in_box">
             <div className="row sign_in_box2">
-              <div className="col-lg-12 col-md-12 col-sm-12">
+              <div className="col-lg-1 col-md-1 col-sm-1"></div>
+              <div className="col-lg-10 col-md-10 col-sm-10">
                 <div className="bg-white signin_box rounded-4">
                   <div className="pt-3 ps-4 pe-4">
-                    <h3 className="poppins-bold sign_in_heading mt-3">
-                      Sign Up
-                    </h3>
+                    <h3 className="poppins-bold sign_in_heading mt-3">Login</h3>
                     <p className="poppins-regular sign_in_paragraph">
-                      Please enter the information below to signup.
+                      Please enter the information below to log in to your
+                      account.
                     </p>
-                    <div className="mt-3">
-                      <input
-                        type="text"
-                        className="sign_in_input"
-                        placeholder="Enter Your Full Name"
-                      />
-                    </div>
-                    <div className="mt-3">
+                    <div className="pt-1">
                       <input
                         type="email"
-                        className="sign_in_input"
+                        className="sign_in_input mt-3"
                         placeholder="Enter Your Email"
                       />
                     </div>
-                    <div className="mt-3">
-                      <input
-                        type="number"
-                        className="sign_in_input"
-                        placeholder="Enter Your Phone Number"
-                      />
-                    </div>
-                    <div className="mt-3">
-                      <div className="input-group">
+                    <div className="pt-1">
+                      <div className="input-group mt-3">
                         <input
                           type={showPassword ? "text" : "password"}
                           className="sign_in_input password-input"
-                          placeholder="Enter Your Password"
+                          placeholder="Enter Password"
                           value={password}
                           onChange={handlePasswordChange}
                         />
@@ -81,52 +54,60 @@ const SignUp = () => {
                           type="button"
                           onClick={togglePasswordVisibility}
                         >
-                          {showPassword ? <Eye /> : <EyeOff />}
+                          {showPassword ? (
+                            <Eye />
+                          ) : (
+                            <EyeOff />
+                          )}
                         </button>
                       </div>
                     </div>
-                    <div className="mt-3">
-                      <div className="input-group">
+                    <div className="d-flex justify-content-between align-items-center mt-3">
+                      <div className="form-check form-switch d-flex align-items-center gap-2">
                         <input
-                          type={showConfirmPassword ? "text" : "password"}
-                          className="sign_in_input password-input"
-                          placeholder="Enter Your Confirm Password"
-                          value={confirmPassword}
-                          onChange={handleConfirmPasswordChange}
+                          className="form-check-input"
+                          type="checkbox"
+                          role="switch"
+                          id="flexSwitchCheckDefault"
                         />
-                        <button
-                          className="password-toggle-btn"
-                          type="button"
-                          onClick={toggleConfirmPasswordVisibility}
+                        <label className="sign-in-toggle poppins-regular">
+                          Remember Me
+                        </label>
+                      </div>
+                      <div>
+                        <Link
+                          className="poppins-semibold sign-in-forgot"
+                          to="/forgot-password"
                         >
-                          {showConfirmPassword ? <Eye /> : <EyeOff />}
-                        </button>
+                          Forgot Password?
+                        </Link>
                       </div>
                     </div>
-                    <Link className="text-decoration-none" to="/sign-in">
+                    <Link className="text-decoration-none" to="/">
                     <div className="d-grid gap-2 mt-4">
                       <button
                         className="btn sign_in_btn pt-3 pb-3 text-uppercase poppins-semibold rounded-3"
                         type="button"
                       >
-                        Signup
+                        Login
                       </button>
                     </div>
                     </Link>
                     <div className="mt-3 pb-1">
                       <p className="text-center">
-                        Already have an account? &nbsp;
+                        Don’t have an account? &nbsp;
                         <Link
                           className="poppins-semibold sign-in-forgot"
-                          to="/sign-in"
+                          to="/sign-up-first"
                         >
-                          LOGIN
+                          Apply Now
                         </Link>
                       </p>
                     </div>
                   </div>
                 </div>
               </div>
+              <div className="col-lg-1 col-md-1 col-sm-1"></div>
             </div>
           </div>
         </div>
@@ -135,4 +116,5 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignIn;
+
