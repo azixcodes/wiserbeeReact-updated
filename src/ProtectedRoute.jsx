@@ -17,9 +17,12 @@ const ProtectedRoute = (props) => {
   //   }
   // }, [loginKey, authHome, navigate]);
   return (
-    <section className="d-flex w-100">
+    <section className="d-flex w-100 custom-scrollbar">
       <Sidebar />
-      <div className="d-flex flex-column w-full  w-100">
+      <div
+        className="d-flex flex-column w-full  w-100 gap-5"
+        style={{ height: "100vh" }}
+      >
         <Navbar />
         <Component />
       </div>
