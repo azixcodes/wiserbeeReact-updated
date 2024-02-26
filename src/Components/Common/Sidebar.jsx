@@ -14,7 +14,7 @@ const Sidebar = () => {
     <aside className={`${toggleSidebar ? "sidebarOuterSm" : "sidebarOuterLg"}`}>
       <div
         className={`position-fixed ${
-          toggleSidebar ? "sidebarWrapperSm" : "sidebarWrapperLg "
+          toggleSidebar ? "sidebarWrapperSm" : "sidebarWrapperLg"
         }`}
         ref={sidebarRef}
       >
@@ -22,13 +22,13 @@ const Sidebar = () => {
           {/* sidebar logo */}
           <img src={SidebarLogo} alt="logo" />
         </div>
-        <div className="linksWrapper linksScroll  d-flex flex-column gap-4 ">
+        <div className="linksWrapper d-flex flex-column gap-4 ">
           <div className="divider"></div>
           <div
-            className={`linksScroll ${
+            className={`${
               toggleSidebar
-                ? " d-flex flex-column align-items-center gap-4 customSidebarScroll h-100 "
-                : "links  d-flex flex-column gap-3 w-100 text-white h-50 customSidebarScroll h-100 "
+                ? "d-flex flex-column align-items-center gap-4"
+                : "links d-flex flex-column gap-3 w-100 text-white"
             }`}
           >
             {links.map((link, index) => (
@@ -37,12 +37,12 @@ const Sidebar = () => {
                 to={link.path}
                 className={({ isActive }) =>
                   isActive
-                    ? "sidebarLinkActive d-flex px-2 py-3 flex-row align-items-center justify-content-between"
-                    : "sidebarLink d-flex px-2 py-3 flex-row align-items-center  justify-content-between"
+                    ? "sidebarLinkActive d-flex flex-row align-items-center  justify-content-between"
+                    : "sidebarLink d-flex flex-row align-items-center  justify-content-between"
                 }
               >
-                <div className="d-flex gap-2 align-items-center ">
-                  <span className="linkIcon m-0">{link.icon}</span>
+                <div className="d-flex gap-3 align-items-center">
+                  <span className="linkIcon">{link.icon}</span>
                   {!toggleSidebar && <span>{link.label}</span>}
                 </div>
                 {!toggleSidebar && <ChevronRight className="px-0 m-0" />}
