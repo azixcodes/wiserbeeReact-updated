@@ -3,22 +3,23 @@ import * as images from "../Constant/images";
 import { Eye, EyeOff } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
+import { validator } from "../Constant/validator";
 const SignUp = () => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [signUpForm,setSignUpForm] = useState({
-    userFullName:'',
-    userEmail:'',
-    userPhoneNo:'',
-    userPassword:'',
-    userConfirmPassword:''
-  })
+  const [signUpForm, setSignUpForm] = useState({
+    userFullName: "",
+    userEmail: "",
+    userPhoneNo: "",
+    userPassword: "",
+    userConfirmPassword: "",
+  });
 
   const location = useLocation();
   const selectedAccount = location.state && location.state.selectedAccount;
   console.log("selectedAccount", selectedAccount);
-
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -29,14 +30,28 @@ const SignUp = () => {
   };
 
   const handlerChange = (e) => {
-    const {name,value} = e.target;
+    const { name, value } = e.target;
     setSignUpForm((preState) => ({
       ...preState,
-      [name]:value,
-    }))
-  }
+      [name]: value,
+    }));
+  };
 
-  console.log("kashif",signUpForm)
+  const handleSignup = () => {
+    const obj = {
+      name: signUpForm.userFullName,
+      email: signUpForm.userEmail,
+      "phone number": signUpForm.userPhoneNo,
+      password: signUpForm.userPassword,
+      "confirm password": signUpForm.userConfirmPassword,
+    };
+    const validate = validator(obj);
+    if (validate !== "success") {
+      alert(validate);
+    } else {
+      navigate("/");
+    }
+  };
 
   return (
     <>
@@ -94,7 +109,8 @@ const SignUp = () => {
                           onChange={handlerChange}
                           type={showPassword ? "text" : "password"}
                           className="sign_in_input password-input"
-                          placeholder="Enter Your Password" />
+                          placeholder="Enter Your Password"
+                        />
                         <button
                           className="password-toggle-btn"
                           type="button"
@@ -123,16 +139,17 @@ const SignUp = () => {
                         </button>
                       </div>
                     </div>
-                    <Link className="text-decoration-none" to="/sign-in">
-                    <div className="d-grid gap-2 mt-4">
-                      <button
-                        className="btn sign_in_btn pt-3 pb-3 text-uppercase poppins-semibold rounded-3"
-                        type="button"
-                      >
-                        Signup
-                      </button>
+                    <div className="text-decoration-none">
+                      <div className="d-grid gap-2 mt-4">
+                        <button
+                          className="btn sign_in_btn pt-3 pb-3 text-uppercase poppins-semibold rounded-3"
+                          type="button"
+                          onClick={handleSignup}
+                        >
+                          Signup
+                        </button>
+                      </div>
                     </div>
-                    </Link>
                     <div className="mt-3 pb-1">
                       <p className="text-center">
                         Already have an account? &nbsp;

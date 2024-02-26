@@ -1,35 +1,33 @@
 import React, { useState } from "react";
 import * as images from "../Constant/images";
-import { Eye, EyeOff } from 'lucide-react';
-import { Link } from "react-router-dom";
+import { Eye, EyeOff } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-
+import { validator } from "../Constant/validator";
 const SignIn = () => {
-
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
-  const [signInForm,setSignInForm] = useState({
-    userEmail:'',
-    userPassword:'',
-  }) 
-  
+  const [signInForm, setSignInForm] = useState({
+    userEmail: "",
+    userPassword: "",
+  });
+
   const location = useLocation();
   const selectedAccount = location.state && location.state.selectedAccount;
   console.log("selectedAccount", selectedAccount);
-
-
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
   const handlerChange = (e) => {
-    const {name, value} = e.target;
+    const { name, value } = e.target;
     setSignInForm((preState) => ({
       ...preState,
-      [name]:value,
+      [name]: value,
     }));
-  }
+  };
 
   const handleCheckboxChange = (event) => {
     setRememberMe(event.target.checked);
@@ -39,7 +37,18 @@ const SignIn = () => {
   //   console.log("llll")
   //   localStorage.setItem("signInput", JSON.stringify(signInForm));
   // }
-
+  const handleLogin = () => {
+    const obj = {
+      password: signInForm.userPassword,
+      email: signInForm.userEmail,
+    };
+    const validate = validator(obj);
+    if (validate !== "success") {
+      alert(validate);
+    } else {
+      navigate("/");
+    }
+  };
   return (
     <>
       <div className="signin_page">
@@ -60,7 +69,7 @@ const SignIn = () => {
                     </p>
                     <div className="pt-1">
                       <input
-                        name='userEmail'
+                        name="userEmail"
                         value={signInForm.userEmail}
                         onChange={handlerChange}
                         type="email"
@@ -83,11 +92,7 @@ const SignIn = () => {
                           type="button"
                           onClick={togglePasswordVisibility}
                         >
-                          {showPassword ? (
-                            <Eye />
-                          ) : (
-                            <EyeOff />
-                          )}
+                          {showPassword ? <Eye /> : <EyeOff />}
                         </button>
                       </div>
                     </div>
@@ -114,16 +119,17 @@ const SignIn = () => {
                         </Link>
                       </div>
                     </div>
-                    <Link className="text-decoration-none" to="/">
-                    <div className="d-grid gap-2 mt-4">
-                      <button
-                        className="btn sign_in_btn pt-3 pb-3 text-uppercase poppins-semibold rounded-3"
-                        type="button"
-                      >
-                        Login
-                      </button>
+                    <div className="text-decoration-none">
+                      <div className="d-grid gap-2 mt-4">
+                        <button
+                          className="btn sign_in_btn pt-3 pb-3 text-uppercase poppins-semibold rounded-3"
+                          type="button"
+                          onClick={handleLogin}
+                        >
+                          Login
+                        </button>
+                      </div>
                     </div>
-                    </Link>
                     <div className="mt-3 pb-1">
                       <p className="text-center">
                         Don’t have an account? &nbsp;
@@ -148,4 +154,3 @@ const SignIn = () => {
 };
 
 export default SignIn;
-
