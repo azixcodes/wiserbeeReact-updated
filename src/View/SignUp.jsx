@@ -2,32 +2,42 @@ import React, { useState } from "react";
 import * as images from "../Constant/images";
 import { Eye, EyeOff } from "lucide-react";
 import { Link } from "react-router-dom";
-import "../usman.css";
+import { useLocation } from "react-router-dom";
 
 const SignUp = () => {
-  // Password States
-  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [signUpForm,setSignUpForm] = useState({
+    userFullName:'',
+    userEmail:'',
+    userPhoneNo:'',
+    userPassword:'',
+    userConfirmPassword:''
+  })
 
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
+  const location = useLocation();
+  const selectedAccount = location.state && location.state.selectedAccount;
+  console.log("selectedAccount", selectedAccount);
+
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  // Confirm Password States
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
-  const handleConfirmPasswordChange = (e) => {
-    setConfirmPassword(e.target.value);
-  };
-
   const toggleConfirmPasswordVisibility = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
+
+  const handlerChange = (e) => {
+    const {name,value} = e.target;
+    setSignUpForm((preState) => ({
+      ...preState,
+      [name]:value,
+    }))
+  }
+
+  console.log("kashif",signUpForm)
+
   return (
     <>
       <div className="signin_page">
@@ -48,6 +58,9 @@ const SignUp = () => {
                     </p>
                     <div className="mt-3">
                       <input
+                        name="userFullName"
+                        value={signUpForm.userFullName}
+                        onChange={handlerChange}
                         type="text"
                         className="sign_in_input"
                         placeholder="Enter Your Full Name"
@@ -55,6 +68,9 @@ const SignUp = () => {
                     </div>
                     <div className="mt-3">
                       <input
+                        name="userEmail"
+                        value={signUpForm.userEmail}
+                        onChange={handlerChange}
                         type="email"
                         className="sign_in_input"
                         placeholder="Enter Your Email"
@@ -62,6 +78,9 @@ const SignUp = () => {
                     </div>
                     <div className="mt-3">
                       <input
+                        name="userPhoneNo"
+                        value={signUpForm.userPhoneNo}
+                        onChange={handlerChange}
                         type="number"
                         className="sign_in_input"
                         placeholder="Enter Your Phone Number"
@@ -70,12 +89,12 @@ const SignUp = () => {
                     <div className="mt-3">
                       <div className="input-group">
                         <input
+                          name="userPassword"
+                          value={signUpForm.userPassword}
+                          onChange={handlerChange}
                           type={showPassword ? "text" : "password"}
                           className="sign_in_input password-input"
-                          placeholder="Enter Your Password"
-                          value={password}
-                          onChange={handlePasswordChange}
-                        />
+                          placeholder="Enter Your Password" />
                         <button
                           className="password-toggle-btn"
                           type="button"
@@ -88,11 +107,12 @@ const SignUp = () => {
                     <div className="mt-3">
                       <div className="input-group">
                         <input
+                          name="userConfirmPassword"
+                          value={signUpForm.userConfirmPassword}
+                          onChange={handlerChange}
                           type={showConfirmPassword ? "text" : "password"}
                           className="sign_in_input password-input"
                           placeholder="Enter Your Confirm Password"
-                          value={confirmPassword}
-                          onChange={handleConfirmPasswordChange}
                         />
                         <button
                           className="password-toggle-btn"

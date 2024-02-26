@@ -1,7 +1,6 @@
 import React from "react";
 import * as images from "../Constant/images";
 import { Link } from "react-router-dom";
-import "../usman.css";
 
 const OtpVerification = () => {
   return (

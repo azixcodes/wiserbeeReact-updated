@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import * as images from "../Constant/images";
 import { Eye, EyeOff } from "lucide-react";
 import { Link } from "react-router-dom";
-import "../usman.css";
 
 const ResetPassword = () => {
   // Password States

@@ -13,7 +13,7 @@ import {
   Messages,
   Dashboard,
 } from "./View/index";
-import Sign from "./View/Sign";
+import Sign from "./View/SignInFirst";
 import SignIn from "./View/SignIn";
 import SignUpFirst from "./View/SignUpFirst";
 import SignUp from "./View/SignUp";

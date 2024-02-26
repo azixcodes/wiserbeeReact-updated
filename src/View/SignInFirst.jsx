@@ -1,23 +1,24 @@
 import React, { useState } from "react";
 import * as images from "../Constant/images";
-import { Link } from "react-router-dom";
-import {
-  managementicon,
-  parenticon,
-  studenticon,
-  teachericon,
-} from "../Constant/svgs";
-import "../usman.css";
+import { useNavigate } from "react-router-dom";
+import { managementicon, parenticon, studenticon, teachericon} from "../Constant/svgs";
 
 const Sign = () => {
-  const [activeIndex, setActiveIndex] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [selectAccountValue,setSelectAccountValue] = useState();
+  const navigate = useNavigate()
 
   const handleMainBoxClick = (index) => {
     setActiveIndex(index === activeIndex ? null : index);
+    setSelectAccountValue( options[index]);
   };
-
-  const options = ["Student", "Teacher", "Parents", "Management"]; // Replace with your desired names
+  const options = ["Student", "Teacher", "Parents", "Management"]; 
   const svgPaths = [studenticon, teachericon, parenticon, managementicon];
+
+  const handlerClick = () =>{
+    navigate('/sign-in', { state: { selectedAccount: selectAccountValue } })
+  }
+  
   return (
     <>
       <div className="signin_page">
@@ -63,7 +64,7 @@ const Sign = () => {
                         </div>
                       </div>
                     ))}
-                    <Link className="text-decoration-none" to="/sign-in">
+                    <div className="text-decoration-none" onClick={handlerClick}>
                       <div className="d-grid gap-2 mt-4 pt-4 pb-3">
                         <button
                           className="btn sign_in_btn pt-3 pb-3 text-uppercase poppins-semibold rounded-3"
@@ -72,7 +73,7 @@ const Sign = () => {
                           Continue
                         </button>
                       </div>
-                    </Link>
+                    </div>
                   </div>
                 </div>
               </div>

@@ -2,19 +2,44 @@ import React, { useState } from "react";
 import * as images from "../Constant/images";
 import { Eye, EyeOff } from 'lucide-react';
 import { Link } from "react-router-dom";
-import "../usman.css";
+import { useLocation } from "react-router-dom";
 
 const SignIn = () => {
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
 
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
+  const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
+  const [signInForm,setSignInForm] = useState({
+    userEmail:'',
+    userPassword:'',
+  }) 
+  
+  const location = useLocation();
+  const selectedAccount = location.state && location.state.selectedAccount;
+  console.log("selectedAccount", selectedAccount);
+
+
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
+
+  const handlerChange = (e) => {
+    const {name, value} = e.target;
+    setSignInForm((preState) => ({
+      ...preState,
+      [name]:value,
+    }));
+  }
+
+  const handleCheckboxChange = (event) => {
+    setRememberMe(event.target.checked);
+  };
+
+  // if (rememberMe) {
+  //   console.log("llll")
+  //   localStorage.setItem("signInput", JSON.stringify(signInForm));
+  // }
+
   return (
     <>
       <div className="signin_page">
@@ -35,6 +60,9 @@ const SignIn = () => {
                     </p>
                     <div className="pt-1">
                       <input
+                        name='userEmail'
+                        value={signInForm.userEmail}
+                        onChange={handlerChange}
                         type="email"
                         className="sign_in_input mt-3"
                         placeholder="Enter Your Email"
@@ -43,11 +71,12 @@ const SignIn = () => {
                     <div className="pt-1">
                       <div className="input-group mt-3">
                         <input
+                          name="userPassword"
+                          value={signInForm.userPassword}
+                          onChange={handlerChange}
                           type={showPassword ? "text" : "password"}
                           className="sign_in_input password-input"
                           placeholder="Enter Password"
-                          value={password}
-                          onChange={handlePasswordChange}
                         />
                         <button
                           className="password-toggle-btn"
@@ -69,6 +98,8 @@ const SignIn = () => {
                           type="checkbox"
                           role="switch"
                           id="flexSwitchCheckDefault"
+                          checked={rememberMe}
+                          onChange={handleCheckboxChange}
                         />
                         <label className="sign-in-toggle poppins-regular">
                           Remember Me
