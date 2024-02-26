@@ -1,7 +1,5 @@
 import React from "react";
 import Home from "./View/Home";
-import SignIn from "./View/Sign";
-import SignUp from "./View/SignUp";
 import NotFound from "./View/NotFound";
 import ProtectedRoute from "./ProtectedRoute";
 import { Routes, Route } from "react-router-dom";
@@ -15,6 +13,13 @@ import {
   Messages,
   Dashboard,
 } from "./View/index";
+import Sign from "./View/Sign";
+import SignIn from "./View/SignIn";
+import SignUpFirst from "./View/SignUpFirst";
+import SignUp from "./View/SignUp";
+import ForgotPassword from "./View/ForgotPassword";
+import OtpVerification from "./View/OtpVerification";
+import ResetPassword from "./View/ResetPassword";
 const AppRouter = () => {
   return (
     <Routes>
@@ -42,9 +47,13 @@ const AppRouter = () => {
         path="/messages"
         element={<ProtectedRoute Component={Messages} />}
       />
+      <Route path="/sign-in-first" element={<Sign />} />  
       <Route path="/sign-in" element={<SignIn />} />
-      <Route path="/sign-in" element={<SignIn />} />
+      <Route path="/sign-up-first" element={<SignUpFirst />} />  
       <Route path="/sign-up" element={<SignUp />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/otp-verification" element={<OtpVerification />} />
+      <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
