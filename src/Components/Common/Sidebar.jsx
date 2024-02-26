@@ -11,49 +11,53 @@ const Sidebar = () => {
     setToggleSidebar((prev) => !prev);
   };
   return (
-    <div
-      className={`${toggleSidebar ? "sidebarWrapperSm" : "sidebarWrapperLg"}`}
-      ref={sidebarRef}
-    >
-      <div className="sidebarLogo d-flex w-100 justify-content-center">
-        {/* sidebar logo */}
-        <img src={SidebarLogo} alt="logo" />
-      </div>
-      <div className="linksWrapper d-flex flex-column gap-4 ">
-        <div className="divider"></div>
+    <aside className={`${toggleSidebar ? "sidebarOuterSm" : "sidebarOuterLg"}`}>
+      <div
+        className={`position-fixed ${
+          toggleSidebar ? "sidebarWrapperSm" : "sidebarWrapperLg"
+        }`}
+        ref={sidebarRef}
+      >
+        <div className="sidebarLogo d-flex w-100 justify-content-center my-5">
+          {/* sidebar logo */}
+          <img src={SidebarLogo} alt="logo" />
+        </div>
+        <div className="linksWrapper d-flex flex-column gap-4 ">
+          <div className="divider"></div>
+          <div
+            className={`${
+              toggleSidebar
+                ? "d-flex flex-column align-items-center gap-4"
+                : "links d-flex flex-column gap-4 w-100 text-white"
+            }`}
+          >
+            {links.map((link, index) => (
+              <NavLink
+                key={index}
+                to={link.path}
+                className={({ isActive }) =>
+                  isActive
+                    ? "sidebarLinkActive d-flex flex-row align-items-center  justify-content-between"
+                    : "sidebarLink d-flex flex-row align-items-center  justify-content-between"
+                }
+              >
+                <div className="d-flex gap-3 align-items-center">
+                  <span className="linkIcon">{link.icon}</span>
+                  {!toggleSidebar && <span>{link.label}</span>}
+                </div>
+                {!toggleSidebar && <ChevronRight className="px-0 m-0" />}
+              </NavLink>
+            ))}
+          </div>
+        </div>
         <div
-          className={`${
-            toggleSidebar
-              ? "d-flex flex-column align-items-center gap-4"
-              : "links d-flex flex-column gap-4 w-100 text-white"
-          }`}
+          className="sidebarToggle cursor-pointer "
+          onClick={handleSidebarToggle}
         >
-          {links.map((link, index) => (
-            <NavLink
-              key={index}
-              to={link.path}
-              className={({ isActive }) =>
-                isActive
-                  ? "sidebarLinkActive d-flex flex-row align-items-center  justify-content-between"
-                  : "sidebarLink d-flex flex-row align-items-center  justify-content-between"
-              }
-            >
-              <div className="d-flex gap-3 align-items-center">
-                <span className="linkIcon">{link.icon}</span>
-                {!toggleSidebar && <span>{link.label}</span>}
-              </div>
-              {!toggleSidebar && <ChevronRight className="px-0 m-0" />}
-            </NavLink>
-          ))}
+          {toggleSidebar ? <ChevronRight /> : <ChevronLeft />}
         </div>
       </div>
-      <div
-        className="sidebarToggle cursor-pointer"
-        onClick={handleSidebarToggle}
-      >
-        {toggleSidebar ? <ChevronRight /> : <ChevronLeft />}
-      </div>
-    </div>
+    </aside>
   );
 };
 

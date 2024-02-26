@@ -18,8 +18,6 @@ const Navbar = () => {
     const handleClickWindow = (e) => {
       if (dropDownRef.current && dropDownRef.current.contains(e.target)) {
         setOpenDropdown((prev) => !prev);
-
-        console.log("clicked inside");
       } else setOpenDropdown(false);
     };
 
@@ -36,8 +34,8 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbarWrapper d-flex position-relative flex-row align-items-center px-2 justify-content-around">
-      <div className="routeName d-flex align-items-center ">
+    <div className="navbarWrapper shadow d-flex position-relative bg-white flex-row align-items-center w-100 px-4  ">
+      <div className="routeName d-flex align-items-center">
         <h4>Route name</h4>
       </div>
       <div className="searchBoxWrapper d-flex align-items-center">
@@ -46,8 +44,8 @@ const Navbar = () => {
           <input type="text" placeholder="search" className="w-100" />
         </div>
       </div>
-      <div className=" d-flex align-items-center gap-4">
-        <div className="position-relative">
+      <div className="ActionItems d-flex gap-5 align-items-center  h-100 w-50 justify-content-end ">
+        <div className="position-relative d-flex  ">
           <span>{notificationSvg}</span>
           <div className="chip position-absolute d-flex justify-content-center align-items-center text-white">
             5
@@ -61,7 +59,7 @@ const Navbar = () => {
             height="16"
           />
           {openDropDown ? (
-            <div className="flagsDropdown">
+            <div className="flagsDropdown custom-scrollbar ">
               {countries.map((flag, index) => (
                 <div
                   key={index}
@@ -79,7 +77,7 @@ const Navbar = () => {
             </div>
           ) : null}
           {/* </select> */}
-          <div className="d-flex align-items-center  " ref={dropDownRef}>
+          <div className="d-flex align-items-center" ref={dropDownRef}>
             <span className="m-0 p-0  ">{language.language}</span>
             {openDropDown ? (
               <ChevronUp
@@ -96,16 +94,18 @@ const Navbar = () => {
             {/* <ChevronUp /> */}
           </div>
         </div>
-        <div className="d-flex flex-row align-items-center userSection">
-          <div className="navAvatar p-0 m-0 d-flex justify-content-center align-items-center">
+        <div className="row userSection select">
+          <div className="col-md-3 navAvatar d-flex justify-content-center align-items-center">
             {userSvg}
           </div>
-          <div className="d-flex flex-row justify-content-between  align-items-center position-relative">
-            <div>
+          <div className=" col-md-9 row align-items-center">
+            <div className="col-md-9 align-items-center">
               <h5 className="font-sm fw-bold p-0 m-0">admin</h5>
               <h6 className="fs-6">john doe</h6>
             </div>
-            <ChevronDown className="userDropdownIcon" />
+            <div className="col-md-3">
+              <ChevronDown className="text-end" />
+            </div>
           </div>
         </div>
       </div>
