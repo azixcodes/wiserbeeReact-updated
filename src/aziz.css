@@ -10,29 +10,53 @@ a {
 .customShadow {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
-.custom-scrollbar {
+/* .custom-scrollbar {
   max-height: 100vh;
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: var(--bg-primary) #ffffff;
   ::-webkit-scrollbar {
     width: 6px !important;
-    border-radius: 8px; /* Adjust border-radius as needed */
+    border-radius: 8px;
   }
   ::-webkit-scrollbar-thumb {
     background-color: var(--bg-primary);
-    border-radius: 8px; /* Adjust border-radius as needed */
+    border-radius: 8px;
   }
   ::-webkit-scrollbar-track {
     background-color: #ffffff;
     border-radius: 4%;
   }
+} */
+.customSidebarScroll {
+  max-height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--bg-primary);
+  ::-webkit-scrollbar {
+    width: 6px !important;
+    border-radius: 8px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--bg-primary);
+    border-radius: 12px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: var(--bg-primary);
+    border-radius: 4%;
+  }
 }
 /* .................<Sidebar starts>....................... */
+.linksScroll {
+  overflow-y: auto;
+  height: 100%;
+  max-height: 100%;
+}
+
 .sidebarOuterLg {
   position: relative;
   z-index: 50;
-  margin: 5px 5px;
   border-radius: 15px;
   background-color: transparent;
   height: 100vh;
@@ -42,7 +66,7 @@ a {
 .sidebarOuterSm {
   position: relative;
   z-index: 50;
-  margin: 5px 5px;
+  /* margin: 5px 5px; */
   border-radius: 15px;
   background-color: transparent;
   height: 100vh;
@@ -68,6 +92,8 @@ a {
   border-radius: 15px;
   background-color: var(--bg-primary);
   height: 100vh;
+  max-height: 100vh;
+  /* overflow-y: auto; */
   width: 18%;
   display: flex;
   gap: 20px;
@@ -99,16 +125,16 @@ a {
   width: 100%;
 }
 .sidebarLink {
-  height: 50px;
+  height: 30px;
   border-radius: 7px;
-  padding: 0 10px;
+  padding: 5px 10px;
   cursor: pointer;
   color: white;
 }
 .sidebarLinkActive {
-  height: 50px;
+  height: 30px;
   border-radius: 7px;
-  padding: 0 10px;
+  padding: 5px 10px;
   cursor: pointer;
   color: white;
   background-color: #585085;
@@ -132,7 +158,12 @@ a {
   border-radius: 7px;
   cursor: pointer;
 }
-
+.sidebarLinks {
+  /* height: 100%; */
+  /* background-color: red; */
+  /* max-height: 100%; */
+  overflow-y: scroll;
+}
 /* .................<Sidebar ends>....................... */
 /* .................<Navbar Starts>....................... */
 
@@ -222,3 +253,5 @@ a {
   background-color: rgb(214, 205, 205);
 }
 /* .................<Navbar ends>....................... */
+
+/* test commit */
