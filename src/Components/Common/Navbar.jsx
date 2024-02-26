@@ -34,7 +34,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbarWrapper shadow d-flex position-relative bg-white flex-row align-items-center w-100 px-4  ">
+    <div className="navbarWrapper customShadow d-flex position-relative bg-white flex-row align-items-center w-100 px-4  ">
       <div className="routeName d-flex align-items-center">
         <h4>Route name</h4>
       </div>
