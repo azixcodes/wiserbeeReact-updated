@@ -46,7 +46,7 @@ export const links = [
   },
   {
     label: "Account Setting",
-    path: "/account-setting",
+    path: "/account-settings",
     icon: settingsSvg,
   },
 ];

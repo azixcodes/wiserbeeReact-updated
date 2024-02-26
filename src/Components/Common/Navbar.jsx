@@ -7,26 +7,28 @@ import Flag from "react-world-flags";
 
 const Navbar = () => {
   const dropDownRef = useRef(null);
+
   const [openDropDown, setOpenDropdown] = useState(false);
   const [language, setLanguage] = useState({
     code: "usa",
     language: "English",
   });
 
-  //   useEffect(() => {
-  //     const handleClickWindow = (e) => {
-  //       if (dropDownRef.current && !dropDownRef.current.contains(e.target)) {
-  //         // setOpenDropdown(false);
-  //         alert("clicked outside");
-  //       } else alert("inside");
-  //     };
+  useEffect(() => {
+    const handleClickWindow = (e) => {
+      if (dropDownRef.current && dropDownRef.current.contains(e.target)) {
+        setOpenDropdown((prev) => !prev);
 
-  //     document.addEventListener("click", handleClickWindow);
+        console.log("clicked inside");
+      } else setOpenDropdown(false);
+    };
 
-  //     return () => {
-  //       document.removeEventListener("click", handleClickWindow);
-  //     };
-  //   }, []);
+    document.addEventListener("click", handleClickWindow);
+
+    return () => {
+      document.removeEventListener("click", handleClickWindow);
+    };
+  }, []);
 
   const handleListClick = (code, language) => {
     setLanguage({ code: code, language: language });
@@ -51,16 +53,12 @@ const Navbar = () => {
             5
           </div>
         </div>
-        <div
-          className="d-flex align-items-center position-relative gap-3"
-          ref={dropDownRef}
-        >
+        <div className="d-flex align-items-center position-relative gap-3">
           {/* <select> */}
           <Flag
             code={language.code}
             fallback={<span>Unknown</span>}
             height="16"
-            ref={dropDownRef}
           />
           {openDropDown ? (
             <div className="flagsDropdown">
@@ -81,17 +79,17 @@ const Navbar = () => {
             </div>
           ) : null}
           {/* </select> */}
-          <div className="d-flex align-items-center">
-            <span className="m-0 p-0">{language.language}</span>
+          <div className="d-flex align-items-center  " ref={dropDownRef}>
+            <span className="m-0 p-0  ">{language.language}</span>
             {openDropDown ? (
               <ChevronUp
                 className="cursor-pointer"
-                onClick={() => setOpenDropdown(!openDropDown)}
+                // onClick={() => setOpenDropdown(!openDropDown)}
               />
             ) : (
               <ChevronDown
                 className="cursor-pointer"
-                onClick={() => setOpenDropdown((prev) => !prev)}
+                // onClick={() => setOpenDropdown((prev) => !prev)}
               />
             )}
 
