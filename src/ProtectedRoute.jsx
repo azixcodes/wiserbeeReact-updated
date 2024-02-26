@@ -21,7 +21,9 @@ const ProtectedRoute = (props) => {
       <Sidebar />
       <div className="d-flex flex-column w-full  w-100 gap-5">
         <Navbar />
-        <Component />
+        <main className="routesWrapper">
+          <Component />
+        </main>
       </div>
     </section>
   );
