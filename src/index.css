@@ -237,7 +237,7 @@ body {
 
 /* dashboard */
 .dashboardWrapper {
-  padding: 0 30px;
+  /* padding: 0 30px; */
 
   gap: 20px;
 }
