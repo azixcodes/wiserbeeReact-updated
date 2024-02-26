@@ -1,12 +1,27 @@
 :root {
   --bg-primary: #463c77;
 }
+a {
+  text-decoration: none;
+}
 .cursor-pointer {
   cursor: pointer;
 }
 /* .................<Sidebar starts>....................... */
-
-.sidebarWrapper {
+.sidebarWrapperSm {
+  position: relative;
+  margin: 5px 5px;
+  border-radius: 15px;
+  background-color: var(--bg-primary);
+  height: 100vh;
+  width: 6%;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  padding: 40px 8px;
+  transition: width 0.2s linear;
+}
+.sidebarWrapperLg {
   position: relative;
   margin: 5px 5px;
   border-radius: 15px;
@@ -17,12 +32,25 @@
   gap: 20px;
   flex-direction: column;
   padding: 40px 8px;
+  transition: width 0.2s linear;
+}
+.smSidebarWrapper {
+  position: relative;
+  margin: 5px 5px;
+  border-radius: 15px;
+  background-color: var(--bg-primary);
+  height: 100vh;
+  width: 6%;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  padding: 40px 8px;
 }
 .sidebarLogo img {
   width: 143px;
   height: 81px;
   max-width: 90%;
-  object-fit: cover;
+  object-fit: contain;
 }
 .divider {
   background-color: #979797b8;
@@ -34,6 +62,15 @@
   border-radius: 7px;
   padding: 0 10px;
   cursor: pointer;
+  color: white;
+}
+.sidebarLinkActive {
+  height: 50px;
+  border-radius: 7px;
+  padding: 0 10px;
+  cursor: pointer;
+  color: white;
+  background-color: #585085;
 }
 .sidebarLink:hover {
   background-color: #585085;
