@@ -18,7 +18,7 @@ const Sidebar = () => {
         }`}
         ref={sidebarRef}
       >
-        <div className="sidebarLogo d-flex w-100 justify-content-center my-5">
+        <div className="sidebarLogo d-flex w-100 justify-content-center">
           {/* sidebar logo */}
           <img src={SidebarLogo} alt="logo" />
         </div>
@@ -28,7 +28,7 @@ const Sidebar = () => {
             className={`${
               toggleSidebar
                 ? "d-flex flex-column align-items-center gap-4"
-                : "links d-flex flex-column gap-4 w-100 text-white"
+                : "links d-flex flex-column gap-3 w-100 text-white"
             }`}
           >
             {links.map((link, index) => (

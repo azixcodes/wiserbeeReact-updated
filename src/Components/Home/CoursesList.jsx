@@ -13,7 +13,7 @@ const CoursesList = (props) => {
   } = props;
 
   return (
-    <div className="courseBox d-flex justify-content-start mt-3">
+    <div className="courseBox d-flex justify-content-start mt-3 customShadow">
       <div className="thubnailCourse">
         <img src={imgesLect} alt="coursesImg" />
         <span>{tagLect}</span>

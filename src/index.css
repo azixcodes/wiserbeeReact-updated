@@ -46,10 +46,10 @@ body {
   border-radius: 100%;
   border: 7px solid #ededf2;
 }
-.userIcons svg {
+/* .userIcons svg {
   position: absolute;
   left: 1;
-}
+} */
 
 .welcomeTxtP h6 {
   font-weight: 700;
@@ -94,7 +94,6 @@ body {
   font-size: 28px;
 }
 .courseBox {
-  box-shadow: 5px 5px 5px 5px rgb(216, 216, 216);
   background-color: #fff;
   border-radius: 10px;
   padding: 10px;
@@ -183,7 +182,6 @@ body {
   height: 40px;
 }
 .taskListView {
-  box-shadow: 5px 5px 5px 5px rgb(216, 216, 216);
   width: 30%;
   background-color: #fff;
   padding: 30px;

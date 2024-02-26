@@ -7,6 +7,9 @@ a {
 .cursor-pointer {
   cursor: pointer;
 }
+.customShadow {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
 .custom-scrollbar {
   max-height: 100vh;
   overflow-y: auto;
@@ -134,7 +137,7 @@ a {
 /* .................<Navbar Starts>....................... */
 
 .navbarWrapper {
-  height: 200px !important;
+  height: 120px !important;
 
   padding: 5px 0;
 }
