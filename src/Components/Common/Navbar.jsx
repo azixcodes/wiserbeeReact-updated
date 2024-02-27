@@ -105,11 +105,11 @@ const Nav2 = (props) => {
           <div className="navAvatar d-flex justify-content-center align-items-center">
             {userSvg}
           </div>
-          <div className="align-items-center userName mx-2">
+          <div className="align-items-center userName mx-2 d-none d-md-block">
             <h6 className="fs-6  fw-bold ">john doe</h6>
             <h5 className="font-sm ">Admin</h5>
           </div>
-          <div className="userUpIcon">
+          <div className="userUpIcon d-none d-md-block">
             <ChevronDown className="text-end" />
           </div>
         </div>
