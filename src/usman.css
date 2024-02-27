@@ -68,7 +68,7 @@
 }
 @media screen and (max-width: 576px) {
   .sign_in_box2 {
-    margin-top: 70%;
+    /* margin-top: 70%; */
   }
 }
 .sign_in_heading {
@@ -175,6 +175,7 @@ input::placeholder {
 .sign-in-forgot {
   color: var(--text-color);
   text-decoration: none;
+  cursor: pointer !important;
 }
 /* ____________________________________ */
 /* Sign-In Page Button */

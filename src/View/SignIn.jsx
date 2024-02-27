@@ -4,6 +4,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { validator } from "../Constant/validator";
+
 const SignIn = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
@@ -57,7 +58,7 @@ const SignIn = () => {
             <img src={images.SidebarLogo} alt="logo-img" width={100} />
           </div>
           <div className="row sign_in_box2 g-0">
-          <div className="col-lg-5 col-md-6 col-sm-8">
+            <div className="col-lg-5 col-md-8 col-sm-10">
               <div className="form-box bg-white rounded-4 w-100 h-100">
                 <div className="pt-3 ps-4 pe-4 d-flex flex-column h-100">
                   <h3 className="poppins-bold sign_in_heading mt-3">Login</h3>
