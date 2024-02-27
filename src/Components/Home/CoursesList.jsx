@@ -25,8 +25,8 @@ const CoursesList = (props) => {
         </div>
         <div className="d-flex justify-content-between align-items-center ">
           <div className="w-50">
-            <div class="progress">
-              <div class="bar" style={{ width: completedLect }}></div>
+            <div className="progress">
+              <div className="bar" style={{ width: completedLect }}></div>
             </div>
             <div className="lctDuration">
               {leacture}

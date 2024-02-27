@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Sidebar from "./Components/Common/Sidebar";
 import Navbar from "./Components/Common/Navbar";
+import Nav2 from "./Components/Common/Nav2";
 const ProtectedRoute = (props) => {
   const { Component } = props;
   const location = useLocation();
@@ -20,7 +21,7 @@ const ProtectedRoute = (props) => {
     <section className="d-flex w-100 custom-scrollbar">
       <Sidebar />
       <div className="d-flex flex-column w-full  w-100 gap-5">
-        <Navbar />
+        <Nav2 />
         <main className="routesWrapper">
           <Component />
         </main>

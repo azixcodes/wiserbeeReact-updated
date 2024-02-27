@@ -34,11 +34,11 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbarWrapper customShadow d-flex position-relative bg-white flex-row align-items-center w-100 px-4  ">
+    <div className="navbarWrapper customShadow flex-column flex-md-row gap-1 pb-4 d-flex position-relative bg-white flex-row align-items-center w-100 px-4  ">
       <div className="routeName d-flex align-items-center">
         <h4 className="fw-bold">Dashboard</h4>
       </div>
-      <div className="searchBoxWrapper d-flex align-items-center">
+      <div className="searchBoxWrapper d-flex align-items-center w-100 md-w-25">
         <div className="searchBox d-flex align-items-center px-1 gap-2 w-100">
           <Search />
           <input type="text" placeholder="Search" className="w-100" />
@@ -98,7 +98,7 @@ const Navbar = () => {
           <div className="col-md-3 navAvatar d-flex justify-content-center align-items-center">
             {userSvg}
           </div>
-          <div className=" col-md-9 row align-items-center">
+          <div className=" col-md-9 row align-items-center d-none d-lg-flex">
             <div className="col-md-9 align-items-center">
               <h6 className="fs-6  fw-bold p-0 m-0">john doe</h6>
               <h5 className="font-sm p-0 m-0">admin</h5>
