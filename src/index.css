@@ -48,12 +48,11 @@ body {
 :not(.btn-check) + .btn:active:focus-visible {
   box-shadow: #c5bbfa;
 }
-.form-check-input:focus{
+.form-check-input:focus {
   border-color: #493f7b;
-  box-shadow: 0 0 0 0.25rem rgba(73, 63, 123,.25)
+  box-shadow: 0 0 0 0.25rem rgba(73, 63, 123, 0.25);
 }
 .form-switch .form-check-input {
-
 }
 
 /* primery button */
@@ -259,39 +258,41 @@ input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-.input-group>:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback){
+.input-group
+  > :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(
+    .valid-feedback
+  ):not(.invalid-tooltip):not(.invalid-feedback) {
   background: transparent;
 }
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
   width: 10px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #f1f1f1;
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888; 
+  background: #888;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #555;
 }
-
-.navbarWrapper h4{
+*/ .navbarWrapper h4 {
   font-size: 28px;
   font-family: PoppinsSemiBold;
   font-weight: 700;
 }
-.userName h5{
+.userName h5 {
   font-size: 12px;
   font-family: PoppinsSemiBold;
   font-weight: 400;
 }
-.userName  h6{
+.userName h6 {
   font-size: 15px;
   font-family: PoppinsSemiBold;
   font-weight: 600;
