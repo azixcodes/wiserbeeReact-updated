@@ -2,9 +2,10 @@ import React, { useEffect, useState, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Sidebar from "./Components/Common/Sidebar";
 import Navbar from "./Components/Common/Navbar";
-import Nav2 from "./Components/Common/Nav2";
 import MiniSidebar from "./Components/Common/MiniSidebar";
+
 const ProtectedRoute = (props) => {
+
   const [windowWidth, setWindowWidth] = useState(undefined);
   const [toggle, setToggle] = useState(false);
   const [isSmall, setIsSmall] = useState(false);
@@ -43,7 +44,7 @@ const ProtectedRoute = (props) => {
     <section className="d-flex w-100 custom-scrollbar">
       <MiniSidebar toggle={toggle} setToggle={setToggle} /> <Sidebar />
       <div className="d-flex flex-column w-full  w-100 ">
-        <Nav2 handleToggleSidebar={handleToggleSidebar} />
+        <Navbar handleToggleSidebar={handleToggleSidebar} />
         <main className="routesWrapper">
           <Component />
         </main>

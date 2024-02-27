@@ -303,6 +303,12 @@ a {
   .mneuIcon {
     display: block;
   }
+  .userName{
+    display: none;
+  }
+  .userUpIcon{
+    display: none;
+  }
 }
 @media (max-width: 993px) {
   .sidebarWrapperSm,

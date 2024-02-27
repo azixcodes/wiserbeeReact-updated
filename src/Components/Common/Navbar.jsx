@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
-import { ChevronDown, Search, ChevronUp } from "lucide-react";
+import { ChevronDown, Search, ChevronUp, MenuIcon } from "lucide-react";
 import { notificationSvg } from "../../Constant/svgs";
 import { countries } from "../../Constant/languages";
 import { userSvg } from "../../Constant/svgs";
 import Flag from "react-world-flags";
 
-const Navbar = () => {
+const Nav2 = (props) => {
+  const { handleToggleSidebar } = props;
   const dropDownRef = useRef(null);
 
   const [openDropDown, setOpenDropdown] = useState(false);
@@ -33,26 +34,39 @@ const Navbar = () => {
     setOpenDropdown(false);
   };
 
+  const currentUrl = window.location.pathname;
+  const modifiedUrl = currentUrl.replace('/', '');
+  console.log(modifiedUrl)
+
+  const layoutTitles = {
+    'courses': "Courses",
+    'class-schedule': "Class Schedule",
+    'grade-book': "Grade Book",
+    'exams': "Exams",
+    'community': "Community",
+    'messages': "Messages",
+    'account-settings': "Account Settings",
+  };
+  const labelContent =  layoutTitles[modifiedUrl] || 'Dashboard';
+
   return (
-    <div className="navbarWrapper customShadow flex-column flex-md-row gap-1 pb-4 d-flex position-relative bg-white flex-row align-items-center w-100 px-4  ">
-      <div className="routeName d-flex align-items-center">
-        <h4 className="fw-bold">Dashboard</h4>
-      </div>
-      <div className="searchBoxWrapper d-flex align-items-center w-100 md-w-25">
-        <div className="searchBox d-flex align-items-center px-1 gap-2 w-100">
+    <>
+      <div className="navbarWrapper d-flex justify-content-between align-items-center flex-wrap">
+        <h4 className="mb-0">
+          <MenuIcon onClick={handleToggleSidebar} className="mneuIcon"/>
+          {labelContent}
+        </h4>
+        <div className="searchBox d-flex align-items-center ">
           <Search />
           <input type="text" placeholder="Search" className="w-100" />
         </div>
-      </div>
-      <div className="ActionItems d-flex gap-5 align-items-center  h-100 w-50 justify-content-end ">
-        <div className="position-relative d-flex  ">
+        <div className="position-relative ">
           <span>{notificationSvg}</span>
           <div className="chip position-absolute d-flex justify-content-center align-items-center text-white">
             5
           </div>
         </div>
-        <div className="d-flex align-items-center position-relative gap-3">
-          {/* <select> */}
+        <div className="d-flex align-items-center position-relative ">
           <Flag
             code={language.code}
             fallback={<span>Unknown</span>}
@@ -63,7 +77,7 @@ const Navbar = () => {
               {countries.map((flag, index) => (
                 <div
                   key={index}
-                  className="d-flex align-items-center gap-2 flagList"
+                  className="d-flex align-items-center  2 flagList"
                   onClick={() => handleListClick(flag.code, flag.language)}
                 >
                   <Flag
@@ -76,41 +90,32 @@ const Navbar = () => {
               ))}
             </div>
           ) : null}
-          {/* </select> */}
           <div className="d-flex align-items-center" ref={dropDownRef}>
-            <span className="m-0 p-0  ">{language.language}</span>
+            <span className="m-0 p-0 d-none d-md-block mx-2">
+              {language.language}
+            </span>
             {openDropDown ? (
-              <ChevronUp
-                className="cursor-pointer"
-                // onClick={() => setOpenDropdown(!openDropDown)}
-              />
+              <ChevronUp className="cursor-pointer" />
             ) : (
-              <ChevronDown
-                className="cursor-pointer"
-                // onClick={() => setOpenDropdown((prev) => !prev)}
-              />
+              <ChevronDown className="cursor-pointer" />
             )}
-
-            {/* <ChevronUp /> */}
           </div>
         </div>
-        <div className="row userSection select">
-          <div className="col-md-3 navAvatar d-flex justify-content-center align-items-center">
+        <div className="d-flex justify-content-between align-items-center userAccount">
+          <div className="navAvatar d-flex justify-content-center align-items-center">
             {userSvg}
           </div>
-          <div className=" col-md-9 row align-items-center d-none d-lg-flex">
-            <div className="col-md-9 align-items-center">
-              <h6 className="fs-6  fw-bold p-0 m-0">john doe</h6>
-              <h5 className="font-sm p-0 m-0">admin</h5>
-            </div>
-            <div className="col-md-3">
-              <ChevronDown className="text-end" />
-            </div>
+          <div className="align-items-center userName mx-2">
+            <h6 className="fs-6  fw-bold ">john doe</h6>
+            <h5 className="font-sm ">Admin</h5>
+          </div>
+          <div className="userUpIcon">
+            <ChevronDown className="text-end" />
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
-export default Navbar;
+export default Nav2;
