@@ -42,13 +42,13 @@ const Sidebar = () => {
           {/* sidebar logo */}
           <img src={SidebarLogo} alt="logo" />
         </div>
+        <div className="divider"></div>
         <div className="linksWrapper d-flex flex-column gap-4 ">
-          <div className="divider"></div>
           <div
             className={`${
               toggleSidebar
                 ? "d-flex flex-column align-items-center gap-4"
-                : "links d-flex flex-column gap-3 w-100 text-white"
+                : "links d-flex flex-column gap-1 w-100 text-white"
             }`}
           >
             {links.map((link, index) => (
