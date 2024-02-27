@@ -34,78 +34,74 @@ const ResetPassword = () => {
           <div className="logo_img">
             <img src={images.SidebarLogo} alt="logo-img" width={100} />
           </div>
-          <div className="sign_in_box">
-            <div className="row sign_in_box2">
-              <div className="col-lg-1 col-md-1 col-sm-1"></div>
-              <div className="col-lg-10 col-md-10 col-sm-10">
-                <div className="bg-white signin_box rounded-4">
-                  <div className="pt-3 ps-4 pe-4">
-                    <h3 className="poppins-bold sign_in_heading mt-3">
-                      Reset Password
-                    </h3>
-                    <p className="poppins-regular reset_psw_paragraph">
-                      Enter your new password and confirm password to reset
-                      password.
-                    </p>
-                    <div className="mt-4">
-                      <div className="input-group">
-                        <input
-                          type={showPassword ? "text" : "password"}
-                          className="sign_in_input password-input"
-                          placeholder="New Password"
-                          value={password}
-                          onChange={handlePasswordChange}
-                        />
-                        <button
-                          className="password-toggle-btn"
-                          type="button"
-                          onClick={togglePasswordVisibility}
-                        >
-                          {showPassword ? <Eye /> : <EyeOff />}
-                        </button>
-                      </div>
-                    </div>
-                    <div className="mt-3">
-                      <div className="input-group">
-                        <input
-                          type={showConfirmPassword ? "text" : "password"}
-                          className="sign_in_input password-input"
-                          placeholder="Confirm Password"
-                          value={confirmPassword}
-                          onChange={handleConfirmPasswordChange}
-                        />
-                        <button
-                          className="password-toggle-btn"
-                          type="button"
-                          onClick={toggleConfirmPasswordVisibility}
-                        >
-                          {showConfirmPassword ? <Eye /> : <EyeOff />}
-                        </button>
-                      </div>
-                    </div>
-                    <div className="d-grid gap-2 mt-4 pt-3 pb-3">
+          <div className="row sign_in_box2 g-0">
+          <div className="col-lg-5 col-md-6 col-sm-8">
+              <div className="bg-white rounded-4">
+                <div className="pt-3 ps-4 pe-4">
+                  <h3 className="poppins-bold sign_in_heading mt-3">
+                    Reset Password
+                  </h3>
+                  <p className="poppins-regular reset_psw_paragraph">
+                    Enter your new password and confirm password to reset
+                    password.
+                  </p>
+                  <div className="mt-4">
+                    <div className="input-group">
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        className="sign_in_input password-input"
+                        placeholder="New Password"
+                        value={password}
+                        onChange={handlePasswordChange}
+                      />
                       <button
-                        className="btn sign_in_btn pt-3 pb-3 text-uppercase poppins-semibold rounded-3"
+                        className="password-toggle-btn"
                         type="button"
+                        onClick={togglePasswordVisibility}
                       >
-                        RESET PASSWORD
+                        {showPassword ? <Eye /> : <EyeOff />}
                       </button>
                     </div>
-                    <div className="mt-1 pb-1">
-                      <p className="text-center">
-                        Already have an account? &nbsp;
-                        <Link
-                          className="poppins-semibold sign-in-forgot"
-                          to="/sign-in"
-                        >
-                          LOGIN
-                        </Link>
-                      </p>
+                  </div>
+                  <div className="mt-3">
+                    <div className="input-group">
+                      <input
+                        type={showConfirmPassword ? "text" : "password"}
+                        className="sign_in_input password-input"
+                        placeholder="Confirm Password"
+                        value={confirmPassword}
+                        onChange={handleConfirmPasswordChange}
+                      />
+                      <button
+                        className="password-toggle-btn"
+                        type="button"
+                        onClick={toggleConfirmPasswordVisibility}
+                      >
+                        {showConfirmPassword ? <Eye /> : <EyeOff />}
+                      </button>
                     </div>
+                  </div>
+                  <div className="d-grid gap-2 mt-4 pt-3 pb-3">
+                    <button
+                      className="btn sign_in_btn pt-3 pb-3 text-uppercase poppins-semibold rounded-3"
+                      type="button"
+                    >
+                      RESET PASSWORD
+                    </button>
+                  </div>
+                  <div className="mt-1 pb-1">
+                    <p className="text-center">
+                      Already have an account? &nbsp;
+                      <Link
+                        className="poppins-semibold sign-in-forgot"
+                        to="/sign-in"
+                      >
+                        LOGIN
+                      </Link>
+                    </p>
                   </div>
                 </div>
               </div>
-              <div className="col-lg-1 col-md-1 col-sm-1"></div>
             </div>
           </div>
         </div>

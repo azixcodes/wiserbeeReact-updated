@@ -8,95 +8,14 @@
   --text-color: #463c77;
 }
 /* Font Family */
-.poppins-thin {
-  font-family: "Poppins";
-  font-weight: 100;
-  font-style: normal;
-}
-.poppins-extralight {
-  font-family: "Poppins";
-  font-weight: 200;
-  font-style: normal;
-}
-.poppins-light {
-  font-family: "Poppins";
-  font-weight: 300;
-  font-style: normal;
+.poppins-bold {
+  font-family: PoppinsBold;
 }
 .poppins-regular {
-  font-family: "Poppins";
-  font-weight: 400;
-  font-style: normal;
-}
-.poppins-medium {
-  font-family: "Poppins";
-  font-weight: 500;
-  font-style: normal;
+  font-family: PoppinsReg;
 }
 .poppins-semibold {
-  font-family: "Poppins";
-  font-weight: 600;
-  font-style: normal;
-}
-.poppins-bold {
-  font-family: "Poppins";
-  font-weight: 700;
-  font-style: normal;
-}
-.poppins-extrabold {
-  font-family: "Poppins";
-  font-weight: 800;
-  font-style: normal;
-}
-.poppins-black {
-  font-family: "Poppins";
-  font-weight: 900;
-  font-style: normal;
-}
-.poppins-thin-italic {
-  font-family: "Poppins";
-  font-weight: 100;
-  font-style: italic;
-}
-.poppins-extralight-italic {
-  font-family: "Poppins";
-  font-weight: 200;
-  font-style: italic;
-}
-.poppins-light-italic {
-  font-family: "Poppins";
-  font-weight: 300;
-  font-style: italic;
-}
-.poppins-regular-italic {
-  font-family: "Poppins";
-  font-weight: 400;
-  font-style: italic;
-}
-.poppins-medium-italic {
-  font-family: "Poppins";
-  font-weight: 500;
-  font-style: italic;
-}
-.poppins-semibold-italic {
-  font-family: "Poppins";
-  font-weight: 600;
-  font-style: italic;
-}
-.poppins-bold-italic {
-  font-family: "Poppins";
-  font-weight: 700;
-  font-style: italic;
-}
-.poppins-extrabold-italic {
-  font-family: "Poppins";
-  font-weight: 800;
-  font-style: italic;
-}
-.poppins-black-italic {
-  font-family: "Poppins";
-  font-weight: 900;
-  font-style: italic;
+  font-family: PoppinsSemiBold;
 }
 /* ______________________________________________ */
 /* Logo Image */
@@ -141,14 +60,11 @@
   z-index: -1;
 }
 /* _____________________________________________________ */
-.sign_in_box {
+.sign_in_box2 {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-}
-.sign_in_box2 {
-  margin-top: 6%;
 }
 @media screen and (max-width: 576px) {
   .sign_in_box2 {
@@ -160,6 +76,7 @@
 }
 .sign_in_paragraph {
   color: var(--text-light-gray);
+  width: 95%;
 }
 /* Sign-In Page Input Field */
 .container .sign_in_input {
@@ -324,13 +241,17 @@ input::placeholder {
 }
 /* ______________________________________ */
 /* OTP Verification Page */
-.otp_error_msg{
+.otp_error_msg {
   color: red;
 }
 /* _______________________________________ */
 /* Reset Password Page */
-.reset_psw_paragraph{
+.reset_psw_paragraph {
   color: var(--text-light-gray);
-  width: 85%;
+}
+/* _______________________________________ */
+/* Forgot Password Page */
+.forgot_paragraph {
+  color: var(--text-light-gray);
 }
 /* _______________________________________ */

@@ -56,95 +56,91 @@ const SignIn = () => {
           <div className="logo_img">
             <img src={images.SidebarLogo} alt="logo-img" width={100} />
           </div>
-          <div className="sign_in_box">
-            <div className="row sign_in_box2">
-              <div className="col-lg-1 col-md-1 col-sm-1"></div>
-              <div className="col-lg-10 col-md-10 col-sm-10">
-                <div className="bg-white signin_box rounded-4">
-                  <div className="pt-3 ps-4 pe-4">
-                    <h3 className="poppins-bold sign_in_heading mt-3">Login</h3>
-                    <p className="poppins-regular sign_in_paragraph">
-                      Please enter the information below to log in to your
-                      account.
-                    </p>
-                    <div className="pt-1">
+          <div className="row sign_in_box2 g-0">
+          <div className="col-lg-5 col-md-6 col-sm-8">
+              <div className="form-box bg-white rounded-4 w-100 h-100">
+                <div className="pt-3 ps-4 pe-4 d-flex flex-column h-100">
+                  <h3 className="poppins-bold sign_in_heading mt-3">Login</h3>
+                  <p className="poppins-regular sign_in_paragraph">
+                    Please enter the information below to log in to your
+                    account.
+                  </p>
+                  <div className="pt-1">
+                    <input
+                      name="userEmail"
+                      value={signInForm.userEmail}
+                      onChange={handlerChange}
+                      type="email"
+                      className="sign_in_input mt-3"
+                      placeholder="Enter Your Email"
+                    />
+                  </div>
+                  <div className="pt-1">
+                    <div className="input-group mt-3">
                       <input
-                        name="userEmail"
-                        value={signInForm.userEmail}
+                        name="userPassword"
+                        value={signInForm.userPassword}
                         onChange={handlerChange}
-                        type="email"
-                        className="sign_in_input mt-3"
-                        placeholder="Enter Your Email"
+                        type={showPassword ? "text" : "password"}
+                        className="sign_in_input password-input"
+                        placeholder="Enter Password"
                       />
+                      <button
+                        className="password-toggle-btn"
+                        type="button"
+                        onClick={togglePasswordVisibility}
+                      >
+                        {showPassword ? <Eye /> : <EyeOff />}
+                      </button>
                     </div>
-                    <div className="pt-1">
-                      <div className="input-group mt-3">
-                        <input
-                          name="userPassword"
-                          value={signInForm.userPassword}
-                          onChange={handlerChange}
-                          type={showPassword ? "text" : "password"}
-                          className="sign_in_input password-input"
-                          placeholder="Enter Password"
-                        />
-                        <button
-                          className="password-toggle-btn"
-                          type="button"
-                          onClick={togglePasswordVisibility}
-                        >
-                          {showPassword ? <Eye /> : <EyeOff />}
-                        </button>
-                      </div>
+                  </div>
+                  <div className="d-flex justify-content-between align-items-center mt-3">
+                    <div className="form-check form-switch d-flex align-items-center gap-2">
+                      <input
+                        className="form-check-input"
+                        type="checkbox"
+                        role="switch"
+                        id="flexSwitchCheckDefault"
+                        checked={rememberMe}
+                        onChange={handleCheckboxChange}
+                      />
+                      <label className="sign-in-toggle poppins-regular">
+                        Remember Me
+                      </label>
                     </div>
-                    <div className="d-flex justify-content-between align-items-center mt-3">
-                      <div className="form-check form-switch d-flex align-items-center gap-2">
-                        <input
-                          className="form-check-input"
-                          type="checkbox"
-                          role="switch"
-                          id="flexSwitchCheckDefault"
-                          checked={rememberMe}
-                          onChange={handleCheckboxChange}
-                        />
-                        <label className="sign-in-toggle poppins-regular">
-                          Remember Me
-                        </label>
-                      </div>
-                      <div>
-                        <Link
-                          className="poppins-semibold sign-in-forgot"
-                          to="/forgot-password"
-                        >
-                          Forgot Password?
-                        </Link>
-                      </div>
+                    <div>
+                      <Link
+                        className="poppins-semibold sign-in-forgot"
+                        to="/forgot-password"
+                      >
+                        Forgot Password?
+                      </Link>
                     </div>
-                    <div className="text-decoration-none">
-                      <div className="d-grid gap-2 mt-4">
-                        <button
-                          className="btn sign_in_btn pt-3 pb-3 text-uppercase poppins-semibold rounded-3"
-                          type="button"
-                          onClick={handleLogin}
-                        >
-                          Login
-                        </button>
-                      </div>
+                  </div>
+                  <div className="text-decoration-none">
+                    <div className="d-grid gap-2 mt-4">
+                      <button
+                        className="btn sign_in_btn pt-3 pb-3 text-uppercase poppins-semibold rounded-3"
+                        type="button"
+                        onClick={handleLogin}
+                      >
+                        Login
+                      </button>
                     </div>
-                    <div className="mt-3 pb-1">
-                      <p className="text-center">
-                        Don’t have an account? &nbsp;
-                        <Link
-                          className="poppins-semibold sign-in-forgot"
-                          to="/sign-up-first"
-                        >
-                          Apply Now
-                        </Link>
-                      </p>
-                    </div>
+                  </div>
+                  <div className="mt-3 pb-1">
+                    <p className="text-center">
+                      Don’t have an account? &nbsp;
+                      <Link
+                        className="poppins-semibold sign-in-forgot"
+                        to="/sign-up-first"
+                      >
+                        Apply Now
+                      </Link>
+                    </p>
                   </div>
                 </div>
               </div>
-              <div className="col-lg-1 col-md-1 col-sm-1"></div>
             </div>
           </div>
         </div>
