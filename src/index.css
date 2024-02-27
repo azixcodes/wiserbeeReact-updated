@@ -2,6 +2,18 @@
   font-family: "PoppinsReg";
   src: url("./assets/Poppins-Regular.ttf");
 }
+@font-face {
+  font-family: "PoppinsBold";
+  src: url("./assets/Poppins-Bold.ttf");
+}
+@font-face {
+  font-family: "PoppinsLight";
+  src: url("./assets/Poppins-Light.ttf");
+}
+@font-face {
+  font-family: "PoppinsSemiBold";
+  src: url("./assets/Poppins-SemiBold.ttf");
+}
 
 * {
   padding: 0;
