@@ -20,7 +20,7 @@ const ProtectedRoute = (props) => {
   return (
     <section className="d-flex w-100 custom-scrollbar">
       <Sidebar />
-      <div className="d-flex flex-column w-full  w-100 gap-5">
+      <div className="d-flex flex-column w-full  w-100 ">
         <Nav2 />
         <main className="routesWrapper">
           <Component />

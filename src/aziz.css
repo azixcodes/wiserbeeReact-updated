@@ -10,25 +10,8 @@ a {
 .customShadow {
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
-/* .custom-scrollbar {
-  max-height: 100vh;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: var(--bg-primary) #ffffff;
-  ::-webkit-scrollbar {
-    width: 6px !important;
-    border-radius: 8px;
-  }
-  ::-webkit-scrollbar-thumb {
-    background-color: var(--bg-primary);
-    border-radius: 8px;
-  }
-  ::-webkit-scrollbar-track {
-    background-color: #ffffff;
-    border-radius: 4%;
-  }
-} */
-.customSidebarScroll {
+
+/* .customSidebarScroll {
   max-height: 100vh;
   overflow-y: auto;
   overflow-x: hidden;
@@ -46,7 +29,7 @@ a {
     background-color: var(--bg-primary);
     border-radius: 4%;
   }
-}
+} */
 /* .................<Sidebar starts>....................... */
 .linksScroll {
   overflow-y: auto;
@@ -168,13 +151,21 @@ a {
 /* .................<Navbar Starts>....................... */
 
 .navbarWrapper {
-  height: 120px !important;
-  padding: 5px 30px;
+  /* height: 120px !important; */
+  padding: 15px 0px 15px 15px;
+  width: 100%;
+  background: #fff;
+  margin-bottom: 30px;
 }
 .searchBox {
   height: 38px;
   border: 1px solid #5f5f5f4a;
   border-radius: 6px;
+  background-color: #fff;
+  width: 35%;
+}
+.searchBox svg{
+  margin: 10px;
 }
 /* .ActionItems {
   width: 50%;
@@ -207,8 +198,8 @@ a {
   padding: 10px;
 }
 .navAvatar {
-  height: 44px;
-  width: 44px;
+  height: 50px;
+  width: 50px;
   border-radius: 50%;
   background-color: #ebebeb;
   /* display: flex;
@@ -227,7 +218,7 @@ a {
 } */
 .flagsDropdown {
   position: absolute;
-  padding: 12px 10px;
+  padding: 5px 10px;
   top: 24px;
   width: 130px;
   right: -4px;
@@ -255,7 +246,7 @@ a {
 
 /* main section css */
 .routesWrapper {
-  padding: 0 30px;
+  padding: 0 15px;
 }
 /* main section css ends here*/
 

@@ -66,33 +66,6 @@ const Home = () => {
       durationLect: "15 Lessons (10h 5m)",
       completedLect: "65%",
     },
-    // {
-    //   id: "1",
-    //   imgesLect: images.courseImges2,
-    //   tagLect: "4D Animation",
-    //   headingLect: "Learning Maxon 4D Training Course",
-    //   pragraphLect: "Always stay updated in your student portal",
-    //   durationLect: "15 Lessons (10h 5m)",
-    //   completedLect: "65%",
-    // },
-    // {
-    //   id: "1",
-    //   imgesLect: images.courseImges2,
-    //   tagLect: "4D Animation",
-    //   headingLect: "Learning Maxon 4D Training Course",
-    //   pragraphLect: "Always stay updated in your student portal",
-    //   durationLect: "15 Lessons (10h 5m)",
-    //   completedLect: "65%",
-    // },
-    // {
-    //   id: "1",
-    //   imgesLect: images.courseImges2,
-    //   tagLect: "4D Animation",
-    //   headingLect: "Learning Maxon 4D Training Course",
-    //   pragraphLect: "Always stay updated in your student portal",
-    //   durationLect: "15 Lessons (10h 5m)",
-    //   completedLect: "65%",
-    // },
   ];
   return (
     <section className="dashboardWrapper d-flex flex-column">
@@ -119,11 +92,10 @@ const Home = () => {
           </div>
         </div>
       </div>
-      {/* <div className="container"> */}
-      <div className="row">
-        <div className="col-lg-12">
-          <div className="courseTaskWrapper d-lg-flex flex-lg-row justify-content-lg-between w-100 ">
-            <div className="CoursesDetails col-md-12 col-lg-8">
+      <div className="col-lg-12 ">
+        <div className="row ">
+          <div className="col-12 col-md-8">
+            <div className="CoursesDetails">
               <h3>My Courses</h3>
               {CoursesListValue.map((item, index) => (
                 <CoursesList
@@ -138,44 +110,17 @@ const Home = () => {
                 />
               ))}
             </div>
-            <div className="taskListView customShadow align-self-start mt-4 sm-mt-0 col-md-12 col-lg-3">
+          </div>
+          <div className="align-self-start mt-4 col-12 col-md-4 ">
+            <div className="taskListView  ">
               <h4 className="mb-4">Tasks</h4>
               <TaskNotifications />
             </div>
           </div>
         </div>
       </div>
-      {/* </div> */}
 
-      {/* <div className="courseTaskWrapper  d-flex w-100  gap-4">
-        <div className="CoursesDetails">
-          <h3>My Courses</h3>
-          {CoursesListValue.map((item, index) => (
-            <CoursesList
-              id={index}
-              imgesLect={item.imgesLect}
-              tagLect={item.tagLect}
-              headingLect={item.headingLect}
-              pragraphLect={item.pragraphLect}
-              durationLect={item.durationLect}
-              completedLect={item.completedLect}
-            />
-          ))}
-        </div>
-        <div className="taskListView customShadow align-self-start">
-          <h4 className="mb-4">Tasks</h4>
-          <TaskNotifications />
-        </div>
-      </div> */}
     </section>
-    // <div class="container">
-    //   <div class="row">
-    //     <div class="col-sm d-lg-flex flex-lg-row flex-md-column justify-content-center align-items-center">
-    //       <p>This is a small screen</p>
-    //       <p>Flex direction: column</p>
-    //     </div>
-    //   </div>
-    // </div>
   );
 };
 

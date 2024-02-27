@@ -37,6 +37,12 @@
     margin: auto;
     z-index: 1;
   }
+  .userName{
+    display: none;
+  }
+  .userUpIcon{
+    display: none;
+  }
 }
 /* Sign-In Page Main Box */
 .signin_page {
