@@ -38,7 +38,7 @@ const Nav2 = (props) => {
     <>
       <div className="navbarWrapper d-flex justify-content-between align-items-center flex-wrap">
         <h4 className="mb-0">
-          <MenuIcon onClick={handleToggleSidebar} />
+          <MenuIcon onClick={handleToggleSidebar} className="mneuIcon"/>
           Dashboard
         </h4>
         <div className="searchBox d-flex align-items-center ">
