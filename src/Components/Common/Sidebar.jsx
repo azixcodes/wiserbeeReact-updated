@@ -27,10 +27,14 @@ const Sidebar = () => {
     }
   }, [windowWidth]);
   return (
-    <aside className={`${toggleSidebar ? "sidebarOuterSm" : "sidebarOuterLg"}`}>
+    <aside
+      className={`${
+        toggleSidebar ? "sidebarOuterSm d-none" : "sidebarOuterLg d-none"
+      }`}
+    >
       <div
         className={`position-fixed ${
-          toggleSidebar ? "sidebarWrapperSm" : "sidebarWrapperLg"
+          toggleSidebar ? "sidebarWrapperSm d-none" : "sidebarWrapperLg d-none"
         }`}
         ref={sidebarRef}
       >
