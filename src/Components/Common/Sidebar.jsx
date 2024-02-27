@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { SidebarLogo } from "../../Constant/images";
 import { links } from "../../Constant/sidebarlinks";
 import { ChevronRight, ChevronLeft } from "lucide-react";
@@ -6,10 +6,26 @@ import { NavLink } from "react-router-dom";
 import { Store } from "../../ContextAPI/Context";
 const Sidebar = () => {
   const { toggleSidebar, setToggleSidebar } = Store();
+  const [windowWidth, setWindowWidth] = useState(undefined);
   const sidebarRef = useRef(null);
   const handleSidebarToggle = () => {
     setToggleSidebar((prev) => !prev);
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+  useEffect(() => {
+    if (windowWidth < 993) {
+      setToggleSidebar(true);
+    } else {
+      setToggleSidebar(false);
+    }
+  }, [windowWidth]);
   return (
     <aside className={`${toggleSidebar ? "sidebarOuterSm" : "sidebarOuterLg"}`}>
       <div
