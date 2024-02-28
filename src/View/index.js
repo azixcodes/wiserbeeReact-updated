@@ -8,3 +8,4 @@ export { default as Exams } from "./Exams";
 export { default as GradeBook } from "./GradeBook";
 export { default as Messages } from "./Messages";
 export { default as Dashboard } from "./Dashboard";
+export { default as CourseDetails } from "./CourseDetails";
