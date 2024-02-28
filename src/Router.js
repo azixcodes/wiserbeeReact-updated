@@ -12,6 +12,7 @@ import {
   GradeBook,
   Messages,
   Dashboard,
+  CourseDetails,
 } from "./View/index";
 import Sign from "./View/SignInFirst";
 import SignIn from "./View/SignIn";
@@ -44,12 +45,16 @@ const AppRouter = () => {
         element={<ProtectedRoute Component={GradeBook} />}
       />
       <Route
+        path="/course/:id"
+        element={<ProtectedRoute Component={CourseDetails} />}
+      />
+      <Route
         path="/messages"
         element={<ProtectedRoute Component={Messages} />}
       />
-      <Route path="/sign-in-first" element={<Sign />} />  
+      <Route path="/sign-in-first" element={<Sign />} />
       <Route path="/sign-in" element={<SignIn />} />
-      <Route path="/sign-up-first" element={<SignUpFirst />} />  
+      <Route path="/sign-up-first" element={<SignUpFirst />} />
       <Route path="/sign-up" element={<SignUp />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/otp-verification" element={<OtpVerification />} />
