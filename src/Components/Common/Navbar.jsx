@@ -11,7 +11,7 @@ const Nav2 = (props) => {
 
   const [openDropDown, setOpenDropdown] = useState(false);
   const [language, setLanguage] = useState({
-    code: "usa",
+    code: "aus",
     language: "English",
   });
 
@@ -66,7 +66,7 @@ const Nav2 = (props) => {
             5
           </div>
         </div>
-        <div className="d-flex align-items-center position-relative ">
+        <div className="d-flex align-items-center position-relative setLanguage">
           <Flag
             code={language.code}
             fallback={<span>Unknown</span>}
@@ -77,13 +77,14 @@ const Nav2 = (props) => {
               {countries.map((flag, index) => (
                 <div
                   key={index}
-                  className="d-flex align-items-center  2 flagList"
+                  className="d-flex align-items-center 2 flagList"
                   onClick={() => handleListClick(flag.code, flag.language)}
                 >
                   <Flag
                     code={flag.code}
                     fallback={<span>Unknown</span>}
-                    height="16"
+                    height="20"
+                    width="30"
                   />
                   <span>{flag.language}</span>
                 </div>
@@ -106,7 +107,7 @@ const Nav2 = (props) => {
             {userSvg}
           </div>
           <div className="align-items-center userName mx-2 d-none d-md-block">
-            <h6 className="fs-6  fw-bold ">john doe</h6>
+            <h6 className="fs-6  fw-bold ">John doe</h6>
             <h5 className="font-sm ">Admin</h5>
           </div>
           <div className="userUpIcon d-none d-md-block">

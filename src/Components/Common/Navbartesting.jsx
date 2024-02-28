@@ -100,7 +100,7 @@ const Navbar = () => {
           </div>
           <div className=" col-md-9 row align-items-center d-none d-lg-flex">
             <div className="col-md-9 align-items-center">
-              <h6 className="fs-6  fw-bold p-0 m-0">john doe</h6>
+              <h6 className="fs-6  fw-bold p-0 m-0">John doe</h6>
               <h5 className="font-sm p-0 m-0">admin</h5>
             </div>
             <div className="col-md-3">
