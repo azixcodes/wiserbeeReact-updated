@@ -396,6 +396,83 @@ a {
 }
 /* .........................<COURSE ROUTE CSS ENDS>........................ */
 
+/* BILAL CSS CODE FOR COURSE DETIALS */
+/* bilal css  */
+
+.second {
+  background-color: #ffffff;
+}
+.video-dot {
+  font-size: 14px;
+  color: #1b1b1b99;
+}
+.video-time {
+  color: #7f53fe;
+  font-size: 14px;
+}
+.colored-data {
+  background-color: #f9f9f9e5;
+}
+.colored-heading {
+  color: #1b1b1b99;
+}
+.icon {
+  color: #1b1b1b1a;
+}
+.icon-time {
+  color: #1b1b1b1a;
+  font-size: 14px;
+}
+.colored-time {
+  color: #7f53fe;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.colored-time-2 {
+  color: #44ab96;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.playing {
+  background-color: #7f53fe;
+}
+.completed {
+  background-color: #44ab96;
+}
+.viser-helper {
+  color: #7f53fe;
+}
+.digital-studio {
+  position: relative;
+  bottom: 7px;
+  font-size: 12px;
+}
+.last-text {
+  color: #1b1b1b99;
+  font-size: 12px;
+}
+.first-text {
+  position: relative;
+  bottom: 15px;
+  color: #1b1b1b99;
+}
+.button {
+  width: 230px;
+  border-radius: 10px;
+  border: 1px solid #463c77;
+  background-color: white;
+  padding: 10px;
+  color: #463c77;
+  font-weight: bold;
+}
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+}
+/* BILAL CSS CODE FOR COURSE DETIALS */
+
 /* Media Queries */
 
 /* sidebar media queires */
