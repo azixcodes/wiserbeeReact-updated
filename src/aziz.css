@@ -24,7 +24,9 @@ a {
 .icon {
   cursor: pointer;
 }
-
+.rounded-md {
+  border-radius: 15px;
+}
 /* .customSidebarScroll {
   max-height: 100vh;
   overflow-y: auto;
@@ -319,7 +321,7 @@ a {
 /* .........................<COURSE ROUTE CSS STARTS>........................ */
 .filterationCourse {
   width: 20%;
-  background-color: white;
+  /* background-color: white; */
   border-radius: 15px;
   padding: 5px 20px;
   display: flex;
@@ -382,6 +384,7 @@ a {
 }
 .filterSmSCreen {
   position: fixed;
+  display: block !important;
   top: 0;
   left: 0;
   min-height: 100vh;
@@ -436,7 +439,7 @@ a {
 /* sidebar media queires ends here.*/
 
 /* ........................<Course Route Media queries>........................... */
-@media (max-width: 860px) {
+/* @media (max-width: 860px) {
   .filterationCourse {
     width: 50%;
   }
@@ -448,7 +451,6 @@ a {
   }
   .coursesWrapper {
     width: 100%;
-    /* padding: 0 0; */
   }
   .courseLists {
     justify-content: center;
@@ -467,8 +469,7 @@ a {
     justify-content: center;
   }
   .courseCard {
-    /* background-color: red !important; */
     width: 30rem !important;
   }
-}
+} */
 /* ........................<Course Route Media queries ends>........................... */
