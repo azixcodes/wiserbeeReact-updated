@@ -274,6 +274,9 @@ a {
 .routesWrapper {
   padding: 0 15px;
 }
+.assesmentsWrapper {
+  padding: 0 0;
+}
 /* main section css ends here*/
 
 /* MINISIDEBAR CSS STARTS HERE */
@@ -323,21 +326,20 @@ a {
   width: 20%;
   /* background-color: white; */
   border-radius: 15px;
-  padding: 5px 20px;
+  padding: 5px;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 .courseChip {
   padding: 4px 10px;
-  /* background-color: #fffa7d; */
   border-radius: 16px;
   height: auto;
   width: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 13px;
+  font-size: 10px;
 }
 .courseInstructor {
   display: flex;
@@ -367,7 +369,7 @@ a {
   color: #463c77;
 }
 .normalPrice {
-  font-size: 20px;
+  font-size: 15px;
   text-decoration: line-through;
   color: #1b1b1b99;
 }
@@ -472,7 +474,82 @@ a {
   border: 0;
 }
 /* BILAL CSS CODE FOR COURSE DETIALS */
+/* .......................<Cognitive assesment route css starts>..................... */
+.instructionBox {
+  background-color: var(--bg-primary);
+  padding: 50px;
+  color: white;
+  /* gap: 20px; */
+}
+.instructionBox h4 {
+  font-size: 40px;
+  font-weight: 700;
+  padding-bottom: 15px;
+  text-align: start;
+}
+.instructionBox ul {
+  list-style-type: none;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.instructionBox ul li {
+  font-size: 16px;
+  font-weight: 300;
+}
+.instructionBox button {
+  width: 100%;
+  margin: 20px 0;
+  padding: 15px 5px;
+  border: none;
+  border-radius: 8px;
+}
 
+/* .......................<Cognitive assesment route css ends>..................... */
+
+/* ........................<Assesment route css starts>.............................. */
+.assesmentWrapper {
+  background-color: var(--bg-primary);
+  min-height: 100vh;
+}
+.progressBarOuter {
+  background-color: #6c6491 !important;
+}
+.progressBarInner {
+  background-color: #ffffff !important;
+}
+.question {
+  padding: 12px 12px 12px 12px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+.selectedQuestion {
+  padding: 12px 12px 12px 12px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  background-color: #f4f0ff;
+  cursor: pointer;
+}
+.assesmentWrapper .btnSubmit {
+  width: 100%;
+
+  padding: 15px 5px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--bg-primary);
+  color: white;
+}
+/* ........................<Assesment route css ends>.............................. */
 /* Media Queries */
 
 /* sidebar media queires */

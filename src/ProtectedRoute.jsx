@@ -5,7 +5,6 @@ import Navbar from "./Components/Common/Navbar";
 import MiniSidebar from "./Components/Common/MiniSidebar";
 
 const ProtectedRoute = (props) => {
-
   const [windowWidth, setWindowWidth] = useState(undefined);
   const [toggle, setToggle] = useState(false);
   const [isSmall, setIsSmall] = useState(false);
@@ -16,6 +15,7 @@ const ProtectedRoute = (props) => {
   const sidebarRef = useRef(null);
   // console.log("protect",loginKey)
   const navigate = useNavigate();
+
   // useEffect(() => {
   //   if (!loginKey) {
   //     navigate("/home");
@@ -42,10 +42,21 @@ const ProtectedRoute = (props) => {
   };
   return (
     <section className="d-flex w-100 custom-scrollbar">
-      <MiniSidebar toggle={toggle} setToggle={setToggle} /> <Sidebar />
-      <div className="d-flex flex-column w-full  w-100 ">
+      {location.pathname === "/assesment-welcome" ||
+      location.pathname === "/assesment" ? null : (
+        <>
+          <MiniSidebar toggle={toggle} setToggle={setToggle} /> <Sidebar />
+        </>
+      )}
+      <div className="d-flex flex-column w-full w-100 ">
         <Navbar handleToggleSidebar={handleToggleSidebar} />
-        <main className="routesWrapper">
+        <main
+          className={
+            location.pathname === "/assesment"
+              ? "assesmentsWrapper"
+              : "routesWrapper"
+          }
+        >
           <Component />
         </main>
       </div>

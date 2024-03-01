@@ -1,6 +1,16 @@
 import SidebarLogo from "../assets/images/sidebarlogo.png";
 import courseImges from "../assets/images/courseimg.jpg";
 import courseImges2 from "../assets/images/courseimg2.jpg";
+import AssesmentCover from "../assets/images/assesment-cover.png";
 import logoFrame from "../assets/images/logoFrame.png";
-
-export { SidebarLogo, courseImges, courseImges2, logoFrame };
+import QuestionImage from "../assets/images/questionImage.png";
+import NavLogo from "../assets/images/navLogo.png";
+export {
+  SidebarLogo,
+  courseImges,
+  courseImges2,
+  logoFrame,
+  AssesmentCover,
+  QuestionImage,
+  NavLogo,
+};

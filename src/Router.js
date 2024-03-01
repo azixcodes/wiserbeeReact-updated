@@ -13,6 +13,8 @@ import {
   Messages,
   Dashboard,
   CourseDetails,
+  AssesmentWelcome,
+  Assesment,
 } from "./View/index";
 import Sign from "./View/SignInFirst";
 import SignIn from "./View/SignIn";
@@ -43,6 +45,14 @@ const AppRouter = () => {
       <Route
         path="/grade-book"
         element={<ProtectedRoute Component={GradeBook} />}
+      />
+      <Route
+        path="/assesment-welcome"
+        element={<ProtectedRoute Component={AssesmentWelcome} />}
+      />
+      <Route
+        path="/assesment"
+        element={<ProtectedRoute Component={Assesment} />}
       />
       <Route
         path="/course/:id"

@@ -1,8 +1,10 @@
 import React from "react";
 import { pauseBtn, leacture } from "../../Constant/svgs";
 import * as images from "../../Constant/images";
+import { useNavigate } from "react-router-dom";
 
 const CoursesList = (props) => {
+  const navigate = useNavigate();
   const {
     imgesLect,
     tagLect,
@@ -33,7 +35,11 @@ const CoursesList = (props) => {
               <p>{durationLect}</p>
             </div>
           </div>
-          <button type="button" className="btn btn-primary continueBtn">
+          <button
+            type="button"
+            className="btn btn-primary continueBtn"
+            onClick={() => navigate("/course/21")}
+          >
             Continue {pauseBtn}
           </button>
         </div>
