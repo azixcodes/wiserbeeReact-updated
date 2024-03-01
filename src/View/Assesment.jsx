@@ -18,9 +18,9 @@ const Assesment = () => {
     setQuestions(selectedQuestion);
   };
   return (
-    <div className="assesmentWrapper py-4">
+    <div className="assesmentWrapper py-2 m-0">
       <div className="container-fluid px-4 ">
-        <div className="row   d-flex justify-content-center">
+        <div className="row d-flex justify-content-center">
           <div className="col-9">
             <div className="w-full d-flex flex-column">
               <p className="m-0 p-0 text-sm text-secondary">Your progress</p>
@@ -30,8 +30,8 @@ const Assesment = () => {
               </div>
             </div>
           </div>
-          <div className="col-2">
-            <div className="d-flex w-100 justify-content-end">
+          <div className="col-2  ">
+            <div className="d-flex w-100 h-100 justify-content-end align-items-center">
               <ProgressBar />
             </div>
           </div>
@@ -39,13 +39,13 @@ const Assesment = () => {
       </div>
       <div className="contaier-fluid px-4 m-auto  ">
         <div className="row    d-flex justify-content-center">
-          <div className="col-11 bg-white rounded-md py-4">
-            <h4 className="ms-4 fw-bold py-4 h3">
+          <div className="col-11 bg-white rounded-md py-4 mt-4">
+            <h4 className="ms-4 fw-bold mb-2 h3">
               Object are seen smaller at distant why?
             </h4>
             <div className="row px-4">
               <div className="col-md-7">
-                <div className="" style={{ height: "100%" }}>
+                <div className="questionImageWrapper">
                   <img
                     src={QuestionImage}
                     className="h-100 w-100 rounded-md object-cover"
@@ -62,16 +62,20 @@ const Assesment = () => {
                       <div
                         key={index}
                         className={`${
-                          question.selected ? "selectedQuestion" : "question"
+                          question.selected ? "selectedQuestion " : "question"
                         }`}
+                        onClick={() => handleSelectQuestion(index)}
+                        htmlFor={index}
                       >
                         <input
+                          className="form-check-input p-0 m-0"
                           type="radio"
                           name="question"
                           id={index}
                           onChange={() => handleSelectQuestion(index)}
-                        />
-                        <label htmlFor={index} className="cursor-pointer">
+                          checked={question.selected}
+                        ></input>
+                        <label className="cursor-pointer">
                           {question.label}
                         </label>
                       </div>

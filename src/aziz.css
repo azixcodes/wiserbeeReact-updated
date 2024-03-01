@@ -496,8 +496,9 @@ a {
   gap: 15px;
 }
 .instructionBox ul li {
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 300;
+  color: #f0f0f0;
 }
 .instructionBox button {
   width: 100%;
@@ -548,6 +549,10 @@ a {
   border-radius: 8px;
   background-color: var(--bg-primary);
   color: white;
+}
+.questionImageWrapper {
+  height: 350px;
+  width: 100%;
 }
 /* ........................<Assesment route css ends>.............................. */
 /* Media Queries */
