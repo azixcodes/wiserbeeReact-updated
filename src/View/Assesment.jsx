@@ -40,7 +40,7 @@ const Assesment = () => {
       <div className="contaier-fluid px-4 m-auto  ">
         <div className="row    d-flex justify-content-center">
           <div className="col-11 bg-white rounded-md py-4 mt-4">
-            <h4 className="ms-4 fw-bold mb-2 h3">
+            <h4 className="ms-4 fw-bold mb-4 h3">
               Object are seen smaller at distant why?
             </h4>
             <div className="row px-4">

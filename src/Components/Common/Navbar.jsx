@@ -57,7 +57,7 @@ const Nav2 = (props) => {
         <h4 className="mb-0">
           <MenuIcon onClick={handleToggleSidebar} className="mneuIcon" />
           {/* {labelContent} */}
-          {location.pathname === "/assesment" ? (
+          {location.pathname === "/assesment" || location.pathname ==="/assesment-welcome" ? (
             <div className="d-flex gap-4 align-items-center">
               <img
                 src={NavLogo}

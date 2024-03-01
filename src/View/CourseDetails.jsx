@@ -11,7 +11,7 @@ const CourseDetails = () => {
   return (
     <>
       <div className="container-fluid">
-        <div className="row">
+        <div className="row mt-3">
           {/* Video container */}
           <div className="col-md-12  col-lg-8">
             <div className="video">

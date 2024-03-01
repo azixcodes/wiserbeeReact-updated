@@ -27,7 +27,7 @@ const ProgressBar = () => {
         setUserCount(0);
       }
       if (perCent === 100) return;
-    }, 100);
+    }, 1000);
     return () => clearInterval(timer);
   }, [perCent]);
   return (

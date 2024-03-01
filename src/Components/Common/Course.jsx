@@ -4,8 +4,9 @@ import Chip from "./Chip";
 import { BarChart, User } from "lucide-react";
 import Stars from "./Stars";
 
+import { useNavigate } from "react-router-dom";
 const Course = () => {
-
+const navigate = useNavigate();
   function getInitials(name) {
   const parts = name.split(' ');
   let initials = '';
@@ -18,7 +19,7 @@ const Course = () => {
   return (
       <div className="row pl-0">
         {courses.map((course, index) => (
-          <div className="col-lg-4 col-sm-6 col-md-4 ">
+          <div className="col-lg-4 col-sm-6 col-md-4 cursor-pointer" onClick={()=>navigate('/course/21')}>
             <div
               className="col-sm-12 col-md-12 position-relative customShadow  courseCard px-2 py-2 position-relative d-flex flex-column gap-2 m-2"
               key={index}

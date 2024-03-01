@@ -8,7 +8,7 @@ const AssesmentWelcome = () => {
   };
   return (
     <div className="container-fluid px-4">
-      <div className="row">
+      <div className="row py-5">
         <div className="col-md-5 justify-content-center flex-column align-items-center gap-4 m-auto">
           <div>
             <h4 className="fw-bold"> Welcome John,</h4>
