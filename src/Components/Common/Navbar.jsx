@@ -4,8 +4,10 @@ import { notificationSvg } from "../../Constant/svgs";
 import { countries } from "../../Constant/languages";
 import { userSvg } from "../../Constant/svgs";
 import Flag from "react-world-flags";
-
+import { useLocation } from "react-router-dom";
+import { NavLogo } from "../../Constant/images";
 const Nav2 = (props) => {
+  const location = useLocation();
   const { handleToggleSidebar } = props;
   const dropDownRef = useRef(null);
 
@@ -35,26 +37,37 @@ const Nav2 = (props) => {
   };
 
   const currentUrl = window.location.pathname;
-  const modifiedUrl = currentUrl.replace('/', '');
-  console.log(modifiedUrl)
+  const modifiedUrl = currentUrl.replace("/", "");
+  console.log(modifiedUrl);
 
   const layoutTitles = {
-    'courses': "Courses",
-    'class-schedule': "Class Schedule",
-    'grade-book': "Grade Book",
-    'exams': "Exams",
-    'community': "Community",
-    'messages': "Messages",
-    'account-settings': "Account Settings",
+    courses: "Courses",
+    "class-schedule": "Class Schedule",
+    "grade-book": "Grade Book",
+    exams: "Exams",
+    community: "Community",
+    messages: "Messages",
+    "account-settings": "Account Settings",
   };
-  const labelContent =  layoutTitles[modifiedUrl] || 'Dashboard';
+  const labelContent = layoutTitles[modifiedUrl] || "Dashboard";
 
   return (
     <>
       <div className="navbarWrapper d-flex justify-content-between align-items-center flex-wrap">
         <h4 className="mb-0">
-          <MenuIcon onClick={handleToggleSidebar} className="mneuIcon"/>
-          {labelContent}
+          <MenuIcon onClick={handleToggleSidebar} className="mneuIcon" />
+          {/* {labelContent} */}
+          {location.pathname === "/assesment" ? (
+            <div className="d-flex gap-4 align-items-center">
+              <img
+                src={NavLogo}
+                style={{ height: "60px", width: "60px", objectFit: "fill" }}
+              />
+              Congnitive Assesment
+            </div>
+          ) : (
+            labelContent
+          )}
         </h4>
         <div className="searchBox d-flex align-items-center ">
           <Search />

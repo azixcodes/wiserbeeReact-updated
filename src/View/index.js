@@ -9,3 +9,5 @@ export { default as GradeBook } from "./GradeBook";
 export { default as Messages } from "./Messages";
 export { default as Dashboard } from "./Dashboard";
 export { default as CourseDetails } from "./CourseDetails";
+export { default as AssesmentWelcome } from "./AssesmentWelcome";
+export { default as Assesment } from "./Assesment";
