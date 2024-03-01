@@ -5,8 +5,10 @@ import {
   quizicon,
   taskicons,
 } from "../../Constant/svgs";
+import { useNavigate } from "react-router-dom";
 
 const EntrollCourseTiles = (props) => {
+  const navigate = useNavigate();
   const taskDetails = [
     {
       id: "1",
@@ -14,6 +16,7 @@ const EntrollCourseTiles = (props) => {
       title: "Machine Learning",
       timeline: "08.00 am- 10.00 pm",
       color: "meachineClr",
+      path: "/",
     },
     {
       id: "2",
@@ -21,6 +24,7 @@ const EntrollCourseTiles = (props) => {
       title: "Discussion - Scratch",
       timeline: "08.00 am- 10.00 pm",
       color: "discussionClr",
+      path: "/",
     },
     {
       id: "3",
@@ -28,6 +32,7 @@ const EntrollCourseTiles = (props) => {
       title: "Quiz Test 01",
       timeline: "08.00 am- 10.00 pm",
       color: "quizClr",
+      path: "/assesment-welcome",
     },
     {
       id: "4",
@@ -35,6 +40,7 @@ const EntrollCourseTiles = (props) => {
       title: "Task - Design Thinking",
       timeline: "08.00 am- 10.00 pm",
       color: "taskClr",
+      path: "/assesment-welcome",
     },
   ];
 
@@ -44,7 +50,9 @@ const EntrollCourseTiles = (props) => {
     quizicon,
     taskicons,
   };
-
+  const handleClick = (path) => {
+    navigate(path);
+  };
   return (
     <>
       {taskDetails.map((item, index) => (
@@ -57,7 +65,10 @@ const EntrollCourseTiles = (props) => {
           >
             {iconComponents[item.icon]}
           </div>
-          <div className="taskDetails">
+          <div
+            className="taskDetails cursor-pointer"
+            onClick={() => handleClick(item.path)}
+          >
             <h6>{item.title}</h6>
             <p>{item.timeline}</p>
           </div>

@@ -7,6 +7,7 @@ import * as images from "../Constant/images";
 import TaskNotifications from "../Components/Home/TaskNotifications";
 
 const Home = () => {
+
   const EntrollCourseValue = [
     {
       id: "1",
