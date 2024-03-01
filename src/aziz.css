@@ -24,7 +24,9 @@ a {
 .icon {
   cursor: pointer;
 }
-
+.rounded-md {
+  border-radius: 15px;
+}
 /* .customSidebarScroll {
   max-height: 100vh;
   overflow-y: auto;
@@ -319,7 +321,7 @@ a {
 /* .........................<COURSE ROUTE CSS STARTS>........................ */
 .filterationCourse {
   width: 20%;
-  background-color: white;
+  /* background-color: white; */
   border-radius: 15px;
   padding: 5px 20px;
   display: flex;
@@ -382,6 +384,7 @@ a {
 }
 .filterSmSCreen {
   position: fixed;
+  display: block !important;
   top: 0;
   left: 0;
   min-height: 100vh;
@@ -392,6 +395,83 @@ a {
   z-index: 9999;
 }
 /* .........................<COURSE ROUTE CSS ENDS>........................ */
+
+/* BILAL CSS CODE FOR COURSE DETIALS */
+/* bilal css  */
+
+.second {
+  background-color: #ffffff;
+}
+.video-dot {
+  font-size: 14px;
+  color: #1b1b1b99;
+}
+.video-time {
+  color: #7f53fe;
+  font-size: 14px;
+}
+.colored-data {
+  background-color: #f9f9f9e5;
+}
+.colored-heading {
+  color: #1b1b1b99;
+}
+.icon {
+  color: #1b1b1b1a;
+}
+.icon-time {
+  color: #1b1b1b1a;
+  font-size: 14px;
+}
+.colored-time {
+  color: #7f53fe;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.colored-time-2 {
+  color: #44ab96;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.playing {
+  background-color: #7f53fe;
+}
+.completed {
+  background-color: #44ab96;
+}
+.viser-helper {
+  color: #7f53fe;
+}
+.digital-studio {
+  position: relative;
+  bottom: 7px;
+  font-size: 12px;
+}
+.last-text {
+  color: #1b1b1b99;
+  font-size: 12px;
+}
+.first-text {
+  position: relative;
+  bottom: 15px;
+  color: #1b1b1b99;
+}
+.button {
+  width: 230px;
+  border-radius: 10px;
+  border: 1px solid #463c77;
+  background-color: white;
+  padding: 10px;
+  color: #463c77;
+  font-weight: bold;
+}
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+}
+/* BILAL CSS CODE FOR COURSE DETIALS */
 
 /* Media Queries */
 
@@ -436,7 +516,7 @@ a {
 /* sidebar media queires ends here.*/
 
 /* ........................<Course Route Media queries>........................... */
-@media (max-width: 860px) {
+/* @media (max-width: 860px) {
   .filterationCourse {
     width: 50%;
   }
@@ -448,7 +528,6 @@ a {
   }
   .coursesWrapper {
     width: 100%;
-    /* padding: 0 0; */
   }
   .courseLists {
     justify-content: center;
@@ -467,8 +546,7 @@ a {
     justify-content: center;
   }
   .courseCard {
-    /* background-color: red !important; */
     width: 30rem !important;
   }
-}
+} */
 /* ........................<Course Route Media queries ends>........................... */
