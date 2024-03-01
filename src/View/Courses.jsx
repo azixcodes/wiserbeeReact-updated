@@ -12,10 +12,10 @@ const Courses = () => {
   const filterRef = useRef(null);
   const [toggler, setToggler] = useState({
     durationToggler: true,
-    categoriesToggler: true,
-    softwareToggler: true,
-    levelToggler: true,
-    languageToggler: true,
+    categoriesToggler: false,
+    softwareToggler: false,
+    levelToggler: false,
+    languageToggler: false,
   });
   const [openFilter, setOpenFilter] = useState(false);
   const handleDropdownToggle = (type) => {
@@ -63,11 +63,11 @@ const Courses = () => {
       {/*  Filter and courses*/}
       <div className="row mt-2">
         <div
-          className="col-md-3 customShadow rounded-md d-none d-md-block"
+          className="col-md-3 customShadow rounded-md d-none d-md-block bg-white"
           ref={filterRef}
         >
           <div
-            className="filterationCourse w-100"
+            className="filterationCourse w-100 "
             // ref={filterRef}
           >
             <div className="d-flex justify-content-between align-items-center w-100">
@@ -108,8 +108,12 @@ const Courses = () => {
                           className="d-flex gap-2 align-items-center"
                           key={index}
                         >
-                          <input type="checkbox" className="p-0 m-0" />
-                          <h4 className="h6 p-0 m-0">{content.duration} </h4>
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+                            <label class="form-check-label" for="flexCheckDefault">
+                            {content.duration}
+                            </label>
+                          </div>
                           <h4 className="h6 text-secondary p-0 m-0">
                             ({content.rating})
                           </h4>
@@ -148,8 +152,12 @@ const Courses = () => {
                           className="d-flex gap-2 align-items-center"
                           key={index}
                         >
-                          <input type="checkbox" className="p-0 m-0" />
-                          <h4 className="h6 p-0 m-0">{content.category} </h4>
+                          <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
+                            <label class="form-check-label" for="flexCheckDefault">
+                            {content.category}
+                            </label>
+                          </div>
                           <h4 className="h6 text-secondary p-0 m-0">
                             ({content.rating})
                           </h4>
@@ -185,12 +193,12 @@ const Courses = () => {
                           className="d-flex gap-2 align-items-center"
                           key={index}
                         >
-                          <input
-                            type="radio"
-                            className="p-0 m-0"
-                            name="level"
-                          />
-                          <h4 className="h6 p-0 m-0">{content} </h4>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="softwear" id="flexRadioDefault1"/>
+                            <label class="form-check-label" for="flexRadioDefault1">
+                            {content}
+                            </label>
+                          </div>
                         </div>
                       ))}
                   </>
@@ -223,12 +231,12 @@ const Courses = () => {
                           className="d-flex gap-2 align-items-center"
                           key={index}
                         >
-                          <input
-                            type="radio"
-                            className="p-0 m-0"
-                            name="level"
-                          />
-                          <h4 className="h6 p-0 m-0">{content} </h4>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="level" id="flexRadioDefault1"/>
+                            <label class="form-check-label" for="flexRadioDefault1">
+                            {content}
+                            </label>
+                          </div>
                         </div>
                       ))}
                   </>
@@ -261,12 +269,12 @@ const Courses = () => {
                           className="d-flex gap-2 align-items-center"
                           key={index}
                         >
-                          <input
-                            type="radio"
-                            className="p-0 m-0"
-                            name="level"
-                          />
-                          <h4 className="h6 p-0 m-0">{content} </h4>
+                          <div class="form-check">
+                            <input class="form-check-input" type="radio" name="language" id="flexRadioDefault1"/>
+                            <label class="form-check-label" for="flexRadioDefault1">
+                            {content}
+                            </label>
+                          </div>
                         </div>
                       ))}
                   </>
