@@ -298,3 +298,51 @@ input[type="number"]::-webkit-outer-spin-button {
   font-family: PoppinsSemiBold;
   font-weight: 600;
 }
+.text-container {
+  max-height: 2.5em; /* Adjust the height for the desired number of lines */
+  overflow: hidden;
+}
+
+.text-container p {
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Number of lines to show */
+  -webkit-box-orient: vertical;
+  font-size: 12px;
+}
+.CourseThumbnail{
+  width: 100%;
+  height: 150px;
+}
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: #463c77!important;
+}
+
+.custom-checkbox .custom-control-input:checked:focus ~ .custom-control-label::before {
+  box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(70, 60, 119, 0.25)
+}
+.custom-checkbox .custom-control-input:focus ~ .custom-control-label::before {
+  box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(0, 0, 0, 0.25)
+}
+.custom-checkbox .custom-control-input:active ~ .custom-control-label::before {
+  background-color: #463c77; 
+}
+select option {
+  /* Default background color */
+  background-color: transparent;
+}
+select option:hover{background-color:#463c77 !important;}
+select option:hover {
+  background-color: #463c77 !important; /* Change to your desired hover background color */
+}
+.cursor-pointer{
+  cursor: pointer;
+}
+
+
+
+
+
