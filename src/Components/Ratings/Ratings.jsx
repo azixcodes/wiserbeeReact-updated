@@ -1,5 +1,6 @@
 import React from "react";
-import { Rating } from "react-simple-star-rating";
+
+import { starSvg } from "../../Constant/svgs";
 const Ratings = (props) => {
   const { nums, rating } = props;
   const stars = [];
@@ -7,16 +8,13 @@ const Ratings = (props) => {
     stars.push(stars[i]);
   }
   return (
-    <>
+    <div className="d-flex gap-1 align-items-center overflow-hidden">
       {stars.map((_, index) => (
-        <Rating
-          initialValue={rating}
-          key={index}
-          disableFillHover={true}
-          allowHover={false}
-        />
+        <span className="p-0 m-0" key={index}>
+          {starSvg}
+        </span>
       ))}
-    </>
+    </div>
   );
 };
 

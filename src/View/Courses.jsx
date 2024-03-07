@@ -11,6 +11,7 @@ import {
 import { Rating } from "react-simple-star-rating";
 import { ChevronUp, ChevronDown, Filter, X } from "lucide-react";
 import Course from "../Components/Common/Course";
+import Ratings from "../Components/Ratings/Ratings";
 const Courses = () => {
   const filterRef = useRef(null);
   const [toggler, setToggler] = useState({
@@ -85,7 +86,7 @@ const Courses = () => {
                 onClick={handleRemoveFliterModal}
               />
             </div>
-            <div className="d-flex flex-column gap-4">
+            <div className="d-flex flex-column gap-4 filterItemsWrapper">
               <div className="d-flex flex-column  w-100 gap-1">
                 {ratings.map((item, index) => (
                   <>
@@ -93,7 +94,9 @@ const Courses = () => {
                       className="d-flex justify-content-between w-100 align-items-center"
                       key={index}
                     >
-                      <h4 className="h6 m-0 p-0 fw-bold">{item.title}</h4>
+                      <h4 className="h6 m-0 p-0 fw-bold filterTitle">
+                        {item.title}
+                      </h4>
                       {toggler.ratingsToggler ? (
                         <ChevronUp
                           className="icon"
@@ -119,13 +122,20 @@ const Courses = () => {
                               value=""
                               name={index}
                             />
-                            <label class="form-check-label" for={index}>
-                              <Rating initialValue={content.star} />
-                            </label>
+
+                            <Ratings nums={content.star} />
                           </div>
-                          <h4 className="h6 text-secondary p-0 m-0">
-                            ({content.label})
-                          </h4>
+                          <div
+                            className="d-flex align-items-center starFilter"
+                            style={{ color: "#858585" }}
+                          >
+                            <h4 className="p-0 m-0  ratingPoint">
+                              {content.ratingPoint} & upto
+                            </h4>
+                            <span className="p-0 m-0 totalRatings">
+                              ({content.totalRating})
+                            </span>
+                          </div>
                         </div>
                       ))}
                   </>
@@ -138,7 +148,9 @@ const Courses = () => {
                       className="d-flex justify-content-between w-100 align-items-center"
                       key={index}
                     >
-                      <h4 className="h6 m-0 p-0 fw-bold">{item.title}</h4>
+                      <h4 className="h6 m-0 p-0 fw-bold filterTitle">
+                        {item.title}
+                      </h4>
                       {toggler.durationToggler ? (
                         <ChevronUp
                           className="icon"
@@ -189,7 +201,9 @@ const Courses = () => {
                       className="d-flex justify-content-between w-100 align-items-center"
                       key={index}
                     >
-                      <h4 className="h6 m-0 p-0 fw-bold">{item.title}</h4>
+                      <h4 className="h6 m-0 p-0 fw-bold filterTitle">
+                        {item.title}
+                      </h4>
                       {toggler.categoriesToggler ? (
                         <ChevronUp
                           className="icon"
@@ -220,7 +234,7 @@ const Courses = () => {
                               {content.category}
                             </label>
                           </div>
-                          <h4 className="h6 text-secondary p-0 m-0">
+                          <h4 className="h6 text-secondary p-0 m-0 totalViewsRating">
                             ({content.rating})
                           </h4>
                         </div>
@@ -236,7 +250,9 @@ const Courses = () => {
                       className="d-flex justify-content-between w-100 align-items-center"
                       key={index}
                     >
-                      <h4 className="h6 m-0 p-0 fw-bold">{item.title}</h4>
+                      <h4 className="h6 m-0 p-0 fw-bold filterTitle">
+                        {item.title}
+                      </h4>
                       {toggler.softwareToggler ? (
                         <ChevronUp
                           className="icon"
@@ -279,7 +295,9 @@ const Courses = () => {
                       className="d-flex justify-content-between w-100 align-items-center"
                       key={index}
                     >
-                      <h4 className="h6 m-0 p-0 fw-bold">{item.title}</h4>
+                      <h4 className="h6 m-0 p-0 fw-bold filterTitle">
+                        {item.title}
+                      </h4>
                       {toggler.softwareToggler ? (
                         <ChevronUp
                           className="icon"
@@ -322,7 +340,9 @@ const Courses = () => {
                       className="d-flex justify-content-between w-100 align-items-center"
                       key={index}
                     >
-                      <h4 className="h6 m-0 p-0 fw-bold">{item.title}</h4>
+                      <h4 className="h6 m-0 p-0 fw-bold filterTitle">
+                        {item.title}
+                      </h4>
                       {toggler.languageToggler ? (
                         <ChevronUp
                           className="icon"
