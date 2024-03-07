@@ -87,14 +87,6 @@ const AddQuestions = ({ onRequestClose }) => {
           <div className="d-flex w-100 flex-column gap-4 px-3">
             {options.map((_, index) => (
               <div key={index} className="d-flex align-items-center gap-2">
-                <div class="form-check">
-                  <input
-                    class="form-check-input"
-                    type="radio"
-                    name="flexRadioDefault"
-                    id="flexRadioDefault1"
-                  />
-                </div>
                 <div
                   className=" position-relative w-100 rounded"
                   style={{ border: "1px solid #E2E2E2" }}
@@ -142,7 +134,7 @@ const AddQuestions = ({ onRequestClose }) => {
                 className="btnFooter"
                 style={{ backgroundColor: "#463C77", color: "white" }}
               >
-                Create
+                Next
               </button>
             </div>
           </div>

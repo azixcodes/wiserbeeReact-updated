@@ -118,15 +118,21 @@ export const ratings = [
     content: [
       {
         star: 4.5,
-        label: "4.5 & up (5.8K)",
+    
+        ratingPoint: '4.5',
+        totalRating: '5.8k'
       },
       {
         star: 3.5,
-        label: "3.5 & up (1.2K)",
+       
+        ratingPoint: '3.5',
+        totalRating: '1.2K'
       },
       {
         star: 3.0,
-        label: "3.0 & up (867)",
+      
+        ratingPoint: '3.0',
+        totalRating: '867'
       },
     ],
   },

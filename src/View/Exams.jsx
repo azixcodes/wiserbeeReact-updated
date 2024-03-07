@@ -72,14 +72,16 @@ const Exams = () => {
       <div className="container-fluid bg-white mt-4 rounded py-4 px-3">
         <div className="row d-flex align-items-center">
           <div className="col-md-10   ">
-            <h4 className="h1 fw-bold">My Exams</h4>
+            <h4 className="h1 fw-bold" style={{ fontSize: "28px" }}>
+              My Exams
+            </h4>
           </div>
           <div className="col-md-2">
             <button
               className="text-capitalize fs-6 gap-3 d-flex justify-content-between align-items-center"
               style={{
                 backgroundColor: "#463C77",
-                padding: "8px 8px",
+                padding: "4px 8px",
                 borderRadius: "8px",
                 color: "white",
                 width: "auto",
@@ -89,7 +91,7 @@ const Exams = () => {
               onClick={handleAddNewExamClick}
             >
               <span
-                className="px-2 flex align-items-center justify-content-center  fw-4 rounded p-0"
+                className="px-1 py-1 flex align-items-center justify-content-center  fw-4 rounded p-0"
                 style={{ backgroundColor: "#6f6795" }}
               >
                 <Plus />
