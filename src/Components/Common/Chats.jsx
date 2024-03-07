@@ -2,9 +2,14 @@ import React, { useState } from "react";
 import { Clock, MoreVertical, Search } from "lucide-react";
 import { chats } from "../../Constant/chats";
 import TextChip from "./TextChip";
+import { Store } from "../../ContextAPI/Context";
 
 const Chats = () => {
+  const { setUser } = Store();
   const [message, setMessage] = useState("All Messages");
+  const handleChatClick = (chat) => {
+    setUser(chat);
+  };
   return (
     <div className="w-100 d-flex flex-column bg-white  ChatsWrapper">
       {/* Header */}
@@ -43,6 +48,7 @@ const Chats = () => {
           <div
             className="chatWrapper w-100 d-flex gap-2 cursor-pointer"
             key={index}
+            onClick={() => handleChatClick(chat)}
           >
             <img src={chat.dp} className="chatUserDP" />
             <div className="d-flex flex-column justify-content-center">
