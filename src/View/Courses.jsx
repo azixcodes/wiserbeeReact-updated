@@ -5,7 +5,10 @@ import {
   levels,
   languages,
   software,
+  ratings,
 } from "../Constant/filtercategories";
+// import Ratings from "../Components/Ratings/Ratings";
+import { Rating } from "react-simple-star-rating";
 import { ChevronUp, ChevronDown, Filter, X } from "lucide-react";
 import Course from "../Components/Common/Course";
 const Courses = () => {
@@ -16,6 +19,7 @@ const Courses = () => {
     softwareToggler: false,
     levelToggler: false,
     languageToggler: false,
+    ratingsToggler: true,
   });
   const [openFilter, setOpenFilter] = useState(false);
   const handleDropdownToggle = (type) => {
@@ -83,6 +87,51 @@ const Courses = () => {
             </div>
             <div className="d-flex flex-column gap-4">
               <div className="d-flex flex-column  w-100 gap-1">
+                {ratings.map((item, index) => (
+                  <>
+                    <div
+                      className="d-flex justify-content-between w-100 align-items-center"
+                      key={index}
+                    >
+                      <h4 className="h6 m-0 p-0 fw-bold">{item.title}</h4>
+                      {toggler.ratingsToggler ? (
+                        <ChevronUp
+                          className="icon"
+                          onClick={() => handleDropdownToggle("ratings")}
+                        />
+                      ) : (
+                        <ChevronDown
+                          className="icon"
+                          onClick={() => handleDropdownToggle("ratings")}
+                        />
+                      )}
+                    </div>
+                    {toggler.ratingsToggler &&
+                      item.content.map((content, index) => (
+                        <div
+                          className="d-flex gap-2 align-items-center"
+                          key={index}
+                        >
+                          <div class="form-check">
+                            <input
+                              class="form-check-input"
+                              type="checkbox"
+                              value=""
+                              name={index}
+                            />
+                            <label class="form-check-label" for={index}>
+                              <Rating initialValue={content.star} />
+                            </label>
+                          </div>
+                          <h4 className="h6 text-secondary p-0 m-0">
+                            ({content.label})
+                          </h4>
+                        </div>
+                      ))}
+                  </>
+                ))}
+              </div>
+              <div className="d-flex flex-column  w-100 gap-1">
                 {durations.map((item, index) => (
                   <>
                     <div
@@ -109,9 +158,17 @@ const Courses = () => {
                           key={index}
                         >
                           <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-                            <label class="form-check-label" for="flexCheckDefault">
-                            {content.duration}
+                            <input
+                              class="form-check-input"
+                              type="checkbox"
+                              value=""
+                              id={content.duration}
+                            />
+                            <label
+                              class="form-check-label"
+                              for={content.duration}
+                            >
+                              {content.duration}
                             </label>
                           </div>
                           <h4 className="h6 text-secondary p-0 m-0">
@@ -153,9 +210,14 @@ const Courses = () => {
                           key={index}
                         >
                           <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"/>
-                            <label class="form-check-label" for="flexCheckDefault">
-                            {content.category}
+                            <input
+                              class="form-check-input"
+                              type="checkbox"
+                              value=""
+                              id={index}
+                            />
+                            <label class="form-check-label" for={index}>
+                              {content.category}
                             </label>
                           </div>
                           <h4 className="h6 text-secondary p-0 m-0">
@@ -194,9 +256,14 @@ const Courses = () => {
                           key={index}
                         >
                           <div class="form-check">
-                            <input class="form-check-input" type="radio" name="softwear" id="flexRadioDefault1"/>
-                            <label class="form-check-label" for="flexRadioDefault1">
-                            {content}
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="software"
+                              id={content}
+                            />
+                            <label class="form-check-label" for={content}>
+                              {content}
                             </label>
                           </div>
                         </div>
@@ -232,9 +299,14 @@ const Courses = () => {
                           key={index}
                         >
                           <div class="form-check">
-                            <input class="form-check-input" type="radio" name="level" id="flexRadioDefault1"/>
-                            <label class="form-check-label" for="flexRadioDefault1">
-                            {content}
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="level"
+                              id={content}
+                            />
+                            <label class="form-check-label" for={content}>
+                              {content}
                             </label>
                           </div>
                         </div>
@@ -270,9 +342,14 @@ const Courses = () => {
                           key={index}
                         >
                           <div class="form-check">
-                            <input class="form-check-input" type="radio" name="language" id="flexRadioDefault1"/>
-                            <label class="form-check-label" for="flexRadioDefault1">
-                            {content}
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              name="language"
+                              id={content}
+                            />
+                            <label class="form-check-label" for={content}>
+                              {content}
                             </label>
                           </div>
                         </div>
