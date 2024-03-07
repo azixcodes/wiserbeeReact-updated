@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { MoreVertical } from "lucide-react";
 import { Eye, Trash2 } from "lucide-react";
 import Modal from "react-modal";
-import ReportCardModel from "../../modals/ReportCardsModal";
+// import ReportCardModel from "../../modals/ReportCardsModal";
 const GradeTable = ({ headings, data }) => {
   const [openIndexes, setOpenIndexes] = useState([]);
   const [open, setOpen] = useState(false);
@@ -72,7 +72,7 @@ const GradeTable = ({ headings, data }) => {
   return (
     <>
       <Modal isOpen={open} style={customStyles}>
-        <ReportCardModel onRequestClose={closeModal} />
+        {/* <ReportCardModel onRequestClose={closeModal} /> */}
       </Modal>
       <div class="container-table100">
         <div class="wrap-table100">
