@@ -38,10 +38,13 @@ const Sidebar = () => {
         }`}
         ref={sidebarRef}
       >
-        <div className="sidebarLogo d-flex w-100 justify-content-center">
+        <NavLink
+          to="/"
+          className="sidebarLogo d-flex w-100 justify-content-center"
+        >
           {/* sidebar logo */}
           <img src={SidebarLogo} alt="logo" />
-        </div>
+        </NavLink>
         <div className="divider"></div>
         <div className="linksWrapper d-flex flex-column gap-4 ">
           <div

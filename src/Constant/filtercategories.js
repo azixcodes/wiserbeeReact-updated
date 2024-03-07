@@ -111,3 +111,23 @@ export const languages = [
     content: ["English", "Hindi", "Spanish", "Arabic"],
   },
 ];
+
+export const ratings = [
+  {
+    title: "Rating",
+    content: [
+      {
+        star: 4.5,
+        label: "4.5 & up (5.8K)",
+      },
+      {
+        star: 3.5,
+        label: "3.5 & up (1.2K)",
+      },
+      {
+        star: 3.0,
+        label: "3.0 & up (867)",
+      },
+    ],
+  },
+];
