@@ -4,7 +4,7 @@ import Chat from "../Components/Common/Chat";
 
 const Community = () => {
   return (
-    <div className="main d-flex gap-4 communityWrapper mt-2">
+    <div className="main d-flex gap-4 communityWrapper ">
       <div className="chatsMain shadow rounded">
         <Chats />
       </div>

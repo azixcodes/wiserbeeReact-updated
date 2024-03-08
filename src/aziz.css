@@ -797,6 +797,7 @@ h4 {
 .communityWrapper {
   box-shadow: 0px 11px 24px 0px #8a89892b;
   background-color: #efefef;
+  margin-top: 14px;
 }
 
 .singleChatWrapper {
@@ -1001,6 +1002,7 @@ h4 {
   width: 30%;
   height: 85vh;
 }
+*/
 /*Chat css */
 /* <>........................<Community Route all css including components> */
 
@@ -1009,6 +1011,62 @@ h4 {
   color: #aeb6bd;
 }
 /* awais css */
+.Salary_card {
+  padding: 30px;
+}
+.Salary_Report {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  column-gap: 20px;
+}
+.Salary_Report .Student_Data {
+  gap: 50px;
+  display: flex;
+  padding: 5px;
+}
+.Exam_style {
+  color: #7a7a7a;
+}
+.font_color {
+  font-weight: bold;
+}
+.Salary_Data,
+.Salary_Heading {
+  border: 1px solid hsl(0, 0%, 87%);
+  padding: 8px;
+}
+.Salary_Data {
+  text-align: center;
+}
+.Salary_Heading {
+  background-color: #463c77;
+  color: #dddddd;
+  text-align: center;
+}
+tr:nth-child(even) {
+  background-color: #463c771a;
+}
+.Table_Card {
+  margin-top: 20px;
+  border-radius: 10px;
+  overflow-x: auto;
+}
+
+.Report_style {
+  text-align: center;
+  background-color: #edebf1;
+  font-family: "PoppinsReg";
+  padding: 20px 0;
+  font-weight: bold;
+}
+
+.Report_button {
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+  margin-top: 25px;
+}
 
 /* awais css ends*/
 /* Media Queries */

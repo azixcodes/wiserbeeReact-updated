@@ -86,7 +86,7 @@ const Chat = () => {
             </div>
           </div>
           <div className="emojiWrapper">
-            <Mic />
+            <Mic style={{ color: "white" }} />
           </div>
         </div>
       </div>
