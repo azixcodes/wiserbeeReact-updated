@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import "./style.css";
 import { useState } from "react";
 
-const ProgressBar = () => {
+const ProgressbarPrimary = () => {
   const [perCent, setPercent] = useState(0);
   const [userCount, setUserCount] = useState(60);
 
@@ -42,4 +42,4 @@ const ProgressBar = () => {
   );
 };
 
-export default ProgressBar;
+export default ProgressbarPrimary;
