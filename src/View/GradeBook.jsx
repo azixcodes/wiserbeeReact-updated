@@ -5,7 +5,7 @@ import { headings, data } from "../Constant/grades";
 import GradeTable from "../Components/Common/GradeTable";
 const GradeBook = () => {
   return (
-    <div className="container-fluid px-2 py-2 mt-4 shadow-md bg-white rounded">
+    <div className="container-fluid px-2 py-2 shadow-md bg-white rounded">
       <div className="row">
         <div className="col-md-9  ">
           <h4 className="h3 fw-bold px-2">Gradebook Overview</h4>

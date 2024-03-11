@@ -1,7 +1,7 @@
 export const dashboardSvg = (
   <svg
-    width="24"
-    height="24"
+    width="20"
+    height="20"
     viewBox="0 0 24 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -82,8 +82,8 @@ export const userSvg = (
 
 export const coursesSvg = (
   <svg
-    width="24"
-    height="24"
+    width="20"
+    height="20"
     viewBox="0 0 24 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -97,8 +97,8 @@ export const coursesSvg = (
 
 export const classScheduleSvg = (
   <svg
-    width="24"
-    height="24"
+    width="20"
+    height="20"
     viewBox="0 0 24 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -119,8 +119,8 @@ export const classScheduleSvg = (
 
 export const gradeBookSvg = (
   <svg
-    width="18"
-    height="24"
+    width="20"
+    height="20"
     viewBox="0 0 18 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -134,8 +134,8 @@ export const gradeBookSvg = (
 
 export const examsSvg = (
   <svg
-    width="24"
-    height="23"
+    width="20"
+    height="20"
     viewBox="0 0 24 23"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -149,8 +149,8 @@ export const examsSvg = (
 
 export const communitySvg = (
   <svg
-    width="24"
-    height="24"
+    width="20"
+    height="20"
     viewBox="0 0 24 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -170,8 +170,8 @@ export const communitySvg = (
 );
 export const messagesSvg = (
   <svg
-    width="24"
-    height="24"
+    width="20"
+    height="20"
     viewBox="0 0 24 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -192,8 +192,8 @@ export const messagesSvg = (
 
 export const settingsSvg = (
   <svg
-    width="24"
-    height="24"
+    width="20"
+    height="20"
     viewBox="0 0 24 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

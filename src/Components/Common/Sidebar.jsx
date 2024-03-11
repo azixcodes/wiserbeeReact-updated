@@ -4,7 +4,9 @@ import { links } from "../../Constant/sidebarlinks";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { Store } from "../../ContextAPI/Context";
+
 const Sidebar = () => {
+
   const { toggleSidebar, setToggleSidebar } = Store();
   const [windowWidth, setWindowWidth] = useState(undefined);
   const sidebarRef = useRef(null);
@@ -66,7 +68,7 @@ const Sidebar = () => {
               >
                 <div className="d-flex gap-3 align-items-center">
                   <span className="linkIcon">{link.icon}</span>
-                  {!toggleSidebar && <span>{link.label}</span>}
+                  {!toggleSidebar && <span className="navLabel">{link.label}</span>}
                 </div>
                 {!toggleSidebar && <ChevronRight className="px-0 m-0" />}
               </NavLink>

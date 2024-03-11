@@ -53,8 +53,8 @@ const ProtectedRoute = (props) => {
         <main
           className={
             location.pathname === "/assesment"
-              ? "assesmentsWrapper"
-              : "routesWrapper"
+              ? "assesmentsWrapper "
+              : "routesWrapper mainComponent "
           }
         >
           <Component />

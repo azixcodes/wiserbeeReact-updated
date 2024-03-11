@@ -344,6 +344,41 @@ select option:hover {
 .cursor-pointer{
   cursor: pointer;
 }
+.navLabel{
+  font-size: 14px;
+}
+.addButtonSty .lucide-plus{
+  width: 20px;
+}
+.lucide-plus, .lucide-chevron-right{
+  width: 15px;
+}
+.blackLogos{
+  width: 80px;
+  height: 50px;
+}
+.PositionFixedH{
+  max-height: 12vh;
+  position: fixed;
+  top: 0;
+  z-index: 99;
+}
+
+.addButtonSty{
+  background-color: #6f6795;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

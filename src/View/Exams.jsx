@@ -69,7 +69,7 @@ const Exams = () => {
       >
         <AddQuestions onRequestClose={closeModal} />
       </Modal>
-      <div className="container-fluid bg-white mt-4 rounded py-4 px-3">
+      <div className="container-fluid bg-white rounded py-4 px-3">
         <div className="row d-flex align-items-center">
           <div className="col-md-10   ">
             <h4 className="h1 fw-bold" style={{ fontSize: "28px" }}>
@@ -91,8 +91,7 @@ const Exams = () => {
               onClick={handleAddNewExamClick}
             >
               <span
-                className="px-1 py-1 flex align-items-center justify-content-center  fw-4 rounded p-0"
-                style={{ backgroundColor: "#6f6795" }}
+                className="px-1 py-1 flex align-items-center justify-content-center  fw-4 rounded p-0 addButtonSty"
               >
                 <Plus />
               </span>

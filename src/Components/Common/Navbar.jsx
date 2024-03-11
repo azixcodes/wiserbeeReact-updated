@@ -50,18 +50,20 @@ const Nav2 = (props) => {
     "account-settings": "Account Settings",
   };
   const labelContent = layoutTitles[modifiedUrl] || "Dashboard";
-
+  const commonClassName = "navbarWrapper d-flex justify-content-between align-items-center flex-wrap";
   return (
     <>
-      <div className="navbarWrapper d-flex justify-content-between align-items-center flex-wrap">
+
+      <div className={`${location.pathname === "/assesment" ? "" : "PositionFixedH "} ${commonClassName}`}>
+
         <h4 className="mb-0">
           <MenuIcon onClick={handleToggleSidebar} className="mneuIcon" />
           {/* {labelContent} */}
-          {location.pathname === "/assesment" || location.pathname ==="/assesment-welcome" ? (
+          {location.pathname === "/assesment" || location.pathname === "/assesment-welcome" ? (
             <div className="d-flex gap-4 align-items-center">
               <img
                 src={NavLogo}
-                style={{ height: "60px", width: "60px", objectFit: "fill" }}
+                className="blackLogos"
               />
               Congnitive Assesment
             </div>
