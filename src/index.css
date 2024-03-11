@@ -282,7 +282,7 @@ input[type="number"]::-webkit-outer-spin-button {
   background: #555;
 }
 
-.row100 th{
+.row100 th {
   font-weight: 700 !important;
   color: var(--bs-heading-color);
 }
@@ -315,33 +315,37 @@ input[type="number"]::-webkit-outer-spin-button {
   -webkit-box-orient: vertical;
   font-size: 12px;
 }
-.CourseThumbnail{
+.CourseThumbnail {
   width: 100%;
   height: 150px;
 }
 
 .custom-checkbox .custom-control-input:checked ~ .custom-control-label::before {
-  background-color: #463c77!important;
+  background-color: #463c77 !important;
 }
 
-.custom-checkbox .custom-control-input:checked:focus ~ .custom-control-label::before {
-  box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(70, 60, 119, 0.25)
+.custom-checkbox
+  .custom-control-input:checked:focus
+  ~ .custom-control-label::before {
+  box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(70, 60, 119, 0.25);
 }
 .custom-checkbox .custom-control-input:focus ~ .custom-control-label::before {
-  box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(0, 0, 0, 0.25)
+  box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(0, 0, 0, 0.25);
 }
 .custom-checkbox .custom-control-input:active ~ .custom-control-label::before {
-  background-color: #463c77; 
+  background-color: #463c77;
 }
 select option {
   /* Default background color */
   background-color: transparent;
 }
-select option:hover{background-color:#463c77 !important;}
+select option:hover {
+  background-color: #463c77 !important;
+}
 select option:hover {
   background-color: #463c77 !important; /* Change to your desired hover background color */
 }
-.cursor-pointer{
+.cursor-pointer {
   cursor: pointer;
 }
 .navLabel{
@@ -367,8 +371,6 @@ select option:hover {
 .addButtonSty{
   background-color: #6f6795;
 }
-
-
 
 
 
@@ -454,7 +456,8 @@ select option:hover {
 table {
   width: 100%;
 }
-th, td {
+th,
+td {
   font-weight: unset;
   padding-right: 10px;
 }
@@ -633,7 +636,7 @@ th, td {
   border-bottom: 1px solid #f2f2f2;
 }
 /*---------------------------------------------*/
-.table100.ver4 .table100-body{
+.table100.ver4 .table100-body {
   padding-right: 20px;
 }
 .table100.ver4 .ps__rail-y {
@@ -665,25 +668,25 @@ th, td {
   border-bottom: 10px solid #fff;
   border-radius: 10px;
 }
-.table100.ver5 .table100-body table { 
-  border-collapse: separate; 
-  border-spacing: 0 10px; 
+.table100.ver5 .table100-body table {
+  border-collapse: separate;
+  border-spacing: 0 10px;
 }
 .table100.ver5 .table100-body td {
-    border: solid 1px transparent;
-    border-style: solid none;
-    padding-top: 10px;
-    padding-bottom: 10px;
+  border: solid 1px transparent;
+  border-style: solid none;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 .table100.ver5 .table100-body td:first-child {
-    border-left-style: solid;
-    border-top-left-radius: 10px; 
-    border-bottom-left-radius: 10px;
+  border-left-style: solid;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
 }
 .table100.ver5 .table100-body td:last-child {
-    border-right-style: solid;
-    border-bottom-right-radius: 10px; 
-    border-top-right-radius: 10px; 
+  border-right-style: solid;
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
 }
 .table100.ver5 tr:hover td:not(:last-child) {
   background-color: #463c77;
@@ -695,7 +698,7 @@ th, td {
   color: #fff;
 }
 .table100.ver5 tr:hover td:last-child {
-  background-color: #463c77; 
+  background-color: #463c77;
   cursor: pointer;
 }
 .table100.ver5 .table100-head th {
@@ -703,7 +706,7 @@ th, td {
   padding-bottom: 25px;
 }
 /*---------------------------------------------*/
-.table100.ver5 .table100-body{
+.table100.ver5 .table100-body {
   padding: 0px 10px;
 }
 .table100.ver5 .ps__rail-y {
@@ -716,9 +719,9 @@ th, td {
   background-color: #cccccc;
 }
 .table100.ver5 .table100-body tr:nth-child(odd) {
-  background: #F9F7FF !important;
+  background: #f9f7ff !important;
 }
 .table100.ver5 .table100-body tr:nth-child(even) {
- outline: 1px solid rgb(205, 205, 205) !important  ;
+  outline: 1px solid rgb(205, 205, 205) !important  ;
 }
 /* ---------------Complete design for table in grade book page END---------------- */

@@ -8,29 +8,29 @@ const Chat = () => {
   const { user } = Store();
   const chat = [
     {
-      recieved: [
-        {
-          message:
-            "Oh, hello! All perfectly I will check it and get back to you soon",
-          timestamp: "06:45 PM",
-        },
-        {
-          message:
-            "Oh, hello! All perfectly I will check it and get back to you soon",
-          timestamp: "06:45 PM",
-        },
-      ],
-      sent: [
-        {
-          message:
-            "Oh, hello! All perfectly. I will check it and get back to you soon",
-          timestamp: "06:45 PM",
-        },
-        {
-          message: "how you doing,",
-          timestamp: "06:45 PM",
-        },
-      ],
+      message:
+        "Oh, hello! All perfectly. I will check it and get back to you soon",
+      timestamp: "06:45 PM",
+
+      subject: "sender",
+    },
+    {
+      message:
+        "Oh, hello! All perfectly I will check it and get back to you soon",
+      timestamp: "06:45 PM",
+      subject: "reciever",
+    },
+    {
+      message:
+        "Oh, hello! All perfectly.I will check it and get back to you soon",
+      timestamp: "06:45 PM",
+      subject: "sender",
+    },
+    {
+      message:
+        "Oh, hello! All perfectly.I will check it and get back to you soon",
+      timestamp: "06:45 PM",
+      subject: "reciever",
     },
   ];
   return (
@@ -52,24 +52,41 @@ const Chat = () => {
         </div>
       </div>
       {/* Chat header */}
-      <div className="messages mt-4">
+      <div className="messages mt-2 d-flex flex-column w-100 gap-4 ">
         {chat.map((message, index) => (
-          <div key={index} className="w-100 d-flex gap-5">
-            <div className="w-50 d-flex flex-column gap-2 align-items-start">
-              {message.recieved.map((text, index) => (
-                <div className="recievedMessageBubble" key={index}>
-                  <div className="RecievedMessageBubble">{text.message}</div>
-                  <p className="chatTimeStamprecieved">{text.timestamp}</p>
-                </div>
-              ))}
-            </div>
-            <div className="w-50 d-flex flex-column gap-2 align-items-end mt-5">
-              {message.sent.map((text, index) => (
-                <div className="sentMessageBubble" key={index}>
-                  <div className="chatBubbleSent">{text.message}</div>
-                  <p className="chatTimeStampsent">{text.timestamp}</p>
-                </div>
-              ))}
+          <div
+            key={index}
+            className={`w-100 d-flex position-relative ${
+              message.subject === "reciever"
+                ? "justify-content-start"
+                : "justify-content-end"
+            }`}
+          >
+            <div
+              className={`w-50 ${
+                message.subject === "sender"
+                  ? "sentMessageBubble"
+                  : "recievedMessageBubble"
+              }`}
+            >
+              <div
+                className={`${
+                  message.subject === "sender"
+                    ? "chatBubbleSent"
+                    : "RecievedMessageBubble"
+                }`}
+              >
+                {message.message}
+              </div>
+              <p
+                className={`position-absolute ${
+                  message.subject === "sender"
+                    ? "chatTimeStampsent"
+                    : "chatTimeStamprecieved"
+                }`}
+              >
+                {message.timestamp}
+              </p>
             </div>
           </div>
         ))}
@@ -86,7 +103,7 @@ const Chat = () => {
             </div>
           </div>
           <div className="emojiWrapper">
-            <Mic />
+            <Mic style={{ color: "white" }} />
           </div>
         </div>
       </div>

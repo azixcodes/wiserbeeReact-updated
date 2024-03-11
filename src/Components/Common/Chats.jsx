@@ -32,7 +32,7 @@ const Chats = () => {
       {/* Divider */}
       <div className="divider w-100 customDivider"></div>
       {/* Search Component */}
-      <div className="d-flex w-100 justify-content-center py-3  px-2">
+      <div className="d-flex w-100 justify-content-center py-3  px-1">
         <div className="SearchWrapper">
           <Search className="searchIcon" />
           <input type="text" placeholder="Search or start a new chat" />
@@ -65,7 +65,7 @@ const Chats = () => {
                 )}
               </div>
               <div className="message">{chat.lastMessage}</div>
-              <div className="d-flex gap-1 align-items-center justify-content-end chatFooter">
+              <div className="d-flex gap-1 align-items-center justify-content-end chatFooter mt-1">
                 <Clock className="icon" /> <span>{chat.timestamp}</span>
               </div>
             </div>
