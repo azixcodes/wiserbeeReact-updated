@@ -7,6 +7,7 @@ import {
   communitySvg,
   messagesSvg,
   settingsSvg,
+  librarySvg,
 } from "./svgs";
 export const links = [
   {
@@ -38,6 +39,11 @@ export const links = [
     label: "Community",
     path: "/community",
     icon: communitySvg,
+  },
+  {
+    label: "Library",
+    path: "/library",
+    icon: librarySvg,
   },
   {
     label: "Message",

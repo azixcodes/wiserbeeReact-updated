@@ -11,3 +11,5 @@ export { default as Dashboard } from "./Dashboard";
 export { default as CourseDetails } from "./CourseDetails";
 export { default as AssesmentWelcome } from "./AssesmentWelcome";
 export { default as Assesment } from "./Assesment";
+export { default as ExamQuestions } from "./ExamQuestions";
+export { default as Library } from "./Library";

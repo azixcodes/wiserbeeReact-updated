@@ -54,40 +54,7 @@ export const categories = [
     ],
   },
 ];
-//   {
-//     title: "Categories",
-//     content:[
-//         {
-//             category: "Design",
-//             rating: '3.2k'
-//         },
-//         {
-//             category: "Programming",
-//             rating: '1.4k'
-//         },
-//         {
-//             category: "Business Marekting",
-//             rating: '809'
-//         },
-//         {
-//             category: "Finance",
-//             rating: '548'
-//         },
-//         {
-//             category: "Music & Film",
-//             rating: '1.9k'
-//         },
-//     ]
-//   },
-//   {
-//     title: "Software",
-//     content:[]
-//   },
-//   {
-//     title: "Level",
-//     content: []
-//   }
-// ];
+
 export const levels = [
   {
     title: "Level",

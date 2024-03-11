@@ -4,7 +4,7 @@ import { notificationSvg } from "../../Constant/svgs";
 import { countries } from "../../Constant/languages";
 import { userSvg } from "../../Constant/svgs";
 import Flag from "react-world-flags";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { NavLogo } from "../../Constant/images";
 const Nav2 = (props) => {
   const location = useLocation();
@@ -50,23 +50,24 @@ const Nav2 = (props) => {
     "account-settings": "Account Settings",
   };
   const labelContent = layoutTitles[modifiedUrl] || "Dashboard";
-  const commonClassName = "navbarWrapper d-flex justify-content-between align-items-center flex-wrap";
+  const commonClassName =
+    "navbarWrapper d-flex justify-content-between align-items-center flex-wrap";
   return (
     <>
-
-      <div className={`${location.pathname === "/assesment" ? "" : "PositionFixedH "} ${commonClassName}`}>
-
+      <div
+        className={`${
+          location.pathname === "/assesment" ? "" : "PositionFixedH "
+        } ${commonClassName}`}
+      >
         <h4 className="mb-0">
           <MenuIcon onClick={handleToggleSidebar} className="mneuIcon" />
           {/* {labelContent} */}
-          {location.pathname === "/assesment" || location.pathname === "/assesment-welcome" ? (
-            <div className="d-flex gap-4 align-items-center">
-              <img
-                src={NavLogo}
-                className="blackLogos"
-              />
+          {location.pathname === "/assesment" ||
+          location.pathname === "/assesment-welcome" ? (
+            <Link to="/" className="d-flex gap-4 align-items-center">
+              <img src={NavLogo} className="blackLogos" />
               Congnitive Assesment
-            </div>
+            </Link>
           ) : (
             labelContent
           )}

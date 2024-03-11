@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { examsData } from "../Constant/exams";
+import { useNavigate } from "react-router-dom";
 import { CalendarCheck2, CalendarClock, Plus } from "lucide-react";
 import { bulbSvg, clockSvg } from "../Constant/svgs";
 
@@ -8,6 +9,7 @@ import AddExamModal from "../modals/AddExamModal";
 import ScheduleExam from "../modals/ScheduleExam";
 import AddQuestions from "../modals/AddQuestions";
 const Exams = () => {
+  const navigate = useNavigate();
   const [modalIsOpen, setIsOpen] = useState(false);
   const [scheduleExamOpen, setScheduleExamOpen] = useState(false);
   const [questionsOpen, setQuestionsOpen] = useState(false);
@@ -43,6 +45,9 @@ const Exams = () => {
   };
   const handleClickQuestions = () => {
     setQuestionsOpen(true);
+  };
+  const handleQuestionNavigate = (id) => {
+    navigate(`/exams/${id}`);
   };
   return (
     <>
@@ -90,9 +95,7 @@ const Exams = () => {
               }}
               onClick={handleAddNewExamClick}
             >
-              <span
-                className="px-1 py-1 flex align-items-center justify-content-center  fw-4 rounded p-0 addButtonSty"
-              >
+              <span className="px-1 py-1 flex align-items-center justify-content-center  fw-4 rounded p-0 addButtonSty">
                 <Plus />
               </span>
               <span>new exam</span>
@@ -101,7 +104,11 @@ const Exams = () => {
         </div>
         <div className="row text-capitalize mt-3">
           {examsData.map((exam, index) => (
-            <div className="col-md-4" key={index}>
+            <div
+              className="col-md-4"
+              key={index}
+              // onClick={() => handleQuestionNavigate(index)}
+            >
               <div className="d-flex flex-column align-items-between examDataWrapper px-2 py-3">
                 <h4 className="fw-bold p-0 m-0 fs-6">{exam.title}</h4>
                 <div className="d-flex flex-column flex-md-row gap-3 examChipsWrapper mt-3">

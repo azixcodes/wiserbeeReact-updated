@@ -15,6 +15,8 @@ import {
   CourseDetails,
   AssesmentWelcome,
   Assesment,
+  ExamQuestions,
+  Library,
 } from "./View/index";
 import Sign from "./View/SignInFirst";
 import SignIn from "./View/SignIn";
@@ -32,6 +34,7 @@ const AppRouter = () => {
         path="/account-settings"
         element={<ProtectedRoute Component={AccountSettings} />}
       />
+      <Route path="/library" element={<ProtectedRoute Component={Library} />} />
       <Route
         path="/class-schedule"
         element={<ProtectedRoute Component={ClassSchedule} />}
@@ -57,6 +60,10 @@ const AppRouter = () => {
       <Route
         path="/course/:id"
         element={<ProtectedRoute Component={CourseDetails} />}
+      />
+      <Route
+        path="/exams/:id"
+        element={<ProtectedRoute Component={ExamQuestions} />}
       />
       <Route
         path="/messages"
