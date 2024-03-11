@@ -1,5 +1,6 @@
 import React from "react";
-
+import FlexBtn from "../Components/Common/FlexBtn";
+import { exportSvg } from "../Constant/svgs";
 const ReportCardsModel = ({ onRequestClose }) => {
   return (
     <>
@@ -87,9 +88,24 @@ const ReportCardsModel = ({ onRequestClose }) => {
             </tbody>
           </table>
         </div>
-        <div className="Report_button">
+        {/* <div className="Report_button">
           <button onClick={onRequestClose}>Cancel</button>
           <button>Print Report</button>
+        </div> */}
+        <div className="d-flex mt-4 h-100 gap-3 justify-content-end">
+          <FlexBtn
+            label="Cancel"
+            color="#463C77"
+            bgColor="#EDEBF1"
+            handleClick={onRequestClose}
+          />
+          <FlexBtn
+            icon={exportSvg}
+            label="Print Report"
+            color="white"
+            bgColor="#463C77"
+            style={{ fontSize: "14px" }}
+          />
         </div>
       </div>
     </>
