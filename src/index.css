@@ -14,12 +14,22 @@
   font-family: "PoppinsSemiBold";
   src: url("./assets/Poppins-SemiBold.ttf");
 }
-
+:root {
+  --star-size: 22px;
+  --star-color: #b1b1b1;
+  --star-background: #fc0;
+}
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   font-family: PoppinsReg;
+}
+h1,h2,h3,h4,h5,h6{
+  font-family: 'PoppinsBold';
+}
+p, span{
+  font-family: 'PoppinsReg';
 }
 body {
   background-color: #f8f8f8;
@@ -355,7 +365,7 @@ select option:hover {
   width: 20px;
 }
 .lucide-plus, .lucide-chevron-right{
-  width: 15px;
+  width: 20px;
 }
 .blackLogos{
   width: 80px;
@@ -370,6 +380,25 @@ select option:hover {
 
 .addButtonSty{
   background-color: #6f6795;
+}
+
+
+
+
+
+.Stars {
+  --percent: calc(var(--rating) / 5 * 100%);
+  display: inline-block;
+  font-size: var(--star-size);
+  font-family: Times;
+  line-height: 1;
+}
+.Stars::before {
+  content: "★★★★★";
+  /* letter-spacing: 3px; */
+  background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 
@@ -675,8 +704,8 @@ td {
 .table100.ver5 .table100-body td {
   border: solid 1px transparent;
   border-style: solid none;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
 .table100.ver5 .table100-body td:first-child {
   border-left-style: solid;

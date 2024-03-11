@@ -3,6 +3,8 @@ import { MoreVertical } from "lucide-react";
 import { Eye, Trash2 } from "lucide-react";
 import Modal from "react-modal";
 import ReportCardModel from "../../modals/ReportCardsModel";
+import { Link } from "react-router-dom";
+
 const GradeTable = ({ headings, data }) => {
   const [openIndexes, setOpenIndexes] = useState([]);
   const [open, setOpen] = useState(false);
@@ -123,7 +125,7 @@ const GradeTable = ({ headings, data }) => {
                                 className="px-2 rounded"
                                 onClick={() => handleClick(item.label)}
                               >
-                                <a
+                                <Link
                                   className="dropdown-item  optionLists align-items-center rounded  mt-1 d-flex justify-content-between"
                                   href="#"
                                 >
@@ -138,7 +140,7 @@ const GradeTable = ({ headings, data }) => {
                                     {item.label}
                                   </span>
                                   {item.icon}
-                                </a>
+                                </Link>
                               </li>
                             ))}
                           </ul>

@@ -32,7 +32,7 @@ const Chats = () => {
       {/* Divider */}
       <div className="divider w-100 customDivider"></div>
       {/* Search Component */}
-      <div className="d-flex w-100 justify-content-center py-3  px-1">
+      <div className="d-flex w-100 justify-content-center p-3">
         <div className="SearchWrapper">
           <Search className="searchIcon" />
           <input type="text" placeholder="Search or start a new chat" />

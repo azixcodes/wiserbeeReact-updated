@@ -123,15 +123,17 @@ const Courses = () => {
                               name={index}
                             />
 
-                            <Ratings nums={content.star} />
+                            {/* <Ratings nums={content.star} /> */}
+                            <div class="Stars" style={{ '--rating': content.star }} aria-label="Rating of this product is 2.3 out of 5.">
+                            </div>
                           </div>
                           <div
                             className="d-flex align-items-center starFilter"
                             style={{ color: "#858585" }}
                           >
-                            <h4 className="p-0 m-0  ratingPoint">
-                              {content.ratingPoint} & upto
-                            </h4>
+                            <span className="p-0 m-0  ratingPoint">
+                              {content.ratingPoint} & up
+                            </span>
                             <span className="p-0 m-0 totalRatings">
                               ({content.totalRating})
                             </span>
@@ -183,9 +185,9 @@ const Courses = () => {
                               {content.duration}
                             </label>
                           </div>
-                          <h4 className="h6 text-secondary p-0 m-0">
+                          <span className="h6 text-secondary p-0 m-0">
                             ({content.rating})
-                          </h4>
+                          </span>
                         </div>
                       ))}
                   </>
@@ -234,9 +236,9 @@ const Courses = () => {
                               {content.category}
                             </label>
                           </div>
-                          <h4 className="h6 text-secondary p-0 m-0 totalViewsRating">
+                          <span className="h6 text-secondary p-0 m-0 totalViewsRating">
                             ({content.rating})
-                          </h4>
+                          </span>
                         </div>
                       ))}
                   </>
