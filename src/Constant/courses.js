@@ -6,6 +6,7 @@ export const courses = [
     onSale: '20%',
     courseTitle: "Adobe illustrator scretch course",
     instructor: "wiserbee studio",
+    totalStar: "4.5",
     totalRatings: "5.3k",
     description:
       "More than 8yr Experience as Illustrator. Learn how to becoming professional Illustrator Now...",
@@ -19,6 +20,7 @@ export const courses = [
     onSale: '20%',
     courseTitle: "Adobe illustrator scretch course",
     instructor: "wiserbee studio",
+    totalStar: "4.5",
     totalRatings: "3.1k",
     description:
       "More than 8yr Experience as Illustrator. Learn how to becoming professional Illustrator Now...",
@@ -32,6 +34,7 @@ export const courses = [
     onSale: '',
     courseTitle: "Adobe illustrator scretch course",
     instructor: "wiserbee studio",
+    totalStar: "4.5",
     totalRatings: "1.2k",
     description:
       "More than 8yr Experience as Illustrator. Learn how to becoming professional Illustrator Now...",
@@ -45,6 +48,7 @@ export const courses = [
     onSale: '',
     courseTitle: "Adobe illustrator scretch course",
     instructor: "wiserbee studio",
+    totalStar: "4.5",
     totalRatings: "4.2k",
     description:
       "More than 8yr Experience as Illustrator. Learn how to becoming professional Illustrator Now...",

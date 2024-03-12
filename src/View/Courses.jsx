@@ -130,9 +130,9 @@ const Courses = () => {
                           className="d-flex gap-2 align-items-center"
                           key={index}
                         >
-                          <div class="form-check">
+                          <div className="form-check">
                             <input
-                              class="form-check-input"
+                              className="form-check-input"
                               type="checkbox"
                               value=""
                               name={index}
@@ -140,7 +140,7 @@ const Courses = () => {
 
                             {/* <Ratings nums={content.star} /> */}
                             <div
-                              class="Stars"
+                              className="Stars"
                               style={{ "--rating": content.star }}
                               aria-label="Rating of this product is 2.3 out of 5."
                             ></div>
@@ -189,21 +189,21 @@ const Courses = () => {
                           className="d-flex gap-2 align-items-center"
                           key={index}
                         >
-                          <div class="form-check">
+                          <div className="form-check">
                             <input
-                              class="form-check-input"
+                              className="form-check-input"
                               type="checkbox"
                               value=""
                               id={content.duration}
                             />
                             <label
-                              class="form-check-label"
+                              className="form-check-label"
                               for={content.duration}
                             >
                               {content.duration}
                             </label>
                           </div>
-                          <span className="h6 text-secondary p-0 m-0">
+                          <span className="h6 text-secondary p-0 m-0 totalViewsRating">
                             ({content.rating})
                           </span>
                         </div>
@@ -243,14 +243,14 @@ const Courses = () => {
                           className="d-flex gap-2 align-items-center"
                           key={index}
                         >
-                          <div class="form-check">
+                          <div className="form-check">
                             <input
-                              class="form-check-input"
+                              className="form-check-input"
                               type="checkbox"
                               value=""
                               id={index}
                             />
-                            <label class="form-check-label" for={index}>
+                            <label className="form-check-label" for={index}>
                               {content.category}
                             </label>
                           </div>
@@ -291,14 +291,14 @@ const Courses = () => {
                           className="d-flex gap-2 align-items-center"
                           key={index}
                         >
-                          <div class="form-check">
+                          <div className="form-check">
                             <input
-                              class="form-check-input"
+                              className="form-check-input"
                               type="radio"
                               name="software"
                               id={content}
                             />
-                            <label class="form-check-label" for={content}>
+                            <label className="form-check-label" for={content}>
                               {content}
                             </label>
                           </div>
@@ -336,14 +336,14 @@ const Courses = () => {
                           className="d-flex gap-2 align-items-center"
                           key={index}
                         >
-                          <div class="form-check">
+                          <div className="form-check">
                             <input
-                              class="form-check-input"
+                              className="form-check-input"
                               type="radio"
                               name="level"
                               id={content}
                             />
-                            <label class="form-check-label" for={content}>
+                            <label className="form-check-label" for={content}>
                               {content}
                             </label>
                           </div>
@@ -381,14 +381,14 @@ const Courses = () => {
                           className="d-flex gap-2 align-items-center"
                           key={index}
                         >
-                          <div class="form-check">
+                          <div className="form-check">
                             <input
-                              class="form-check-input"
+                              className="form-check-input"
                               type="radio"
                               name="language"
                               id={content}
                             />
-                            <label class="form-check-label" for={content}>
+                            <label className="form-check-label" for={content}>
                               {content}
                             </label>
                           </div>

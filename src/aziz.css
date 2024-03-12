@@ -406,17 +406,17 @@ a {
   z-index: 9999;
 }
 .filterItemsWrapper .filterTitle {
-  font-size: 16px;
+  font-size: 14px;
 }
 .filterItemsWrapper label,
 .totalViewsRating {
-  font-size: 14px !important;
+  font-size: 13px !important;
 }
 .starFilter .ratingPoint {
-  font-size: 14px;
+  font-size: 13px;
 }
 .starFilter .totalRatings {
-  font-size: 14px;
+  font-size: 13px;
 }
 /* .........................<COURSE ROUTE CSS ENDS>........................ */
 

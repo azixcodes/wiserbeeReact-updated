@@ -36,7 +36,7 @@ const Library = () => {
   return (
     <div className="container-fluid">
       <div className="row">
-        <div className="col-md-12 pt-2 pb-4">
+        <div className="col-md-12 pb-3 px-0 mx-0">
           <div className="libraryHeader d-flex w-100 align-items-center px-2 justify-content-between">
             <div>
               Showing 2,312 results for
@@ -49,7 +49,7 @@ const Library = () => {
               >
                 <Filter
                   className="cursor-pointer filterIcon "
-                  // onClick={handleToggleFilter}
+                // onClick={handleToggleFilter}
                 />
               </div>
               <select
@@ -64,13 +64,15 @@ const Library = () => {
             </div>
           </div>
         </div>
-        <div className="col-md-3 d-none d-md-block" ref={filterationRef}>
-          <LibraryFilteration
-            handleRemoveFliterModal={handleRemoveFliterModal}
-          />
-        </div>
-        <div className="col-md-9">
-          <LibraryCards />
+        <div className="row  px-0">
+          <div className="col-md-3 customShadow rounded-md d-none d-md-block bg-white" ref={filterationRef}>
+            <LibraryFilteration
+              handleRemoveFliterModal={handleRemoveFliterModal}
+            />
+          </div>
+          <div className="col-md-9">
+            <LibraryCards />
+          </div>
         </div>
       </div>
     </div>

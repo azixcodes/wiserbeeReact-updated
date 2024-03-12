@@ -8,11 +8,11 @@ const ClassSchedule = () => {
         <h2 className="fs-5 ps-2 pt-5 fw-bold">
           Assessment by Parents for Special need Children
         </h2>
-        <div class="container pt-4">
+        <div className="container pt-4">
           <form action="">
-            <div class="row">
-              <div class="col-md-3">
-                <div class="form-group">
+            <div className="row">
+              <div className="col-md-3">
+                <div className="form-group">
                   <label for="usr1" className="mb-2">
                     Assessment Title
                   </label>
@@ -24,13 +24,13 @@ const ClassSchedule = () => {
                   />
                 </div>
               </div>
-              <div class="col-md-3">
+              <div className="col-md-3">
                 <label for="usr2" className="mb-2">
                   Type
                 </label>
-                <div class="form-group">
+                <div className="form-group">
                   <select
-                    class=" select-bg form-select"
+                    className=" select-bg form-select"
                     aria-label="Default select example"
                   >
                     <option selected>select type</option>
@@ -40,14 +40,14 @@ const ClassSchedule = () => {
                   </select>
                 </div>
               </div>
-              <div class="col-md-3">
-                <div class="form-group">
+              <div className="col-md-3">
+                <div className="form-group">
                   <label for="usr3" className="mb-2">
                     Category
                   </label>
-                  <div class="form-group">
+                  <div className="form-group">
                     <select
-                      class=" select-bg form-select"
+                      className=" select-bg form-select"
                       aria-label="Default select example"
                     >
                       <option selected>select Category</option>
@@ -58,14 +58,14 @@ const ClassSchedule = () => {
                   </div>
                 </div>
               </div>
-              <div class="col-md-3">
-                <div class="form-group">
+              <div className="col-md-3">
+                <div className="form-group">
                   <label for="usr4" className="mb-2">
                     Sub Category
                   </label>
-                  <div class="form-group">
+                  <div className="form-group">
                     <select
-                      class=" select-bg form-select"
+                      className=" select-bg form-select"
                       aria-label="Default select example"
                     >
                       <option selected>select Category</option>
@@ -89,7 +89,7 @@ const ClassSchedule = () => {
                   <input
                     type="text select-bg"
                     placeholder="Enter possible question here"
-                    class="form-control p-2"
+                    className="form-control p-2"
                     id="usr"
                   />
                 </div>
@@ -203,7 +203,7 @@ const ClassSchedule = () => {
                   <input
                     type="text select-bg"
                     placeholder="Enter possible question here"
-                    class="form-control p-2"
+                    className="form-control p-2"
                     id="usr"
                   />
                 </div>
@@ -320,7 +320,7 @@ const ClassSchedule = () => {
                   <input
                     type="text select-bg"
                     placeholder="Enter possible question here"
-                    class="form-control p-2"
+                    className="form-control p-2"
                     id="usr"
                   />
                 </div>

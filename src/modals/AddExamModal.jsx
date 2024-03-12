@@ -55,9 +55,9 @@ const AddExamModal = ({ onRequestClose }) => {
       </div>
       <div className="row  m-0 p-0 mt-3 px-2">
         <div className="col-md-6 ">
-          <div class=" d-flex flex-column gap-2">
+          <div className=" d-flex flex-column gap-2">
             <label for="classSelect">Class</label>
-            <select class="form-control py-1 fs-6 px-2" id="classSelect">
+            <select className="form-control py-1 fs-6 px-2" id="classSelect">
               <option>8th Class</option>
               <option>7th Class</option>
               <option>5th Class</option>
@@ -65,16 +65,16 @@ const AddExamModal = ({ onRequestClose }) => {
               <option>3rd Class</option>
             </select>
           </div>
-          <div class=" d-flex flex-column gap-2 mt-3">
+          <div className=" d-flex flex-column gap-2 mt-3">
             <label for="category">Category</label>
-            <select class="form-control py-1 fs-6 px-2" id="category">
+            <select className="form-control py-1 fs-6 px-2" id="category">
               <option>Exam</option>
               <option>Assignment</option>
               <option>Practical</option>
               <option>Tests</option>
             </select>
           </div>
-          <div class=" d-flex flex-column gap-2 mt-3">
+          <div className=" d-flex flex-column gap-2 mt-3">
             <label for="duration">Duration in Mints</label>
             <Counter
               isFullWidth={true}
@@ -85,16 +85,16 @@ const AddExamModal = ({ onRequestClose }) => {
           </div>
         </div>
         <div className="col-md-6 ">
-          <div class=" d-flex flex-column gap-2">
+          <div className=" d-flex flex-column gap-2">
             <label for="sectionSelect">Section</label>
-            <select class="form-control py-1 fs-6 px-2" id="sectionSelect">
+            <select className="form-control py-1 fs-6 px-2" id="sectionSelect">
               <option>All Section</option>
               <option>Section A</option>
               <option>Section B</option>
               <option>Section C</option>
             </select>
           </div>
-          <div class=" d-flex flex-column gap-2 mt-3">
+          <div className=" d-flex flex-column gap-2 mt-3">
             <label for="questions">Number of Questions</label>
             <Counter
               isFullWidth={true}

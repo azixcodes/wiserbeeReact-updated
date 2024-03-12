@@ -17,7 +17,7 @@ const LibraryFilteration = ({ handleRemoveFliterModal }) => {
     }));
   };
   return (
-    <div className="w-100 d-flex flex-column customShadow rounded-md px-4 py-4">
+    <div className="w-100 d-flex flex-column py-3">
       <div className="d-flex justify-content-between align-items-center w-100 mb-3">
         <button className="btn btn-outline fw-bold m-0 p-0">Filter</button>
 
@@ -53,9 +53,9 @@ const LibraryFilteration = ({ handleRemoveFliterModal }) => {
             {toggler.ratingsToggler &&
               item.content.map((content, index) => (
                 <div className="d-flex gap-2 align-items-center" key={index}>
-                  <div class="form-check">
+                  <div className="form-check">
                     <input
-                      class="form-check-input"
+                      className="form-check-input"
                       type="checkbox"
                       value=""
                       name={index}
@@ -63,7 +63,7 @@ const LibraryFilteration = ({ handleRemoveFliterModal }) => {
 
                     {/* <Ratings nums={content.star} /> */}
                     <div
-                      class="Stars"
+                      className="Stars"
                       style={{ "--rating": content.star }}
                       aria-label="Rating of this product is 2.3 out of 5."
                     ></div>
@@ -73,11 +73,11 @@ const LibraryFilteration = ({ handleRemoveFliterModal }) => {
                     style={{ color: "#858585" }}
                   >
                     <span className="p-0 m-0  ratingPoint">
-                      {content.ratingPoint} & up
+                      {content.ratingPoint} & up  ({content.totalRating})
                     </span>
-                    <span className="p-0 m-0 totalRatings">
-                      ({content.totalRating})
-                    </span>
+                    {/* <span className="p-0 m-0 totalRatings">
+                     
+                    </span> */}
                   </div>
                 </div>
               ))}
@@ -104,13 +104,13 @@ const LibraryFilteration = ({ handleRemoveFliterModal }) => {
           categories.map((cate, index) => (
             <div className="d-flex gap-2">
               <input
-                class="form-check-input"
+                className="form-check-input"
                 type="checkbox"
                 value=""
                 name={index}
               />
               {cate.icon}
-              <label>{cate.label}</label>
+              <label className="font13px">{cate.label}</label>
             </div>
           ))}
       </div>
@@ -135,12 +135,12 @@ const LibraryFilteration = ({ handleRemoveFliterModal }) => {
             genre.map((gen, index) => (
               <div className="d-flex gap-1 align-items-center">
                 <input
-                  class="form-check-input"
+                  className="form-check-input"
                   type="checkbox"
                   value=""
                   name={index}
                 />
-                <label>{gen.label}</label>
+                <label className="font13px">{gen.label}</label>
                 <p className="p-0 m-0 totalViewsRating text-secondary">
                   {gen.ratings}
                 </p>
@@ -166,14 +166,14 @@ const LibraryFilteration = ({ handleRemoveFliterModal }) => {
         </div>
         {toggler.languageToggler &&
           languages.map((lang, index) => (
-            <div class="form-check" key={index}>
+            <div className="form-check" key={index}>
               <input
-                class="form-check-input"
+                className="form-check-input"
                 type="radio"
                 name="language"
                 id={lang}
               />
-              <label class="form-check-label" for={lang}>
+              <label className="font13px form-check-label" for={lang}>
                 {lang}
               </label>
             </div>

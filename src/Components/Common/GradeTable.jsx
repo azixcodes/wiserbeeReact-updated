@@ -76,13 +76,13 @@ const GradeTable = ({ headings, data }) => {
       <Modal isOpen={open} style={customStyles}>
         <ReportCardModel onRequestClose={closeModal} />
       </Modal>
-      <div class="container-table100">
-        <div class="wrap-table100">
-          <div class="table100 ver5 m-b-110">
-            <div class="table100-head">
+      <div className="container-table100">
+        <div className="wrap-table100">
+          <div className="table100 ver5 m-b-110">
+            <div className="table100-head">
               <table>
                 <thead>
-                  <tr class="row100 head">
+                  <tr className="row100 head">
                     {headings.map((head, index) => (
                       <th className={`cell100 column${index + 1}`} key={index}>
                         {head}
@@ -93,7 +93,7 @@ const GradeTable = ({ headings, data }) => {
               </table>
             </div>
 
-            <div class="table100-body">
+            <div className="table100-body">
               <table>
                 <tbody>
                   {data.map((item, index) => (

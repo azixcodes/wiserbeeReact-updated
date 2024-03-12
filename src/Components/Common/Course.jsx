@@ -37,7 +37,7 @@ const Course = () => {
                 <Chip text={course.onSale} bg="#A04AE3" color="white" />
               )}
             </div>
-            <div className="fw-bold py-1">{course.courseTitle}</div>
+            <h6 className="mb-0 fw-bold">{course.courseTitle}</h6>
             <div className="d-flex align-items-center courseInstructor d-md-flex flex-md-row flex-column">
               <div className="d-flex">
                 <User className="userIcon" />
@@ -46,7 +46,12 @@ const Course = () => {
                 </h4>
               </div>
               <div className="d-flex  align-items-center ">
-                <Stars stars={5} />
+                {/* <Stars stars={5} /> */}
+                <div
+                      className="Stars"
+                      style={{ "--rating": course.totalStar,"fontSize":"18px" }}
+                      aria-label="Rating of this product is 2.3 out of 5."
+                    ></div>
                 <h5 className="p-0 m-0">({course.totalRatings})</h5>
               </div>
             </div>
@@ -54,12 +59,12 @@ const Course = () => {
               <p>{course.description}</p>
             </div>
             <div className="d-flex gap-3 pricing ">
-              <h4 className="m-0 p-0 fw-bold salesPrice">
+              <h6 className="m-0 p-0 fw-bold salesPrice">
                 {course.salesPrice}
-              </h4>
-              <h4 className="m-0 p-0 text-sm normalPrice align-self-center">
+              </h6>
+              <h6 className="m-0 p-0 text-sm normalPrice align-self-center">
                 {course.price}
-              </h4>
+              </h6>
             </div>
           </div>
         </div>

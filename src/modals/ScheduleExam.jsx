@@ -35,21 +35,21 @@ const ScheduleExam = ({ onRequestClose, exam }) => {
       </div>
       <div className="row  m-0 p-0 mt-3 px-2">
         <div className="col-md-6 ">
-          <div class=" d-flex flex-column gap-2">
+          <div className=" d-flex flex-column gap-2">
             <label for="classSelect">Start Date</label>
             <input type="date" className="form-control" />
           </div>
-          <div class=" d-flex flex-column gap-2 mt-3">
+          <div className=" d-flex flex-column gap-2 mt-3">
             <label for="category">Start Time</label>
             <input type="time" className="form-control" />
           </div>
         </div>
         <div className="col-md-6 ">
-          <div class=" d-flex flex-column gap-2">
+          <div className=" d-flex flex-column gap-2">
             <label for="sectionSelect">End Date</label>
             <input type="date" className="form-control" />
           </div>
-          <div class=" d-flex flex-column gap-2 mt-3">
+          <div className=" d-flex flex-column gap-2 mt-3">
             <label for="questions">End Time</label>
             <input type="time" className="form-control" />
           </div>
