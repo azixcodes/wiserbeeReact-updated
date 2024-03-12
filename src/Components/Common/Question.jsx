@@ -2,15 +2,15 @@ import React from "react";
 
 const Question = ({ question, num, handleSelectQuestion }) => {
   return (
-    <div className="row mt-3 py-2 justify-content-between">
+    <div className="row mt-1 py-2 justify-content-between">
       <div className="col-md-11 p-0 m-0">
-        <h4 className="fw-bold">
+        <h6 className="fw-bold">
           Q{(num += 1)} : {question.question}
-        </h4>
+        </h6>
       </div>
       <div className="col-md-1 ">
         <div className="d-flex align-items-center gap-3 w-100 justify-content-end  ">
-          <h4 className="fs-5">Marks</h4>
+          <h6 className="fs-5">Marks</h6>
           <div className="py-2 px-2 rounded chipBg">{question.marks}</div>
         </div>
       </div>

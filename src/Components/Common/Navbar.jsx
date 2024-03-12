@@ -66,7 +66,7 @@ const Nav2 = (props) => {
           location.pathname === "/assesment-welcome" ? (
             <Link to="/" className="d-flex gap-4 align-items-center">
               <img src={NavLogo} className="blackLogos" />
-              Congnitive Assesment
+             <spa> Congnitive Assesment</spa>
             </Link>
           ) : (
             labelContent
