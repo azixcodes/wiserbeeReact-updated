@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   durations,
   categories,
@@ -7,13 +7,13 @@ import {
   software,
   ratings,
 } from "../Constant/filtercategories";
-// import Ratings from "../Components/Ratings/Ratings";
-import { Rating } from "react-simple-star-rating";
+
 import { ChevronUp, ChevronDown, Filter, X } from "lucide-react";
 import Course from "../Components/Common/Course";
-import Ratings from "../Components/Ratings/Ratings";
+
 const Courses = () => {
   const filterRef = useRef(null);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [toggler, setToggler] = useState({
     durationToggler: true,
     categoriesToggler: false,
@@ -40,13 +40,28 @@ const Courses = () => {
     filterRef.current.classList.remove("filterSmSCreen");
     setOpenFilter(false);
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (windowWidth >= 768) {
+      if (filterRef.current) {
+        filterRef.current.classList.remove("filterSmSCreen");
+      }
+    }
+  }, [windowWidth]);
   return (
     <>
       <div className="row ">
         {/*  course  header stars here... */}
         <div className="d-flex justify-content-between">
           <div>
-            Showing 2,312 results for{" "}
+            Showing 2,312 results for
             <span className="fw-bold">{searchTerm}</span>
           </div>
           <div className="d-flex align-items-center gap-3">
@@ -124,8 +139,11 @@ const Courses = () => {
                             />
 
                             {/* <Ratings nums={content.star} /> */}
-                            <div class="Stars" style={{ '--rating': content.star }} aria-label="Rating of this product is 2.3 out of 5.">
-                            </div>
+                            <div
+                              class="Stars"
+                              style={{ "--rating": content.star }}
+                              aria-label="Rating of this product is 2.3 out of 5."
+                            ></div>
                           </div>
                           <div
                             className="d-flex align-items-center starFilter"

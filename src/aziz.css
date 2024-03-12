@@ -1,6 +1,9 @@
 :root {
   --bg-primary: #463c77;
 }
+.bg-main {
+  background-color: var(--bg-primary);
+}
 a {
   text-decoration: none;
 }
@@ -1064,6 +1067,25 @@ h4 {
 
 /*Chat css */
 /* <>........................<Community Route all css including components> */
+
+/* <>............................<Library Route css starts>............................ */
+.libraryCard {
+  border-radius: 15px;
+}
+.libraryCard .libraryImageWrapper {
+  height: 200px;
+  width: 100%;
+}
+.libraryImageWrapper img {
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+}
+.authorSection {
+  color: #7a7a7a;
+  font-size: 12px;
+}
+/* <>............................<Library Route css ends>............................ */
 
 /* Bilal css */
 .select-bg {
