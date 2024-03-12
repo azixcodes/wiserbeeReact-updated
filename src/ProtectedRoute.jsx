@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Sidebar from "./Components/Common/Sidebar";
 import Navbar from "./Components/Common/Navbar";
 import MiniSidebar from "./Components/Common/MiniSidebar";
+import Footer from "./Components/Common/Footer";
 
 const ProtectedRoute = (props) => {
   const [windowWidth, setWindowWidth] = useState(undefined);
@@ -59,6 +60,7 @@ const ProtectedRoute = (props) => {
         >
           <Component />
         </main>
+        <Footer />
       </div>
     </section>
   );

@@ -28,7 +28,7 @@ const Chat = () => {
     },
     {
       message:
-        "Oh, hello! All perfectly.I will check it and get back to you soon",
+        "Ok",
       timestamp: "06:45 PM",
       subject: "reciever",
     },
