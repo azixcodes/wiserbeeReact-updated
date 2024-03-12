@@ -42,27 +42,29 @@ const ProtectedRoute = (props) => {
     setToggle(true);
   };
   return (
-    <section className="d-flex w-100 custom-scrollbar">
-      {location.pathname === "/assesment-welcome" ||
-      location.pathname === "/assesment" ? null : (
-        <>
-          <MiniSidebar toggle={toggle} setToggle={setToggle} /> <Sidebar />
-        </>
-      )}
-      <div className="d-flex flex-column w-full w-100 ">
-        <Navbar handleToggleSidebar={handleToggleSidebar} />
-        <main
-          className={
-            location.pathname === "/assesment"
-              ? "assesmentsWrapper "
-              : "routesWrapper mainComponent "
-          }
-        >
-          <Component />
-        </main>
-        <Footer />
-      </div>
-    </section>
+    <>
+      <section className="d-flex w-100 custom-scrollbar">
+        {location.pathname === "/assesment-welcome" ||
+        location.pathname === "/assesment" ? null : (
+          <>
+            <MiniSidebar toggle={toggle} setToggle={setToggle} /> <Sidebar />
+          </>
+        )}
+        <div className="d-flex flex-column w-full w-100 position-relative">
+          <Navbar handleToggleSidebar={handleToggleSidebar} />
+          <main
+            className={
+              location.pathname === "/assesment"
+                ? "assesmentsWrapper "
+                : "routesWrapper mainComponent "
+            }
+          >
+            <Component />
+            {/* <Footer /> */}
+          </main>
+        </div>
+      </section>
+    </>
   );
 };
 

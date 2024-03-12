@@ -104,13 +104,14 @@ const Exams = () => {
         </div>
         <div className="row text-capitalize mt-3">
           {examsData.map((exam, index) => (
-            <div
-              className="col-md-4"
-              key={index}
-              // onClick={() => handleQuestionNavigate(index)}
-            >
+            <div className="col-md-4" key={index}>
               <div className="d-flex flex-column align-items-between examDataWrapper px-2 py-3">
-                <h4 className="fw-bold p-0 m-0 fs-6">{exam.title}</h4>
+                <h4
+                  className="fw-bold p-0 m-0 fs-6 cursor-pointer"
+                  onClick={() => handleQuestionNavigate(index)}
+                >
+                  {exam.title}
+                </h4>
                 <div className="d-flex flex-column flex-md-row gap-3 examChipsWrapper mt-3">
                   {exam.tags.map((tag, index) => (
                     <div className="examChip" key={index}>

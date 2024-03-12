@@ -1,0 +1,9 @@
+.quickLinks a {
+  color: white;
+}
+.copright label {
+  color: #f9f9f999;
+  font-weight: 400;
+}
+
+line no 1091
