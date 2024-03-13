@@ -74,32 +74,32 @@ const Exams = () => {
       >
         <AddQuestions onRequestClose={closeModal} />
       </Modal>
-      <div className="container-fluid bg-white rounded py-4 px-3">
+      <div className="container-fluid bg-white rounded px-2 py-2">
         <div className="row d-flex align-items-center">
-          <div className="col-md-10   ">
-            <h4 className="h1 fw-bold" style={{ fontSize: "28px" }}>
-              My Exams
-            </h4>
-          </div>
-          <div className="col-md-2">
-            <button
-              className="text-capitalize fs-6 gap-3 d-flex justify-content-between align-items-center"
-              style={{
-                backgroundColor: "#463C77",
-                padding: "4px 8px",
-                borderRadius: "8px",
-                color: "white",
-                width: "auto",
-                whiteSpace: "nowrap",
-                border: "none",
-              }}
-              onClick={handleAddNewExamClick}
-            >
-              <span className="px-1 py-1 flex align-items-center justify-content-center  fw-4 rounded p-0 addButtonSty">
-                <Plus />
-              </span>
-              <span>new exam</span>
-            </button>
+          <div className="col-md-12">
+            <div className="d-flex justify-content-between">
+              <h4 className="h1 fw-bold" style={{ fontSize: "28px" }}>
+                My Exams
+              </h4>
+              <button
+                className="text-capitalize fs-6 gap-3 d-flex justify-content-between align-items-center"
+                style={{
+                  backgroundColor: "#463C77",
+                  padding: "4px 8px",
+                  borderRadius: "8px",
+                  color: "white",
+                  width: "auto",
+                  whiteSpace: "nowrap",
+                  border: "none",
+                }}
+                onClick={handleAddNewExamClick}
+              >
+                <span className="px-1 py-1 flex align-items-center justify-content-center  fw-4 rounded p-0 addButtonSty">
+                  <Plus />
+                </span>
+                <span>new exam</span>
+              </button>
+            </div>
           </div>
         </div>
         <div className="row text-capitalize mt-3">

@@ -4,6 +4,7 @@ const AppContext = createContext();
 
 export const AppContextProvider = ({ children }) => {
   const [toggleSidebar, setToggleSidebar] = useState(false);
+  const [toggleFilter, setToggleFilter] = useState(false);
   const [user, setUser] = useState({
     user: "Jennifer Markus",
     tag: "Parent",
@@ -12,7 +13,14 @@ export const AppContextProvider = ({ children }) => {
       "Hey! Did you finish Hi-Fi wireframes for flora app design so it could be us then now and may be this one will fix it",
     timestamp: "30 mints ago",
   });
-  const value = { toggleSidebar, setToggleSidebar, user, setUser };
+  const value = {
+    toggleSidebar,
+    setToggleSidebar,
+    user,
+    setUser,
+    toggleFilter,
+    setToggleFilter,
+  };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };

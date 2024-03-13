@@ -3,7 +3,7 @@ import { headSetSvg, libraryCardUserSvg, pageSvg } from "../Constant/svgs";
 
 const BookDetails = ({ onRequestClose, book }) => {
   return (
-    <div className="container p-0 py-3">
+    <div className="container p-0">
       <div className="row">
         <div className="col-12">
           <div className="bookDetailsModalHeader d-flex justify-content-center py-3 align-items-center">

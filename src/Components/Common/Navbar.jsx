@@ -51,12 +51,12 @@ const Nav2 = (props) => {
   };
   const labelContent = layoutTitles[modifiedUrl] || "Dashboard";
   const commonClassName =
-    "navbarWrapper d-flex justify-content-between align-items-center flex-wrap";
+    "navbarWrapper d-flex justify-content-between align-items-center flex-wrap customShadow";
   return (
     <>
       <div
         className={`${
-          location.pathname === "/assesment" ? "" : "PositionFixedH "
+          location.pathname === "/assesment" ? "" : ""
         } ${commonClassName}`}
       >
         <h4 className="mb-0">
@@ -66,7 +66,7 @@ const Nav2 = (props) => {
           location.pathname === "/assesment-welcome" ? (
             <Link to="/" className="d-flex gap-4 align-items-center">
               <img src={NavLogo} className="blackLogos" />
-             <spa> Congnitive Assesment</spa>
+              <spa> Congnitive Assesment</spa>
             </Link>
           ) : (
             labelContent
@@ -122,7 +122,7 @@ const Nav2 = (props) => {
           <div className="navAvatar d-flex justify-content-center align-items-center">
             {userSvg}
           </div>
-          <div className="align-items-center userName mx-2 d-none d-md-block">
+          <div className="align-items-center userName mx-2 d-none d-lg-block">
             <h6 className="fs-6  fw-bold ">John doe</h6>
             <h5 className="font-sm ">Admin</h5>
           </div>

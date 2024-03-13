@@ -2,11 +2,12 @@ import React from "react";
 import { courses } from "../../Constant/courses";
 import Chip from "./Chip";
 import { User } from "lucide-react";
-import { getInitials } from "../../Constant/helpers";
-import Stars from "./Stars";
+import { Store } from "../../ContextAPI/Context";
 
 import { useNavigate } from "react-router-dom";
+
 const Course = () => {
+  const { toggleFilter } = Store();
   const navigate = useNavigate();
   function getInitials(name) {
     const parts = name.split(" ");
@@ -21,7 +22,9 @@ const Course = () => {
     <div className="row pl-0">
       {courses.map((course, index) => (
         <div
-          className="col-lg-4 col-sm-6 col-md-4 cursor-pointer"
+          className={`${
+            toggleFilter ? "col-md-4" : "col-md-3"
+          } col-sm-6 cursor-pointer `}
           onClick={() => navigate("/course/21")}
           key={index}
         >
@@ -48,10 +51,10 @@ const Course = () => {
               <div className="d-flex  align-items-center ">
                 {/* <Stars stars={5} /> */}
                 <div
-                      className="Stars"
-                      style={{ "--rating": course.totalStar,"fontSize":"18px" }}
-                      aria-label="Rating of this product is 2.3 out of 5."
-                    ></div>
+                  className="Stars"
+                  style={{ "--rating": course.totalStar, fontSize: "18px" }}
+                  aria-label="Rating of this product is 2.3 out of 5."
+                ></div>
                 <h5 className="p-0 m-0">({course.totalRatings})</h5>
               </div>
             </div>

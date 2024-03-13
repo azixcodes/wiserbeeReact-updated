@@ -1,45 +1,16 @@
-import React, { useState, useRef, useEffect } from "react";
-import {
-  durations,
-  categories,
-  levels,
-  languages,
-  software,
-  ratings,
-} from "../Constant/filtercategories";
+import React, { useRef, useState, useEffect } from "react";
 
-import { ChevronUp, ChevronDown, Filter, X } from "lucide-react";
 import Course from "../Components/Common/Course";
-
+import FilterHeader from "../Components/Common/FilterHeader";
+import CourseFilter from "../Components/Filters/CourseFilter";
+import SideFilter from "../Components/Filters/SideFilter";
+import { Store } from "../ContextAPI/Context";
 const Courses = () => {
-  const filterRef = useRef(null);
+  const filterationRef = useRef(null);
+  const { toggleFilter } = Store();
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const [toggler, setToggler] = useState({
-    durationToggler: true,
-    categoriesToggler: false,
-    softwareToggler: false,
-    levelToggler: false,
-    languageToggler: false,
-    ratingsToggler: true,
-  });
-  const [openFilter, setOpenFilter] = useState(false);
-  const handleDropdownToggle = (type) => {
-    setToggler((prevState) => ({
-      ...prevState,
-      [`${type}Toggler`]: !prevState[`${type}Toggler`],
-    }));
-  };
+
   let searchTerm = "UI Design";
-  const handleToggleFilter = () => {
-    // filterRef.current.classList.remove("filterationCourse");
-    filterRef.current.classList.add("filterSmSCreen");
-    setOpenFilter(true);
-  };
-  const handleRemoveFliterModal = () => {
-    // filterRef.current.classList.add("filterationCourse");
-    filterRef.current.classList.remove("filterSmSCreen");
-    setOpenFilter(false);
-  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -50,361 +21,41 @@ const Courses = () => {
 
   useEffect(() => {
     if (windowWidth >= 768) {
-      if (filterRef.current) {
-        filterRef.current.classList.remove("filterSmSCreen");
+      if (filterationRef.current) {
+        filterationRef.current.classList.remove("filterSmSCreen");
       }
     }
   }, [windowWidth]);
+  const openFilter = () => {
+    if (filterationRef.current) {
+      filterationRef.current.classList.add("filterSmSCreen");
+    } else {
+      console.log("no ref found");
+    }
+  };
+  const handleRemoveFliterModal = () => {
+    if (filterationRef.current) {
+      filterationRef.current.classList.remove("filterSmSCreen");
+    }
+  };
   return (
-    <>
+    <div className="container-fluid">
       <div className="row ">
-        {/*  course  header stars here... */}
-        <div className="d-flex justify-content-between">
-          <div>
-            Showing 2,312 results for
-            <span className="fw-bold">{searchTerm}</span>
-          </div>
-          <div className="d-flex align-items-center gap-3">
-            <Filter
-              className="cursor-pointer filterIcon block d-md-none"
-              onClick={handleToggleFilter}
-            />
-            <select className="p-1 rounded" style={{ borderColor: "#C7C7C7" }}>
-              <option>Most Popular</option>
-              <option>Best Rated </option>
-              <option>New </option>
-              <option>Upcoming</option>
-            </select>
-          </div>
-        </div>
+        <FilterHeader searchTerm={searchTerm} openFilter={openFilter} />
       </div>
       {/*  course header ends here... */}
 
       {/*  Filter and courses*/}
-      <div className="row mt-2">
-        <div
-          className="col-md-3 customShadow rounded-md d-none d-md-block bg-white"
-          ref={filterRef}
-        >
-          <div
-            className="filterationCourse w-100 "
-            // ref={filterRef}
-          >
-            <div className="d-flex justify-content-between align-items-center w-100">
-              <button className="btn btn-outline fw-bold m-0 p-0">
-                Filter
-              </button>
+      <div className="px-0 row mt-2">
+        <SideFilter filterationRef={filterationRef}>
+          <CourseFilter handleRemoveFliterModal={handleRemoveFliterModal} />
+        </SideFilter>
 
-              <button className="btn btn-outline text-primary">Clear</button>
-              <X
-                className="filterIcon block d-md-none cursor-pointer"
-                onClick={handleRemoveFliterModal}
-              />
-            </div>
-            <div className="d-flex flex-column gap-4 filterItemsWrapper">
-              <div className="d-flex flex-column  w-100 gap-1">
-                {ratings.map((item, index) => (
-                  <>
-                    <div
-                      className="d-flex justify-content-between w-100 align-items-center"
-                      key={index}
-                    >
-                      <h4 className="h6 m-0 p-0 fw-bold filterTitle">
-                        {item.title}
-                      </h4>
-                      {toggler.ratingsToggler ? (
-                        <ChevronUp
-                          className="icon"
-                          onClick={() => handleDropdownToggle("ratings")}
-                        />
-                      ) : (
-                        <ChevronDown
-                          className="icon"
-                          onClick={() => handleDropdownToggle("ratings")}
-                        />
-                      )}
-                    </div>
-                    {toggler.ratingsToggler &&
-                      item.content.map((content, index) => (
-                        <div
-                          className="d-flex gap-2 align-items-center"
-                          key={index}
-                        >
-                          <div className="form-check">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              value=""
-                              name={index}
-                            />
-
-                            {/* <Ratings nums={content.star} /> */}
-                            <div
-                              className="Stars"
-                              style={{ "--rating": content.star }}
-                              aria-label="Rating of this product is 2.3 out of 5."
-                            ></div>
-                          </div>
-                          <div
-                            className="d-flex align-items-center starFilter"
-                            style={{ color: "#858585" }}
-                          >
-                            <span className="p-0 m-0  ratingPoint">
-                              {content.ratingPoint} & up
-                            </span>
-                            <span className="p-0 m-0 totalRatings">
-                              ({content.totalRating})
-                            </span>
-                          </div>
-                        </div>
-                      ))}
-                  </>
-                ))}
-              </div>
-              <div className="d-flex flex-column  w-100 gap-1">
-                {durations.map((item, index) => (
-                  <>
-                    <div
-                      className="d-flex justify-content-between w-100 align-items-center"
-                      key={index}
-                    >
-                      <h4 className="h6 m-0 p-0 fw-bold filterTitle">
-                        {item.title}
-                      </h4>
-                      {toggler.durationToggler ? (
-                        <ChevronUp
-                          className="icon"
-                          onClick={() => handleDropdownToggle("duration")}
-                        />
-                      ) : (
-                        <ChevronDown
-                          className="icon"
-                          onClick={() => handleDropdownToggle("duration")}
-                        />
-                      )}
-                    </div>
-                    {toggler.durationToggler &&
-                      item.content.map((content, index) => (
-                        <div
-                          className="d-flex gap-2 align-items-center"
-                          key={index}
-                        >
-                          <div className="form-check">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              value=""
-                              id={content.duration}
-                            />
-                            <label
-                              className="form-check-label"
-                              for={content.duration}
-                            >
-                              {content.duration}
-                            </label>
-                          </div>
-                          <span className="h6 text-secondary p-0 m-0 totalViewsRating">
-                            ({content.rating})
-                          </span>
-                        </div>
-                      ))}
-                  </>
-                ))}
-              </div>
-
-              {/* Categories */}
-
-              <div className="d-flex flex-column  w-100 gap-1">
-                {categories.map((item, index) => (
-                  <>
-                    <div
-                      className="d-flex justify-content-between w-100 align-items-center"
-                      key={index}
-                    >
-                      <h4 className="h6 m-0 p-0 fw-bold filterTitle">
-                        {item.title}
-                      </h4>
-                      {toggler.categoriesToggler ? (
-                        <ChevronUp
-                          className="icon"
-                          onClick={() => handleDropdownToggle("categories")}
-                        />
-                      ) : (
-                        <ChevronDown
-                          className="icon"
-                          onClick={() => handleDropdownToggle("categories")}
-                        />
-                      )}
-                    </div>
-
-                    {toggler.categoriesToggler &&
-                      item.content.map((content, index) => (
-                        <div
-                          className="d-flex gap-2 align-items-center"
-                          key={index}
-                        >
-                          <div className="form-check">
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              value=""
-                              id={index}
-                            />
-                            <label className="form-check-label" for={index}>
-                              {content.category}
-                            </label>
-                          </div>
-                          <span className="h6 text-secondary p-0 m-0 totalViewsRating">
-                            ({content.rating})
-                          </span>
-                        </div>
-                      ))}
-                  </>
-                ))}
-              </div>
-              {/* Software */}
-              <div className="d-flex flex-column  w-100 gap-1">
-                {software.map((item, index) => (
-                  <>
-                    <div
-                      className="d-flex justify-content-between w-100 align-items-center"
-                      key={index}
-                    >
-                      <h4 className="h6 m-0 p-0 fw-bold filterTitle">
-                        {item.title}
-                      </h4>
-                      {toggler.softwareToggler ? (
-                        <ChevronUp
-                          className="icon"
-                          onClick={() => handleDropdownToggle("software")}
-                        />
-                      ) : (
-                        <ChevronDown
-                          className="icon"
-                          onClick={() => handleDropdownToggle("software")}
-                        />
-                      )}
-                    </div>
-                    {toggler.softwareToggler &&
-                      item.content.map((content, index) => (
-                        <div
-                          className="d-flex gap-2 align-items-center"
-                          key={index}
-                        >
-                          <div className="form-check">
-                            <input
-                              className="form-check-input"
-                              type="radio"
-                              name="software"
-                              id={content}
-                            />
-                            <label className="form-check-label" for={content}>
-                              {content}
-                            </label>
-                          </div>
-                        </div>
-                      ))}
-                  </>
-                ))}
-              </div>
-              {/* Levele */}
-              <div className="d-flex flex-column  w-100 gap-1">
-                {levels.map((item, index) => (
-                  <>
-                    <div
-                      className="d-flex justify-content-between w-100 align-items-center"
-                      key={index}
-                    >
-                      <h4 className="h6 m-0 p-0 fw-bold filterTitle">
-                        {item.title}
-                      </h4>
-                      {toggler.softwareToggler ? (
-                        <ChevronUp
-                          className="icon"
-                          onClick={() => handleDropdownToggle("level")}
-                        />
-                      ) : (
-                        <ChevronDown
-                          className="icon"
-                          onClick={() => handleDropdownToggle("level")}
-                        />
-                      )}
-                    </div>
-                    {toggler.levelToggler &&
-                      item.content.map((content, index) => (
-                        <div
-                          className="d-flex gap-2 align-items-center"
-                          key={index}
-                        >
-                          <div className="form-check">
-                            <input
-                              className="form-check-input"
-                              type="radio"
-                              name="level"
-                              id={content}
-                            />
-                            <label className="form-check-label" for={content}>
-                              {content}
-                            </label>
-                          </div>
-                        </div>
-                      ))}
-                  </>
-                ))}
-              </div>
-              {/* Lanuages */}
-              <div className="d-flex flex-column  w-100 gap-1">
-                {languages.map((item, index) => (
-                  <>
-                    <div
-                      className="d-flex justify-content-between w-100 align-items-center"
-                      key={index}
-                    >
-                      <h4 className="h6 m-0 p-0 fw-bold filterTitle">
-                        {item.title}
-                      </h4>
-                      {toggler.languageToggler ? (
-                        <ChevronUp
-                          className="icon"
-                          onClick={() => handleDropdownToggle("language")}
-                        />
-                      ) : (
-                        <ChevronDown
-                          className="icon"
-                          onClick={() => handleDropdownToggle("language")}
-                        />
-                      )}
-                    </div>
-                    {toggler.languageToggler &&
-                      item.content.map((content, index) => (
-                        <div
-                          className="d-flex gap-2 align-items-center"
-                          key={index}
-                        >
-                          <div className="form-check">
-                            <input
-                              className="form-check-input"
-                              type="radio"
-                              name="language"
-                              id={content}
-                            />
-                            <label className="form-check-label" for={content}>
-                              {content}
-                            </label>
-                          </div>
-                        </div>
-                      ))}
-                  </>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-9  ">
+        <div className={`${toggleFilter ? "col-md-9 " : "col-md-12"}`}>
           <Course />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
