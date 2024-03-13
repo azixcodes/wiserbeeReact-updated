@@ -725,8 +725,8 @@ export const librarySvg = (
 
 export const pageSvg = (
   <svg
-    width="20"
-    height="20"
+    width="18"
+    height="18"
     viewBox="0 0 14 14"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -767,8 +767,8 @@ export const libraryCardUserSvg = (
 
 export const headSetSvg = (
   <svg
-    width="20"
-    height="20"
+    width="18"
+    height="18"
     viewBox="0 0 14 14"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -784,8 +784,8 @@ export const headSetSvg = (
 
 export const videoSvg = (
   <svg
-    width="20"
-    height="20"
+    width="18"
+    height="18"
     viewBox="0 0 14 14"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

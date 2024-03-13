@@ -6,10 +6,10 @@ import { AppContextProvider } from "./ContextAPI/Context";
 const root = createRoot(document.getElementById("root"));
 root.render(
   // <AppContextProvider>
-  <BrowserRouter>
-    <AppContextProvider>
+  <AppContextProvider>
+    <BrowserRouter>
       <App />
-    </AppContextProvider>
-  </BrowserRouter>
+    </BrowserRouter>
+  </AppContextProvider>
   // </AppContextProvider>
 );

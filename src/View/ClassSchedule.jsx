@@ -5,7 +5,7 @@ const ClassSchedule = () => {
   return (
     <>
       <main>
-        <h2 className="fs-5 ps-2 pt-5 fw-bold">
+        <h2 className="fs-5 ps-2 fw-bold">
           Assessment by Parents for Special need Children
         </h2>
         <div className="container pt-4">

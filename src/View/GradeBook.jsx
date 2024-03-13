@@ -8,7 +8,7 @@ const GradeBook = () => {
     <div className="container-fluid px-2 py-2 shadow-md bg-white rounded">
       <div className="row">
         <div className="col-md-9  ">
-          <h4 className="h3 fw-bold px-2">Gradebook Overview</h4>
+          <h4 className="h3 fw-bold">Gradebook Overview</h4>
         </div>
         <div className="col-md-3 ">
           <div className="w-100  d-flex align-items-center h-100 gap-3  justify-content-end">

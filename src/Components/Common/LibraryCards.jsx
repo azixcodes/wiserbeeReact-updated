@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { books } from "../../Constant/library";
 import Modal from "react-modal";
+import { Store } from "../../ContextAPI/Context";
 import BookDetails from "../../modals/BookDetails";
 import { pageSvg, libraryCardUserSvg, headSetSvg } from "../../Constant/svgs";
+
 const LibraryCards = () => {
+  const { toggleFilter } = Store();
   const [book, setBook] = useState({});
   const [open, setOpen] = useState(false);
   const customStyles = {
@@ -39,7 +42,9 @@ const LibraryCards = () => {
       <div className="row">
         {books.map((book, index) => (
           <div
-            className=" col-sm-6 col-md-4 cursor-pointer libraryCard"
+            className={`${
+              toggleFilter ? "col-md-4" : "col-md-3"
+            } col-sm-6 cursor-pointer libraryCard`}
             key={index}
             onClick={() => handleCardClick(book)}
           >
