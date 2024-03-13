@@ -4,7 +4,8 @@ import Modal from "react-modal";
 import BookDetails from "../../modals/BookDetails";
 import { pageSvg, libraryCardUserSvg, headSetSvg } from "../../Constant/svgs";
 const LibraryCards = () => {
-  const [open, setOpne] = useState(false);
+  const [book, setBook] = useState({});
+  const [open, setOpen] = useState(false);
   const customStyles = {
     content: {
       top: "50%",
@@ -13,30 +14,34 @@ const LibraryCards = () => {
       bottom: "auto",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
-      width: "100%",
+      width: "50%",
       border: "none",
     },
   };
 
-  const handleCardClick = () => {
-    alert("card clicked");
+  const handleCardClick = (book) => {
+    setBook(book);
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
   };
   return (
     <>
       <Modal
-        isOpen={true}
-        // onRequestClose={}
+        isOpen={open}
         style={customStyles}
-        contentLabel="Example Modal"
+        contentLabel="Book Details"
+        onRequestClose={handleClose}
       >
-        <BookDetails />
+        <BookDetails onRequestClose={handleClose} book={book} />
       </Modal>
       <div className="row">
         {books.map((book, index) => (
           <div
             className=" col-sm-6 col-md-4 cursor-pointer libraryCard"
             key={index}
-            onClick={handleCardClick}
+            onClick={() => handleCardClick(book)}
           >
             <div className="px-2 py-2 customShadow rounded h-100 d-flex flex-column ">
               <div className="libraryImageWrapper">

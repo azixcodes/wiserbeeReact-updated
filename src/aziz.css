@@ -4,6 +4,9 @@
 .bg-main {
   background-color: var(--bg-primary);
 }
+.fg-main {
+  color: var(--bg-primary);
+}
 a {
   text-decoration: none;
 }
@@ -1083,6 +1086,38 @@ h4 {
 }
 .authorSection {
   color: #7a7a7a;
+  font-size: 12px;
+}
+.bookDetailsModalHeader {
+  background-color: #edebf1;
+}
+.bookDetails label {
+  font-size: 12px;
+  color: #7a7a7a;
+}
+.bookModelDescription {
+  height: 120px;
+  max-height: 120px;
+  white-space: wrap;
+  overflow: hidden;
+  font-size: 14px;
+  color: #7a7a7a;
+}
+.bookDetailsFooter .btnDownload {
+  width: auto;
+  padding: 10px 20px;
+  background-color: var(--bg-primary);
+  color: white;
+  border-radius: 6px;
+  border: none;
+  font-size: 12px;
+}
+.bookDetailsFooter .btnCancel {
+  width: auto;
+  padding: 10px 20px;
+  color: var(--bg-primary);
+  border-radius: 6px;
+  border: none;
   font-size: 12px;
 }
 /* <>............................<Library Route css ends>............................ */
