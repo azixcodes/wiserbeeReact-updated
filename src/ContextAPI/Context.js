@@ -1,4 +1,4 @@
-import { useState, useContext, createContext } from "react";
+import { useState, useEffect, useContext, createContext } from "react";
 
 const AppContext = createContext();
 
@@ -13,6 +13,20 @@ export const AppContextProvider = ({ children }) => {
       "Hey! Did you finish Hi-Fi wireframes for flora app design so it could be us then now and may be this one will fix it",
     timestamp: "30 mints ago",
   });
+
+  const [auth, setAuth] = useState({
+    user: "",
+    email: "",
+    password: "",
+  });
+
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user) {
+      setAuth(user);
+    }
+  }, []);
+
   const value = {
     toggleSidebar,
     setToggleSidebar,
@@ -20,6 +34,8 @@ export const AppContextProvider = ({ children }) => {
     setUser,
     toggleFilter,
     setToggleFilter,
+    auth,
+    setAuth,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

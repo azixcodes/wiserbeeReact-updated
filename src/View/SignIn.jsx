@@ -4,9 +4,10 @@ import { Eye, EyeOff } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { validator } from "../Constant/validator";
-
+import { Store } from "../ContextAPI/Context";
 const SignIn = () => {
   const navigate = useNavigate();
+
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [signInForm, setSignInForm] = useState({
@@ -16,7 +17,7 @@ const SignIn = () => {
 
   const location = useLocation();
   const selectedAccount = location.state && location.state.selectedAccount;
-  console.log("selectedAccount", selectedAccount);
+  // console.log("selectedAccount", selectedAccount);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -40,13 +41,24 @@ const SignIn = () => {
   // }
   const handleLogin = () => {
     const obj = {
-      password: signInForm.userPassword,
       email: signInForm.userEmail,
+      password: signInForm.userPassword,
     };
     const validate = validator(obj);
     if (validate !== "success") {
       alert(validate);
     } else {
+      const { email, password } = obj;
+
+      // saving password and email optionally..
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          user: selectedAccount,
+          email,
+          password,
+        })
+      );
       navigate("/");
     }
   };
