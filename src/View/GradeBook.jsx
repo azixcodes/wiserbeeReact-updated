@@ -8,7 +8,7 @@ const GradeBook = () => {
     <div className="container-fluid px-2 py-2 shadow-md bg-white rounded">
       <div className="row">
         <div className="col-md-9  ">
-          <h4 className="h3 fw-bold">Gradebook Overview</h4>
+          <h4 className="fw-bold heading24px">Gradebook Overview</h4>
         </div>
         <div className="col-md-3 ">
           <div className="w-100  d-flex align-items-center h-100 gap-3  justify-content-end">
@@ -27,7 +27,7 @@ const GradeBook = () => {
           </div>
         </div>
       </div>
-      <div className="row mt-5">
+      <div className="row mt-3">
         <div className="col-md-12">
           <GradeTable headings={headings} data={data} />
         </div>

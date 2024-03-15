@@ -5,7 +5,7 @@ export const books = [
     author: "Celeste",
     pages: 150,
     duration: null,
-    stars: 5,
+    stars: 4,
     ratings: 1.2,
   },
   {
@@ -23,7 +23,7 @@ export const books = [
     author: "Jack London",
     pages: null,
     duration: 5,
-    stars: 5,
+    stars: 3.5,
     ratings: 1.2,
   },
   {
@@ -32,7 +32,7 @@ export const books = [
     author: "C.S Lewis ",
     pages: 150,
     duration: null,
-    stars: 5,
+    stars: 4.5,
     ratings: 1.2,
   },
   {
@@ -41,7 +41,7 @@ export const books = [
     author: "Celeste",
     pages: 150,
     duration: null,
-    stars: 5,
+    stars: 3.5,
     ratings: 1.2,
   },
   {

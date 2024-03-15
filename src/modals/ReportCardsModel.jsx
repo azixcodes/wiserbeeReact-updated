@@ -1,35 +1,67 @@
 import React from "react";
 import FlexBtn from "../Components/Common/FlexBtn";
 import { exportSvg } from "../Constant/svgs";
+
 const ReportCardsModel = ({ onRequestClose }) => {
+
+  const student = {
+    'Student ID': '10001',
+    'Student Name': 'John Smith',
+    'Class': 'Primary',
+    'Course ID': 'CS101',
+    'Overall Results': '92%',
+    'Overall Grade': 'A+'
+  };
+  const subjectsData = [
+    {
+      subject: "Communication skills",
+      firstTerm: "75%",
+      midTerm: "75%",
+      finalTerm: "75%",
+      finalGrade: "B+",
+    },
+    {
+      subject: "Product design",
+      firstTerm: "60%",
+      midTerm: "60%",
+      finalTerm: "60%",
+      finalGrade: "A+",
+    },
+    {
+      subject: "Case study trials",
+      firstTerm: "70%",
+      midTerm: "70%",
+      finalTerm: "70%",
+      finalGrade: "C+",
+    },
+    {
+      subject: "Custom Essay questions",
+      firstTerm: "83%",
+      midTerm: "83%",
+      finalTerm: "83%",
+      finalGrade: "A+",
+    },
+    {
+      subject: "Custom MCQ’s questions",
+      firstTerm: "83%",
+      midTerm: "83%",
+      finalTerm: "83%",
+      finalGrade: "A+",
+    },
+  ];
+
   return (
     <>
       <h3 className="Report_style">Student Report Card</h3>
       <div className="Salary_card">
         <div className="Salary_Report">
-          <div className="Student_Data">
-            <p className="Exam_style">Student ID</p>
-            <span className="font_color">10001</span>
-          </div>
-          <div className="Student_Data">
-            <p className="Exam_style">Student Name</p>
-            <span className="font_color">John Smith</span>
-          </div>
-          <div className="Student_Data">
-            <p className="Exam_style">Class</p>
-            <span className="font_color">Primary</span>
-          </div>
-          <div className="Student_Data">
-            <p className="Exam_style">Course ID</p>
-            <span className="font_color">CS101</span>
-          </div>
-          <div className="Student_Data">
-            <p className="Exam_style">Overall Results</p>
-            <span className="font_color">92%</span>
-          </div>
-          <div className="Student_Data">
-            <p className="Exam_style">Overall Grade</p>
-            <span className="font_color">A+</span>
+          <div className="Salary_Report">
+            {Object.entries(student).map(([key, value]) => (
+              <div className="Student_Data" key={key}>
+                <p className="Exam_style">{key}</p>
+                <span className="font_color studentInfo">{value}</span>
+              </div>
+            ))}
           </div>
         </div>
         <div className="Table_Card">
@@ -50,41 +82,15 @@ const ReportCardsModel = ({ onRequestClose }) => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td className="Salary_Data">Communication skills</td>
-                <td className="Salary_Data">75%</td>
-                <td className="Salary_Data">75%</td>
-                <td className="Salary_Data">75%</td>
-                <td className="Salary_Data">B+</td>
-              </tr>
-              <tr>
-                <td className="Salary_Data">Product design</td>
-                <td className="Salary_Data">60%</td>
-                <td className="Salary_Data">60%</td>
-                <td className="Salary_Data">60%</td>
-                <td className="Salary_Data">A+</td>
-              </tr>
-              <tr>
-                <td className="Salary_Data">Case study trials</td>
-                <td className="Salary_Data">70%</td>
-                <td className="Salary_Data">70%</td>
-                <td className="Salary_Data">70%</td>
-                <td className="Salary_Data">C+</td>
-              </tr>
-              <tr>
-                <td className="Salary_Data">Custom Essay questions</td>
-                <td className="Salary_Data">83%</td>
-                <td className="Salary_Data">83%</td>
-                <td className="Salary_Data">83%</td>
-                <td className="Salary_Data">A+</td>
-              </tr>
-              <tr>
-                <td className="Salary_Data">Custom MCQ’s questions</td>
-                <td className="Salary_Data">83%</td>
-                <td className="Salary_Data">83%</td>
-                <td className="Salary_Data">83%</td>
-                <td className="Salary_Data">A+</td>
-              </tr>
+              {subjectsData.map((data, index) => (
+                <tr key={index}>
+                  <td className="Salary_Data">{data.subject}</td>
+                  <td className="Salary_Data">{data.firstTerm}</td>
+                  <td className="Salary_Data">{data.midTerm}</td>
+                  <td className="Salary_Data">{data.finalTerm}</td>
+                  <td className="Salary_Data">{data.finalGrade}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
