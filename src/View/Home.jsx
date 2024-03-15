@@ -5,9 +5,10 @@ import EntrollCourseTiles from "../Components/Home/EntrollCourseTiles";
 import CoursesList from "../Components/Home/CoursesList";
 import * as images from "../Constant/images";
 import TaskNotifications from "../Components/Home/TaskNotifications";
-
+import { Store } from "../ContextAPI/Context";
 const Home = () => {
-
+  const { auth } = Store();
+  console.log(auth);
   const EntrollCourseValue = [
     {
       id: "1",
@@ -120,7 +121,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-
     </section>
   );
 };

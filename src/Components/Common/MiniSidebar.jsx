@@ -1,6 +1,6 @@
 import React from "react";
 import { SidebarLogo } from "../../Constant/images";
-import { links } from "../../Constant/sidebarlinks";
+import { studentLinks } from "../../Constant/sidebarlinks";
 import { ChevronLeft, ChevronRight, XCircle } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
@@ -14,7 +14,7 @@ const MiniSidebar = ({ toggle, setToggle }) => {
         <div className="linksWrapper d-flex flex-column gap-4 ">
           <div className="divider"></div>
           <div className="d-flex flex-column align-items-center gap-4 w-100  ">
-            {links.map((link, index) => (
+            {studentLinks.map((link, index) => (
               <NavLink
                 key={index}
                 to={link.path}

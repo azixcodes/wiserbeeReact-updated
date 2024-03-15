@@ -42,8 +42,11 @@ const LibraryCards = () => {
       <div className="row">
         {books.map((book, index) => (
           <div
-            className={`${toggleFilter ? "col-md-4" : "col-md-3"
-              } col-sm-6 cursor-pointer libraryCard mb-3`}
+ 
+            className={`${
+              toggleFilter ? "col-md-6 col-xl-4" : "col-md-4 col-xl-3"
+            } col-sm-6 cursor-pointer libraryCard`}
+ 
             key={index}
             onClick={() => handleCardClick(book)}
           >

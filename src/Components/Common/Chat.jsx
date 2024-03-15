@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import IconWrapper from "../Common/IconWrapper";
 import TextChip from "./TextChip";
 import { Store } from "../../ContextAPI/Context";
+import { paperPlaneSvg } from "../../Constant/svgs";
 import { Mic, MoreVertical, Plus, Search, Smile } from "lucide-react";
 
 const Chat = () => {
   const { user } = Store();
-  const chat = [
+  const [message, setMessage] = useState("");
+  const [chat, setChat] = useState([
     {
       message:
         "Oh, hello! All perfectly. I will check it and get back to you soon",
@@ -27,12 +29,23 @@ const Chat = () => {
       subject: "sender",
     },
     {
-      message:
-        "Ok",
+      message: "Ok",
       timestamp: "06:45 PM",
       subject: "reciever",
     },
-  ];
+  ]);
+  const handleSendMessage = () => {
+    const date = new Date();
+    const time = date.getHours() + ":" + date.getMinutes();
+    const newChat = {
+      message,
+      timestamp: time,
+      subject: "sender",
+    };
+
+    setChat([...chat, newChat]);
+    setMessage("");
+  };
   return (
     <main className="w-100 d-flex flex-column singleChatWrapper bg-white  ">
       {/* Header */}
@@ -44,10 +57,10 @@ const Chat = () => {
         </div>
         <div className="d-flex gap-2">
           <IconWrapper bg="#6B6392" color="white">
-            <Search />
+            <Search style={{ width: 20, height: 20 }} />
           </IconWrapper>
           <IconWrapper bg="#6B6392" color="white">
-            <MoreVertical />
+            <MoreVertical style={{ width: 20, height: 20 }} />
           </IconWrapper>
         </div>
       </div>
@@ -63,7 +76,7 @@ const Chat = () => {
             }`}
           >
             <div
-              className={`w-50 ${
+              className={`w-auto ${
                 message.subject === "sender"
                   ? "sentMessageBubble"
                   : "recievedMessageBubble"
@@ -96,11 +109,23 @@ const Chat = () => {
           <Smile />
         </div>
         <div className="d-flex justify-content-start w-100 gap-2">
-          <div className="d-flex align-items-center chatInputWrapper w-100">
-            <input type="text" placeholder="type and send your message" />
+          <div className="d-flex align-items-center chatInputWrapper w-100 gap-2">
             <div className="addFileChatWrapper">
               <Plus />
             </div>
+            <input
+              type="text"
+              placeholder="type and send your message"
+              onChange={(e) => setMessage(e.target.value)}
+              value={message}
+            />
+            <span
+              onClick={handleSendMessage}
+              className="m-0 p-0 cursor-pointer"
+              title="send message"
+            >
+              {paperPlaneSvg}
+            </span>
           </div>
           <div className="emojiWrapper">
             <Mic style={{ color: "white" }} />

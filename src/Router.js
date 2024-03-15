@@ -17,6 +17,7 @@ import {
   Assesment,
   ExamQuestions,
   Library,
+  AdminPanel,
 } from "./View/index";
 import Sign from "./View/SignInFirst";
 import SignIn from "./View/SignIn";
@@ -38,6 +39,10 @@ const AppRouter = () => {
       <Route
         path="/class-schedule"
         element={<ProtectedRoute Component={ClassSchedule} />}
+      />
+      <Route
+        path="/admin-panel"
+        element={<ProtectedRoute Component={AdminPanel} />}
       />
       <Route
         path="/community"

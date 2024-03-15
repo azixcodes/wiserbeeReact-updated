@@ -1,0 +1,10 @@
+.sideNav {
+  width: 15%;
+  background-color: skyblue;
+  height: 100vh;
+  padding: 10px 0;
+  position: fixed;
+}
+.sideNavNone {
+  width: 0 !important;
+}
