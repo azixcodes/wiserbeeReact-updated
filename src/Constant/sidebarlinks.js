@@ -11,6 +11,9 @@ import {
   adminSvg,
   lessonPlanSvg,
   classManagementSvg,
+  singleUserBoldSvg,
+  ExamsSvg,
+  gradesSvg,
 } from "./svgs";
 export const studentLinks = [
   {
@@ -89,17 +92,17 @@ export const teacherLinks = [
   {
     label: "Personal Profile",
     path: "/personal-profile",
-    icon: dashboardSvg,
+    icon: singleUserBoldSvg,
   },
   {
     label: "Exams Management",
     path: "/exams-management",
-    icon: dashboardSvg,
+    icon: ExamsSvg,
   },
   {
     label: "Grades Management",
     path: "/grades-management",
-    icon: dashboardSvg,
+    icon: gradesSvg,
   },
   {
     label: "Community",
