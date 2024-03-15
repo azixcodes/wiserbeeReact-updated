@@ -105,7 +105,7 @@ const GradeTable = ({ headings, data }) => {
                       <td className={`cell100 column5`}>{item.midTerm}</td>
                       <td className={`cell100 column6`}>{item.overallScore}</td>
                       <td className={`cell100 column7`}>
-                        <div className="dropdown d-flex justify-content-center">
+                        <div className="dropdown d-flex justify-content-end">
                           <div
                             className="iconWrapper "
                             type="button"

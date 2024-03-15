@@ -42,9 +42,8 @@ const LibraryCards = () => {
       <div className="row">
         {books.map((book, index) => (
           <div
-            className={`${
-              toggleFilter ? "col-md-4" : "col-md-3"
-            } col-sm-6 cursor-pointer libraryCard`}
+            className={`${toggleFilter ? "col-md-4" : "col-md-3"
+              } col-sm-6 cursor-pointer libraryCard mb-3`}
             key={index}
             onClick={() => handleCardClick(book)}
           >
@@ -75,7 +74,11 @@ const LibraryCards = () => {
                   </div>
                 </div>
                 <div className="d-flex  align-items-center justify-content-between mt-2 authorSection">
-                  <p className="m-0 p-0">Stars</p>
+                  <div
+                    className="Stars"
+                    style={{ "--rating": book.stars }}
+                    aria-label="Rating of this product is 2.3 out of 5."
+                  ></div>
                   <span className="m-0 p-0">({book.stars}K)</span>
                 </div>
               </div>

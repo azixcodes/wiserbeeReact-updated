@@ -78,7 +78,7 @@ const Exams = () => {
         <div className="row d-flex align-items-center">
           <div className="col-md-12">
             <div className="d-flex justify-content-between">
-              <h4 className="h1 fw-bold" style={{ fontSize: "28px" }}>
+              <h4 className="h1 fw-bold heading24px">
                 My Exams
               </h4>
               <button
