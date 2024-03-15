@@ -1,18 +1,26 @@
 import React, { useRef, useEffect, useState } from "react";
 import { SidebarLogo } from "../../Constant/images";
-import { links } from "../../Constant/sidebarlinks";
+import { studentLinks, teacherLinks } from "../../Constant/sidebarlinks";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { Store } from "../../ContextAPI/Context";
 
 const Sidebar = () => {
-
-  const { toggleSidebar, setToggleSidebar } = Store();
+  const { toggleSidebar, setToggleSidebar, auth } = Store();
+  const [navLinks, setNavLinks] = useState([]);
   const [windowWidth, setWindowWidth] = useState(undefined);
   const sidebarRef = useRef(null);
   const handleSidebarToggle = () => {
     setToggleSidebar((prev) => !prev);
   };
+  const user = auth?.user || "";
+  useEffect(() => {
+    if (user === "Student") {
+      setNavLinks(studentLinks);
+    } else if (user === "Teacher") {
+      setNavLinks(teacherLinks);
+    }
+  }, []);
 
   useEffect(() => {
     const handleResize = () => {
@@ -28,6 +36,31 @@ const Sidebar = () => {
       setToggleSidebar(false);
     }
   }, [windowWidth]);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "instant",
+    });
+  };
+
+  useEffect(() => {
+    const onRouteChange = () => {
+      scrollToTop();
+    };
+
+    // Event listener for route change
+    window.addEventListener("popstate", onRouteChange);
+
+    // Cleanup
+    return () => {
+      window.removeEventListener("popstate", onRouteChange);
+    };
+  }, []);
+
+  console.log(auth);
+  console.log("user role is ", user);
+
   return (
     <aside
       className={`${
@@ -56,7 +89,7 @@ const Sidebar = () => {
                 : "links d-flex flex-column gap-1 w-100 text-white"
             }`}
           >
-            {links.map((link, index) => (
+            {navLinks.map((link, index) => (
               <NavLink
                 key={index}
                 to={link.path}
@@ -68,7 +101,9 @@ const Sidebar = () => {
               >
                 <div className="d-flex gap-3 align-items-center">
                   <span className="linkIcon">{link.icon}</span>
-                  {!toggleSidebar && <span className="navLabel">{link.label}</span>}
+                  {!toggleSidebar && (
+                    <span className="navLabel">{link.label}</span>
+                  )}
                 </div>
                 {!toggleSidebar && <ChevronRight className="px-0 m-0" />}
               </NavLink>

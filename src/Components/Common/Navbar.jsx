@@ -38,7 +38,6 @@ const Nav2 = (props) => {
 
   const currentUrl = window.location.pathname;
   const modifiedUrl = currentUrl.replace("/", "");
-  console.log(modifiedUrl);
 
   const layoutTitles = {
     courses: "Courses",

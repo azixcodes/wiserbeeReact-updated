@@ -10,6 +10,7 @@
 a {
   text-decoration: none;
 }
+
 .cursor-pointer {
   cursor: pointer;
 }
@@ -78,7 +79,7 @@ a {
   border-radius: 15px;
   background-color: transparent;
   height: 98.9vh;
-  width: 6%;
+  width: 8%;
   transition: width 0.2s linear;
 }
 .sidebarWrapperSm {
@@ -87,7 +88,7 @@ a {
   border-radius: 15px;
   background-color: var(--bg-primary);
   height: 98.9vh;
-  width: 5%;
+  width: 6%;
   display: flex;
   gap: 20px;
   flex-direction: column;
@@ -941,7 +942,7 @@ h4 {
   font-size: 14px;
 }
 .messages {
-  height: 80%;
+  height: 450px;
   overflow-y: auto;
   overflow-x: hidden;
   padding: 0 15px;
@@ -972,7 +973,11 @@ h4 {
   background-color: #463c77;
   color: white;
   border-radius: 50%;
-  padding: 3px;
+  height: 25px;
+  width: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .chatFooterMain input {
   border: none;
@@ -1118,6 +1123,10 @@ h4 {
   border: none;
   font-size: 12px;
 }
+.customDropdown {
+  background-color: transparent;
+  border: none !important;
+}
 /* <>............................<Library Route css ends>............................ */
 
 /* Bilal css */
@@ -1247,6 +1256,94 @@ tr:nth-child(even) {
   gap: 10px;
   margin-top: 25px;
 }
+/* class schedule */
+
+.Time_Table {
+  background-color: white;
+  padding: 20px;
+}
+
+.font-size14 {
+  font-size: 14px;
+}
+
+.table .Shedule {
+  width: 250px;
+}
+
+.font-size13 {
+  font-size: 13px;
+}
+
+.table {
+  margin-top: 50px;
+  border-top: hidden;
+}
+
+.table td,
+.table th {
+  padding: 0.75rem;
+  border-left: none;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+  width: 144px;
+  height: 72px;
+}
+
+.table th:last-child {
+  border-right: hidden;
+}
+
+.table td:last-child {
+  border-right: none;
+}
+
+.exact_time {
+  border-bottom: hidden;
+}
+.calender_left {
+  height: 30px;
+}
+
+.left_angle {
+  background-color: #f4f4f5;
+}
+
+.right_angle {
+  background-color: #f4f4f5;
+}
+
+.center_calender {
+  background-color: #f4f4f5;
+}
+
+.shades {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.text_color {
+  font-size: 19px;
+}
+
+.table .Shedule {
+  border-left: hidden;
+}
+
+.clocK_time {
+  border-right: hidden;
+  border-bottom: hidden;
+}
+
+.Year_table {
+  background-color: #463c77;
+  color: white;
+  border-radius: 5px;
+  width: 60px;
+  text-align: center;
+}
 
 /* awais css ends*/
 /* Media Queries */
@@ -1262,15 +1359,21 @@ tr:nth-child(even) {
   }
 }
 @media (max-width: 993px) {
-  .sidebarWrapperSm,
+  /* .sidebarWrapperSm,
   .sidebarOuterSm {
     width: 8%;
-  }
+  } */
   .sidebarOuterLg {
     width: 28%;
   }
   .sidebarWrapperLg {
     width: 22%;
+  }
+  .sidebarOuterSm {
+    width: 12%;
+  }
+  .sidebarWrapperSm {
+    width: 10%;
   }
 }
 @media (min-width: 600px) {

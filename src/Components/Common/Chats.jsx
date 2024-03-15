@@ -6,7 +6,8 @@ import { Store } from "../../ContextAPI/Context";
 
 const Chats = () => {
   const { setUser } = Store();
-  const [message, setMessage] = useState("All Messages");
+  const messageFilters = ["Unread", "Archived", "Spam"];
+  const [filter, setFilter] = useState("All Messages");
   const handleChatClick = (chat) => {
     setUser(chat);
   };
@@ -15,17 +16,36 @@ const Chats = () => {
       {/* Header */}
       <div className="d-flex justify-content-between align-items-center py-2  px-2">
         <div className="form-group d-flex align-items-center gap-1">
-          <label>{message}</label>
-          <select
-            className="form-control "
-            onChange={(e) => setMessage(e.target.value)}
-            style={{ width: "4px", height: "4px" }}
-          >
-            <option>Unread</option>
-            <option>Seen</option>
-            <option>Archive</option>
-            <option>All Messages</option>
-          </select>
+          {/* <label>{message}</label> */}
+          <div class="dropdown">
+            <button
+              class="dropdown-toggle customDropdown"
+              type="button"
+              id="dropdownMenuButton1"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              {filter}
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              {/* <li className="dropdown-item cursor-pointer">Unread</li>
+              <li>
+                <li className="dropdown-item cursor-pointer">Unread</li>
+              </li>
+              <li>
+                <li className="dropdown-item cursor-pointer">Unread</li>
+              </li> */}
+              {messageFilters.map((filter, index) => (
+                <li
+                  className="dropdown-item cursor-pointer"
+                  key={index}
+                  onClick={() => setFilter(filter)}
+                >
+                  {filter}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
         <MoreVertical className="cursor-pointer" />
       </div>

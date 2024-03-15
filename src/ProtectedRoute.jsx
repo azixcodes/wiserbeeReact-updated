@@ -4,7 +4,6 @@ import Sidebar from "./Components/Common/Sidebar";
 import Navbar from "./Components/Common/Navbar";
 import MiniSidebar from "./Components/Common/MiniSidebar";
 import Footer from "./Components/Common/Footer";
-
 const ProtectedRoute = (props) => {
   const [windowWidth, setWindowWidth] = useState(undefined);
   const [toggle, setToggle] = useState(false);
@@ -43,7 +42,7 @@ const ProtectedRoute = (props) => {
   };
   return (
     <>
-      <section className="d-flex w-100 custom-scrollbar">
+      <section className="d-flex w-100 custom-scrollbar sidebarMediumS">
         {location.pathname === "/assesment-welcome" ||
         location.pathname === "/assesment" ? null : (
           <>
