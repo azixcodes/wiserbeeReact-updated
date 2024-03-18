@@ -18,6 +18,7 @@ import {
   ExamQuestions,
   Library,
   AdminPanel,
+  CurriculumDesign,
 } from "./View/index";
 import Sign from "./View/SignInFirst";
 import SignIn from "./View/SignIn";
@@ -27,53 +28,79 @@ import ForgotPassword from "./View/ForgotPassword";
 import OtpVerification from "./View/OtpVerification";
 import ResetPassword from "./View/ResetPassword";
 const AppRouter = () => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  let role = "";
+  if (user) {
+    role = user.user;
+  }
   return (
     <Routes>
-      <Route path="/" element={<ProtectedRoute Component={Dashboard} />} />
-      <Route path="/home" element={<ProtectedRoute Component={Home} />} />
-      <Route
-        path="/account-settings"
-        element={<ProtectedRoute Component={AccountSettings} />}
-      />
-      <Route path="/library" element={<ProtectedRoute Component={Library} />} />
-      <Route
-        path="/class-schedule"
-        element={<ProtectedRoute Component={ClassSchedule} />}
-      />
-      <Route
-        path="/admin-panel"
-        element={<ProtectedRoute Component={AdminPanel} />}
-      />
-      <Route
-        path="/community"
-        element={<ProtectedRoute Component={Community} />}
-      />
-      <Route path="/courses" element={<ProtectedRoute Component={Courses} />} />
-      <Route path="/exams" element={<ProtectedRoute Component={Exams} />} />
-      <Route
-        path="/grade-book"
-        element={<ProtectedRoute Component={GradeBook} />}
-      />
-      <Route
-        path="/assesment-welcome"
-        element={<ProtectedRoute Component={AssesmentWelcome} />}
-      />
-      <Route
-        path="/assesment"
-        element={<ProtectedRoute Component={Assesment} />}
-      />
-      <Route
-        path="/course/:id"
-        element={<ProtectedRoute Component={CourseDetails} />}
-      />
-      <Route
-        path="/exams/:id"
-        element={<ProtectedRoute Component={ExamQuestions} />}
-      />
-      <Route
-        path="/messages"
-        element={<ProtectedRoute Component={Messages} />}
-      />
+      {role === "Student" ? (
+        <>
+          {" "}
+          <Route path="/" element={<ProtectedRoute Component={Dashboard} />} />
+          <Route path="/home" element={<ProtectedRoute Component={Home} />} />
+          <Route
+            path="/account-settings"
+            element={<ProtectedRoute Component={AccountSettings} />}
+          />
+          <Route
+            path="/library"
+            element={<ProtectedRoute Component={Library} />}
+          />
+          <Route
+            path="/class-schedule"
+            element={<ProtectedRoute Component={ClassSchedule} />}
+          />
+          <Route
+            path="/admin-panel"
+            element={<ProtectedRoute Component={AdminPanel} />}
+          />
+          <Route
+            path="/community"
+            element={<ProtectedRoute Component={Community} />}
+          />
+          <Route
+            path="/courses"
+            element={<ProtectedRoute Component={Courses} />}
+          />
+          <Route path="/exams" element={<ProtectedRoute Component={Exams} />} />
+          <Route
+            path="/grade-book"
+            element={<ProtectedRoute Component={GradeBook} />}
+          />
+          <Route
+            path="/assesment-welcome"
+            element={<ProtectedRoute Component={AssesmentWelcome} />}
+          />
+          <Route
+            path="/assesment"
+            element={<ProtectedRoute Component={Assesment} />}
+          />
+          <Route
+            path="/course/:id"
+            element={<ProtectedRoute Component={CourseDetails} />}
+          />
+          <Route
+            path="/exams/:id"
+            element={<ProtectedRoute Component={ExamQuestions} />}
+          />
+          <Route
+            path="/messages"
+            element={<ProtectedRoute Component={Messages} />}
+          />
+        </>
+      ) : (
+        <>
+          {/* Teacher routes */}
+          <Route
+            path="/curriculum-design"
+            element={<ProtectedRoute Component={CurriculumDesign} />}
+          />
+        </>
+      )}
+
+      {/* public routes */}
       <Route path="/sign-in-first" element={<Sign />} />
       <Route path="/sign-in" element={<SignIn />} />
       <Route path="/sign-up-first" element={<SignUpFirst />} />

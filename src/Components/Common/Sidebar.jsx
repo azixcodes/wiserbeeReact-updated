@@ -13,7 +13,11 @@ const Sidebar = () => {
   const handleSidebarToggle = () => {
     setToggleSidebar((prev) => !prev);
   };
-  const user = auth?.user || "";
+  let user = auth?.user || "Student" || "Teacher";
+  const test = JSON.parse(localStorage.getItem("user"));
+  if (test) {
+    user = test.user;
+  }
   useEffect(() => {
     if (user === "Student") {
       setNavLinks(studentLinks);

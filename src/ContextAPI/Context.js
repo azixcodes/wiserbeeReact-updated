@@ -20,12 +20,12 @@ export const AppContextProvider = ({ children }) => {
     password: "",
   });
 
+  const session = JSON.parse(localStorage.getItem("user"));
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (user) {
-      setAuth(user);
+    if (session) {
+      setAuth(session);
     }
-  }, []);
+  }, [session]);
 
   const value = {
     toggleSidebar,
