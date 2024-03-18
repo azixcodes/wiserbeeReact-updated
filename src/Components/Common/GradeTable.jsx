@@ -73,7 +73,7 @@ const GradeTable = ({ headings, data }) => {
 
   return (
     <>
-      <Modal isOpen={open} style={customStyles}>
+      <Modal isOpen={open} style={customStyles} onRequestClose={closeModal}>
         <ReportCardModel onRequestClose={closeModal} />
       </Modal>
       <div className="container-table100">

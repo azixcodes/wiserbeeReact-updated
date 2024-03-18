@@ -995,8 +995,8 @@ export const studentSvg = (
 );
 export const languageSvg = (
   <svg
-    width="12"
-    height="12"
+    width="18"
+    height="18"
     viewBox="0 0 12 12"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -1014,8 +1014,8 @@ export const languageSvg = (
 );
 export const courseSvg = (
   <svg
-    width="11"
-    height="13"
+    width="18"
+    height="18"
     viewBox="0 0 11 13"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

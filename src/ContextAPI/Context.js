@@ -25,7 +25,7 @@ export const AppContextProvider = ({ children }) => {
     if (session) {
       setAuth(session);
     }
-  }, [session]);
+  }, []);
 
   const value = {
     toggleSidebar,
