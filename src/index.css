@@ -133,7 +133,11 @@ a {
 .heading24px {
   font-size: 24px;
 }
-.CoursesDetails h3 {
+.myClasses h3 {
+  font-weight: 600;
+  font-size: 24px;
+}
+.myClassesHeading {
   font-weight: 600;
   font-size: 24px;
 }

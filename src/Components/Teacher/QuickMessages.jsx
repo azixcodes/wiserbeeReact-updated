@@ -62,7 +62,7 @@ const QuickMessages = () => {
             </p>
           </div>
         </div>
-        <hr className="p-0 m-0" />
+        {/* <hr className="p-0 m-0" />
         <div className=" msg d-flex ps-3 pe-2 pt-3">
           <div className="inbox-image ">
             <img
@@ -89,8 +89,7 @@ const QuickMessages = () => {
               </div>
             </p>
           </div>
-        </div>
-        <hr className="p-0 m-0" />
+        </div> */}
       </div>
     </>
   );

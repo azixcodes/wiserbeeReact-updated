@@ -1,6 +1,5 @@
 import React from "react";
 import { pauseBtn, leacture } from "../../Constant/svgs";
-import * as images from "../../Constant/images";
 import { useNavigate } from "react-router-dom";
 
 const CoursesList = (props) => {

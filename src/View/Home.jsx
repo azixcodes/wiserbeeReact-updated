@@ -105,7 +105,7 @@ const Home = () => {
               {user === "Student" ? (
                 CoursesListValue.map((item, index) => (
                   <CoursesList
-                    key={index} // Remember to add a unique key when using map
+                    key={index} 
                     id={index}
                     imgesLect={item.imgesLect}
                     tagLect={item.tagLect}
@@ -121,28 +121,22 @@ const Home = () => {
             </div>
           </div>
           <div className="align-self-start mt-4 col-12 col-md-4 ">
-            <div className="taskListView  ">
+            <div className="taskListView shadow">
               <h4 className="mb-4">Tasks</h4>
               <TaskNotifications />
             </div>
           </div>
         </div>
         {user === "Teacher" && (
-          <div className="container-fluid CoursesDetails mt-4">
-            <h3>My Classes</h3>
-            <div className="row">
-              <div className="col-lg-3 col-md-6 col-sm-12 mt-2">
+          <div className="row mt-5">
+            <div className="col-12 col-md-8">
+              <h3 className="myClassesHeading">My Classes</h3>
+              <div className="row">
                 <ClassView />
               </div>
-              <div className="col-lg-3 col-md-6 col-sm-12 mt-2">
-                <ClassView />
-              </div>
-              <div className="col-lg-3 col-md-6 col-sm-12 mt-2 ">
-                <ClassView />
-              </div>
-              <div className="col-lg-3 col-md-6 col-sm-12">
-                <QuickMessages />
-              </div>
+            </div>
+            <div className="col-12 col-md-4 d-flex align-items-stretch">
+              <QuickMessages />
             </div>
           </div>
         )}
