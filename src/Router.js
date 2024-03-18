@@ -35,10 +35,10 @@ const AppRouter = () => {
   }
   return (
     <Routes>
+      <Route path="/" element={<ProtectedRoute Component={Dashboard} />} />
       {role === "Student" ? (
         <>
           {" "}
-          <Route path="/" element={<ProtectedRoute Component={Dashboard} />} />
           <Route path="/home" element={<ProtectedRoute Component={Home} />} />
           <Route
             path="/account-settings"
