@@ -14,4 +14,3 @@ export { default as Assesment } from "./Assesment";
 export { default as ExamQuestions } from "./ExamQuestions";
 export { default as Library } from "./Library";
 export { default as AdminPanel } from "./AdminPanel";
-export { default as CurriculumDesign } from "./CurriculumDesign";

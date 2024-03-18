@@ -18,8 +18,14 @@ import {
   ExamQuestions,
   Library,
   AdminPanel,
-  CurriculumDesign,
 } from "./View/index";
+// Teachers route
+import {
+  CurriculumDesign,
+  GradeManagement,
+  LessonPlan,
+} from "./View/Teacher/index";
+
 import Sign from "./View/SignInFirst";
 import SignIn from "./View/SignIn";
 import SignUpFirst from "./View/SignUpFirst";
@@ -38,7 +44,6 @@ const AppRouter = () => {
       <Route path="/" element={<ProtectedRoute Component={Dashboard} />} />
       {role === "Student" ? (
         <>
-          {" "}
           <Route path="/home" element={<ProtectedRoute Component={Home} />} />
           <Route
             path="/account-settings"
@@ -96,6 +101,14 @@ const AppRouter = () => {
           <Route
             path="/curriculum-design"
             element={<ProtectedRoute Component={CurriculumDesign} />}
+          />
+          <Route
+            path="/grades-management"
+            element={<ProtectedRoute Component={GradeManagement} />}
+          />
+          <Route
+            path="/lesson-plan"
+            element={<ProtectedRoute Component={LessonPlan} />}
           />
         </>
       )}
