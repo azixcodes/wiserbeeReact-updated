@@ -1,12 +1,12 @@
 import React from "react";
 import { courses } from "../../Constant/courses";
-import Chip from "./Chip";
+import Chip from "../Common/Chip";
 import { User } from "lucide-react";
 import { Store } from "../../ContextAPI/Context";
 
 import { useNavigate } from "react-router-dom";
 
-const Course = ({ count = 4, useToggle = true }) => {
+const Curriculum = () => {
   const { toggleFilter } = Store();
   const navigate = useNavigate();
   function getInitials(name) {
@@ -17,15 +17,14 @@ const Course = ({ count = 4, useToggle = true }) => {
     }
     return initials;
   }
-  const withToggleClassName = `${
-    toggleFilter ? "col-md-6 col-xl-4" : "col-md-4 col-xl-3"
-  } col-sm-6 cursor-pointer `;
-  const withOutToggleClassName = "col-4";
+
   return (
     <div className="row pl-0">
-      {courses.slice(0, count).map((course, index) => (
+      {courses.map((course, index) => (
         <div
-          className={useToggle ? withToggleClassName : withOutToggleClassName}
+          className={`${
+            toggleFilter ? "col-md-6 col-xl-4" : "col-md-4 col-xl-3"
+          } col-sm-6 cursor-pointer `}
           onClick={() => navigate("/course/21")}
           key={index}
         >
@@ -77,4 +76,4 @@ const Course = ({ count = 4, useToggle = true }) => {
   );
 };
 
-export default Course;
+export default Curriculum;

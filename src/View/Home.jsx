@@ -6,9 +6,12 @@ import CoursesList from "../Components/Home/CoursesList";
 import * as images from "../Constant/images";
 import TaskNotifications from "../Components/Home/TaskNotifications";
 import { Store } from "../ContextAPI/Context";
+import ClassView from "../Components/Teacher/ClassView";
+import QuickMessages from "../Components/Teacher/QuickMessages";
+import Course from "../Components/Common/Course";
 const Home = () => {
   const { auth } = Store();
-  console.log(auth);
+  const user = auth.user;
   const EntrollCourseValue = [
     {
       id: "1",
@@ -99,18 +102,22 @@ const Home = () => {
           <div className="col-12 col-md-8">
             <div className="CoursesDetails">
               <h3>My Courses</h3>
-              {CoursesListValue.map((item, index) => (
-                <CoursesList
-                  key={index} // Remember to add a unique key when using map
-                  id={index}
-                  imgesLect={item.imgesLect}
-                  tagLect={item.tagLect}
-                  headingLect={item.headingLect}
-                  pragraphLect={item.pragraphLect}
-                  durationLect={item.durationLect}
-                  completedLect={item.completedLect}
-                />
-              ))}
+              {user === "Student" ? (
+                CoursesListValue.map((item, index) => (
+                  <CoursesList
+                    key={index} // Remember to add a unique key when using map
+                    id={index}
+                    imgesLect={item.imgesLect}
+                    tagLect={item.tagLect}
+                    headingLect={item.headingLect}
+                    pragraphLect={item.pragraphLect}
+                    durationLect={item.durationLect}
+                    completedLect={item.completedLect}
+                  />
+                ))
+              ) : (
+                <Course useToggle={false} count={3} />
+              )}
             </div>
           </div>
           <div className="align-self-start mt-4 col-12 col-md-4 ">
@@ -120,6 +127,25 @@ const Home = () => {
             </div>
           </div>
         </div>
+        {user === "Teacher" && (
+          <div className="container-fluid CoursesDetails mt-4">
+            <h3>My Classes</h3>
+            <div className="row">
+              <div className="col-lg-3 col-md-6 col-sm-12 mt-2">
+                <ClassView />
+              </div>
+              <div className="col-lg-3 col-md-6 col-sm-12 mt-2">
+                <ClassView />
+              </div>
+              <div className="col-lg-3 col-md-6 col-sm-12 mt-2 ">
+                <ClassView />
+              </div>
+              <div className="col-lg-3 col-md-6 col-sm-12">
+                <QuickMessages />
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

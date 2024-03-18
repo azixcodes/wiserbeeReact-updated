@@ -1228,7 +1228,7 @@ h4 {
   text-align: center;
   font-size: 12px;
 }
-.studentInfo{
+.studentInfo {
   font-size: 15px;
 }
 .Salary_Heading {
@@ -1263,7 +1263,89 @@ tr:nth-child(even) {
 
 /* awais css ends*/
 /* Media Queries */
+/* <>.....................................<BILAL CSS FOR TEACHER COMPONENTS STARTS>......................................... */
+.test {
+  background-color: #c4afff4d;
+  color: #7f53fe;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 7px;
+  text-align: center;
+}
 
+.seven-class {
+  background-color: #52afa626;
+  color: #30ada1;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.seven-class p {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.section p {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.section {
+  background-color: #4e97ea26;
+  color: #3d87dc;
+  border-radius: 7px;
+}
+
+.text-class {
+  color: #979797;
+  font-size: 12px;
+  font-weight: lighter;
+}
+
+.btn-class {
+  width: 200px;
+  height: 40px;
+  background-color: #edebf1;
+  color: #463c77;
+  border-radius: 10px;
+  border: none;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.english-para {
+  font-size: 13px;
+  color: #979797;
+  font-style: italic;
+}
+
+/* inbox component  */
+.img-inbox {
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+}
+
+.inbox-text {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.inbox-para {
+  font-size: 10px;
+  color: #636363;
+}
+
+.inbox-time {
+  font-size: 9px;
+  color: #afb8cf;
+}
+
+.msg:hover {
+  background-color: #edebf1cc;
+  cursor: pointer;
+}
+/* <>.....................................<BILAL CSS FOR TEACHER COMPONENTS ENDS>......................................... */
 /* sidebar media queires */
 @media (max-width: 600px) {
   .sidebarWrapperSm,
@@ -1275,7 +1357,7 @@ tr:nth-child(even) {
   }
 }
 @media (max-width: 993px) {
-   /* .sidebarWrapperSm,
+  /* .sidebarWrapperSm,
   .sidebarOuterSm {
     width: 8%;
   } */

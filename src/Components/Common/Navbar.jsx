@@ -16,7 +16,11 @@ const Nav2 = (props) => {
     code: "aus",
     language: "English",
   });
-
+  let role = "";
+  const user = JSON.parse(localStorage.getItem("user"));
+  if (user) {
+    role = user.user;
+  } else role = "John Doe";
   useEffect(() => {
     const handleClickWindow = (e) => {
       if (dropDownRef.current && dropDownRef.current.contains(e.target)) {
@@ -122,7 +126,7 @@ const Nav2 = (props) => {
             {userSvg}
           </div>
           <div className="align-items-center userName mx-2 d-none d-lg-block">
-            <h6 className="fs-6  fw-bold ">John doe</h6>
+            <h6 className="fs-6  fw-bold ">{role}</h6>
             <h5 className="font-sm ">Admin</h5>
           </div>
           <div className="userUpIcon d-none d-md-block">
