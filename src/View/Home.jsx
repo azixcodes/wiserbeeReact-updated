@@ -105,7 +105,7 @@ const Home = () => {
               {user === "Student" ? (
                 CoursesListValue.map((item, index) => (
                   <CoursesList
-                    key={index} 
+                    key={index}
                     id={index}
                     imgesLect={item.imgesLect}
                     tagLect={item.tagLect}

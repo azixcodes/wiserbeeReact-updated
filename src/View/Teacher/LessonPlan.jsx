@@ -1,7 +1,8 @@
 import React from "react";
+import LessonPlans from "../../Components/Teacher/LessonPlans";
 
 const LessonPlan = () => {
-  return <div>LessonPlan</div>;
+  return <LessonPlans />;
 };
 
 export default LessonPlan;
