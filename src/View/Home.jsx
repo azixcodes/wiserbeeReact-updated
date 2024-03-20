@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { userIcons } from "../Constant/svgs";
 import EntrollCourseTiles from "../Components/Home/EntrollCourseTiles";
@@ -9,7 +9,11 @@ import { Store } from "../ContextAPI/Context";
 import ClassView from "../Components/Teacher/ClassView";
 import QuickMessages from "../Components/Teacher/QuickMessages";
 import Course from "../Components/Common/Course";
+import { chatSvg, closeSvg } from "../Constant/svgs";
+import Chatbot from "../Components/Common/Chatbot";
+
 const Home = () => {
+  const [chatOpened, setChatOpened] = useState(false);
   const { auth } = Store();
   const user = auth.user;
   const EntrollCourseValue = [
@@ -72,76 +76,94 @@ const Home = () => {
       completedLect: "65%",
     },
   ];
+  const handleChatClick = () => {
+    setChatOpened(!chatOpened);
+  };
   return (
-    <section className="dashboardWrapper d-flex flex-column">
-      <div className="welcomeBox">
-        <div className="logoWithText d-flex justify-content-start align-items-start flex-wrap">
-          <div className="userIcons d-flex justify-content-center align-items-center">
-            {userIcons}
-          </div>
-          <div className="welcomeTxtP">
-            <div className="mt-2">
-              <h6>Welcome back, John!</h6>
-              <p>Always stay updated in your student portal</p>
+    <>
+      <section className="dashboardWrapper d-flex flex-column ">
+        <div className="welcomeBox">
+          <div className="logoWithText d-flex justify-content-start align-items-start flex-wrap">
+            <div className="userIcons d-flex justify-content-center align-items-center">
+              {userIcons}
             </div>
-            <div className="welcomeTilles d-flex justify-content-start mt-5 flex-wrap">
-              {EntrollCourseValue.map((item, index) => (
-                <EntrollCourseTiles
-                  key={index}
-                  id={index}
-                  heading={item.heading}
-                  price={item.price}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="col-lg-12 ">
-        <div className="row ">
-          <div className="col-12 col-md-8">
-            <div className="CoursesDetails">
-              <h3>My Courses</h3>
-              {user === "Student" ? (
-                CoursesListValue.map((item, index) => (
-                  <CoursesList
+            <div className="welcomeTxtP">
+              <div className="mt-2">
+                <h6>Welcome back, John!</h6>
+                <p>Always stay updated in your student portal</p>
+              </div>
+              <div className="welcomeTilles d-flex justify-content-start mt-5 flex-wrap">
+                {EntrollCourseValue.map((item, index) => (
+                  <EntrollCourseTiles
                     key={index}
                     id={index}
-                    imgesLect={item.imgesLect}
-                    tagLect={item.tagLect}
-                    headingLect={item.headingLect}
-                    pragraphLect={item.pragraphLect}
-                    durationLect={item.durationLect}
-                    completedLect={item.completedLect}
+                    heading={item.heading}
+                    price={item.price}
                   />
-                ))
-              ) : (
-                <Course useToggle={false} count={3} />
-              )}
-            </div>
-          </div>
-          <div className="align-self-start mt-4 col-12 col-md-4 ">
-            <div className="taskListView shadow">
-              <h4 className="mb-4">Tasks</h4>
-              <TaskNotifications />
+                ))}
+              </div>
             </div>
           </div>
         </div>
-        {user === "Teacher" && (
-          <div className="row mt-5">
+        <div className="col-lg-12 ">
+          <div className="row ">
             <div className="col-12 col-md-8">
-              <h3 className="myClassesHeading">My Classes</h3>
-              <div className="row">
-                <ClassView />
+              <div className="CoursesDetails">
+                <h3>My Courses</h3>
+                {user === "Student" ? (
+                  CoursesListValue.map((item, index) => (
+                    <CoursesList
+                      key={index}
+                      id={index}
+                      imgesLect={item.imgesLect}
+                      tagLect={item.tagLect}
+                      headingLect={item.headingLect}
+                      pragraphLect={item.pragraphLect}
+                      durationLect={item.durationLect}
+                      completedLect={item.completedLect}
+                    />
+                  ))
+                ) : (
+                  <Course useToggle={false} count={3} />
+                )}
               </div>
             </div>
-            <div className="col-12 col-md-4 d-flex align-items-stretch">
-              <QuickMessages />
+            <div className="align-self-start mt-4 col-12 col-md-4 ">
+              <div className="taskListView shadow">
+                <h4 className="mb-4">Tasks</h4>
+                <TaskNotifications />
+              </div>
             </div>
           </div>
-        )}
-      </div>
-    </section>
+          {user === "Teacher" && (
+            <div className="row mt-5">
+              <div className="col-12 col-md-8">
+                <h3 className="myClassesHeading">My Classes</h3>
+                <div className="row">
+                  <ClassView />
+                </div>
+              </div>
+              <div className="col-12 col-md-4 d-flex align-items-stretch">
+                <QuickMessages />
+              </div>
+            </div>
+          )}
+        </div>
+        <div className={`${chatOpened ? "backdrop" : null}`}>
+          <div
+            className={`chatbotIconWrapper ${
+              chatOpened ? "chatOpened" : "chatClosed"
+            }`}
+            onClick={handleChatClick}
+          >
+            {chatOpened ? closeSvg : chatSvg}
+          </div>
+
+          {chatOpened && <Chatbot />}
+        </div>
+      </section>
+      {/* <div className="backdrop"></div> */}
+    </>
   );
 };
 
