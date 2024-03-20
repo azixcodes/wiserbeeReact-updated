@@ -7,7 +7,7 @@ const LessonPlans = () => {
   const navigate = useNavigate();
   return (
     <div className="container-fluid">
-      <div className="row">
+      <div className="row p-0 m-0">
         <div className="col-md-12 p-0 m-0">
           <div className="leassonPlanheader d-flex justify-content-between">
             <h4 className="h1 fw-bold heading24px">My Lesson Plans</h4>
@@ -34,14 +34,14 @@ const LessonPlans = () => {
           </div>
         </div>
       </div>
-      <div className="row text-capitalize mt-3 px-2 py-3">
+      <div className="row text-capitalize mt-3  py-3">
         {lessonplan.map((exam, index) => (
           <div
-            className="col-md-4 cursor-pointer py-2 px-2"
+            className="col-md-4 cursor-pointer py-2 "
             key={index}
             //   onClick={() => handleQuestionNavigate(index)}
           >
-            <div className="d-flex flex-column align-items-between examDataWrapper px-2 py-3">
+            <div className="d-flex flex-column align-items-between  bg-white examDataWrapper px-2 py-3">
               <h4 className="fw-bold p-0 m-0 fs-6 cursor-pointer px-2">
                 {exam.title}
               </h4>
