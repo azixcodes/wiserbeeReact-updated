@@ -56,11 +56,11 @@ export const studentLinks = [
     path: "/library",
     icon: librarySvg,
   },
-  {
-    label: "Message",
-    path: "/messages",
-    icon: messagesSvg,
-  },
+  // {
+  //   label: "Message",
+  //   path: "/messages",
+  //   icon: messagesSvg,
+  // },
   {
     label: "Account Setting",
     path: "/account-settings",

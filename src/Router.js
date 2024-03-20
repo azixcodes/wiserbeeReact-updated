@@ -11,7 +11,7 @@ import {
   Courses,
   Exams,
   GradeBook,
-  Messages,
+  // Messages,
   Dashboard,
   CourseDetails,
   AssesmentWelcome,
@@ -100,10 +100,10 @@ const AppRouter = () => {
             path="/exams/:id"
             element={<ProtectedRoute Component={ExamQuestions} />}
           />
-          <Route
+          {/* <Route
             path="/messages"
             element={<ProtectedRoute Component={Messages} />}
-          />
+          /> */}
         </>
       ) : (
         <>

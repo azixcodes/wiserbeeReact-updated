@@ -1140,8 +1140,131 @@ h4 {
   border: none;
   font-size: 12px;
 }
-/* <>............................<Library Route css ends>............................ */
 
+/* <>............................<Library Route css ends>............................ */
+/* <>...........................<ChatBox css starts>..................................... */
+.chatbotIconWrapper {
+  position: fixed;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  right: 20px;
+  bottom: 2%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.chatClosed {
+  background-color: #463c77;
+  box-shadow: 0px 11px 40px 0px #23232363;
+}
+.chatOpened {
+  background-color: #ffffff;
+  box-shadow: 0px 11px 40px 0px #44444463;
+}
+.chatbox {
+  position: fixed;
+  right: 20px;
+  bottom: 13%;
+  border-radius: 15px;
+  box-shadow: 0px 20px 40px 0px #2f2e2e40;
+  z-index: 9999;
+  height: 450px;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+}
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  opacity: 1;
+  background-color: rgb(24, 23, 23);
+  z-index: 9998;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.chatbotHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-primary);
+  height: 13%;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  padding: 5px 10px;
+}
+.chatbotHeader h6 {
+  font-size: 14px;
+}
+.chatbotHeader p {
+  font-size: 12px;
+}
+.onlineDot {
+  height: 8px;
+  width: 8px;
+  background-color: green;
+  border-radius: 50%;
+}
+.chatbox .chats {
+  height: 75%;
+  max-height: 75%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: white;
+  background: white;
+  opacity: 100%;
+}
+.chatbox .footer {
+  height: 12%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  justify-content: space-between;
+}
+.chatbox .footer input {
+  width: 100%;
+  outline: none;
+  border: none;
+  resize: none;
+}
+.chatbotAvatarWrapper {
+  height: 35px;
+  width: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #edebf1;
+  padding: 3px;
+  overflow: hidden;
+}
+.chatBotSentMessages {
+  height: auto;
+  padding: 6px 5px;
+  background-color: #463c77;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  color: white;
+  font-size: 11px;
+}
+.chatboxRecievedMessages {
+  background-color: #edebf1 !important;
+  height: auto;
+  padding: 6px 5px;
+  background-color: #fff;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  border-top-left-radius: 15px;
+  color: black;
+  font-size: 11px;
+}
+/* <>...........................<ChatBox css ends>..................................... */
 /* Bilal css */
 .select-bg {
   color: #aeb6bd;
