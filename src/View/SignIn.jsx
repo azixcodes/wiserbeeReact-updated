@@ -8,6 +8,8 @@ import { Store } from "../ContextAPI/Context";
 const SignIn = () => {
   const navigate = useNavigate();
 
+  const { setAuth } = Store();
+
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [signInForm, setSignInForm] = useState({
@@ -59,6 +61,11 @@ const SignIn = () => {
           password,
         })
       );
+      setAuth({
+        user: selectedAccount,
+        email,
+        password,
+      });
       navigate("/");
     }
   };

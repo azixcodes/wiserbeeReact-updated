@@ -4,7 +4,7 @@ import { notificationSvg } from "../../Constant/svgs";
 import { countries } from "../../Constant/languages";
 import { userSvg } from "../../Constant/svgs";
 import Flag from "react-world-flags";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { NavLogo } from "../../Constant/images";
 const Nav2 = (props) => {
   const location = useLocation();
@@ -42,7 +42,7 @@ const Nav2 = (props) => {
 
   const currentUrl = window.location.pathname;
   const modifiedUrl = currentUrl.replace("/", "");
-
+  const { id } = useParams();
   const layoutTitles = {
     courses: "Courses",
     "class-schedule": "Class Schedule",
@@ -52,7 +52,14 @@ const Nav2 = (props) => {
     messages: "Messages",
     "account-settings": "Account Settings",
   };
-  const labelContent = layoutTitles[modifiedUrl] || "Dashboard";
+  let labelContent = layoutTitles[modifiedUrl] || "Dashboard";
+  if (id) {
+    if (modifiedUrl === "exams" || modifiedUrl === `exams/${id}`) {
+      labelContent = "Exams";
+    } else if (modifiedUrl === "course" || modifiedUrl === `course/${id}`) {
+      labelContent = "Course";
+    }
+  }
   const commonClassName =
     "navbarWrapper d-flex justify-content-between align-items-center flex-wrap customShadow";
   return (

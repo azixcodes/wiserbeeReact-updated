@@ -4,7 +4,7 @@ import { Clock } from "lucide-react";
 const QuickMessages = () => {
   return (
     <>
-      <div className="bg-white  rounded-4 shadow">
+      <div className="bg-white  rounded-4 shadow w-100">
         <h4 className="fw-bold p-3">Inbox</h4>
         <div className=" msg d-flex ps-3 pe-2 pt-3">
           <div className="inbox-image ">

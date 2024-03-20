@@ -1,6 +1,11 @@
+* {
+  user-select: none;
+  /*disabled text selection on entire app.*/
+}
 :root {
   --bg-primary: #463c77;
 }
+
 .bg-main {
   background-color: var(--bg-primary);
 }
@@ -678,6 +683,11 @@ a {
   text-transform: capitalize;
   font-size: 10px;
 }
+.examSvgsText p {
+  color: black;
+  font-size: 10px;
+  font-weight: 500;
+}
 .examDataWrapper {
   box-shadow: 0px 11px 24px 0px #7676762e;
   border-radius: 8px;
@@ -1265,6 +1275,102 @@ tr:nth-child(even) {
   gap: 10px;
   margin-top: 25px;
 }
+/* class management */
+
+.Time_Table {
+  background-color: white;
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.font-size14 {
+  font-size: 14px;
+}
+
+.table .Shedule {
+  width: 250px;
+}
+
+.font-size13 {
+  font-size: 13px;
+}
+
+.table {
+  margin-top: 50px;
+  border-top: hidden;
+}
+
+.table td,
+.table th {
+  padding: 0.75rem;
+  border-left: none;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+  width: 144px;
+  height: 72px;
+}
+
+.table th:last-child {
+  border-right: hidden;
+}
+
+.table td:last-child {
+  border-right: none;
+}
+
+.exact_time {
+  border-bottom: hidden;
+  border-right: hidden;
+}
+.calender_left {
+  height: 30px;
+}
+
+.left_angle {
+  background-color: #f4f4f5;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}
+
+.right_angle {
+  background-color: #f4f4f5;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+}
+
+.center_calender {
+  background-color: #f4f4f5;
+}
+
+.shades {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.text_color {
+  font-size: 19px;
+}
+
+.table .Shedule {
+  border-left: hidden;
+}
+
+.clocK_time {
+  border-right: hidden;
+  border-bottom: hidden;
+}
+
+.Year_table {
+  background-color: #463c77;
+  color: white;
+  border-radius: 5px;
+  width: 60px;
+  text-align: center;
+}
 
 /* awais css ends*/
 /* Media Queries */
@@ -1349,6 +1455,59 @@ tr:nth-child(even) {
 .msg:hover {
   background-color: #edebf1cc;
   cursor: pointer;
+}
+/* Lesson plan css goes here */
+/* bilal css for lesson plan  page  */
+.textarea {
+  width: 100%;
+  height: 100px;
+  outline: none;
+  border: 1px solid #a8acb166;
+  color: #c7cdd2;
+}
+
+.textarea::placeholder {
+  color: #c7cdd2;
+}
+
+.btn-update {
+  width: 184px;
+  height: 50px;
+  background-color: #463c77;
+  color: white;
+  border: none;
+  border-radius: 6px;
+}
+
+.btn-cancel {
+  background-color: #edebf1;
+  color: #463c77;
+  width: 140px;
+  height: 50px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+@media (max-width: 990px) {
+  .weakform-text {
+    font-size: 14px !important;
+    /* Adjust the font size for medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .weakform-text {
+    font-size: 12px !important;
+    /* Adjust the font size for small screens */
+  }
+}
+
+@media (max-width: 1024px) {
+  .weakform-text {
+    font-size: 13px !important;
+    /* Adjust the font size for small screens */
+  }
 }
 /* <>.....................................<BILAL CSS FOR TEACHER COMPONENTS ENDS>......................................... */
 /* sidebar media queires */

@@ -28,6 +28,7 @@ import {
   ClassManagement,
   PersonalProfile,
   ExamsManagement,
+  AddLessonPlan,
 } from "./View/Teacher/index";
 
 import Sign from "./View/SignInFirst";
@@ -110,6 +111,10 @@ const AppRouter = () => {
           <Route
             path="/course/:id"
             element={<ProtectedRoute Component={CourseDetails} />}
+          />
+          <Route
+            path="/add-lesson-plan"
+            element={<ProtectedRoute Component={AddLessonPlan} />}
           />
           <Route
             path="/exams/:id"
