@@ -51,6 +51,13 @@ const Nav2 = (props) => {
     community: "Community",
     messages: "Messages",
     "account-settings": "Account Settings",
+    "lesson-plan": "Lesson Plan",
+    "curriculum-design": "Curriculum Design",
+    "class-management": "Class Management",
+    "personal-profile": "Personal Profile",
+    "exams-management": "Exams Management",
+    "grades-management": "Grades Management",
+    library: "Library",
   };
   let labelContent = layoutTitles[modifiedUrl] || "Dashboard";
   if (id) {
