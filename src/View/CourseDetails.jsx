@@ -92,7 +92,7 @@ const CourseDetails = () => {
           </div>
 
           {/* Second container */}
-          <div className=" second col-md-12 col-lg-4 rounded-5 pb-5 shadow-sm align-self-start">
+          <div className=" second col-md-12 col-lg-4 rounded-4 pb-5 shadow-sm align-self-start">
             <div className="container">
               <div className="upper pt-4">
                 <div className="d-flex justify-content-between">

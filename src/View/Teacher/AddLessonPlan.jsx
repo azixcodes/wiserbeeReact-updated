@@ -32,8 +32,8 @@ const AddLessonPlan = () => {
 
   return (
     <>
-      <div className=" bg-white pt-4 shadow-lg rounded-5">
-        <h2 className="p-3 fw-bolder">Create Lesson Plan </h2>
+      <div className=" bg-white pt-4 shadow-lg rounded-4">
+        <h2 className="p-3 myClassesHeading">Create Lesson Plan </h2>
         <form className="p-3">
           <div className="row studentProfileHeading">
             <div className="col-md-3">
