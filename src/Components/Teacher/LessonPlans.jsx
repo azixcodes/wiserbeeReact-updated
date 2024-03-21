@@ -10,25 +10,16 @@ const LessonPlans = () => {
       <div className="row p-0 m-0">
         <div className="col-md-12 p-0 m-0">
           <div className="leassonPlanheader d-flex justify-content-between">
-            <h4 className="h1 fw-bold heading24px">My Lesson Plans</h4>
+            <h4 className="p-0 m-0 fw-bold ">My Lesson Plans</h4>
             <div className="col-lg-4 col-md-4 col-sm-6 mt-3 mt-lg-0 d-flex  justify-content-center justify-content-lg-end">
               <button
-                className="text-capitalize fs-6 gap-3 d-flex justify-content-between align-items-center"
-                style={{
-                  backgroundColor: "#463C77",
-                  padding: "4px 8px",
-                  borderRadius: "8px",
-                  color: "white",
-                  width: "auto",
-                  whiteSpace: "nowrap",
-                  border: "none",
-                }}
+                className="text-capitalize fs-6 gap-3 d-flex justify-content-between align-items-center btnWithIcon bg-main"
                 onClick={() => navigate("/add-lesson-plan")}
               >
                 <span className="px-1 py-1   fw-4 rounded p-0 addButtonSty">
                   <Plus />
                 </span>
-                <span>Add New</span>
+                <span>add new</span>
               </button>
             </div>
           </div>
@@ -41,7 +32,7 @@ const LessonPlans = () => {
             key={index}
             //   onClick={() => handleQuestionNavigate(index)}
           >
-            <div className="d-flex flex-column align-items-between  bg-white examDataWrapper px-2 py-3">
+            <div className="d-flex flex-column align-items-between  bg-white examDataWrapper px-2 py-3 borderRadius_15">
               <h4 className="fw-bold p-0 m-0 fs-6 cursor-pointer px-2">
                 {exam.title}
               </h4>
