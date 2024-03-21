@@ -34,7 +34,7 @@ const LessonPlans = () => {
           </div>
         </div>
       </div>
-      <div className="row text-capitalize mt-3  py-3">
+      <div className="row text-capitalize  py-2">
         {lessonplan.map((exam, index) => (
           <div
             className="col-md-4 cursor-pointer py-2 "
@@ -54,10 +54,11 @@ const LessonPlans = () => {
               </div>
               <div className="d-flex gap-3 mt-3 align-items-center justify-content-between examSvgsText px-2">
                 <div className="d-flex gap-2 align-items-center">
-                  {calanderSvg} <span>{exam.date}</span>
+                  {calanderSvg} <span className="p-0 m-0">{exam.date}</span>
                 </div>
                 <div className="d-flex gap-2 align-items-center">
-                  {studentSvg} <span>{exam.students} Students</span>
+                  {studentSvg}{" "}
+                  <span className="m-0 p-0">{exam.students} Students</span>
                 </div>
                 <div className="d-flex gap-2 align-items-center cursor-pointer">
                   {bookSvg} <span>{exam.language}</span>

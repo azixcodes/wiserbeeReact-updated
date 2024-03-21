@@ -5,9 +5,8 @@ import Chats from "../Components/Common/Chats";
 const Community = () => {
   return (
     <div className=" d-flex gap-2 communityWrapper ">
-      <div className="chatsMain shadow rounded">
+      <div className="chatsMain ">
         <Chats />
-        eef
       </div>
       <div className="SingleChat w-100">
         <Chat />

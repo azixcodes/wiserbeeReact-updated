@@ -3,10 +3,21 @@ import { Clock, MoreVertical, Search } from "lucide-react";
 import { chats } from "../../Constant/chats";
 import TextChip from "./TextChip";
 import { Store } from "../../ContextAPI/Context";
+import {
+  unreadSvg,
+  recentSvg,
+  chatsChatSvg,
+  chatSvg,
+} from "../../Constant/svgs";
 
 const Chats = () => {
   const { setUser } = Store();
-  const messageFilters = ["Unread", "Archived", "Spam"];
+  const messageFilters = [
+    { label: "All Messages", icon: chatsChatSvg },
+    { label: "Unread", icon: unreadSvg },
+    { label: "Recent", icon: recentSvg },
+  ];
+
   const [filter, setFilter] = useState("All Messages");
   const handleChatClick = (chat) => {
     setUser(chat);
@@ -16,7 +27,6 @@ const Chats = () => {
       {/* Header */}
       <div className="d-flex justify-content-between align-items-center py-2  px-2">
         <div className="form-group d-flex align-items-center gap-1">
-          {/* <label>{message}</label> */}
           <div class="dropdown">
             <button
               class="dropdown-toggle customDropdown"
@@ -27,21 +37,18 @@ const Chats = () => {
             >
               {filter}
             </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              {/* <li className="dropdown-item cursor-pointer">Unread</li>
-              <li>
-                <li className="dropdown-item cursor-pointer">Unread</li>
-              </li>
-              <li>
-                <li className="dropdown-item cursor-pointer">Unread</li>
-              </li> */}
+            <ul
+              class="dropdown-menu px-2"
+              aria-labelledby="dropdownMenuButton1"
+            >
               {messageFilters.map((filter, index) => (
                 <li
-                  className="dropdown-item cursor-pointer"
+                  className="dropdown-item cursor-pointer d-flex justify-content-between py-2 px-2 align-items-center chatFilterDropdownLists"
                   key={index}
-                  onClick={() => setFilter(filter)}
+                  onClick={() => setFilter(filter.label)}
                 >
-                  {filter}
+                  {filter.label}
+                  {filter.icon}
                 </li>
               ))}
             </ul>
