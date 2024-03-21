@@ -1,14 +1,17 @@
+import React, { useState } from "react";
 import { Filter } from "lucide-react";
-import React from "react";
 import { Store } from "../../ContextAPI/Context";
 
 const FilterHeader = (props) => {
   const { toggleFilter, setToggleFilter } = Store();
+  const [filter, setFilter] = useState("Most Popular");
   const toggleFilterAside = () => {
     setToggleFilter(!toggleFilter);
     console.log(toggleFilter);
   };
   const { searchTerm, openFilter } = props;
+
+  const filterDropdown = ["Most Popular", "Best Selling", "Most Viewed"];
   return (
     <div className="d-flex justify-content-between">
       <div>
@@ -20,15 +23,34 @@ const FilterHeader = (props) => {
           className="cursor-pointer filterIcon block d-md-none"
           onClick={openFilter}
         />
-        <select
-          className=" rounded form-select m-0"
-          style={{ borderColor: "#C7C7C7" }}
-        >
-          <option>Most Popular</option>
-          <option>Best Rated </option>
-          <option>New </option>
-          <option>Upcoming</option>
-        </select>
+
+        <div className="form-group d-flex align-items-center gap-1">
+          <div class="dropdown">
+            <button
+              class="dropdown-toggle filterDropdown"
+              type="button"
+              id="dropdownMenuButton1"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              {filter}
+            </button>
+            <ul
+              class="dropdown-menu px-2"
+              aria-labelledby="dropdownMenuButton1"
+            >
+              {filterDropdown.map((filter, index) => (
+                <li
+                  className="dropdown-item cursor-pointer d-flex justify-content-between py-2 px-2 align-items-center chatFilterDropdownLists"
+                  key={index}
+                  onClick={() => setFilter(filter)}
+                >
+                  {filter}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
         <div
           className="px-1 py-1 bg-main d-flex justify-content-center align-items-center text-white rounded cursor-pointer"
           onClick={toggleFilterAside}
