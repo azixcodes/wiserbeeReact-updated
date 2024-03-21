@@ -441,7 +441,9 @@ div[role="progressbar"]{
  font-size: 16px;
  font-weight: 500;
 }
-
+.borderRadius_15{
+  border-radius: 15px;
+}
 
 
 
