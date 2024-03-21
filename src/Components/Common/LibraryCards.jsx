@@ -45,7 +45,7 @@ const LibraryCards = () => {
  
             className={`${
               toggleFilter ? "col-md-6 col-xl-4" : "col-md-4 col-xl-3"
-            } col-sm-6 cursor-pointer libraryCard`}
+            } col-sm-6 cursor-pointer libraryCard mb-3 px-2`}
  
             key={index}
             onClick={() => handleCardClick(book)}

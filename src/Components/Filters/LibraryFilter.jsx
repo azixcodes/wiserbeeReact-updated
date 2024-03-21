@@ -132,7 +132,7 @@ const LibraryFilter = ({ handleRemoveFliterModal }) => {
           <div className="d-flex flex-column gap-2">
             {toggler.genreToggler &&
               genre.map((gen, index) => (
-                <div className="d-flex gap-1 align-items-center">
+                <div className="d-flex gap-2 align-items-center">
                   <input
                     className="form-check-input"
                     type="checkbox"
