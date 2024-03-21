@@ -3,6 +3,7 @@ import { ChevronLeft, ChevronRight, Plus } from "lucide-react";
 import Modal from "react-modal";
 
 import ScheduleClass from "../../modals/ScheduleClass";
+import FlexBtn from "../../Components/Common/FlexBtn";
 const customStyles = {
   content: {
     top: "50%",
@@ -59,11 +60,11 @@ const ClassManagement = () => {
       <Modal isOpen={open} onRequestClose={closeModal} style={customStyles}>
         <ScheduleClass onRequestClose={closeModal} />
       </Modal>
-      <div className="Time_Table">
+      <div className="Time_Table px-2 py-2">
         <div className="container text-center">
-          <div className="row">
-            <div className="col-lg-2 col-md-4 col-sm-6 d-flex  align-items-center justify-content-lg-start">
-              <b>
+          <div className="row d-flex align-items-center">
+            <div className="col-lg-2 col-md-4 col-sm-6 d-flex  align-items-center justify-content-lg-start p-0 m-0">
+              <b className="classManagementDate">
                 {currentDate.toLocaleDateString("en-US", {
                   month: "long",
                   day: "numeric",
@@ -71,7 +72,7 @@ const ClassManagement = () => {
                 })}
               </b>
             </div>
-            <div className="col-lg-6 col-md-4 col-sm-6 gap-1 mt-3 mt-lg-0  d-flex justify-content-center justify-content-lg-start calender_left">
+            <div className="col-lg-6 col-md-4 col-sm-6 gap-1   mt-lg-0  d-flex justify-content-center justify-content-lg-start calender_left">
               <div
                 className=" rounded-start d-flex align-items-center justify-content-center left_angle"
                 onClick={handleLeftArrowClick}
@@ -89,24 +90,15 @@ const ClassManagement = () => {
               </div>
             </div>
 
-            <div className="col-lg-4 col-md-4 col-sm-6 mt-3 mt-lg-0 d-flex  justify-content-center justify-content-lg-end">
+            <div className="col-lg-4 col-md-4 col-sm-6 mt-lg-0 d-flex  justify-content-center justify-content-lg-end p-0 m-0">
               <button
-                className="text-capitalize fs-6 gap-3 d-flex justify-content-between align-items-center"
-                style={{
-                  backgroundColor: "#463C77",
-                  padding: "4px 8px",
-                  borderRadius: "8px",
-                  color: "white",
-                  width: "auto",
-                  whiteSpace: "nowrap",
-                  border: "none",
-                }}
+                className="text-capitalize fs-6 gap-3 d-flex justify-content-between align-items-center btnWithIcon bg-main"
                 onClick={() => setOpen(true)}
               >
-                <span className="px-1 py-1   fw-4 rounded p-0 addButtonSty">
+                <span className="px-1 py-1 flex align-items-center justify-content-center  fw-4 rounded p-0 addButtonSty">
                   <Plus />
                 </span>
-                <span>Add New</span>
+                <span>add new</span>
               </button>
             </div>
           </div>

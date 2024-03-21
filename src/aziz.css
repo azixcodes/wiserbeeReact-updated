@@ -1474,10 +1474,12 @@ tr:nth-child(even) {
   margin-top: 25px;
 }
 /* class management */
-
+.classManagementDate {
+  font-size: 14px;
+}
 .Time_Table {
   background-color: white;
-  padding: 20px;
+  /* padding: 20px; */
   border-radius: 15px;
 }
 
@@ -1521,7 +1523,7 @@ tr:nth-child(even) {
   border-right: hidden;
 }
 .calender_left {
-  height: 30px;
+  /* height: 30px; */
 }
 
 .left_angle {
@@ -1689,6 +1691,16 @@ tr:nth-child(even) {
   font-weight: bold;
 }
 
+/* <>..........................<Custom component code starts>...................... */
+.btnWithIcon {
+  padding: 4px 8px;
+  border-radius: 8px;
+  color: white;
+  width: auto;
+  white-space: nowrap;
+  border: none;
+}
+/* <>..........................<Custom component code ends>...................... */
 @media (max-width: 990px) {
   .weakform-text {
     font-size: 14px !important;
