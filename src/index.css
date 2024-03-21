@@ -25,20 +25,26 @@
   box-sizing: border-box;
   font-family: PoppinsReg;
 }
-h1,h2,h3,h4,h5,h6{
-  font-family: 'PoppinsReg';
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "PoppinsReg";
 }
-p, span{
-  font-family: 'PoppinsReg';
+p,
+span {
+  font-family: "PoppinsReg";
 }
-.font13px{
+.font13px {
   font-size: 13px;
 }
 body {
   background-color: #f8f8f8;
 }
 a {
-  color: #000; 
+  color: #000;
 }
 
 /* primery button */
@@ -71,10 +77,11 @@ a {
 }
 .form-switch .form-check-input {
 }
-.form-control:focus,.form-select:focus {
+.form-control:focus,
+.form-select:focus {
   border-color: none !important;
-  border: none;
-  box-shadow:none
+  border: 1px solid #e4e7eb;
+  box-shadow: none;
 }
 /* primery button */
 .welcomeBox {
@@ -371,55 +378,57 @@ select option:hover {
 .cursor-pointer {
   cursor: pointer;
 }
-.navLabel{
+.navLabel {
   font-size: 12px;
 }
-.addButtonSty .lucide-plus{
+.addButtonSty .lucide-plus {
   width: 20px;
 }
-.lucide-plus, .lucide-chevron-right{
+.lucide-plus,
+.lucide-chevron-right {
   width: 20px;
 }
-.blackLogos{
+.blackLogos {
   width: 80px;
   height: 50px;
 }
-.PositionFixedH{
+.PositionFixedH {
   max-height: 12vh;
   position: fixed;
   top: 0;
   z-index: 99;
 }
 
-.addButtonSty{
+.addButtonSty {
   background-color: #6f6795;
 }
 
-.question label, .selectedQuestion label{
+.question label,
+.selectedQuestion label {
   font-size: 12px;
 }
-.RecievedMessageBubble,.chatBubbleSent{
+.RecievedMessageBubble,
+.chatBubbleSent {
   font-size: 12px;
 }
 
-div[role="progressbar"]{
+div[role="progressbar"] {
   --size: 12rem;
-    --fg: white;
-    --bg: #473d78;
+  --fg: white;
+  --bg: #473d78;
   width: 70px !important;
   height: 70px !important;
   background: radial-gradient(
-    closest-side,
-    white 85%,
-    transparent 0 96.4%,
-    white 15%
-  ),
-  conic-gradient(var(--fg) calc(var(--pgPercentage) * 1%), var(--bg) 0) !important;
+      closest-side,
+      white 85%,
+      transparent 0 96.4%,
+      white 15%
+    ),
+    conic-gradient(var(--fg) calc(var(--pgPercentage) * 1%), var(--bg) 0) !important;
   border: 1px dotted #aeb6bd !important;
   animation: growProgressBar 3s 1 forwards;
   transition: all 0.3 linear;
 }
-
 
 .Stars {
   --percent: calc(var(--rating) / 5 * 100%);
@@ -431,26 +440,21 @@ div[role="progressbar"]{
 .Stars::before {
   content: "★★★★★";
   /* letter-spacing: 3px; */
-  background: linear-gradient(90deg, var(--star-background) var(--percent), var(--star-color) var(--percent));
+  background: linear-gradient(
+    90deg,
+    var(--star-background) var(--percent),
+    var(--star-color) var(--percent)
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.studentProfileHeading .col-md-6 label, .studentProfileHeading .col-md-2 label,
-.studentProfileHeading .col-md-3 label{
- font-size: 16px;
- font-weight: 500;
+.studentProfileHeading .col-md-6 label,
+.studentProfileHeading .col-md-2 label,
+.studentProfileHeading .col-md-3 label {
+  font-size: 16px;
+  font-weight: 500;
 }
-
-
-
-
-
-
-
-
-
-
 
 /* ---------------Complete design for table in grade book page START---------------- */
 .js-pscroll {
