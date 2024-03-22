@@ -109,7 +109,7 @@ const Home = () => {
           <div className="row ">
             <div className="col-12 col-md-8">
               <div className="CoursesDetails">
-                <h3>My Courses</h3>
+                <h3 className="myClassesHeading">My Courses</h3>
                 {user === "Student" ? (
                   CoursesListValue.map((item, index) => (
                     <CoursesList

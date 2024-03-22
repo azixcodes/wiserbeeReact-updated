@@ -45,12 +45,12 @@ const LibraryCards = () => {
  
             className={`${
               toggleFilter ? "col-md-6 col-xl-4" : "col-md-4 col-xl-3"
-            } col-sm-6 cursor-pointer libraryCard`}
+            } col-sm-6 cursor-pointer libraryCard mb-3 px-2`}
  
             key={index}
             onClick={() => handleCardClick(book)}
           >
-            <div className="px-2 py-2 customShadow rounded h-100 d-flex flex-column ">
+            <div className="borderRadius_15 px-2 py-2 customShadow h-100 d-flex flex-column ">
               <div className="libraryImageWrapper">
                 <img src={book.thumbnail} />
               </div>
