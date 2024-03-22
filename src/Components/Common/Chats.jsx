@@ -3,6 +3,7 @@ import { Clock, MoreVertical, Search } from "lucide-react";
 import { chats } from "../../Constant/chats";
 import TextChip from "./TextChip";
 import { Store } from "../../ContextAPI/Context";
+import NameAvatar from "./NameAvatar";
 import {
   unreadSvg,
   recentSvg,
@@ -77,7 +78,11 @@ const Chats = () => {
             key={index}
             onClick={() => handleChatClick(chat)}
           >
-            <img src={chat.dp} className="chatUserDP" />
+            {chat.dp === null ? (
+              <NameAvatar name={chat.user} />
+            ) : (
+              <img src={chat.dp} className="chatUserDP" />
+            )}
             <div className="d-flex flex-column justify-content-center">
               <div className="d-flex gap-3 align-items-center">
                 <h4 className="p-0 m-0 fs-6 userName">{chat.user}</h4>

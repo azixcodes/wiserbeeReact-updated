@@ -1,47 +1,48 @@
 import React, { useState } from "react";
-import Curriculum from "../../Components/Teacher/Curriculum";
-import Modal from "react-modal";
-import AddCurriculumModal from "../../modals/AddCurriculumModal";
-const customStyles = {
-  content: {
-    top: "50%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-    width: "100%",
-    border: "none",
-  },
-};
+import CurriculumNav from "../../Components/Common/CurriculumNav";
+import {
+  OurVision,
+  Mission,
+  SEN,
+  Support,
+  CurriculumCycle,
+  TeacherLearning,
+  LearnerProfile,
+} from "../../Components/Curriculum/index";
 const CurriculumDesign = () => {
-  const [open, setOpen] = useState(false);
+  const [layout, setLayout] = useState("Our Vision");
 
-  const openModal = () => {
-    setOpen(true);
+  const layouts = {
+    "Our Vision": <OurVision />,
+    "Mission Statement": <Mission />,
+    "Learner Profile": <LearnerProfile />,
+    "Curriculum Cycle": <CurriculumCycle />,
+    "SEN Handbook": <SEN />,
+    "Support Program": <Support />,
+    "Teacher Learning Program": <TeacherLearning />,
   };
-  const closeModal = () => {
-    setOpen(false);
+
+  const swtichLayout = (layout) => {
+    setLayout(layout);
   };
+
   return (
-    <>
-      <Modal isOpen={open} style={customStyles} onRequestClose={closeModal}>
-        <AddCurriculumModal onRequestClose={closeModal} />
-      </Modal>
-      <div className="container-fluid p-0 m-0">
-        <div className="row">
-          <div className="col-md-12">
-            <div className="curriculumHeader d-flex justify-content-between py-2">
-              <h4 className="fw-bold">Curriculum Management</h4>
-              <button className="btn btn-primary bg-main" onClick={openModal}>
-                Create New
-              </button>
+    <div className="container-fluid">
+      <div className="row">
+        <div className="col-md-4 mb-3 md-mb-0">
+          <CurriculumNav swtichLayout={swtichLayout} />
+        </div>
+        <div className="col-md-8">
+          <div className="curriculumContentWrapper w-100 bg-white d-flex flex-column py-4 px-3 borderRadius_15 gap-4 ">
+            <div className="curriculumHeader d-flex justify-content-between align-items-center">
+              <h6 className="fw-bold p-0 m-0">{layout}</h6>
+              <button className="btn-update">Full Screen</button>
             </div>
+            <div className="">{layouts[layout]}</div>
           </div>
         </div>
-        <Curriculum />
       </div>
-    </>
+    </div>
   );
 };
 

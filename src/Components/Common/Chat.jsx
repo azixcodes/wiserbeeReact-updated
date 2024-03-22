@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import IconWrapper from "../Common/IconWrapper";
 import TextChip from "./TextChip";
 import { Store } from "../../ContextAPI/Context";
 import { paperPlaneSvg } from "../../Constant/svgs";
 import { Mic, MoreVertical, Plus, Search, Smile } from "lucide-react";
+import NameAvatar from "./NameAvatar";
 
 const Chat = () => {
   const { user } = Store();
   const [message, setMessage] = useState("");
+  const [id, setId] = useState(0);
   const [chat, setChat] = useState([
     {
       message:
@@ -36,7 +38,10 @@ const Chat = () => {
   ]);
   const handleSendMessage = () => {
     const date = new Date();
-    const time = date.getHours() + ":" + date.getMinutes();
+    const hours = date.getHours();
+    const minutes = date.getMinutes();
+    const time = hours + ":" + minutes.toString().padStart(2, "0");
+
     const newChat = {
       message,
       timestamp: time,
@@ -45,13 +50,26 @@ const Chat = () => {
 
     setChat([...chat, newChat]);
     setMessage("");
+
+    const lastId = chat.length;
+    setId(lastId);
   };
+
+  useEffect(() => {
+    const el = document.getElementById(`message${id}`);
+    el.scrollIntoView({ behavior: "instant", block: "start" });
+  }, [id]);
+
   return (
     <main className="w-100 d-flex flex-column singleChatWrapper bg-white  ">
       {/* Header */}
-      <div className="chatHeader d-flex justify-content-between w-100">
+      <div className="chatHeader d-flex justify-content-between w-100 py-1">
         <div className="d-flex align-items-center gap-2">
-          <img src={user.dp} alt="user" className="userDp" />
+          {user.dp === null ? (
+            <NameAvatar name={user.user} />
+          ) : (
+            <img src={user.dp} alt="user" className="userDp" />
+          )}
           <h4 className="chatUserName">{user.user}</h4>
           <TextChip label={user.tag} />
         </div>
@@ -83,6 +101,7 @@ const Chat = () => {
               }`}
             >
               <div
+                id={`message${index}`}
                 className={`${
                   message.subject === "sender"
                     ? "chatBubbleSent"
