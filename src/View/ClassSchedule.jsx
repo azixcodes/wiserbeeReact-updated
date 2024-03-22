@@ -48,7 +48,7 @@ const ClassSchedule = () => {
       date.setDate(date.getDate() + i);
       dates.push(date);
     }
-    
+
     return dates.map((date, index) => (
       <th key={index} className="text-uppercase">
         {days[date.getDay()]} <br />
@@ -462,3 +462,5 @@ const ClassSchedule = () => {
 };
 
 export default ClassSchedule;
+
+// test commit
