@@ -36,7 +36,7 @@ const CoursesList = (props) => {
           </div>
           <button
             type="button"
-            className="btn btn-primary continueBtn"
+            className="btn btn-primary continueBtn bgMain"
             onClick={() => navigate("/course/21")}
           >
             Continue {pauseBtn}

@@ -186,7 +186,7 @@ const ReportCardsModel = ({ onRequestClose }) => {
             icon={exportSvg}
             label="Print Report"
             color="white"
-            bgColor="#463C77"
+            bgColor="#241763"
             style={{ fontSize: "14px" }}
           />
         </div>

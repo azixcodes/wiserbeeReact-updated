@@ -80,9 +80,8 @@ const ExamsManagement = () => {
             <div className="d-flex justify-content-between">
               <h4 className="h1 fw-bold heading24px">My Exams</h4>
               <button
-                className="text-capitalize fs-6 gap-3 d-flex justify-content-between align-items-center"
+                className="text-capitalize fs-6 gap-3 d-flex justify-content-between align-items-center bgMain"
                 style={{
-                  backgroundColor: "#463C77",
                   padding: "4px 8px",
                   borderRadius: "8px",
                   color: "white",
@@ -160,9 +159,8 @@ const ExamsManagement = () => {
                   ) : (
                     <div className="d-flex   align-items-center fs-6 ">
                       <button
-                        className="text-capitalize fs-6 d-flex gap-2 align-items-center"
+                        className="text-capitalize fs-6 d-flex gap-2 align-items-center bgMain"
                         style={{
-                          backgroundColor: "#463C77",
                           padding: "4px 4px",
                           borderRadius: "8px",
                           color: "white",
