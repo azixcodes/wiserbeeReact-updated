@@ -74,3 +74,102 @@ export const headings = [
   "Overall Score",
   "Action",
 ];
+
+export const attendanceTableHeadings = [
+  "Student Name",
+  "Section",
+  "Mark Attendance",
+  "Overall Performance",
+  "Action",
+];
+
+export const attendaceData = [
+  {
+    name: "eneh mercy",
+    section: "Gold",
+    attendance: [
+      { label: "PP", checked: false },
+      { label: "PO", checked: false },
+      { label: "A", checked: false },
+      { label: "L", checked: false },
+    ],
+    performance: "80%",
+  },
+  {
+    name: "john doe",
+    section: "Silver",
+    attendance: [
+      { label: "PP", checked: false },
+      { label: "PO", checked: false },
+      { label: "A", checked: false },
+      { label: "L", checked: false },
+    ],
+    performance: "80%",
+  },
+  {
+    name: "eneh mercy",
+    section: "Gold",
+    attendance: [
+      { label: "PP", checked: false },
+      { label: "PO", checked: false },
+      { label: "A", checked: false },
+      { label: "L", checked: false },
+    ],
+    performance: "80%",
+  },
+  {
+    name: "eneh mercy",
+    section: "Silver",
+    attendance: [
+      { label: "PP", checked: false },
+      { label: "PO", checked: false },
+      { label: "A", checked: false },
+      { label: "L", checked: false },
+    ],
+    performance: "80%",
+  },
+  {
+    name: "eneh mercy",
+    section: "Gold",
+    attendance: [
+      { label: "PP", checked: false },
+      { label: "PO", checked: false },
+      { label: "A", checked: false },
+      { label: "L", checked: false },
+    ],
+    performance: "80%",
+  },
+  {
+    name: "john doe",
+    section: "Silver",
+    attendance: [
+      { label: "PP", checked: false },
+      { label: "PO", checked: false },
+      { label: "A", checked: false },
+      { label: "L", checked: false },
+    ],
+    performance: "80%",
+  },
+  {
+    name: "eneh mercy",
+    section: "Gold",
+    attendance: [
+      { label: "PP", checked: false },
+      { label: "PO", checked: false },
+      { label: "A", checked: false },
+      { label: "L", checked: false },
+    ],
+    performance: "80%",
+  },
+  {
+    name: "eneh mercy",
+    section: "Gold",
+    attendance: [
+      { label: "PP", checked: false },
+      { label: "PO", checked: false },
+      { label: "A", checked: false },
+      { label: "L", checked: false },
+    ],
+    performance: "80%",
+  },
+];

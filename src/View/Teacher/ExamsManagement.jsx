@@ -46,9 +46,7 @@ const ExamsManagement = () => {
   const handleClickQuestions = () => {
     setQuestionsOpen(true);
   };
-  const handleQuestionNavigate = (id) => {
-    navigate(`/exams/${id}`);
-  };
+
   return (
     <>
       <Modal
@@ -105,7 +103,7 @@ const ExamsManagement = () => {
               <div className="d-flex flex-column align-items-between examDataWrapper px-2 py-3">
                 <h4
                   className="fw-bold p-0 m-0 fs-6 cursor-pointer"
-                  // onClick={() => handleQuestionNavigate(index)}
+                  onClick={() => navigate("/attendance")}
                 >
                   {exam.title}
                 </h4>

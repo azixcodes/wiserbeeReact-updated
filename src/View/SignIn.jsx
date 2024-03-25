@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as images from "../Constant/images";
 import { Eye, EyeOff } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
@@ -61,14 +61,17 @@ const SignIn = () => {
           password,
         })
       );
-      setAuth({
-        user: selectedAccount,
-        email,
-        password,
-      });
+
       navigate("/");
     }
   };
+  useEffect(() => {
+    setAuth({
+      user: selectedAccount,
+      email: signInForm.userEmail,
+      password: signInForm.userPassword,
+    });
+  }, [selectedAccount]);
   return (
     <>
       <div className="signin_page">
