@@ -126,7 +126,7 @@ const ReportCardsModel = ({ onRequestClose }) => {
             <div className="col-md-12">
               <div className="teacherObservation w-100">
                 <div className="observationHeader px-4">
-                  <h6 className=" text-start">Teacher Observation</h6>
+                  <h6 className=" text-start mb-0">Teacher Observation</h6>
                 </div>
               </div>
             </div>
@@ -136,35 +136,40 @@ const ReportCardsModel = ({ onRequestClose }) => {
               <div className="observationWrapper w-100 d-flex flex-column gap-3 py-2 px-2 mt-4">
                 {observation.map((ob, index) => (
                   <div
-                    className="observation w-100 px-4 d-flex  justify-content-between align-items-center"
+                    className="row mb-3"
                     key={index}
                   >
-                    <label className="fw-bold">{ob.title}</label>
-                    <div className="observationOptions d-flex flex-column gap-2">
-                      <div className="options d-flex gap-2">
-                        {ob.options.map((op, i) => (
-                          <div className="form-check" key={i}>
-                            <input
-                              className="form-check-input"
-                              type="radio"
-                              name="flexRadioDefault"
-                              id="flexRadioDefault1"
-                            />
-                            <label
-                              className="form-check-label"
-                              for="flexRadioDefault1"
-                            >
-                              {op}
-                            </label>
-                          </div>
-                        ))}
-                      </div>
-                      <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Write your comments here"
-                      />
+                    <div className="col-md-3">
+                      <label className="observationText fw-bold">{ob.title}</label>
                     </div>
+                    <div className="col-md-9">
+                      <div className="observationOptions d-flex flex-column gap-2">
+                        <div className="options d-flex gap-2">
+                          {ob.options.map((op, i) => (
+                            <div className="form-check" key={i}>
+                              <input
+                                className="form-check-input reviewForm"
+                                type="radio"
+                                name="flexRadioDefault"
+                                id="flexRadioDefault1"
+                              />
+                              <label
+                                className="form-check-label formTeacherRep"
+                                for="flexRadioDefault1"
+                              >
+                                {op}
+                              </label>
+                            </div>
+                          ))}
+                        </div>
+                        <input
+                          type="text"
+                          className="form-control"
+                          placeholder="Write your comments here"
+                        />
+                      </div>
+                    </div>
+
                   </div>
                 ))}
               </div>

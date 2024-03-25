@@ -52,7 +52,18 @@ body {
 a {
   color: #000;
 }
-
+.form-label {
+  margin-bottom: 0.2rem;
+}
+.observationText{
+  font-size: 13px;
+}
+.formTeacherRep{
+  font-size: 14px;
+}
+.reviewForm{
+  font-size: 0.7rem;
+}
 /* primery button */
 .btn-primary {
   --bs-btn-color: #fff;
