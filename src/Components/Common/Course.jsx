@@ -45,7 +45,7 @@ const Course = ({ count = 4, useToggle = true }) => {
             <div className="d-flex align-items-center courseInstructor d-md-flex flex-md-row flex-column">
               <div className="d-flex">
                 <User className="userIcon" />
-                <h4 className="p-0 m-0 text-uppercase">
+                <h4 className="p-0 m-0 text-uppercase fg-main">
                   {getInitials(course.instructor)}
                 </h4>
               </div>
