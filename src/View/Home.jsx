@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 import { userIcons } from "../Constant/svgs";
 import EntrollCourseTiles from "../Components/Home/EntrollCourseTiles";
@@ -11,9 +11,11 @@ import QuickMessages from "../Components/Teacher/QuickMessages";
 import Course from "../Components/Common/Course";
 import { chatSvg, closeSvg } from "../Constant/svgs";
 import Chatbot from "../Components/Common/Chatbot";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Home = () => {
   const [chatOpened, setChatOpened] = useState(false);
+  const chatRef = useRef(null);
   const { auth } = Store();
   const user = auth.user;
   const EntrollCourseValue = [
@@ -79,14 +81,28 @@ const Home = () => {
   const handleChatClick = () => {
     setChatOpened(!chatOpened);
   };
+
+  const chatVariants = {
+    open: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeInOut" }, // Adjust duration and easing as desired
+    },
+    closed: {
+      opacity: 0,
+      y: "100%", // Adjust y-axis offset based on your layout needs
+      transition: { duration: 0.5, ease: "easeInOut" }, // Adjust duration and easing as desired
+    },
+  };
+
   return (
     <>
       <section className="dashboardWrapper d-flex flex-column ">
         <div className="welcomeBox">
           <div className="logoWithText d-flex justify-content-start align-items-start flex-wrap">
-            <div className="userIcons d-flex justify-content-center align-items-center">
+            {/* <div className="userIcons d-flex justify-content-center align-items-center">
               {userIcons}
-            </div>
+            </div> */}
             <div className="welcomeTxtP">
               <div className="mt-2">
                 <h6>Welcome back, John!</h6>
@@ -149,7 +165,7 @@ const Home = () => {
             </div>
           )}
         </div>
-        <div className={`${chatOpened ? "backdrop" : null}`}>
+        <AnimatePresence>
           <div
             className={`chatbotIconWrapper ${
               chatOpened ? "chatOpened" : "chatClosed"
@@ -159,10 +175,17 @@ const Home = () => {
             {chatOpened ? closeSvg : chatSvg}
           </div>
 
-          {chatOpened && <Chatbot />}
-        </div>
+          <motion.div
+            ref={chatRef}
+            variants={chatVariants}
+            animate={chatOpened ? "open" : "closed"}
+            style={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
+          >
+            {chatOpened ? <Chatbot /> : null}
+          </motion.div>
+        </AnimatePresence>
+        ;
       </section>
- 
     </>
   );
 };

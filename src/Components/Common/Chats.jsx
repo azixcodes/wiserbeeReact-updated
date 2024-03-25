@@ -8,7 +8,6 @@ import {
   unreadSvg,
   recentSvg,
   chatsChatSvg,
-  chatSvg,
 } from "../../Constant/svgs";
 
 const Chats = () => {
