@@ -162,7 +162,7 @@ const Home = () => {
           {chatOpened && <Chatbot />}
         </div>
       </section>
-      {/* <div className="backdrop"></div> */}
+ 
     </>
   );
 };

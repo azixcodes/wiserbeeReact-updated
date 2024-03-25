@@ -22,7 +22,7 @@ const GradeBook = () => {
               icon={exportSvg}
               label="Export"
               color="white"
-              bgColor="#463C77"
+              bgColor="#241763"
             />
           </div>
         </div>

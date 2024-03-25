@@ -3,7 +3,7 @@
   /*disabled text selection on entire app.*/
 }
 :root {
-  --bg-primary: #463c77;
+  --bg-primary: #241763;
 }
 
 .bg-main {
@@ -166,7 +166,7 @@ a {
 .sidebarToggle {
   height: 30px;
   width: 30px;
-  background-color: #463c77;
+  background-color: var(--bg-primary);
   position: absolute;
   right: -14px;
   top: 127px;
@@ -174,7 +174,7 @@ a {
   justify-content: centere;
   align-items: center;
   color: white;
-  border: 1px solid #463c77;
+  border: 1px solid var(--bg-primary);
   box-shadow: -6px 0px 22px 0px #191e4566;
   border-radius: 7px;
   cursor: pointer;
@@ -324,7 +324,7 @@ a {
 .closeIconWrapper {
   height: 30px;
   width: 30px;
-  background-color: #463c77;
+  background-color: var(--bg-primary);
   position: absolute;
   right: -9px;
   top: 87px;
@@ -391,7 +391,7 @@ a {
 }
 .salesPrice {
   font-size: 22px;
-  color: #463c77;
+  color: var(--bg-primary);
 }
 .normalPrice {
   font-size: 15px;
@@ -499,10 +499,10 @@ a {
 .button {
   width: 230px;
   border-radius: 10px;
-  border: 1px solid #463c77;
+  border: 1px solid var(--bg-primary);
   background-color: white;
   padding: 10px;
-  color: #463c77;
+  color: var(--bg-primary);
   font-weight: bold;
 }
 .btn {
@@ -595,12 +595,12 @@ a {
 }
 .btnCancel {
   background-color: #edebf1;
-  color: #463c77;
+  color: var(--bg-primary);
   font-weight: bold;
   border: none;
 }
 .btnNext {
-  background-color: #463c77;
+  background-color: var(--bg-primary);
   color: white;
   font-weight: bold;
   border: none;
@@ -742,7 +742,7 @@ h4 {
   width: 38px;
   height: 38px;
   border-radius: 10px;
-  background-color: #463c77;
+  background-color: var(--bg-primary);
   color: white;
 }
 .Examcounter {
@@ -900,7 +900,7 @@ h4 {
   outline: none;
   border: none;
   border-radius: 7.4px;
-  color: #463c7763;
+  color: var(--bg-primary) 63;
   width: 90%;
   background-color: transparent;
   font-size: 12px;
@@ -908,7 +908,7 @@ h4 {
 .SearchWrapper .searchIcon {
   height: 20px;
   width: 20px;
-  color: #463c77;
+  color: var(--bg-primary);
 }
 .chatWrapper img {
   height: 38px;
@@ -966,7 +966,7 @@ h4 {
 /* Single Chat */
 .chatHeader {
   height: 10%;
-  background-color: #463c77;
+  background-color: var(--bg-primary);
   color: white;
   align-items: center;
   padding: 0 15px;
@@ -1009,7 +1009,7 @@ h4 {
   width: 37px;
   height: 37px;
   border-radius: 7.24px;
-  border: 0.5px solid #463c7780;
+  border: 0.5px solid var(--bg-primary) 80;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1021,13 +1021,13 @@ h4 {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #463c77;
+  background-color: var(--bg-primary);
   border-radius: 50%;
   padding: 8px;
   color: white !important;
 }
 .addFileChatWrapper {
-  background-color: #463c77;
+  background-color: var(--bg-primary);
   color: white;
   border-radius: 50%;
   height: 25px;
@@ -1095,7 +1095,7 @@ h4 {
 .chatBubbleSent {
   height: auto;
   padding: 15px 10px;
-  background-color: #463c77;
+  background-color: var(--bg-primary);
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   border-bottom-left-radius: 15px;
@@ -1213,7 +1213,7 @@ h4 {
   align-items: center;
 }
 .chatClosed {
-  background-color: #463c77;
+  background-color: var(--bg-primary);
   box-shadow: -10px 4px 42px 0px rgba(0, 0, 0, 0.75);
 }
 .chatOpened {
@@ -1303,7 +1303,7 @@ h4 {
 .chatBotSentMessages {
   height: auto;
   padding: 6px 5px;
-  background-color: #463c77;
+  background-color: var(--bg-primary);
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   border-bottom-left-radius: 15px;
@@ -1429,7 +1429,7 @@ h4 {
 .btn-setting {
   width: 208px;
   height: 48px;
-  background-color: #463c77;
+  background-color: var(--bg-primary);
   color: white;
   border-radius: 24px;
   border: none;
@@ -1479,12 +1479,12 @@ h4 {
 }
 .Salary_Heading {
   font-size: 14px;
-  background-color: #463c77;
+  background-color: var(--bg-primary);
   color: #dddddd;
   text-align: center;
 }
 tr:nth-child(even) {
-  background-color: #463c771a;
+  background-color: var(--bg-primary) 1a;
 }
 .Table_Card {
   margin-top: 20px;
@@ -1598,7 +1598,7 @@ tr:nth-child(even) {
 }
 
 .Year_table {
-  background-color: #463c77;
+  background-color: var(--bg-primary);
   color: white;
   border-radius: 5px;
   width: 60px;
@@ -1650,7 +1650,7 @@ tr:nth-child(even) {
   width: 200px;
   height: 40px;
   background-color: #edebf1;
-  color: #463c77;
+  color: var(--bg-primary);
   border-radius: 10px;
   border: none;
   font-size: 12px;
@@ -1708,7 +1708,7 @@ tr:nth-child(even) {
 
   height: 40px;
 
-  background-color: #463c77;
+  background-color: var(--bg-primary);
   color: white;
   border: none;
   border-radius: 6px;
@@ -1716,7 +1716,7 @@ tr:nth-child(even) {
 
 .btn-cancel {
   background-color: #edebf1;
-  color: #463c77;
+  color: var(--bg-primary);
   width: 120px;
   height: 40px;
   border: none;
