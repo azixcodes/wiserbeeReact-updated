@@ -4,10 +4,11 @@ import { Store } from "../../ContextAPI/Context";
 
 const FilterHeader = (props) => {
   const { toggleFilter, setToggleFilter } = Store();
+  const [test, setTest] = useState(false);
   const [filter, setFilter] = useState("Most Popular");
   const toggleFilterAside = () => {
     setToggleFilter(!toggleFilter);
-    console.log(toggleFilter);
+    setTest(!test);
   };
   const { searchTerm, openFilter } = props;
 
@@ -52,10 +53,12 @@ const FilterHeader = (props) => {
           </div>
         </div>
         <div
-          className="px-1 py-1 bg-main d-flex justify-content-center align-items-center text-white rounded cursor-pointer"
+          className={`px-1 py-1 d-flex justify-content-center align-items-center text-white rounded cursor-pointer ${
+            toggleFilter ? "bgMain " : "bgInActive"
+          }`}
           onClick={toggleFilterAside}
         >
-          <Filter />
+          <Filter className={`${!toggleFilter && "fg-main"}`} />
         </div>
       </div>
     </div>

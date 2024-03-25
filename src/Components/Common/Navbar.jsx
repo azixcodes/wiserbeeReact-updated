@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { ChevronDown, Search, ChevronUp, MenuIcon } from "lucide-react";
-import { notificationSvg } from "../../Constant/svgs";
+import { notificationSvg, person, logoutSvg } from "../../Constant/svgs";
 import { countries } from "../../Constant/languages";
 import { userSvg } from "../../Constant/svgs";
 import Flag from "react-world-flags";
@@ -69,6 +69,11 @@ const Nav2 = (props) => {
   }
   const commonClassName =
     "navbarWrapper d-flex justify-content-between align-items-center flex-wrap customShadow";
+
+  const useDropDownList = [
+    { label: "My Profile", icon: person },
+    { label: "Logout", icon: logoutSvg },
+  ];
   return (
     <>
       <div
@@ -144,7 +149,35 @@ const Nav2 = (props) => {
             <h5 className="font-sm ">{role}</h5>
           </div>
           <div className="userUpIcon d-none d-md-block">
-            <ChevronDown className="text-end" />
+            {/* <ChevronDown className="text-end" /> */}
+            <div className="form-group d-flex align-items-center gap-1">
+              <div class="dropdown">
+                <button
+                  class="dropdown-toggle customDropdown"
+                  type="button"
+                  id="dropdownMenuButton1"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  {/* <ChevronDown className="text-end" /> */}
+                </button>
+                <ul
+                  class="dropdown-menu px-2 "
+                  aria-labelledby="dropdownMenuButton1"
+                >
+                  {useDropDownList.map((options, index) => (
+                    <li
+                      className="dropdown-item cursor-pointer d-flex justify-content-between py-2 px-2 align-items-center chatFilterDropdownLists"
+                      key={index}
+                      // onClick={() => setFilter(filter.label)}
+                    >
+                      {options.label}
+                      {options.icon}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </div>

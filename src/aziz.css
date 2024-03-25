@@ -12,6 +12,9 @@
 .fg-main {
   color: var(--bg-primary);
 }
+.bgInActive {
+  background-color: #ebebeb;
+}
 a {
   text-decoration: none;
 }
@@ -156,12 +159,14 @@ a {
 .sidebarLinkActive {
   border-radius: 7px;
   padding: 10px 10px !important;
+  margin-right: 5px;
   cursor: pointer;
   color: white;
   background-color: #585085;
 }
 .sidebarLink:hover {
   background-color: #585085;
+  margin-right: 5px;
 }
 .sidebarToggle {
   height: 30px;
@@ -376,7 +381,8 @@ a {
 }
 .courseInstructor h4 {
   font-size: 14px;
-  color: #7f53fe;
+  color: --bg-primary;
+  color: var(--bg-primary);
 }
 .courseInstructor h5 {
   color: gray;
@@ -447,7 +453,7 @@ a {
   color: #1b1b1b99;
 }
 .video-time {
-  color: #7f53fe;
+  color: --bg-primary;
   font-size: 14px;
 }
 .colored-data {
@@ -464,7 +470,7 @@ a {
   font-size: 14px;
 }
 .colored-time {
-  color: #7f53fe;
+  color: --bg-primary;
   font-size: 14px;
   margin-bottom: 10px;
 }
@@ -474,13 +480,13 @@ a {
   margin-bottom: 10px;
 }
 .playing {
-  background-color: #7f53fe;
+  background-color: --bg-primary;
 }
 .completed {
   background-color: #44ab96;
 }
 .viser-helper {
-  color: #7f53fe;
+  color: --bg-primary;
 }
 .digital-studio {
   position: relative;
@@ -615,13 +621,13 @@ a {
 .table-striped tbody tr:nth-of-type(even) {
   background-color: white;
 } */
-.teacherObservation {
-}
-.observationWrapper {
+/* .teacherObservation {
+} */
+/* .observationWrapper {
   height: 300px;
   max-height: 250px;
   overflow-y: auto;
-}
+} */
 .observationHeader {
   border-top-right-radius: 7px;
   height: 50px;
@@ -687,7 +693,7 @@ a {
 }
 /* .firstChild {
   background-color: #ede7ff;
-  color: #7f53fe;
+  color: --bg-primary;
 }
 .secondChild {
   background-color: #e5f3f2;
@@ -703,7 +709,7 @@ a {
 }
 .examChipsWrapper > :nth-child(1) {
   background-color: #ede7ff;
-  color: #7f53fe;
+  color: --bg-primary;
 }
 .examSvgsText span {
   color: #979797;
@@ -1445,7 +1451,9 @@ h4 {
 
 /* awais css */
 .Salary_card {
-  padding: 30px;
+  padding: 15px;
+  max-height: 85vh;
+  overflow: auto;
 }
 .Salary_Report {
   display: flex;
@@ -1456,7 +1464,7 @@ h4 {
 .Salary_Report .Student_Data {
   gap: 50px;
   display: flex;
-  padding: 5px;
+  /* padding: 5px; */
 }
 .Exam_style {
   color: #7a7a7a;
@@ -1468,7 +1476,7 @@ h4 {
 .Salary_Data,
 .Salary_Heading {
   border: 1px solid hsl(0, 0%, 87%);
-  padding: 8px;
+  padding: 5px;
 }
 .Salary_Data {
   text-align: center;
@@ -1498,6 +1506,7 @@ tr:nth-child(even) {
   font-family: "PoppinsReg";
   padding: 20px 0;
   font-weight: bold;
+  font-size: 20px;
 }
 
 .Report_button {
@@ -1610,7 +1619,7 @@ tr:nth-child(even) {
 /* <>.....................................<BILAL CSS FOR TEACHER COMPONENTS STARTS>......................................... */
 .test {
   background-color: #c4afff4d;
-  color: #7f53fe;
+  color: --bg-primary;
   font-size: 12px;
   font-weight: bold;
   border-radius: 7px;

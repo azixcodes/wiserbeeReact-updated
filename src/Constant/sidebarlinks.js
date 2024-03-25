@@ -46,11 +46,11 @@ export const studentLinks = [
     path: "/community",
     icon: communitySvg,
   },
-  {
-    label: "Admin Panel",
-    path: "/admin-panel",
-    icon: adminSvg,
-  },
+  // {
+  //   label: "Admin Panel",
+  //   path: "/admin-panel",
+  //   icon: adminSvg,
+  // },
   {
     label: "Library",
     path: "/library",
