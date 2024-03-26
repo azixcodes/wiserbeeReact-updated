@@ -4,6 +4,7 @@ import { Eye, Trash2 } from "lucide-react";
 import Modal from "react-modal";
 import ReportCardModel from "../../modals/ReportCardsModel";
 import { Link } from "react-router-dom";
+import NameAvatar from "./NameAvatar";
 
 const AttendanceTable = ({ headings, data }) => {
   const [openIndexes, setOpenIndexes] = useState([]);
@@ -55,7 +56,7 @@ const AttendanceTable = ({ headings, data }) => {
 
   const items = [
     {
-      label: "View",
+      label: "Teacher's Observation",
       icon: <Eye style={{ height: "30px", width: "30px;", color: "black" }} />,
     },
     {
@@ -71,16 +72,22 @@ const AttendanceTable = ({ headings, data }) => {
       setOpen(true);
     }
   };
-
+  let click = false;
   const handleAttBtnClick = (index, name) => {
+    click = !click;
     const oldData = [...attData];
 
     const attIndex = oldData.findIndex((item) => item.name === name);
 
     if (attIndex !== -1) {
       const att = oldData[attIndex].attendance;
-
-      att[index].checked = true;
+      const updatedAtt = att?.map((item, i) => {
+        return {
+          ...item,
+          checked: i === index ? !item.checked : item.checked,
+        };
+      });
+      oldData[attIndex].attendance = updatedAtt;
     }
     setAttData(oldData);
   };
@@ -91,7 +98,7 @@ const AttendanceTable = ({ headings, data }) => {
         case "PP":
           return (
             <button
-              className={`${item.checked ? "ppBtnActive" : "ppBtn"}`}
+              className={`${item.checked ? "ppBtnActive " : "ppBtn"}`}
               onClick={() => handleAttBtnClick(index, name)}
             >
               {item.label}
@@ -111,7 +118,7 @@ const AttendanceTable = ({ headings, data }) => {
         case "A":
           return (
             <button
-              className={`${item.checked ? "aBtnActive" : "aBtn"}`}
+              className={`${item.checked ? "aBtnActive " : "aBtn"}`}
               onClick={() => handleAttBtnClick(index, name)}
             >
               {item.label}
@@ -158,10 +165,21 @@ const AttendanceTable = ({ headings, data }) => {
                 <tbody>
                   {attData.map((item, index) => (
                     <tr className="row100 body " key={index}>
-                      <td className={`cell100 column1`}>{item.name}</td>
+                      <td className={`cell100 column1`}>
+                        <div className="d-flex align-items-center attendanceUser gap-2 ">
+                          {item.dp === null ? (
+                            <NameAvatar name={item.name} rounded />
+                          ) : (
+                            <img src={item.dp} alt="user" />
+                          )}
+
+                          {item.name}
+                        </div>
+                      </td>
                       <td className={`cell100 column2`}>{item.section}</td>
+
                       <td className={`cell100 column3`}>
-                        <div className="d-flex gap-1">
+                        <div className="d-flex gap-2 generateAtt">
                           {createAttendance(item.attendance, item.name)}
                         </div>
                       </td>

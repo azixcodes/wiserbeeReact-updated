@@ -1,6 +1,6 @@
 import React from "react";
 
-const NameAvatar = ({ name }) => {
+const NameAvatar = ({ name, rounded = false }) => {
   let suffix = "";
   let arr = name.split(" ");
   if (arr[1]) {
@@ -9,7 +9,11 @@ const NameAvatar = ({ name }) => {
     suffix = arr[0].charAt(0) + arr[0].charAt(1);
   }
 
-  return <div className="nameAvatar text-capitalize px-2">{suffix}</div>;
+  return (
+    <div className={`${rounded ? "roundedNameAvatar" : "nameAvatar"}  px-2`}>
+      {suffix}
+    </div>
+  );
 };
 
 export default NameAvatar;

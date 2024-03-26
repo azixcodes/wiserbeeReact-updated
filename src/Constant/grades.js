@@ -86,6 +86,7 @@ export const attendanceTableHeadings = [
 export const attendaceData = [
   {
     name: "eneh mercy",
+    dp: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHJhbmRvbSUyMHBlb3BsZXxlbnwwfHwwfHx8MA%3D%3D",
     section: "Gold",
     attendance: [
       { label: "PP", checked: false },
@@ -97,6 +98,7 @@ export const attendaceData = [
   },
   {
     name: "john doe",
+    dp: null,
     section: "Silver",
     attendance: [
       { label: "PP", checked: false },
@@ -107,8 +109,9 @@ export const attendaceData = [
     performance: "80%",
   },
   {
-    name: "eneh mercy",
+    name: "Joyce",
     section: "Gold",
+    dp: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cmFuZG9tJTIwcGVvcGxlfGVufDB8fDB8fHww",
     attendance: [
       { label: "PP", checked: false },
       { label: "PO", checked: false },
@@ -118,7 +121,32 @@ export const attendaceData = [
     performance: "80%",
   },
   {
-    name: "eneh mercy",
+    name: "Thomas",
+    section: "Silver",
+    dp: null,
+    attendance: [
+      { label: "PP", checked: false },
+      { label: "PO", checked: false },
+      { label: "A", checked: false },
+      { label: "L", checked: false },
+    ],
+    performance: "80%",
+  },
+  {
+    name: "Eruka",
+    section: "Gold",
+    dp: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHJhbmRvbSUyMHBlb3BsZXxlbnwwfHwwfHx8MA%3D%3D",
+    attendance: [
+      { label: "PP", checked: false },
+      { label: "PO", checked: false },
+      { label: "A", checked: false },
+      { label: "L", checked: false },
+    ],
+    performance: "80%",
+  },
+  {
+    name: "Kuranai",
+    dp: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHJhbmRvbSUyMHBlb3BsZXxlbnwwfHwwfHx8MA%3D%3D",
     section: "Silver",
     attendance: [
       { label: "PP", checked: false },
@@ -129,8 +157,9 @@ export const attendaceData = [
     performance: "80%",
   },
   {
-    name: "eneh mercy",
+    name: "Kakashi",
     section: "Gold",
+    dp: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHJhbmRvbSUyMHBlb3BsZXxlbnwwfHwwfHx8MA%3D%3D",
     attendance: [
       { label: "PP", checked: false },
       { label: "PO", checked: false },
@@ -140,30 +169,9 @@ export const attendaceData = [
     performance: "80%",
   },
   {
-    name: "john doe",
-    section: "Silver",
-    attendance: [
-      { label: "PP", checked: false },
-      { label: "PO", checked: false },
-      { label: "A", checked: false },
-      { label: "L", checked: false },
-    ],
-    performance: "80%",
-  },
-  {
-    name: "eneh mercy",
+    name: "Sauske",
     section: "Gold",
-    attendance: [
-      { label: "PP", checked: false },
-      { label: "PO", checked: false },
-      { label: "A", checked: false },
-      { label: "L", checked: false },
-    ],
-    performance: "80%",
-  },
-  {
-    name: "eneh mercy",
-    section: "Gold",
+    dp: null,
     attendance: [
       { label: "PP", checked: false },
       { label: "PO", checked: false },
