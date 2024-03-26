@@ -1,9 +1,5 @@
-import {
-  attendaceData,
-  attendanceTableHeadings,
-  data,
-} from "../../Constant/grades";
-import GradeTable from "../../Components/Common/GradeTable";
+import { attendaceData, attendanceTableHeadings } from "../../Constant/grades";
+import ReactDatePicker from "../../Components/Common/ReactDatePicker";
 import AttendanceTable from "../../Components/Common/AttendanceTable";
 const Attendance = () => {
   return (
@@ -14,8 +10,9 @@ const Attendance = () => {
         </div>
         <div className="col-md-3 ">
           <div className="w-100  d-flex align-items-center h-100 gap-3  justify-content-end">
-            <h6>Date</h6>
-            <input type="date" className="" form-control />
+            <h6 className="p-0 m-0">Date</h6>
+            {/* <input type="date" className="" form-control /> */}
+            <ReactDatePicker placeholder="Select Date" />
           </div>
         </div>
       </div>

@@ -59,6 +59,7 @@ const Nav2 = (props) => {
     "exams-management": "Exams Management",
     "grades-management": "Grades Management",
     library: "Library",
+    attendance: "Class Management",
   };
   let labelContent = layoutTitles[modifiedUrl] || "Dashboard";
   if (id) {
