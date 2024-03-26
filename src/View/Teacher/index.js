@@ -5,3 +5,4 @@ export { default as ClassManagement } from "./ClassManagement";
 export { default as PersonalProfile } from "./PersonalProfile";
 export { default as ExamsManagement } from "./ExamsManagement";
 export { default as AddLessonPlan } from "./AddLessonPlan";
+export { default as Attendance } from "./Attendance";

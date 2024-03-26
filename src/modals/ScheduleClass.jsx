@@ -24,11 +24,11 @@ const ScheduleClass = ({ onRequestClose, exam }) => {
           <div className=" d-flex flex-column gap-2 ">
             <label for="examTitle">Title</label>
             <input
-              type="email"
+              type="text"
               className="form-control py-1 fs-6 px-2"
               id="examTitle"
               aria-describedby="emailHelp"
-              placeholder="Exam title"
+              placeholder="Class title"
             />
           </div>
         </div>
@@ -69,8 +69,8 @@ const ScheduleClass = ({ onRequestClose, exam }) => {
             </div>
             <div className="col-md-6 mt-2">
               <button
-                className="btnFooter"
-                style={{ backgroundColor: "#463C77", color: "white" }}
+                className="btnFooter bgMain"
+                style={{  color: "white" }}
               >
                 Create
               </button>

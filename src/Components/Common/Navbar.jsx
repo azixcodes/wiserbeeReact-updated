@@ -6,11 +6,12 @@ import { userSvg } from "../../Constant/svgs";
 import Flag from "react-world-flags";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { NavLogo } from "../../Constant/images";
+import { useNavigate } from "react-router-dom";
 const Nav2 = (props) => {
   const location = useLocation();
   const { handleToggleSidebar } = props;
   const dropDownRef = useRef(null);
-
+  const navigate = useNavigate();
   const [openDropDown, setOpenDropdown] = useState(false);
   const [language, setLanguage] = useState({
     code: "aus",
@@ -71,8 +72,8 @@ const Nav2 = (props) => {
     "navbarWrapper d-flex justify-content-between align-items-center flex-wrap customShadow";
 
   const useDropDownList = [
-    { label: "My Profile", icon: person },
-    { label: "Logout", icon: logoutSvg },
+    { label: "My Profile", icon: person, path: "/my-profile" },
+    { label: "Logout", icon: logoutSvg, path: "/sign-in-first" },
   ];
   return (
     <>
@@ -169,7 +170,7 @@ const Nav2 = (props) => {
                     <li
                       className="dropdown-item cursor-pointer d-flex justify-content-between py-2 px-2 align-items-center chatFilterDropdownLists"
                       key={index}
-                      // onClick={() => setFilter(filter.label)}
+                      onClick={() => navigate(options.path)}
                     >
                       {options.label}
                       {options.icon}

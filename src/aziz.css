@@ -1765,6 +1765,85 @@ tr:nth-child(even) {
   height: 70vh;
   /* overflow: hidden; */
 }
+
+/* <>............................<Attendance Buttons> ........................................*/
+.ppBtnActive {
+  background-color: #3dc079;
+  color: white;
+  border: none;
+  outline: none;
+  padding: 10px;
+  border-radius: 8px;
+}
+.ppBtn {
+  background-color: white;
+  color: #3dc079;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #3dc079;
+  outline: none;
+}
+.poBtnActive {
+  background-color: #3d87dc;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  outline: none;
+  padding: 10px;
+  border-radius: 8px;
+}
+.poBtn {
+  background-color: white;
+  color: #3d87dc;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #3d87dc;
+  outline: none;
+}
+.aBtnActive {
+  background-color: #f2335d;
+  color: white;
+  border: none;
+  outline: none;
+  padding: 10px;
+  border-radius: 8px;
+}
+.aBtn {
+  background-color: white;
+  color: #f2335d;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid#F2335D;
+  outline: none;
+}
+.BtnActive {
+  background-color: #ffb930;
+  color: white;
+  border: none;
+  outline: none;
+  padding: 10px;
+  border-radius: 8px;
+}
+.lBtn {
+  background-color: white;
+  color: #ffb930;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid#FFB930;
+  outline: none;
+}
+.lBtnActive {
+  background-color: #ffb930;
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  padding: 10px;
+  border-radius: 8px;
+}
+/* <>............................<Attendance Buttons> ........................................*/
 @media (max-width: 990px) {
   .weakform-text {
     font-size: 14px !important;
