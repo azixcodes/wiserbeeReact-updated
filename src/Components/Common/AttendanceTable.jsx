@@ -84,7 +84,7 @@ const AttendanceTable = ({ headings, data }) => {
       const updatedAtt = att?.map((item, i) => {
         return {
           ...item,
-          checked: i === index ? !item.checked : item.checked,
+          checked: i === index,
         };
       });
       oldData[attIndex].attendance = updatedAtt;
