@@ -6,3 +6,4 @@ export { default as PersonalProfile } from "./PersonalProfile";
 export { default as ExamsManagement } from "./ExamsManagement";
 export { default as AddLessonPlan } from "./AddLessonPlan";
 export { default as Attendance } from "./Attendance";
+export { default as ClassSchedule } from "./ClassSchedule";

@@ -30,6 +30,7 @@ import {
   ExamsManagement,
   AddLessonPlan,
   Attendance,
+  ClassSchedule as TeacherClassSchedule,
 } from "./View/Teacher/index";
 
 import Sign from "./View/SignInFirst";
@@ -39,6 +40,7 @@ import SignUp from "./View/SignUp";
 import ForgotPassword from "./View/ForgotPassword";
 import OtpVerification from "./View/OtpVerification";
 import ResetPassword from "./View/ResetPassword";
+import Test from "./View/Test";
 
 const AppRouter = () => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -118,6 +120,10 @@ const AppRouter = () => {
             element={<ProtectedRoute Component={Attendance} />}
           />
           <Route
+            path="/class-schedule"
+            element={<ProtectedRoute Component={TeacherClassSchedule} />}
+          />
+          <Route
             path="/add-lesson-plan"
             element={<ProtectedRoute Component={AddLessonPlan} />}
           />
@@ -173,6 +179,7 @@ const AppRouter = () => {
       <Route path="/otp-verification" element={<OtpVerification />} />
       <Route path="/reset-password" element={<ResetPassword />} />
       <Route path="*" element={<NotFound />} />
+      <Route path="/test" element={<Test />} />
     </Routes>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 
 import { chatbotSvg, paperPlaneSvg, smChatbotSvg } from "../../Constant/svgs";
+import { SidebarLogo, primaryLogo } from "../../Constant/images";
 const Chatbot = () => {
   const messagesRef = useRef(null);
   const [message, setMessage] = useState("");
@@ -42,7 +43,10 @@ const Chatbot = () => {
   return (
     <div className="chatbox">
       <div className="chatbotHeader text-white">
-        {chatbotSvg}
+        {/* {chatbotSvg} */}
+        <div className="chatbotLogoWrapper">
+          <img src={SidebarLogo} className="h-100 w-100" alt="chatbot" />
+        </div>
         <div className="d-flex flex-column justify-content-center p-0 m-0">
           <h6 className="p-0 m-0 fw-bold">Wiser Adviser</h6>
           <div className="d-flex gap-1 align-items-center">
@@ -81,7 +85,9 @@ const Chatbot = () => {
               >
                 {message.subject === "reciever" && (
                   <div className="d-flex align-items-center gap-2">
-                    <div className="chatbotAvatarWrapper"> {smChatbotSvg}</div>
+                    <div className="chatbotAvatarWrapper">
+                      <img src={primaryLogo} />
+                    </div>
                     <div className="chatboxRecievedMessages">
                       {message.message}
                     </div>

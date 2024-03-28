@@ -101,10 +101,7 @@ const ExamsManagement = () => {
           {examsData.map((exam, index) => (
             <div className="col-md-4 mb-3" key={index}>
               <div className="d-flex flex-column align-items-between examDataWrapper px-2 py-3">
-                <h4
-                  className="fw-bold p-0 m-0 fs-6 cursor-pointer"
-                  onClick={() => navigate("/attendance")}
-                >
+                <h4 className="fw-bold p-0 m-0 fs-6 cursor-pointer">
                   {exam.title}
                 </h4>
                 <div className="d-flex flex-column flex-md-row gap-3 examChipsWrapper mt-3">

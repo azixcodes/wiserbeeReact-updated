@@ -100,6 +100,11 @@ export const teacherLinks = [
     icon: ExamsSvg,
   },
   {
+    label: "Class Schedule",
+    path: "/class-schedule",
+    icon: classManagementSvg,
+  },
+  {
     label: "Grades Management",
     path: "/grades-management",
     icon: gradesSvg,
