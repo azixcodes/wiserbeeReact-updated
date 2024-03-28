@@ -30,7 +30,7 @@ const CurriculumDesign = () => {
     <div className="container-fluid">
       <div className="row">
         <div className="col-md-4 mb-3 md-mb-0">
-          <CurriculumNav swtichLayout={swtichLayout} />
+          <CurriculumNav swtichLayout={swtichLayout} layout={layout} />
         </div>
         <div className="col-md-8">
           <div className="curriculumContentWrapper w-100 bg-white d-flex flex-column py-4 px-3 borderRadius_15 gap-4 ">

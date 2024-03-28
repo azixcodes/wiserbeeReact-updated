@@ -6,7 +6,7 @@ import logoFrame from "../assets/images/logoFrame.png";
 import QuestionImage from "../assets/images/questionImage.png";
 import NavLogo from "../assets/images/navLogo.png";
 import userAvatar from "../assets/images/userAvatar.png";
-
+import primaryLogo from "../assets/images/primaryLogo.png";
 export {
   SidebarLogo,
   courseImges,
@@ -16,4 +16,5 @@ export {
   QuestionImage,
   NavLogo,
   userAvatar,
+  primaryLogo,
 };

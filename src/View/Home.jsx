@@ -12,6 +12,7 @@ import Course from "../Components/Common/Course";
 import { chatSvg, closeSvg } from "../Constant/svgs";
 import Chatbot from "../Components/Common/Chatbot";
 import { AnimatePresence, motion } from "framer-motion";
+import { X } from "lucide-react";
 
 const Home = () => {
   const [chatOpened, setChatOpened] = useState(false);
@@ -172,7 +173,7 @@ const Home = () => {
             }`}
             onClick={handleChatClick}
           >
-            {chatOpened ? closeSvg : chatSvg}
+            {chatOpened ? <X className="closeIcon" /> : chatSvg}
           </div>
 
           <motion.div

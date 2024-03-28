@@ -1,6 +1,6 @@
 import React from "react";
 
-const CurriculumNav = ({ swtichLayout }) => {
+const CurriculumNav = ({ swtichLayout, layout }) => {
   const navItems = [
     "Our Vision",
     "Mission Statement",
@@ -15,7 +15,9 @@ const CurriculumNav = ({ swtichLayout }) => {
       {navItems.map((item, index) => (
         <div
           key={index}
-          className="px-2 py-2 curriculumNavItems"
+          className={`px-2 py-2 mt-1 ${
+            item === layout ? "activecurriculumNavItems" : "curriculumNavItems"
+          } `}
           onClick={() => swtichLayout(item)}
         >
           {item}
