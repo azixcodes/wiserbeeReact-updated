@@ -78,7 +78,7 @@ const Sidebar = () => {
         ref={sidebarRef}
       >
         <NavLink
-          to="/"
+          to="/home"
           className="sidebarLogo d-flex w-100 justify-content-center"
         >
           {/* sidebar logo */}

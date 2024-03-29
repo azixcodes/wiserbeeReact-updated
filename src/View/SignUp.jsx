@@ -49,7 +49,7 @@ const SignUp = () => {
     if (validate !== "success") {
       alert(validate);
     } else {
-      navigate("/");
+      navigate("/home");
     }
   };
 
@@ -61,7 +61,7 @@ const SignUp = () => {
             <img src={images.SidebarLogo} alt="logo-img" width={100} />
           </div>
           <div className="row sign_in_box2 g-0">
-          <div className="col-lg-5 col-md-8 col-sm-10">
+            <div className="col-lg-5 col-md-8 col-sm-10">
               <div className="form-box bg-white rounded-4 w-100 h-100">
                 <div className="pt-3 ps-4 pe-4 d-flex flex-column h-100">
                   <h3 className="poppins-bold sign_in_heading mt-3">Sign Up</h3>

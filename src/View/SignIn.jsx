@@ -62,7 +62,7 @@ const SignIn = () => {
         })
       );
 
-      navigate("/");
+      navigate("/home");
     }
   };
   useEffect(() => {

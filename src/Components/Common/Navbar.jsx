@@ -74,7 +74,7 @@ const Nav2 = (props) => {
 
   const useDropDownList = [
     { label: "My Profile", icon: person, path: "/my-profile" },
-    { label: "Logout", icon: logoutSvg, path: "/sign-in-first" },
+    { label: "Logout", icon: logoutSvg, path: "/" },
   ];
   return (
     <>
@@ -88,7 +88,7 @@ const Nav2 = (props) => {
           {/* {labelContent} */}
           {location.pathname === "/assesment" ||
           location.pathname === "/assesment-welcome" ? (
-            <Link to="/" className="d-flex gap-4 align-items-center">
+            <Link to="/home" className="d-flex gap-4 align-items-center">
               <img src={NavLogo} className="blackLogos" />
               <spa> Congnitive Assesment</spa>
             </Link>

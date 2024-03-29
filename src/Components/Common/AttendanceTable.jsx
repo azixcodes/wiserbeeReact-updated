@@ -1,10 +1,12 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { MoreVertical } from "lucide-react";
-import { Eye, Trash2 } from "lucide-react";
+
 import Modal from "react-modal";
-import ReportCardModel from "../../modals/ReportCardsModel";
+
 import { Link } from "react-router-dom";
 import NameAvatar from "./NameAvatar";
+import TeachersObservation from "../../modals/TeachersObservation";
+import { userSearchSvg, redTrashSvg } from "../../Constant/svgs";
 
 const AttendanceTable = ({ headings, data }) => {
   const [openIndexes, setOpenIndexes] = useState([]);
@@ -57,13 +59,11 @@ const AttendanceTable = ({ headings, data }) => {
   const items = [
     {
       label: "Teacher's Observation",
-      icon: <Eye style={{ height: "30px", width: "30px;", color: "black" }} />,
+      icon: userSearchSvg,
     },
     {
       label: "Delete",
-      icon: (
-        <Trash2 style={{ height: "30px", width: "30px;", color: "#BF2929" }} />
-      ),
+      icon: redTrashSvg,
     },
   ];
 
@@ -138,10 +138,15 @@ const AttendanceTable = ({ headings, data }) => {
       }
     });
   };
+  const handleModalOpen = (label) => {
+    if (label === "Teacher's Observation") {
+      setOpen(true);
+    }
+  };
   return (
     <>
       <Modal isOpen={open} style={customStyles} onRequestClose={closeModal}>
-        <ReportCardModel onRequestClose={closeModal} />
+        <TeachersObservation onRequestClose={closeModal} />
       </Modal>
       <div className="container-table100">
         <div className="wrap-table100">
@@ -203,11 +208,11 @@ const AttendanceTable = ({ headings, data }) => {
                             {items.map((item, i) => (
                               <li
                                 key={i}
-                                className="px-2 rounded"
+                                className="rounded px-2 m-0"
                                 onClick={() => handleClick(item.label)}
                               >
                                 <Link
-                                  className="dropdown-item  optionLists align-items-center rounded  mt-1 d-flex justify-content-between"
+                                  className="dropdown-item gap-2  optionLists align-items-center rounded  mt-1 d-flex justify-content-between"
                                   href="#"
                                 >
                                   <span
@@ -217,10 +222,11 @@ const AttendanceTable = ({ headings, data }) => {
                                         ? { color: "#BF2929" }
                                         : { color: "black" }
                                     }
+                                    onClick={() => handleModalOpen(item.label)}
                                   >
                                     {item.label}
                                   </span>
-                                  {item.icon}
+                                  <span>{item.icon}</span>
                                 </Link>
                               </li>
                             ))}
