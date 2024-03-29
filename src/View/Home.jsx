@@ -185,7 +185,6 @@ const Home = () => {
             {chatOpened ? <Chatbot /> : null}
           </motion.div>
         </AnimatePresence>
-        ;
       </section>
     </>
   );
