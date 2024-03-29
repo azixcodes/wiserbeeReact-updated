@@ -27,4 +27,8 @@ export const observation = [
     title: "Work willingly and without frustration",
     options: ["Excellent", "Meeting Expectations", "Need Improvement", "Poor"],
   },
+  {
+    title: "Work willingly and without frustration",
+    options: ["Excellent", "Meeting Expectations", "Need Improvement", "Poor"],
+  },
 ];

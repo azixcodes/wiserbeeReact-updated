@@ -54,7 +54,7 @@ const AppRouter = () => {
 
   return (
     <Routes>
-      <Route path="/" element={<ProtectedRoute Component={Dashboard} />} />
+      <Route path="/" element={<Sign />} />
       {role === "Student" ? (
         <>
           <Route path="/home" element={<ProtectedRoute Component={Home} />} />
@@ -111,6 +111,7 @@ const AppRouter = () => {
       ) : (
         <>
           {/* Teacher routes */}
+          <Route path="/home" element={<ProtectedRoute Component={Home} />} />
           <Route
             path="/course/:id"
             element={<ProtectedRoute Component={CourseDetails} />}
@@ -171,7 +172,7 @@ const AppRouter = () => {
       )}
 
       {/* public routes */}
-      <Route path="/sign-in-first" element={<Sign />} />
+      {/* <Route path="/sign-in-first" element={<Sign />} /> */}
       <Route path="/sign-in" element={<SignIn />} />
       <Route path="/sign-up-first" element={<SignUpFirst />} />
       <Route path="/sign-up" element={<SignUp />} />

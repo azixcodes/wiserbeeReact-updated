@@ -638,6 +638,11 @@ a {
   color: white;
   /* justify-content: center; */
 }
+.observationContent {
+  height: auto;
+  max-height: 88%;
+  overflow-y: auto;
+}
 .gradesTable thead {
   border-bottom: 1px solid #d1cccc;
 }
@@ -657,6 +662,9 @@ a {
   z-index: 100;
   border-radius: 8px;
   /* top: 8px; */
+}
+.optionLists span {
+  font-size: 13px;
 }
 .optionLists:hover {
   background-color: #66666626;
@@ -729,6 +737,7 @@ a {
 /*  EXAM MODAL CSS */
 .examModalWrapper {
   border-radius: 22px;
+  overflow: hidden;
 }
 .examModalHeader {
   height: 50px;
@@ -780,8 +789,7 @@ h4 {
   border: none;
 }
 .modalWrapper label {
-  font-weight: bold;
-  font-size: 14px;
+  font-size: 12px;
 }
 .modalWrapper input {
   font-size: 12px;
@@ -1941,6 +1949,17 @@ tr:nth-child(even) {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+}
+.rounded-borders {
+  border-top-left-radius: 7px !important;
+  border-top-right-radius: 7px;
+  background-color: transparent;
+}
+/* <>............................<>.................................... */
+.observationModalheader {
+  border-top-right-radius: 7px;
+  height: 100%;
+  border-top-left-radius: 7px;
 }
 /* <>............................<Attendance Buttons> ........................................*/
 @media (max-width: 990px) {

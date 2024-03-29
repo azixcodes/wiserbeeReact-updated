@@ -18,7 +18,7 @@ import {
 export const studentLinks = [
   {
     label: "Dashboard",
-    path: "/",
+    path: "/home",
     icon: dashboardSvg,
   },
   {
@@ -71,7 +71,7 @@ export const studentLinks = [
 export const teacherLinks = [
   {
     label: "Dashboard",
-    path: "/",
+    path: "/home",
     icon: dashboardSvg,
   },
   {

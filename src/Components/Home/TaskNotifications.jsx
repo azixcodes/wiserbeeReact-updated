@@ -16,7 +16,7 @@ const EntrollCourseTiles = (props) => {
       title: "Machine Learning",
       timeline: "08.00 am- 10.00 pm",
       color: "meachineClr",
-      path: "/",
+      path: "/home",
     },
     {
       id: "2",
@@ -24,7 +24,7 @@ const EntrollCourseTiles = (props) => {
       title: "Discussion - Scratch",
       timeline: "08.00 am- 10.00 pm",
       color: "discussionClr",
-      path: "/",
+      path: "/home",
     },
     {
       id: "3",
