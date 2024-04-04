@@ -1,35 +1,61 @@
 import React, { useState } from "react";
-// import '../../src/index.css'
 import { ChevronDown, CalendarDays } from "lucide-react";
+import ReactDatePicker from "../../Components/Common/ReactDatePicker";
 const AddLessonPlan = () => {
-  const [selectedsection, setSelectedsection] = useState("");
-  const [selectsubject, setSelectsubject] = useState("");
-  const [selecttype, setSelecttype] = useState("");
-  const [academicyear, setAcademicyear] = useState("");
-  const [selecttarget, setSelecttarget] = useState("");
-  const [selectday, setSelectday] = useState("");
+  const [lessonPlanData, setLessonPlanData] = useState({
+    class: "",
+
+    section: "",
+    subject: "",
+    type: "",
+    student: "",
+    topic: "",
+    academic: "",
+    creation_date: "",
+    cycle_weak_form: "",
+    cycle_weak_till: "",
+    attainment_target: "",
+    selected_attainment_target: "",
+    book_reference: "",
+    suggested_duration: "",
+    day: "",
+    learning_outcomes: "",
+  });
 
   const handleSectionSelect = (section) => {
-    setSelectedsection(section);
+    setLessonPlanData({ ...lessonPlanData, ["section"]: section });
   };
   const handleSubjectSelect = (subject) => {
-    setSelectsubject(subject);
+    setLessonPlanData({ ...lessonPlanData, ["subject"]: subject });
   };
   const handleTypeSelect = (type) => {
-    setSelecttype(type);
+    setLessonPlanData({ ...lessonPlanData, ["type"]: type });
   };
 
-  const handleAcademicyearSelect = (year) => {
-    setAcademicyear(year);
+  const handleAcademicyearSelect = (academic) => {
+    setLessonPlanData({ ...lessonPlanData, ["academic"]: academic });
   };
 
-  const handleselectTarget = (target) => {
-    setSelecttarget(target);
+  const handleselectTarget = (selected_attainment_target) => {
+    setLessonPlanData({
+      ...lessonPlanData,
+      ["selected_attainment_target"]: selected_attainment_target,
+    });
   };
   const handleselectDay = (day) => {
-    setSelectday(day);
+    setLessonPlanData({ ...lessonPlanData, ["day"]: day });
   };
 
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+
+    setLessonPlanData({ ...lessonPlanData, [name]: value });
+  };
+
+  const handleDateChange = (name, date) => {
+    setLessonPlanData({ ...lessonPlanData, [name]: date });
+  };
+  console.log(lessonPlanData);
   return (
     <>
       <div className=" bg-white pt-4 shadow-lg rounded-4">
@@ -39,15 +65,17 @@ const AddLessonPlan = () => {
             <div className="col-md-3">
               <label
                 for="exampleInputEmail1"
-                className=" weakform-text form-label"
+                className="weakform-text form-label"
               >
-                Class{" "}
+                Class
               </label>
               <div className="mb-3">
                 <input
                   type="text"
                   placeholder="Class"
                   className="input-gender ps-2 rounded"
+                  name="class"
+                  onChange={handleInputChange}
                 />
               </div>
             </div>
@@ -66,8 +94,9 @@ const AddLessonPlan = () => {
                     placeholder="Select Section"
                     aria-label="Recipient's username"
                     aria-describedby="basic-addon2"
-                    value={selectedsection}
-                    onChange={() => {}}
+                    value={lessonPlanData.section}
+                    onChange={handleInputChange}
+                    name="section"
                   />
                   <button
                     className="drop-btn rounded-end"
@@ -121,12 +150,12 @@ const AddLessonPlan = () => {
                 <div className="mb-3 d-flex">
                   <input
                     type="text"
+                    name="subject"
                     className="input-cx rounded-start ps-2"
                     placeholder="Select Subject"
                     aria-label="Recipient's username"
                     aria-describedby="basic-addon2"
-                    value={selectsubject}
-                    onChange={() => {}}
+                    value={lessonPlanData.subject}
                   />
                   <button
                     className="drop-btn rounded-end"
@@ -180,12 +209,12 @@ const AddLessonPlan = () => {
                 <div className="mb-3 d-flex">
                   <input
                     type="text"
+                    name="type"
                     className="input-cx rounded-start ps-2"
                     placeholder="Select Type"
                     aria-label="Recipient's username"
                     aria-describedby="basic-addon2"
-                    value={selecttype}
-                    onChange={() => {}}
+                    value={lessonPlanData.type}
                   />
                   <button
                     className="drop-btn rounded-end"
@@ -240,6 +269,8 @@ const AddLessonPlan = () => {
                   type="text"
                   placeholder="Select Student"
                   className="input-gender ps-2 rounded"
+                  name="student"
+                  onChange={handleInputChange}
                 />
               </div>
             </div>
@@ -252,6 +283,8 @@ const AddLessonPlan = () => {
                   type="text"
                   placeholder="Enter Topic Name"
                   className="input-gender ps-2 rounded"
+                  name="topic"
+                  onChange={handleInputChange}
                 />
               </div>
             </div>
@@ -267,12 +300,12 @@ const AddLessonPlan = () => {
                 <div className="mb-3 d-flex">
                   <input
                     type="text"
+                    name="academic"
                     className="input-cx rounded-start ps-2"
                     placeholder=""
                     aria-label="Recipient's username"
                     aria-describedby="basic-addon2"
-                    value={academicyear}
-                    onChange={() => {}}
+                    value={lessonPlanData.academic}
                   />
                   <button
                     className="drop-btn rounded-end"
@@ -332,7 +365,9 @@ const AddLessonPlan = () => {
                 <input
                   type="text"
                   placeholder="14-07-2023"
+                  name="creation_date"
                   className="input-gender ps-2 rounded"
+                  onChange={handleInputChange}
                 />
               </div>
             </div>
@@ -346,23 +381,23 @@ const AddLessonPlan = () => {
                   CYCLE/WEAK FORM
                 </label>
                 <div className="mb-3 d-flex">
-                  <input
+                  {/* <input
                     type="text"
+                    name="cycle_weak_form"
                     className="input-cx rounded-start ps-2"
                     placeholder="dd-mm-yy"
                     aria-label="Recipient's username"
                     aria-describedby="basic-addon2"
                     // value={academicyear}
                     // onChange={() => { }}
+                    onChange={handleInputChange}
+                  /> */}
+                  <ReactDatePicker
+                    placeholder="dd-mm-yy"
+                    getDate={handleDateChange}
+                    name="cycle_weak_form"
                   />
-                  <button
-                    className="drop-btn rounded-end"
-                    type="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    <CalendarDays size={16} className="icon-drop" />
-                  </button>
+
                   {/* <ul className="dropdown-menu">
                     <li>
                       <button
@@ -405,23 +440,30 @@ const AddLessonPlan = () => {
                   CYCLE/WEAK TILL
                 </label>
                 <div className="mb-3 d-flex">
-                  <input
+                  {/* <input
                     type="text"
+                    name="cycle_weak_till"
                     className="input-cx rounded-start ps-2"
                     placeholder="dd-mm-yy"
                     aria-label="Recipient's username"
                     aria-describedby="basic-addon2"
                     // value={academicyear}
                     // onChange={() => { }}
-                  />
-                  <button
+                    onChange={handleInputChange}
+                  /> */}
+                  {/* <button
                     className="drop-btn rounded-end"
                     type="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
                     <CalendarDays size={16} className="icon-drop" />
-                  </button>
+                  </button> */}
+                  <ReactDatePicker
+                    placeholder="dd-mm-yy"
+                    getDate={handleDateChange}
+                    name="cycle_weak_till"
+                  />
                   {/* <ul className="dropdown-menu">
                     <li>
                       <button
@@ -469,6 +511,8 @@ const AddLessonPlan = () => {
                   type="textarea"
                   placeholder="Jot down your attainments target"
                   className="textarea ps-2 p-2 rounded"
+                  name="attainment_target"
+                  onChange={handleInputChange}
                 ></textarea>
               </div>
             </div>
@@ -484,12 +528,12 @@ const AddLessonPlan = () => {
                 <div className="mb-3 d-flex">
                   <input
                     type="text"
+                    name="selected_attainment_target"
                     className="input-cx rounded-start ps-2"
                     placeholder="select"
                     aria-label="Recipient's username"
                     aria-describedby="basic-addon2"
-                    value={selecttarget}
-                    onChange={() => {}}
+                    value={lessonPlanData.selected_attainment_target}
                   />
                   <button
                     className="drop-btn rounded-end"
@@ -543,6 +587,8 @@ const AddLessonPlan = () => {
                       type="text"
                       placeholder="Enter Reference Book"
                       class="input-gender ps-2 rounded"
+                      name="book_reference"
+                      onChange={handleInputChange}
                     />
                   </div>
                 </div>
@@ -557,8 +603,10 @@ const AddLessonPlan = () => {
                   <div class="mb-3">
                     <input
                       type="text"
+                      name="suggested_duration"
                       placeholder="0 Minutes"
                       class="input-gender ps-2 rounded"
+                      onChange={handleInputChange}
                     />
                   </div>
                 </div>
@@ -573,12 +621,12 @@ const AddLessonPlan = () => {
                     <div className="mb-3 d-flex">
                       <input
                         type="text"
+                        name="day"
                         className="input-cx rounded-start ps-2"
                         placeholder=""
                         aria-label="Recipient's username"
                         aria-describedby="basic-addon2"
-                        value={selectday}
-                        onChange={() => {}}
+                        value={lessonPlanData.day}
                       />
                       <button
                         className="drop-btn rounded-end"
@@ -626,15 +674,17 @@ const AddLessonPlan = () => {
                   for="exampleInputEmail1"
                   className=" weakform-text form-label"
                 >
-                  LEARNING OUTCOMES{" "}
+                  LEARNING OUTCOMES
                 </label>
                 <div className="mb-3">
                   <textarea
                     rows="4"
+                    name="learning_outcomes"
                     cols="50"
                     type="textarea"
                     placeholder="Jot down your Learning Outcomes here "
                     className="textarea ps-2 p-2 rounded"
+                    onChange={handleInputChange}
                   ></textarea>
                 </div>
               </div>
