@@ -154,22 +154,25 @@ const ReportCardsModel = ({ onRequestClose }) => {
                       <div className="col-md-9">
                         <div className="observationOptions d-flex flex-column gap-2">
                           <div className="options d-flex gap-2">
-                            {ob.options.map((op, i) => (
-                              <div className="form-check" key={i}>
-                                <input
-                                  className="form-check-input reviewForm"
-                                  type="radio"
-                                  name="flexRadioDefault"
-                                  id="flexRadioDefault1"
-                                />
-                                <label
-                                  className="form-check-label formTeacherRep"
-                                  for="flexRadioDefault1"
-                                >
-                                  {op}
-                                </label>
-                              </div>
-                            ))}
+                            {ob.options.map((op, i) => {
+                              const randomId = Math.random() * 200;
+                              return (
+                                <div className="form-check" key={i}>
+                                  <input
+                                    className="form-check-input reviewForm"
+                                    type="radio"
+                                    name="flexRadioDefault"
+                                    id={randomId}
+                                  />
+                                  <label
+                                    className="form-check-label formTeacherRep"
+                                    for={randomId}
+                                  >
+                                    {op}
+                                  </label>
+                                </div>
+                              );
+                            })}
                           </div>
                           <input
                             type="text"

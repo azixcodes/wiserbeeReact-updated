@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 
-import { chatbotSvg, paperPlaneSvg, smChatbotSvg } from "../../Constant/svgs";
+import { paperPlaneSvg } from "../../Constant/svgs";
 import { SidebarLogo, primaryLogo } from "../../Constant/images";
 const Chatbot = () => {
   const messagesRef = useRef(null);
@@ -95,15 +95,6 @@ const Chatbot = () => {
                 )}
                 {message.subject === "sender" && <div>{message.message}</div>}
               </div>
-              {/* <p
-                className={`position-absolute ${
-                  message.subject === "sender"
-                    ? "chatTimeStampsent"
-                    : "chatTimeStamprecieved"
-                }`}
-              >
-                {message.timestamp}
-              </p> */}
             </div>
           </div>
         ))}

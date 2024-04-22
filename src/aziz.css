@@ -5,7 +5,11 @@
 :root {
   --bg-primary: #241763;
 }
-
+/* overriding default react picker transform prop */
+.react-datepicker-popper {
+  /* transform: translate(12.6667px, 206.667px) !important; */
+  left: 20px !important;
+}
 .bg-main {
   background-color: var(--bg-primary);
 }
@@ -737,7 +741,9 @@ a {
 /*  EXAM MODAL CSS */
 .examModalWrapper {
   border-radius: 22px;
-  overflow: hidden;
+  overflow: scroll scroll;
+  /* height: 500px;
+  max-height: 300px; */
 }
 .examModalHeader {
   height: 50px;
@@ -1652,11 +1658,7 @@ tr:nth-child(even) {
 .table .Shedule {
   border-left: hidden;
 }
-
-.clocK_time {
-  border-right: hidden;
-  border-bottom: hidden;
-}
+/*  */
 
 .Year_table {
   background-color: var(--bg-primary);
@@ -1925,10 +1927,11 @@ tr:nth-child(even) {
 .dateInputWrapper {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   border: 1px solid #e4e7eb;
   padding: 0 3px;
   border-radius: 7.2px;
-
+  width: 100%;
   height: 35px;
 }
 .DatePicker {

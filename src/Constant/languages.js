@@ -2,7 +2,7 @@ export const countries = [
   {
     language: "English",
     flag: "https://flagsworld.org/img/cflags/uk-flag.png",
-    code: "aus",
+    code: "us",
   },
   {
     language: "Hindi",
@@ -13,5 +13,5 @@ export const countries = [
     language: "Urdu",
     flag: "https://flagsworld.org/img/cflags/USA-flag.png",
     code: "pk",
-  }
+  },
 ];

@@ -14,8 +14,8 @@ const Nav2 = (props) => {
   const navigate = useNavigate();
   const [openDropDown, setOpenDropdown] = useState(false);
   const [language, setLanguage] = useState({
-    code: "aus",
-    language: "English",
+    code: "usa",
+    language: "US English",
   });
   let role = "";
   const user = JSON.parse(localStorage.getItem("user"));
@@ -112,13 +112,13 @@ const Nav2 = (props) => {
             fallback={<span>Unknown</span>}
             height="16"
           />
-          {openDropDown ? (
+          {/* {openDropDown ? (
             <div className="flagsDropdown custom-scrollbar ">
               {countries.map((flag, index) => (
                 <div
                   key={index}
                   className="d-flex align-items-center 2 flagList"
-                  onClick={() => handleListClick(flag.code, flag.language)}
+                  // onClick={() => handleListClick(flag.code, flag.language)}
                 >
                   <Flag
                     code={flag.code}
@@ -130,16 +130,16 @@ const Nav2 = (props) => {
                 </div>
               ))}
             </div>
-          ) : null}
+          ) : null} */}
           <div className="d-flex align-items-center" ref={dropDownRef}>
             <span className="m-0 p-0 d-none d-md-block mx-2">
               {language.language}
             </span>
-            {openDropDown ? (
+            {/* {openDropDown ? (
               <ChevronUp className="cursor-pointer" />
             ) : (
               <ChevronDown className="cursor-pointer" />
-            )}
+            )} */}
           </div>
         </div>
         <div className="d-flex justify-content-between align-items-center userAccount">

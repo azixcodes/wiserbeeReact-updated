@@ -7,7 +7,6 @@ const Messages = () => {
     <div className=" d-flex gap-2 communityWrapper ">
       <div className="chatsMain shadow rounded">
         <Chats />
-        eef
       </div>
       <div className="SingleChat w-100">
         <Chat />

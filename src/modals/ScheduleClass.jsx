@@ -1,7 +1,21 @@
+import React, { useState } from "react";
 import { X } from "lucide-react";
-import React from "react";
 
 const ScheduleClass = ({ onRequestClose, exam }) => {
+  const [classData, setClassData] = useState({
+    title: "",
+    start_date: null,
+    end_date: null,
+    start_time: null,
+    end_time: null,
+  });
+  const handleChange = (e) => {
+    const { value, name } = e.target;
+    setClassData({ ...classData, [name]: value });
+  };
+  const handleSubmitForm = () => {
+    console.log(classData);
+  };
   return (
     <div className="container-fluid p-0 m-0 pb-4 modalWrapper">
       <div className="row  d-flex justify-content-center p-0 m-0">
@@ -29,6 +43,9 @@ const ScheduleClass = ({ onRequestClose, exam }) => {
               id="examTitle"
               aria-describedby="emailHelp"
               placeholder="Class title"
+              name="title"
+              value={classData.title}
+              onChange={handleChange}
             />
           </div>
         </div>
@@ -37,21 +54,45 @@ const ScheduleClass = ({ onRequestClose, exam }) => {
         <div className="col-md-6 ">
           <div className=" d-flex flex-column gap-2">
             <label for="classSelect">Start Date</label>
-            <input type="date" className="form-control" />
+            <input
+              type="date"
+              className="form-control"
+              name="start_date"
+              onChange={handleChange}
+              value={classData.start_date}
+            />
           </div>
           <div className=" d-flex flex-column gap-2 mt-3">
             <label for="category">Start Time</label>
-            <input type="time" className="form-control" />
+            <input
+              type="time"
+              className="form-control"
+              value={classData.start_time}
+              onChange={handleChange}
+              name="start_time"
+            />
           </div>
         </div>
         <div className="col-md-6 ">
           <div className=" d-flex flex-column gap-2">
             <label for="sectionSelect">End Date</label>
-            <input type="date" className="form-control" />
+            <input
+              type="date"
+              className="form-control"
+              onChange={handleChange}
+              name="end_date"
+              value={classData.end_date}
+            />
           </div>
           <div className=" d-flex flex-column gap-2 mt-3">
             <label for="questions">End Time</label>
-            <input type="time" className="form-control" />
+            <input
+              type="time"
+              className="form-control"
+              name="end_time"
+              onChange={handleChange}
+              value={classData.end_time}
+            />
           </div>
         </div>
       </div>
@@ -70,7 +111,8 @@ const ScheduleClass = ({ onRequestClose, exam }) => {
             <div className="col-md-6 mt-2">
               <button
                 className="btnFooter bgMain"
-                style={{  color: "white" }}
+                style={{ color: "white" }}
+                onClick={handleSubmitForm}
               >
                 Create
               </button>
