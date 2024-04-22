@@ -1,6 +1,4 @@
 import React, { useState, useRef } from "react";
-
-import { userIcons } from "../Constant/svgs";
 import EntrollCourseTiles from "../Components/Home/EntrollCourseTiles";
 import CoursesList from "../Components/Home/CoursesList";
 import * as images from "../Constant/images";
@@ -9,7 +7,7 @@ import { Store } from "../ContextAPI/Context";
 import ClassView from "../Components/Teacher/ClassView";
 import QuickMessages from "../Components/Teacher/QuickMessages";
 import Course from "../Components/Common/Course";
-import { chatSvg, closeSvg } from "../Constant/svgs";
+import { chatSvg } from "../Constant/svgs";
 import Chatbot from "../Components/Common/Chatbot";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
@@ -101,9 +99,6 @@ const Home = () => {
       <section className="dashboardWrapper d-flex flex-column ">
         <div className="welcomeBox">
           <div className="logoWithText d-flex justify-content-start align-items-start flex-wrap">
-            {/* <div className="userIcons d-flex justify-content-center align-items-center">
-              {userIcons}
-            </div> */}
             <div className="welcomeTxtP">
               <div className="mt-2">
                 <h6>Welcome back, John!</h6>

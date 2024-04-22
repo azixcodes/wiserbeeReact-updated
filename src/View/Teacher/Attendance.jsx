@@ -12,7 +12,7 @@ const Attendance = () => {
           <div className="w-100  d-flex align-items-center h-100 gap-3  justify-content-end">
             <h6 className="p-0 m-0">Date</h6>
             {/* <input type="date" className="" form-control /> */}
-            <ReactDatePicker placeholder="Select Date" />
+            <ReactDatePicker placeholder="Select Date"/>
           </div>
         </div>
       </div>

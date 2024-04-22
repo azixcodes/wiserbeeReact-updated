@@ -1,10 +1,19 @@
+import React, { useEffect, useState } from "react";
 import { X } from "lucide-react";
-import React, { useState } from "react";
 import Counter from "../Components/Common/Counter";
 
 const AddExamModal = ({ onRequestClose }) => {
   const [questionCounter, setquestionCounter] = useState(0);
   const [minsCounter, setMinsCounter] = useState(0);
+
+  const [examData, setExamData] = useState({
+    exam_title: "",
+    class: "",
+    section: "",
+    category: "",
+    totalQuestions: 0,
+    mins: 0,
+  });
 
   const handleClick = (counter, action) => {
     if (counter === "mins") {
@@ -21,6 +30,20 @@ const AddExamModal = ({ onRequestClose }) => {
         }
       }
     }
+  };
+  useEffect(() => {
+    setExamData({
+      ...examData,
+      mins: minsCounter,
+      questionCounter: questionCounter,
+    });
+  }, [questionCounter, minsCounter]);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setExamData({ ...examData, [name]: value });
+  };
+  const handleSubmitData = () => {
+    console.log(examData);
   };
   return (
     <div className="container-fluid p-0 m-0 pb-4 modalWrapper">
@@ -44,11 +67,14 @@ const AddExamModal = ({ onRequestClose }) => {
           <div className=" d-flex flex-column gap-2 ">
             <label for="examTitle">Exam Title</label>
             <input
-              type="email"
+              type="text"
               className="form-control py-1 fs-6 px-2"
               id="examTitle"
               aria-describedby="emailHelp"
               placeholder="Enter exam title here"
+              name="exam_title"
+              onChange={handleChange}
+              value={examData.exam_title}
             />
           </div>
         </div>
@@ -57,7 +83,13 @@ const AddExamModal = ({ onRequestClose }) => {
         <div className="col-md-6 ">
           <div className=" d-flex flex-column gap-2">
             <label for="classSelect">Class</label>
-            <select className="form-control py-1 fs-6 px-2" id="classSelect">
+            <select
+              className="form-control py-1 fs-6 px-2"
+              id="classSelect"
+              name="class"
+              onChange={handleChange}
+              value={examData.class}
+            >
               <option>8th Class</option>
               <option>7th Class</option>
               <option>5th Class</option>
@@ -67,7 +99,13 @@ const AddExamModal = ({ onRequestClose }) => {
           </div>
           <div className=" d-flex flex-column gap-2 mt-3">
             <label for="category">Category</label>
-            <select className="form-control py-1 fs-6 px-2" id="category">
+            <select
+              className="form-control py-1 fs-6 px-2"
+              id="category"
+              name="category"
+              onChange={handleChange}
+              value={examData.category}
+            >
               <option>Exam</option>
               <option>Assignment</option>
               <option>Practical</option>
@@ -87,7 +125,13 @@ const AddExamModal = ({ onRequestClose }) => {
         <div className="col-md-6 ">
           <div className=" d-flex flex-column gap-2">
             <label for="sectionSelect">Section</label>
-            <select className="form-control py-1 fs-6 px-2" id="sectionSelect">
+            <select
+              className="form-control py-1 fs-6 px-2"
+              id="sectionSelect"
+              name="section"
+              onChange={handleChange}
+              value={examData.section}
+            >
               <option>All Section</option>
               <option>Section A</option>
               <option>Section B</option>
@@ -121,6 +165,7 @@ const AddExamModal = ({ onRequestClose }) => {
               <button
                 className="btnFooter"
                 style={{ backgroundColor: "#463C77", color: "white" }}
+                onClick={handleSubmitData}
               >
                 Create
               </button>
