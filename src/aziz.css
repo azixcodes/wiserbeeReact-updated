@@ -153,6 +153,11 @@ a {
   overflow-y: auto;
   overflow-x: hidden;
 }
+.linksWrapperMiniSidebar {
+  height: 77vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
 .sidebarLink {
   /* height: 30px; */
   border-radius: 7px;
