@@ -240,7 +240,7 @@ a {
 }
 .lctDuration {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   gap: 5px;
   align-items: center;
   font-size: 14px;
@@ -816,3 +816,10 @@ td {
   outline: 1px solid rgb(205, 205, 205) !important  ;
 }
 /* ---------------Complete design for table in grade book page END---------------- */
+
+/* Media queries */
+@media (max-width: 600px) {
+  .courseTiles {
+    width: 97%;
+  }
+}

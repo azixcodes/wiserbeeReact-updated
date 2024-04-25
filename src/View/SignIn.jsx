@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { validator } from "../Constant/validator";
 import { Store } from "../ContextAPI/Context";
+import { postRequest } from "../services/index";
 const SignIn = () => {
   const navigate = useNavigate();
 
@@ -41,7 +42,7 @@ const SignIn = () => {
   //   console.log("llll")
   //   localStorage.setItem("signInput", JSON.stringify(signInForm));
   // }
-  const handleLogin = () => {
+  const handleLogin = async () => {
     const obj = {
       email: signInForm.userEmail,
       password: signInForm.userPassword,
@@ -50,19 +51,26 @@ const SignIn = () => {
     if (validate !== "success") {
       alert(validate);
     } else {
-      const { email, password } = obj;
-
-      // saving password and email optionally..
-      localStorage.setItem(
-        "user",
-        JSON.stringify({
-          user: selectedAccount,
-          email,
-          password,
-        })
-      );
-
-      navigate("/home");
+      try {
+        const response = await postRequest("/accounts/login/", obj);
+        const data = await response.json();
+        if (response.ok) {
+          const { access } = data.token;
+          localStorage.setItem(
+            "user",
+            JSON.stringify({
+              token: access,
+              user: selectedAccount,
+            })
+          );
+          navigate("/home");
+        } else {
+          const error = data.errors.non_field_errors[0];
+          alert(error);
+        }
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
   useEffect(() => {

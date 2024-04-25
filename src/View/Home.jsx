@@ -136,7 +136,7 @@ const Home = () => {
                     />
                   ))
                 ) : (
-                  <Course useToggle={false} count={3} />
+                  <Course useToggle={false} count={3} homeRender={true} />
                 )}
               </div>
             </div>

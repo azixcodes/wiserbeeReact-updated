@@ -1,7 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
-import { ChevronDown, Search, ChevronUp, MenuIcon } from "lucide-react";
+import React, { useRef } from "react";
+import { Search, MenuIcon } from "lucide-react";
 import { notificationSvg, person, logoutSvg } from "../../Constant/svgs";
-import { countries } from "../../Constant/languages";
+
 import { userSvg } from "../../Constant/svgs";
 import Flag from "react-world-flags";
 import { Link, useLocation, useParams } from "react-router-dom";
@@ -12,34 +12,34 @@ const Nav2 = (props) => {
   const { handleToggleSidebar } = props;
   const dropDownRef = useRef(null);
   const navigate = useNavigate();
-  const [openDropDown, setOpenDropdown] = useState(false);
-  const [language, setLanguage] = useState({
+
+  const language = {
     code: "usa",
     language: "US English",
-  });
+  };
   let role = "";
   const user = JSON.parse(localStorage.getItem("user"));
   if (user) {
     role = user.user;
   } else role = "Student";
-  useEffect(() => {
-    const handleClickWindow = (e) => {
-      if (dropDownRef.current && dropDownRef.current.contains(e.target)) {
-        setOpenDropdown((prev) => !prev);
-      } else setOpenDropdown(false);
-    };
+  // useEffect(() => {
+  //   const handleClickWindow = (e) => {
+  //     if (dropDownRef.current && dropDownRef.current.contains(e.target)) {
+  //       setOpenDropdown((prev) => !prev);
+  //     } else setOpenDropdown(false);
+  //   };
 
-    document.addEventListener("click", handleClickWindow);
+  //   document.addEventListener("click", handleClickWindow);
 
-    return () => {
-      document.removeEventListener("click", handleClickWindow);
-    };
-  }, []);
+  //   return () => {
+  //     document.removeEventListener("click", handleClickWindow);
+  //   };
+  // }, []);
 
-  const handleListClick = (code, language) => {
-    setLanguage({ code: code, language: language });
-    setOpenDropdown(false);
-  };
+  // const handleListClick = (code, language) => {
+  //   setLanguage({ code: code, language: language });
+  //   setOpenDropdown(false);
+  // };
 
   const currentUrl = window.location.pathname;
   const modifiedUrl = currentUrl.replace("/", "");
@@ -89,14 +89,14 @@ const Nav2 = (props) => {
           {location.pathname === "/assesment" ||
           location.pathname === "/assesment-welcome" ? (
             <Link to="/home" className="d-flex gap-4 align-items-center">
-              <img src={NavLogo} className="blackLogos" />
+              <img src={NavLogo} className="blackLogos" alt="logo" />
               <spa> Congnitive Assesment</spa>
             </Link>
           ) : (
             labelContent
           )}
         </h4>
-        <div className="searchBox d-flex align-items-center ">
+        <div className="searchBox   align-items-center d-none d-md-flex">
           <Search />
           <input type="text" placeholder="Search" className="w-100" />
         </div>
@@ -143,14 +143,18 @@ const Nav2 = (props) => {
           </div>
         </div>
         <div className="d-flex justify-content-between align-items-center userAccount">
-          <div className="navAvatar d-flex justify-content-center align-items-center">
+          <div
+            className="navAvatar d-flex justify-content-center align-items-center"
+            id="dropdownMenuButton1"
+            data-bs-toggle="dropdown"
+          >
             {userSvg}
           </div>
           <div className="align-items-center userName mx-2 d-none d-lg-block">
             <h6 className="fs-6  fw-bold ">John Doe</h6>
             <h5 className="font-sm ">{role}</h5>
           </div>
-          <div className="userUpIcon d-none d-md-block">
+          <div className="userUpIcon ">
             {/* <ChevronDown className="text-end" /> */}
             <div className="form-group d-flex align-items-center gap-1">
               <div class="dropdown">
