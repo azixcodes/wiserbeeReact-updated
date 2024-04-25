@@ -6,7 +6,7 @@ import { Store } from "../../ContextAPI/Context";
 
 import { useNavigate } from "react-router-dom";
 
-const Course = ({ count = 4, useToggle = true }) => {
+const Course = ({ count = 4, useToggle = true, homeRender }) => {
   const { toggleFilter } = Store();
   const navigate = useNavigate();
   function getInitials(name) {
@@ -20,7 +20,9 @@ const Course = ({ count = 4, useToggle = true }) => {
   const withToggleClassName = `${
     toggleFilter ? "col-md-6 col-xl-4" : "col-md-4 col-xl-3"
   } col-sm-6 cursor-pointer `;
-  const withOutToggleClassName = "col-4 px-2 cursor-pointer";
+  const withOutToggleClassName = `${
+    homeRender ? "col-12 col-md-4" : "col-4"
+  }  px-2 cursor-pointer`;
   return (
     <div className="row pl-0">
       {courses.slice(0, count).map((course, index) => (
@@ -29,9 +31,13 @@ const Course = ({ count = 4, useToggle = true }) => {
           onClick={() => navigate("/course/21")}
           key={index}
         >
-          <div className="col-sm-12 col-md-12 position-relative customShadow  courseCard px-2 py-2 position-relative d-flex flex-column gap-2 my-2">
+          <div className="col-12 col-md-12 position-relative customShadow  courseCard px-2 py-2 position-relative d-flex flex-column gap-2 my-2">
             <div className="CourseThumbnail">
-              <img src={course.thumbnail} className="rounded h-100 w-100" />
+              <img
+                src={course.thumbnail}
+                className="rounded h-100 w-100"
+                alt="course thumbnail"
+              />
             </div>
             <div className="position-absolute d-flex mt-1 ms-2 gap-3">
               {course.bestSeller && (

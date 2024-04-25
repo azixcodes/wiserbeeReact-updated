@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { validator } from "../Constant/validator";
+import { postRequest } from "../services";
 const SignUp = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
@@ -37,7 +38,7 @@ const SignUp = () => {
     }));
   };
 
-  const handleSignup = () => {
+  const handleSignup = async () => {
     const obj = {
       name: signUpForm.userFullName,
       email: signUpForm.userEmail,
@@ -48,8 +49,30 @@ const SignUp = () => {
     const validate = validator(obj);
     if (validate !== "success") {
       alert(validate);
+    } else if (obj.password !== obj["confirm password"]) {
+      alert("passwords do not match..");
     } else {
-      navigate("/home");
+      // navigate("/home");
+      try {
+        const data = {
+          username: obj.name,
+          email: obj.email,
+          role: "teacher",
+          password: obj.password,
+          password2: obj["confirm password"],
+          phone: obj["phone number"],
+        };
+        const response = await postRequest("/accounts/register/", data);
+        const result = await response.json();
+        if (result.msg === "Registration Successful") {
+          alert("resgistration success");
+        } else {
+          alert("something went wrong, please try again..");
+          console.log(result);
+        }
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
 

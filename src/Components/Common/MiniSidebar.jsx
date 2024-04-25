@@ -1,20 +1,36 @@
-import React from "react";
+import React, { useMemo, useState } from "react";
 import { SidebarLogo } from "../../Constant/images";
-import { studentLinks } from "../../Constant/sidebarlinks";
-import { ChevronLeft, ChevronRight, XCircle } from "lucide-react";
+import { studentLinks, teacherLinks } from "../../Constant/sidebarlinks";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { NavLink } from "react-router-dom";
+import { Store } from "../../ContextAPI/Context";
 
 const MiniSidebar = ({ toggle, setToggle }) => {
+  const { auth } = Store();
+  const [navLinks, setNavLinks] = useState([]);
+  let user = auth?.user || "Student" || "Teacher";
+  const test = JSON.parse(localStorage.getItem("user"));
+  if (test) {
+    user = test.user;
+  }
+  useMemo(() => {
+    if (user === "Student") {
+      setNavLinks(studentLinks);
+    } else if (user === "Teacher") {
+      setNavLinks(teacherLinks);
+    }
+  }, [user]);
+
   return (
     <aside className={`miniSidebar ${toggle ? "open" : "closed"}`}>
       <div className="position-relative">
         <div className="sidebarLogo d-flex w-100 justify-content-center my-4">
           <img src={SidebarLogo} alt="logo" />
         </div>
-        <div className="linksWrapper d-flex flex-column gap-4 ">
+        <div className=" d-flex flex-column gap-4 ">
           <div className="divider"></div>
-          <div className="d-flex flex-column align-items-center gap-4 w-100  ">
-            {studentLinks.map((link, index) => (
+          <div className="d-flex flex-column align-items-center gap-4 w-100 linksWrapper ">
+            {navLinks.map((link, index) => (
               <NavLink
                 key={index}
                 to={link.path}

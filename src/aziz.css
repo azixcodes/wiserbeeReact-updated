@@ -151,6 +151,7 @@ a {
   height: 100%;
   /* background-color: red; */
   overflow-y: auto;
+  overflow-x: hidden;
 }
 .sidebarLink {
   /* height: 30px; */
@@ -1569,7 +1570,7 @@ tr:nth-child(even) {
 
 .Report_button {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   gap: 10px;
   margin-top: 25px;
 }
@@ -2067,3 +2068,9 @@ tr:nth-child(even) {
   }
 } */
 /* ........................<Course Route Media queries ends>........................... */
+/* CHATBOT MEDIA QUERIES */
+@media (max-width: 600px) {
+  .chatbox {
+    margin: auto auto;
+  }
+}
