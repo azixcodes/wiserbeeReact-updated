@@ -84,7 +84,7 @@ const Nav2 = (props) => {
         } ${commonClassName}`}
       >
         <MenuIcon onClick={handleToggleSidebar} className="mneuIcon" />
-        <h4 className="mb-0 d-none d-lg-block">
+        <h4 className="mb-0 d-none d-md-block">
           {/* {labelContent} */}
           {location.pathname === "/assesment" ||
           location.pathname === "/assesment-welcome" ? (
