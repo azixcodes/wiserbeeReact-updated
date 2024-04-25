@@ -83,8 +83,8 @@ const Nav2 = (props) => {
           location.pathname === "/assesment" ? "" : ""
         } ${commonClassName}`}
       >
-        <h4 className="mb-0">
-          <MenuIcon onClick={handleToggleSidebar} className="mneuIcon" />
+        <MenuIcon onClick={handleToggleSidebar} className="mneuIcon" />
+        <h4 className="mb-0 d-none d-lg-block">
           {/* {labelContent} */}
           {location.pathname === "/assesment" ||
           location.pathname === "/assesment-welcome" ? (

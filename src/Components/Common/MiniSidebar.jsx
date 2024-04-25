@@ -29,7 +29,7 @@ const MiniSidebar = ({ toggle, setToggle }) => {
         </div>
         <div className=" d-flex flex-column gap-4 ">
           <div className="divider"></div>
-          <div className="d-flex flex-column align-items-center gap-4 w-100 linksWrapper ">
+          <div className="d-flex flex-column align-items-center gap-4 w-100 linksWrapperMiniSidebar ">
             {navLinks.map((link, index) => (
               <NavLink
                 key={index}
