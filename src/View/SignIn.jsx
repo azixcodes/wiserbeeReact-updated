@@ -65,11 +65,14 @@ const SignIn = () => {
           );
           navigate("/home");
         } else {
-          const error = data.errors.non_field_errors[0];
+          const error =
+            "Please provide a email and password" ||
+            data.errors.non_field_errors[0];
           alert(error);
         }
       } catch (err) {
         console.log(err);
+        alert(err.message);
       }
     }
   };

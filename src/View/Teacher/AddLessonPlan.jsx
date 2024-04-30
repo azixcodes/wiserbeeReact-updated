@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ChevronDown, CalendarDays } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import ReactDatePicker from "../../Components/Common/ReactDatePicker";
 const AddLessonPlan = () => {
   const [lessonPlanData, setLessonPlanData] = useState({
@@ -21,7 +22,7 @@ const AddLessonPlan = () => {
     day: "",
     learning_outcomes: "",
   });
-
+  const navigate = useNavigate();
   const handleSectionSelect = (section) => {
     setLessonPlanData({ ...lessonPlanData, ["section"]: section });
   };
@@ -690,10 +691,18 @@ const AddLessonPlan = () => {
               </div>
 
               <div className="d-flex justify-content-end gap-2">
-                <button type="submit" className="btn-cancel">
+                <button
+                  type="submit"
+                  className="btn-cancel"
+                  onClick={() => navigate("/lesson-plan")}
+                >
                   Cancel
                 </button>
-                <button type="submit" className="btn-update">
+                <button
+                  type="submit"
+                  className="btn-update"
+                  onClick={(e) => e.preventDefault()}
+                >
                   Update changes
                 </button>
               </div>
