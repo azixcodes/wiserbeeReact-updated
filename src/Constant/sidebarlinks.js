@@ -78,6 +78,7 @@ export const teacherLinks = [
     label: "Lesson Plan",
     path: "/lesson-plan",
     icon: lessonPlanSvg,
+    childRoute: "/add-lesson-plan",
   },
   {
     label: "Curriculum Design",

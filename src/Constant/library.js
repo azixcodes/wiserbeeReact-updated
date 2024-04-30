@@ -1,6 +1,14 @@
+import {
+  missingHeart,
+  marketBeats,
+  lionWitch,
+  lifeBoat,
+  perc,
+  WildCall,
+} from "../Constant/images";
 export const books = [
   {
-    thumbnail: "http://surl.li/rkxin",
+    thumbnail: missingHeart,
     title: "Our Missing Hearts",
     author: "Celeste",
     pages: 150,
@@ -9,7 +17,7 @@ export const books = [
     ratings: 1.2,
   },
   {
-    thumbnail: "http://surl.li/rkyjd",
+    thumbnail: WildCall,
     title: "The Call of the Wild          ",
     author: "Jack London",
     pages: null,
@@ -18,7 +26,7 @@ export const books = [
     ratings: 1.2,
   },
   {
-    thumbnail: "http://surl.li/rkyjv",
+    thumbnail: marketBeats,
     title: "The beats of the market  ",
     author: "Jack London",
     pages: null,
@@ -27,7 +35,7 @@ export const books = [
     ratings: 1.2,
   },
   {
-    thumbnail: "http://surl.li/rkyki",
+    thumbnail: lionWitch,
     title: "The Lion of the witch",
     author: "C.S Lewis ",
     pages: 150,
@@ -36,7 +44,7 @@ export const books = [
     ratings: 1.2,
   },
   {
-    thumbnail: "http://surl.li/rkykw",
+    thumbnail: perc,
     title: "Perc jackson",
     author: "Celeste",
     pages: 150,
@@ -45,7 +53,7 @@ export const books = [
     ratings: 1.2,
   },
   {
-    thumbnail: "http://surl.li/rkyle",
+    thumbnail: lifeBoat,
     title: "The Life boat",
     author: "charlotte rogan",
     pages: null,

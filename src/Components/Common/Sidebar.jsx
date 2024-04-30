@@ -2,13 +2,15 @@ import React, { useRef, useEffect, useState } from "react";
 import { SidebarLogo } from "../../Constant/images";
 import { studentLinks, teacherLinks } from "../../Constant/sidebarlinks";
 import { ChevronRight, ChevronLeft } from "lucide-react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { Store } from "../../ContextAPI/Context";
 
 const Sidebar = () => {
   const { toggleSidebar, setToggleSidebar, auth } = Store();
   const [navLinks, setNavLinks] = useState([]);
   const [windowWidth, setWindowWidth] = useState(undefined);
+  const location = useLocation();
+
   const sidebarRef = useRef(null);
   const handleSidebarToggle = () => {
     setToggleSidebar((prev) => !prev);
@@ -98,7 +100,7 @@ const Sidebar = () => {
                 key={index}
                 to={link.path}
                 className={({ isActive }) =>
-                  isActive
+                  isActive || link.childRoute === location.pathname
                     ? "sidebarLinkActive d-flex flex-row align-items-center  justify-content-between"
                     : "sidebarLink d-flex flex-row align-items-center  justify-content-between"
                 }
