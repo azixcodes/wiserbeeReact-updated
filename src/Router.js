@@ -46,7 +46,7 @@ const AppRouter = () => {
   const navigate = useNavigate();
 
   // Initialize role with a default value
-  let role = "Student";
+  let role = "student";
   if (user && user.user) {
     role = user.user;
   }

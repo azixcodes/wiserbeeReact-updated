@@ -31,9 +31,9 @@ const useFetch = (endpoint) => {
   }, [endpoint]);
 
   //this function will trigger fetch again...
-  const refetch = async () => {
+  const refetch = async (endpoint2) => {
     try {
-      const response = await getRequest(endpoint);
+      const response = await getRequest(endpoint2 || endpoint);
       const data = await response.json();
       setApiData({ loading: false, data: data, error: null });
     } catch (err) {

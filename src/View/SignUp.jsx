@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as images from "../Constant/images";
 import { Eye, EyeOff } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -21,7 +21,11 @@ const SignUp = () => {
   const location = useLocation();
   const selectedAccount = location.state && location.state.selectedAccount;
 
-  console.log("selectedAccount", selectedAccount);
+  useEffect(() => {
+    if (selectedAccount === null) {
+      navigate("/sign-up-first");
+    }
+  }, []);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);

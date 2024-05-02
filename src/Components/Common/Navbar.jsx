@@ -76,6 +76,17 @@ const Nav2 = (props) => {
     { label: "My Profile", icon: person, path: "/my-profile" },
     { label: "Logout", icon: logoutSvg, path: "/" },
   ];
+
+  const handleDropdownClick = (path) => {
+    if (path === "/") {
+      let auth = JSON.parse(localStorage.getItem("user"));
+      if (auth) {
+        localStorage.removeItem("user");
+        navigate("/");
+      }
+    }
+    navigate(path);
+  };
   return (
     <>
       <div
@@ -175,7 +186,7 @@ const Nav2 = (props) => {
                     <li
                       className="dropdown-item cursor-pointer d-flex justify-content-between py-2 px-2 align-items-center chatFilterDropdownLists"
                       key={index}
-                      onClick={() => navigate(options.path)}
+                      onClick={() => handleDropdownClick(options.path)}
                     >
                       {options.label}
                       {options.icon}

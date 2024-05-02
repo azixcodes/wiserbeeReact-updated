@@ -17,6 +17,16 @@ const ExamsManagement = () => {
     refetch,
   } = useFetch("/quiz/exam-quizes/");
 
+  const {
+    loading: quizLoading,
+    data: quizData,
+    error: quizError,
+  } = useFetch("/quiz/exam-schedule/");
+
+  const quizesId = quizData.map((quiz) => {
+    return quiz.exam_quiz;
+  });
+
   const [modalIsOpen, setIsOpen] = useState(false);
   const [scheduleExamOpen, setScheduleExamOpen] = useState(false);
   const [questionsOpen, setQuestionsOpen] = useState(false);
@@ -29,6 +39,7 @@ const ExamsManagement = () => {
     setExamId(exam);
     setScheduleExamOpen(true);
     setQuestionsOpen(false);
+    refetch("/quiz/exam-schedule/");
   };
   const handleClickQuestions = () => {
     setQuestionsOpen(true);
@@ -116,6 +127,9 @@ const ExamsManagement = () => {
                 exam={exam}
                 key={index}
                 handleClickScheduleExam={handleClickScheduleExam}
+                quizLoading={quizLoading}
+                quizError={quizError}
+                handleClickQuestions={handleClickQuestions}
               />
             ))}
         </div>
