@@ -20,7 +20,6 @@ import {
   Library,
   AdminPanel,
 } from "./View/index";
-// Teachers route
 import {
   CurriculumDesign,
   GradeManagement,
