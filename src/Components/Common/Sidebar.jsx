@@ -15,15 +15,15 @@ const Sidebar = () => {
   const handleSidebarToggle = () => {
     setToggleSidebar((prev) => !prev);
   };
-  let user = auth?.user || "Student" || "Teacher";
+  let user = auth?.user || "student" || "teacher";
   const test = JSON.parse(localStorage.getItem("user"));
   if (test) {
     user = test.user;
   }
   useEffect(() => {
-    if (user === "Student") {
+    if (user === "student") {
       setNavLinks(studentLinks);
-    } else if (user === "Teacher") {
+    } else if (user === "teacher") {
       setNavLinks(teacherLinks);
     }
   }, []);

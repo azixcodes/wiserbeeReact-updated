@@ -1,14 +1,56 @@
+import React, { useState } from "react";
 import { X } from "lucide-react";
-import React from "react";
+import { postRequest } from "../services";
+import { validator } from "../Constant/validator";
+const ScheduleExam = ({ onRequestClose, examId }) => {
+  const [examSchedule, setExamSchedule] = useState({
+    exam_quiz: examId,
+    start_date: "",
+    end_date: "",
+    start_time: "",
+    end_time: "",
+  });
 
-const ScheduleExam = ({ onRequestClose, exam }) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setExamSchedule((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+  const handleSubmit = async () => {
+    const validate = validator(examSchedule);
+    if (validate !== "success") {
+      alert(validate);
+    } else {
+      //call the api.
+
+      try {
+        const response = await postRequest(
+          "/quiz/exam-schedule/",
+          examSchedule
+        );
+        const data = await response.json();
+        if (response.ok) {
+          alert("Exam Scheduled");
+          onRequestClose();
+        } else {
+          console.log(data);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+
+    console.log(examSchedule);
+  };
   return (
     <div className="container-fluid p-0 m-0 pb-4 modalWrapper">
       <div className="row  d-flex justify-content-center p-0 m-0">
         <div className="col-md-12    examModalWrapper p-0 m-0">
           <div className="d-flex justify-content-between  align-items-center px-4  col-md-12 examModalHeader">
             <h4 style={{ color: "#060317" }} className="fw-bold">
-              Schedule Exam
+              Schedule Exam for {examId}
             </h4>
             <div
               className="iconWrapper cursor-pointer"
@@ -24,11 +66,13 @@ const ScheduleExam = ({ onRequestClose, exam }) => {
           <div className=" d-flex flex-column gap-2 ">
             <label for="examTitle">Title</label>
             <input
-              type="email"
+              type="text"
               className="form-control py-1 fs-6 px-2"
               id="examTitle"
               aria-describedby="emailHelp"
               placeholder="Exam title"
+              value={examId}
+              disabled
             />
           </div>
         </div>
@@ -37,21 +81,45 @@ const ScheduleExam = ({ onRequestClose, exam }) => {
         <div className="col-md-6 ">
           <div className=" d-flex flex-column gap-2">
             <label for="classSelect">Start Date</label>
-            <input type="date" className="form-control" />
+            <input
+              type="date"
+              className="form-control"
+              name="start_date"
+              value={examSchedule.start_date}
+              onChange={handleChange}
+            />
           </div>
           <div className=" d-flex flex-column gap-2 mt-3">
             <label for="category">Start Time</label>
-            <input type="time" className="form-control" />
+            <input
+              type="time"
+              className="form-control"
+              name="start_time"
+              value={examSchedule.start_time}
+              onChange={handleChange}
+            />
           </div>
         </div>
         <div className="col-md-6 ">
           <div className=" d-flex flex-column gap-2">
             <label for="sectionSelect">End Date</label>
-            <input type="date" className="form-control" />
+            <input
+              type="date"
+              className="form-control"
+              name="end_date"
+              onChange={handleChange}
+              value={examSchedule.end_date}
+            />
           </div>
           <div className=" d-flex flex-column gap-2 mt-3">
             <label for="questions">End Time</label>
-            <input type="time" className="form-control" />
+            <input
+              type="time"
+              className="form-control"
+              name="end_time"
+              onChange={handleChange}
+              value={examSchedule.end_time}
+            />
           </div>
         </div>
       </div>
@@ -71,6 +139,7 @@ const ScheduleExam = ({ onRequestClose, exam }) => {
               <button
                 className="btnFooter"
                 style={{ backgroundColor: "#463C77", color: "white" }}
+                onClick={handleSubmit}
               >
                 Create
               </button>

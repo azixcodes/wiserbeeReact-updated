@@ -2,7 +2,10 @@
 
 const BASE_URL = "https://lms-api.swatitech.com";
 
-export const getRequest = async (endpoint) => {};
+export const getRequest = async (endpoint) => {
+  const response = await fetch(`${BASE_URL}${endpoint}`);
+  return response;
+};
 
 export const postRequest = async (endPoint, data) => {
   console.log(`${BASE_URL}${endPoint}`);

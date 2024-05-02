@@ -1,23 +1,37 @@
 import React, { useState } from "react";
-import { examsData } from "../../Constant/exams";
-import { useNavigate } from "react-router-dom";
-import { CalendarCheck2, CalendarClock, Plus } from "lucide-react";
-import { bulbSvg, clockSvg } from "../../Constant/svgs";
 
+import { Plus } from "lucide-react";
+
+import useFetch from "../../hooks/UseFetch";
 import Modal from "react-modal";
 import AddExamModal from "../../modals/AddExamModal";
 import ScheduleExam from "../../modals/ScheduleExam";
 import AddQuestions from "../../modals/AddQuestions";
+
+import ExamCards from "../../Components/Teacher/ExamCards";
 const ExamsManagement = () => {
-  const navigate = useNavigate();
+  const {
+    data: examData,
+    loading,
+    error,
+    refetch,
+  } = useFetch("/quiz/exam-quizes/");
+
   const [modalIsOpen, setIsOpen] = useState(false);
   const [scheduleExamOpen, setScheduleExamOpen] = useState(false);
   const [questionsOpen, setQuestionsOpen] = useState(false);
 
-  const [examDetails, setExamDetails] = useState(null);
-
   const handleAddNewExamClick = () => {
     setIsOpen(true);
+  };
+  const [examId, setExamId] = useState(null);
+  const handleClickScheduleExam = (exam) => {
+    setExamId(exam);
+    setScheduleExamOpen(true);
+    setQuestionsOpen(false);
+  };
+  const handleClickQuestions = () => {
+    setQuestionsOpen(true);
   };
 
   const customStyles = {
@@ -33,19 +47,12 @@ const ExamsManagement = () => {
     },
   };
 
-  function closeModal() {
+  async function closeModal() {
     setIsOpen(false);
     setScheduleExamOpen(false);
     setQuestionsOpen(false);
+    await refetch();
   }
-  const handleClickScheduleExam = (exam) => {
-    setExamDetails(exam);
-    setScheduleExamOpen(true);
-    setQuestionsOpen(false);
-  };
-  const handleClickQuestions = () => {
-    setQuestionsOpen(true);
-  };
 
   return (
     <>
@@ -62,7 +69,7 @@ const ExamsManagement = () => {
         onRequestClose={closeModal}
         style={customStyles}
       >
-        <ScheduleExam onRequestClose={closeModal} />
+        <ScheduleExam onRequestClose={closeModal} examId={examId} />
       </Modal>
 
       <Modal
@@ -98,88 +105,19 @@ const ExamsManagement = () => {
           </div>
         </div>
         <div className="row text-capitalize mt-3">
-          {examsData.map((exam, index) => (
-            <div className="col-md-4 mb-3" key={index}>
-              <div className="d-flex flex-column align-items-between examDataWrapper px-2 py-3">
-                <h4 className="fw-bold p-0 m-0 fs-6 cursor-pointer">
-                  {exam.title}
-                </h4>
-                <div className="d-flex flex-column flex-md-row gap-3 examChipsWrapper mt-3">
-                  {exam.tags.map((tag, index) => (
-                    <div className="examChip" key={index}>
-                      {tag}
-                    </div>
-                  ))}
-                </div>
-                <div className="d-flex gap-3 mt-3 align-items-center examSvgsText">
-                  <div className="d-flex gap-1 align-items-center">
-                    {clockSvg} <span>{exam.time}</span>
-                  </div>
-                  <div
-                    className="d-flex gap-1 align-items-center cursor-pointer"
-                    onClick={handleClickQuestions}
-                  >
-                    {bulbSvg} <span>{exam.questions}</span>
-                  </div>
-                </div>
-                <div className="d-flex mt-3">
-                  {exam.schdeduled ? (
-                    <div className="d-flex   align-items-center gap-2 fs-6 ">
-                      <button
-                        className="text-capitalize fs-6 d-flex gap-2  align-items-center"
-                        style={{
-                          backgroundColor: "#EDEBF1",
-                          padding: "4px 4px",
-                          borderRadius: "8px",
-                          color: "#463C77",
-                          width: "auto",
-                          border: "none",
-                        }}
-                      >
-                        <CalendarCheck2
-                          style={{ height: "16px", width: "16px" }}
-                        />
-
-                        <span className="p-0 m-0" style={{ fontSize: "12px" }}>
-                          Scheduled
-                        </span>
-                      </button>
-                      <span
-                        className="p-0 m-0  "
-                        style={{ color: "#857EA5", fontSize: "10px" }}
-                      >
-                        {exam.scheduledData}
-                      </span>
-                    </div>
-                  ) : (
-                    <div className="d-flex   align-items-center fs-6 ">
-                      <button
-                        className="text-capitalize fs-6 d-flex gap-2 align-items-center bgMain"
-                        style={{
-                          padding: "4px 4px",
-                          borderRadius: "8px",
-                          color: "white",
-                          width: "auto",
-                          fontSize: "12px",
-                          border: "none",
-                        }}
-                        onClick={() => handleClickScheduleExam(exam)}
-                      >
-                        <span className="rounded p-0 m-0">
-                          <CalendarClock
-                            style={{ height: "16px", width: "16px" }}
-                          />
-                        </span>
-                        <span style={{ fontSize: "11px" }} className="p-0 m-0">
-                          Schedule Exam
-                        </span>
-                      </button>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-          ))}
+          {/* {examsData.map((exam, index) => (
+            <ExamCards exam={exam} key={index} />
+          ))} */}
+          {loading && <h2>Loading Exams...</h2>}
+          {error && <h4>Error </h4>}
+          {examData &&
+            examData.map((exam, index) => (
+              <ExamCards
+                exam={exam}
+                key={index}
+                handleClickScheduleExam={handleClickScheduleExam}
+              />
+            ))}
         </div>
       </div>
     </>

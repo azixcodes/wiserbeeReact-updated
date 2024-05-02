@@ -50,6 +50,8 @@ const SignIn = () => {
     const validate = validator(obj);
     if (validate !== "success") {
       alert(validate);
+    } else if (selectedAccount === "" || selectedAccount === null) {
+      alert("No role  was selected");
     } else {
       try {
         const response = await postRequest("/accounts/login/", obj);
@@ -65,10 +67,11 @@ const SignIn = () => {
           );
           navigate("/home");
         } else {
-          const error =
-            "Please provide a email and password" ||
-            data.errors.non_field_errors[0];
-          alert(error);
+          if (data.errors["non_field_errors"]) {
+            alert(data.errors["non_field_errors"][0]);
+          } else {
+            alert("Something went wrong, please try again..");
+          }
         }
       } catch (err) {
         console.log(err);

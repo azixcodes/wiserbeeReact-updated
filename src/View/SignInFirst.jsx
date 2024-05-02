@@ -9,20 +9,30 @@ import {
 } from "../Constant/svgs";
 
 const Sign = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [selectAccountValue, setSelectAccountValue] = useState();
+  const [selectAccountValue, setSelectAccountValue] = useState("");
+  const [options, setOption] = useState([
+    { label: "student", isActive: true },
+    { label: "teacher", isActive: false },
+    { label: "parents", isActive: false },
+    { label: "management", isActive: false },
+  ]);
   const navigate = useNavigate();
 
   const handleMainBoxClick = (index) => {
-    setActiveIndex(index === activeIndex ? null : index);
-    setSelectAccountValue(options[index]);
+    const updatedItems = options.map((option, i) => ({
+      ...option,
+      isActive: index === i,
+    }));
+
+    setOption(updatedItems);
+
+    setSelectAccountValue(options[index].label);
   };
-  const options = ["Student", "Teacher", "Parents", "Management"];
   const svgPaths = [studenticon, teachericon, parenticon, managementicon];
 
   const handlerClick = () => {
     navigate("/sign-in", {
-      state: { selectedAccount: selectAccountValue || "Student" },
+      state: { selectedAccount: selectAccountValue || "student" },
     });
   };
 
@@ -47,19 +57,21 @@ const Sign = () => {
                     <div className="pt-3" key={index}>
                       <div
                         className={`main_box ${
-                          index === activeIndex ? "active" : ""
+                          option.isActive ? "active" : ""
                         }`}
                         onClick={() => handleMainBoxClick(index)}
                       >
                         <div className="d-flex justify-content-between align-items-center">
                           <div className="d-flex gap-4 main">
                             {svgPaths[index]}
-                            <p className="p-0 m-0">{option}</p>
+                            <p className="p-0 m-0 text-capitalize">
+                              {option.label}
+                            </p>
                           </div>
 
                           <div
                             className={`circle-checkbox ${
-                              index === activeIndex ? "active" : ""
+                              option.isActive ? "active" : ""
                             }`}
                             onClick={() => handleMainBoxClick(index)}
                           >

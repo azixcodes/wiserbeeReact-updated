@@ -7,7 +7,7 @@ import { getRequest } from "../services";
 const useFetch = (endpoint) => {
   const [apiData, setApiData] = useState({
     loading: false,
-    data: null,
+    data: [],
     error: null,
   });
 
@@ -16,11 +16,11 @@ const useFetch = (endpoint) => {
       setApiData({ ...apiData, loading: true });
       try {
         const response = await getRequest(endpoint);
-        const { results } = await response.json();
+        const data = await response.json();
         setApiData((prevData) => ({
           ...prevData,
           loading: false,
-          data: results,
+          data: data,
         }));
       } catch (err) {
         setApiData({ ...apiData, loading: false, error: err });
@@ -29,7 +29,18 @@ const useFetch = (endpoint) => {
 
     fetchData();
   }, [endpoint]);
-  return apiData;
+
+  //this function will trigger fetch again...
+  const refetch = async () => {
+    try {
+      const response = await getRequest(endpoint);
+      const data = await response.json();
+      setApiData({ loading: false, data: data, error: null });
+    } catch (err) {
+      setApiData({ loading: false, data: [], error: err });
+    }
+  };
+  return { ...apiData, refetch };
 };
 
 export default useFetch;

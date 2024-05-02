@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import Counter from "../Components/Common/Counter";
+import { postRequest } from "../services/index";
+import { validator } from "../Constant/validator";
 
 const AddExamModal = ({ onRequestClose }) => {
   const [questionCounter, setquestionCounter] = useState(0);
   const [minsCounter, setMinsCounter] = useState(0);
 
   const [examData, setExamData] = useState({
+    course: 1,
     exam_title: "",
-    class: "",
-    section: "",
-    category: "",
-    totalQuestions: 0,
-    mins: 0,
+    class: "8th Class",
+    section: "All Sections",
+    category: "Exam",
+    mins: "",
+    standard: "Test",
+    questions: 0,
   });
 
   const handleClick = (counter, action) => {
@@ -34,7 +38,7 @@ const AddExamModal = ({ onRequestClose }) => {
   useEffect(() => {
     setExamData({
       ...examData,
-      mins: minsCounter,
+      mins: minsCounter.toString(),
       questionCounter: questionCounter,
     });
   }, [questionCounter, minsCounter]);
@@ -42,9 +46,38 @@ const AddExamModal = ({ onRequestClose }) => {
     const { name, value } = e.target;
     setExamData({ ...examData, [name]: value });
   };
-  const handleSubmitData = () => {
-    console.log(examData);
+  const handleSubmitData = async () => {
+    const exam = {
+      course: examData.course,
+      Exam_title: examData.exam_title,
+      standard: examData.standard,
+      section: examData.section,
+      category: examData.category.toLowerCase(),
+      number_of_questions: questionCounter,
+      duration_in_minutes: examData.mins,
+    };
+    const validate = validator(examData);
+    if (validate === "success") {
+      try {
+        const response = await postRequest("/quiz/exam-quizes/", exam);
+        const data = await response.json();
+
+        if (response.ok) {
+          alert("Exam added successfully");
+
+          onRequestClose();
+        } else {
+          alert(data.response.message);
+        }
+        // console.log(exam);
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      alert(validate);
+    }
   };
+
   return (
     <div className="container-fluid p-0 m-0 pb-4 modalWrapper">
       <div className="row  d-flex justify-content-center p-0 m-0">
@@ -108,7 +141,7 @@ const AddExamModal = ({ onRequestClose }) => {
             >
               <option>Exam</option>
               <option>Assignment</option>
-              <option>Practical</option>
+              <option>Practice</option>
               <option>Tests</option>
             </select>
           </div>

@@ -20,6 +20,7 @@ const SignUp = () => {
 
   const location = useLocation();
   const selectedAccount = location.state && location.state.selectedAccount;
+
   console.log("selectedAccount", selectedAccount);
 
   const togglePasswordVisibility = () => {
@@ -51,13 +52,19 @@ const SignUp = () => {
       alert(validate);
     } else if (obj.password !== obj["confirm password"]) {
       alert("passwords do not match..");
+    } else if (
+      selectedAccount === null ||
+      selectedAccount === undefined ||
+      selectedAccount === ""
+    ) {
+      alert("Please select your desired role first..");
     } else {
       // navigate("/home");
       try {
         const data = {
           username: obj.name,
           email: obj.email,
-          role: "teacher",
+          role: selectedAccount,
           password: obj.password,
           password2: obj["confirm password"],
           phone: obj["phone number"],
@@ -66,6 +73,7 @@ const SignUp = () => {
         const result = await response.json();
         if (result.msg === "Registration Successful") {
           alert("resgistration success");
+          navigate("/");
         } else {
           alert("something went wrong, please try again..");
           console.log(result);
