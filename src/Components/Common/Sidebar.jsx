@@ -16,9 +16,9 @@ const Sidebar = () => {
     setToggleSidebar((prev) => !prev);
   };
   let user = auth?.user || "student" || "teacher";
-  const test = JSON.parse(localStorage.getItem("user"));
-  if (test) {
-    user = test.user;
+  const userRole = JSON.parse(localStorage.getItem("user"));
+  if (userRole) {
+    user = userRole.user;
   }
   useEffect(() => {
     if (user === "student") {

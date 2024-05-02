@@ -1,9 +1,37 @@
-import { Check, X } from "lucide-react";
 import React, { useState } from "react";
+import { Check, X } from "lucide-react";
 import Counter from "../Components/Common/Counter";
 
 const AddQuestions = ({ onRequestClose }) => {
-  const [questionCounter, setquestionCounter] = useState(8);
+  const [options, setOptions] = useState([
+    {
+      id: 1,
+      question: "",
+      mcqs: [
+        {
+          answer: "",
+          isCorrect: false,
+          isChecked: false,
+        },
+        {
+          answer: "",
+          isCorrect: false,
+          isChecked: false,
+        },
+        {
+          answer: "",
+          isCorrect: false,
+          isChecked: false,
+        },
+        {
+          answer: "",
+          isCorrect: false,
+          isChecked: false,
+        },
+      ],
+    },
+  ]);
+  const [questionCounter, setquestionCounter] = useState(0);
   let dots = [];
   for (let i = 0; i < 8; i++) {
     dots.push(i);
@@ -16,7 +44,21 @@ const AddQuestions = ({ onRequestClose }) => {
       }
     }
   };
-  const options = [1, 2, 3, 4];
+  const handleOptionSelect = (questionIndex, mcqIndex) => {
+    const updatedOptions = options.map((option, index) => {
+      return {
+        ...option,
+        mcqs: option.mcqs.map((mcq, i) => ({
+          ...mcq,
+          isChecked: i === mcqIndex,
+        })),
+      };
+    });
+
+    setOptions(updatedOptions);
+  };
+
+  console.log(options);
   return (
     <div className="container-fluid p-0 m-0 pb-4 modalWrapper">
       <div className="row  d-flex justify-contents-center p-0 m-0">
@@ -73,50 +115,59 @@ const AddQuestions = ({ onRequestClose }) => {
           <h4 className="fs-6 fw-bold">Question 01</h4>
         </div>
       </div>
-      <div className="row mt-4 px-4">
-        <div className="col-md-12">
-          <input
-            type="text"
-            className="form-control"
-            placeholder="Enter possible question here"
-          />
-        </div>
-      </div>
-      <div className="row px-4 mt-4">
-        <div className="col-md-12 p-0 m-0">
-          <div className="d-flex w-100 flex-column gap-4 px-3">
-            {options.map((_, index) => (
-              <div key={index} className="d-flex align-items-center gap-2">
-                <div
-                  className=" position-relative w-100 rounded"
-                  style={{ border: "1px solid #E2E2E2" }}
-                >
-                  <input
-                    type="text"
-                    placeholder="Enter possible option here"
-                    className="form-control"
-                    style={{ border: "none", outline: "none" }}
-                  />
-                </div>
-                <div className="d-flex gap-3 align-items-center">
-                  <div
-                    className="addQuestionIconWrapper"
-                    style={{ backgroundColor: "#3DC079", color: "white" }}
-                  >
-                    <Check />
-                  </div>
-                  <div
-                    className="addQuestionIconWrapper"
-                    style={{ backgroundColor: "#EA57574D", color: "#EA5757" }}
-                  >
-                    <X />
+
+      <>
+        {options.map((option, index) => (
+          <div className="flex flex-column" key={index}>
+            <div className="row mt-4 px-4">
+              <div className="col-md-12">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Enter possible question here"
+                />
+              </div>
+            </div>
+            {option.mcqs.map((mcq, i) => (
+              <div className="row px-4 mt-4" key={i}>
+                <div className="col-md-12 p-0 m-0">
+                  <div className="d-flex w-100 flex-column gap-4 px-3">
+                    <div className="d-flex align-items-center gap-2">
+                      <div
+                        className=" position-relative w-100 rounded"
+                        style={{ border: "1px solid #E2E2E2" }}
+                      >
+                        <input
+                          type="text"
+                          placeholder="Enter possible option here"
+                          className="form-control"
+                          style={{ border: "none", outline: "none" }}
+                        />
+                      </div>
+                      <div
+                        className="d-flex gap-3 align-items-center cursor-pointer"
+                        onClick={() => handleOptionSelect(option.id, i)}
+                      >
+                        <div
+                          className="addQuestionIconWrapper"
+                          style={{
+                            backgroundColor: mcq.isChecked
+                              ? "#3DC079"
+                              : "#9fdfbc",
+                            color: "white",
+                          }}
+                        >
+                          <Check />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             ))}
           </div>
-        </div>
-      </div>
+        ))}
+      </>
       <div className="row px-4 py-2 ">
         <div className="col-md-12 d-flex justify-content-center justify-content-md-end">
           <div className="row">

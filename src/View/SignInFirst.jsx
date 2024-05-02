@@ -9,7 +9,7 @@ import {
 } from "../Constant/svgs";
 
 const Sign = () => {
-  const [selectAccountValue, setSelectAccountValue] = useState("");
+  const [selectAccountValue, setSelectAccountValue] = useState("student");
   const [options, setOption] = useState([
     { label: "student", isActive: true },
     { label: "teacher", isActive: false },
@@ -32,7 +32,7 @@ const Sign = () => {
 
   const handlerClick = () => {
     navigate("/sign-in", {
-      state: { selectedAccount: selectAccountValue || "student" },
+      state: { selectedAccount: selectAccountValue },
     });
   };
 

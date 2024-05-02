@@ -8,15 +8,15 @@ import { Store } from "../../ContextAPI/Context";
 const MiniSidebar = ({ toggle, setToggle }) => {
   const { auth } = Store();
   const [navLinks, setNavLinks] = useState([]);
-  let user = auth?.user || "Student" || "Teacher";
+  let user = auth?.user || "student" || "teacher";
   const test = JSON.parse(localStorage.getItem("user"));
   if (test) {
     user = test.user;
   }
   useMemo(() => {
-    if (user === "Student") {
+    if (user === "student") {
       setNavLinks(studentLinks);
-    } else if (user === "Teacher") {
+    } else if (user === "teacher") {
       setNavLinks(teacherLinks);
     }
   }, [user]);

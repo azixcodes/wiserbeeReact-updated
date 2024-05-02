@@ -20,8 +20,11 @@ const SignIn = () => {
 
   const location = useLocation();
   const selectedAccount = location.state && location.state.selectedAccount;
-  // console.log("selectedAccount", selectedAccount);
-
+  useEffect(() => {
+    if (selectedAccount === null) {
+      navigate("/");
+    }
+  }, []);
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
