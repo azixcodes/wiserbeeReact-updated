@@ -54,7 +54,7 @@ const AppRouter = () => {
   return (
     <Routes>
       <Route path="/" element={<Sign />} />
-      {role === "Student" ? (
+      {role === "student" ? (
         <>
           <Route path="/home" element={<ProtectedRoute Component={Home} />} />
           <Route

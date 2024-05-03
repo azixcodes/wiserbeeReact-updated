@@ -23,11 +23,8 @@ const ExamsManagement = () => {
     error: quizError,
   } = useFetch("/quiz/exam-schedule/");
 
-  const quizesId = quizData.map((quiz) => {
-    return quiz.exam_quiz;
-  });
-
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [numberOfQuestions, setNumberOfQuestions] = useState(0);
   const [scheduleExamOpen, setScheduleExamOpen] = useState(false);
   const [questionsOpen, setQuestionsOpen] = useState(false);
 
@@ -41,7 +38,8 @@ const ExamsManagement = () => {
     setQuestionsOpen(false);
     refetch("/quiz/exam-schedule/");
   };
-  const handleClickQuestions = () => {
+  const handleClickQuestions = (question) => {
+    setNumberOfQuestions(question);
     setQuestionsOpen(true);
   };
 
@@ -88,7 +86,10 @@ const ExamsManagement = () => {
         style={customStyles}
         onRequestClose={closeModal}
       >
-        <AddQuestions onRequestClose={closeModal} />
+        <AddQuestions
+          onRequestClose={closeModal}
+          questions={numberOfQuestions}
+        />
       </Modal>
       <div className="container-fluid bg-white rounded px-2 py-2">
         <div className="row d-flex align-items-center">
@@ -120,7 +121,7 @@ const ExamsManagement = () => {
             <ExamCards exam={exam} key={index} />
           ))} */}
           {loading && <h2>Loading Exams...</h2>}
-          {error && <h4>Error </h4>}
+          {error && <h4>Error Loading Exams</h4>}
           {examData &&
             examData.map((exam, index) => (
               <ExamCards

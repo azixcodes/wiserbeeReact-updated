@@ -1,12 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Check, X } from "lucide-react";
 import Counter from "../Components/Common/Counter";
 
-const AddQuestions = ({ onRequestClose }) => {
+const AddQuestions = ({ onRequestClose, questions }) => {
+  const ref1 = useRef();
+  const ref2 = useRef();
+  const ref3 = useRef();
+  const ref4 = useRef();
+  const [question, SetQuestion] = useState("");
+  const [click, setClick] = useState(1);
+  const [percentage, setPercentage] = useState(0);
+  const refs = [ref1, ref2, ref3, ref4];
+
+  const [quiz, setQuiz] = useState([]);
+
   const [options, setOptions] = useState([
     {
       id: 1,
       question: "",
+      marks: 0,
       mcqs: [
         {
           answer: "",
@@ -32,8 +44,9 @@ const AddQuestions = ({ onRequestClose }) => {
     },
   ]);
   const [questionCounter, setquestionCounter] = useState(0);
+
   let dots = [];
-  for (let i = 0; i < 8; i++) {
+  for (let i = 0; i < questions; i++) {
     dots.push(i);
   }
   const handleClick = (counter, action) => {
@@ -51,6 +64,7 @@ const AddQuestions = ({ onRequestClose }) => {
         mcqs: option.mcqs.map((mcq, i) => ({
           ...mcq,
           isChecked: i === mcqIndex,
+          isCorrect: i === mcqIndex,
         })),
       };
     });
@@ -58,7 +72,75 @@ const AddQuestions = ({ onRequestClose }) => {
     setOptions(updatedOptions);
   };
 
-  console.log(options);
+  const handleClickNext = () => {
+    const oldOptions = [...options];
+    if (click >= questions) {
+      alert("Question completed");
+      return;
+    }
+    const newMcqs = options[0].mcqs;
+
+    if (question === "") {
+      alert("Please add a question");
+      return;
+    } else if (
+      newMcqs[0].answer === "" ||
+      newMcqs[1].answer === "" ||
+      newMcqs[2].answer === "" ||
+      newMcqs[3].answer === ""
+    ) {
+      alert("please provide all options");
+      return;
+    } else if (
+      newMcqs[0].isCorrect === false &&
+      newMcqs[1].isCorrect === false &&
+      newMcqs[2].isCorrect === false &&
+      newMcqs[3].isCorrect === false
+    ) {
+      alert("Please mark at least one option as correct");
+      return;
+    } else if (questionCounter === 0) {
+      alert("Marks should be greater than 0");
+      return;
+    }
+
+    const newQuestion = {
+      id: quiz.length + 1,
+      question: question,
+      marks: questionCounter,
+      mcqs: newMcqs,
+    };
+    setQuiz([...quiz, newQuestion]);
+    setClick(click + 1);
+    setPercentage((prev) => prev + 100 / questions);
+    setquestionCounter(0);
+    setOptions(oldOptions);
+
+    SetQuestion("");
+    for (let i = 0; i < refs.length; i++) {
+      refs[i].current.value = "";
+    }
+  };
+  useEffect(() => {
+    setPercentage((prev) => prev + 100 / questions);
+  }, []);
+  const handleOptionChange = (index, e) => {
+    const newMcqs = options[0].mcqs;
+
+    newMcqs[index].answer = e.target.value;
+
+    const oldOptions = [...options];
+
+    oldOptions[0].mcqs = newMcqs;
+
+    setOptions(oldOptions);
+
+    // call an api it was the last question...
+
+    if (click >= questions) {
+    }
+  };
+
   return (
     <div className="container-fluid p-0 m-0 pb-4 modalWrapper">
       <div className="row  d-flex justify-contents-center p-0 m-0">
@@ -79,12 +161,17 @@ const AddQuestions = ({ onRequestClose }) => {
       <div className="row px-4 m-0 gap-5 mt-4">
         <div className="col-md-4  m-0 p-0">
           <div className="w-100 d-flex flex-column gap-2 justify-content-center ">
-            <label>1/8</label>
+            <label>
+              {click}/{questions}
+            </label>
             <div className="questionBarProgress">
               {dots.map((_, index) => (
-                <div className="dot" key={index}></div>
+                <div className="dot" key={index} style={{}}></div>
               ))}
-              <div className="progressBar"></div>
+              <div
+                className="progressBar"
+                style={{ width: percentage + "%" }}
+              ></div>
             </div>
           </div>
         </div>
@@ -96,6 +183,7 @@ const AddQuestions = ({ onRequestClose }) => {
               isFullWidth={true}
               counter="question"
               handleClick={handleClick}
+              disable={click >= questions}
             />
           </div>
         </div>
@@ -125,6 +213,8 @@ const AddQuestions = ({ onRequestClose }) => {
                   type="text"
                   className="form-control"
                   placeholder="Enter possible question here"
+                  onChange={(e) => SetQuestion(e.target.value)}
+                  value={question}
                 />
               </div>
             </div>
@@ -142,6 +232,9 @@ const AddQuestions = ({ onRequestClose }) => {
                           placeholder="Enter possible option here"
                           className="form-control"
                           style={{ border: "none", outline: "none" }}
+                          id={`option${i}`}
+                          onChange={(e) => handleOptionChange(i, e)}
+                          ref={refs[i]}
                         />
                       </div>
                       <div
@@ -184,6 +277,7 @@ const AddQuestions = ({ onRequestClose }) => {
               <button
                 className="btnFooter"
                 style={{ backgroundColor: "#463C77", color: "white" }}
+                onClick={handleClickNext}
               >
                 Next
               </button>

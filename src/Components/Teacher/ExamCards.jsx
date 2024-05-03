@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { CalendarCheck2, CalendarClock } from "lucide-react";
 import { bulbSvg, clockSvg } from "../../Constant/svgs";
 import useFetch from "../../hooks/UseFetch";
@@ -57,7 +57,7 @@ const ExamCards = ({ exam, handleClickScheduleExam, handleClickQuestions }) => {
           fontSize: "12px",
           border: "none",
         }}
-        onClick={() => handleClickScheduleExam(exam.id)}
+        // onClick={() => handleClickScheduleExam(exam.id)}
       >
         <span className="rounded p-0 m-0">
           <CalendarClock style={{ height: "16px", width: "16px" }} />
@@ -90,7 +90,7 @@ const ExamCards = ({ exam, handleClickScheduleExam, handleClickQuestions }) => {
           </div>
           <div
             className="d-flex gap-1 align-items-center cursor-pointer"
-            onClick={handleClickQuestions}
+            onClick={() => handleClickQuestions(exam.number_of_questions)}
           >
             {bulbSvg}{" "}
             <span>
