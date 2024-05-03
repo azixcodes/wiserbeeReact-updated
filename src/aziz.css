@@ -862,6 +862,7 @@ h4 {
   align-items: center;
   position: relative;
   background-color: #e0e0e0;
+  overflow: hidden;
 }
 .questionBarProgress .dot {
   height: 4.68px;
@@ -869,7 +870,7 @@ h4 {
   border-radius: 50%;
   background-color: #51477f;
   position: relative;
-  z-index: 10;
+  z-index: 9999;
 }
 .dot:nth-child(1) {
   background-color: white;
@@ -878,7 +879,7 @@ h4 {
   position: absolute;
   background-color: #51477f;
   height: 100%;
-  width: 20%;
+
   border-radius: 15px;
   left: 0;
 }
