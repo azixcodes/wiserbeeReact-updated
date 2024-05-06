@@ -57,7 +57,7 @@ const ExamCards = ({ exam, handleClickScheduleExam, handleClickQuestions }) => {
           fontSize: "12px",
           border: "none",
         }}
-        // onClick={() => handleClickScheduleExam(exam.id)}
+        onClick={() => handleClickScheduleExam(exam.id)}
       >
         <span className="rounded p-0 m-0">
           <CalendarClock style={{ height: "16px", width: "16px" }} />

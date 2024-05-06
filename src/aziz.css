@@ -872,8 +872,11 @@ h4 {
   position: relative;
   z-index: 9999;
 }
-.dot:nth-child(1) {
+/* .dot:nth-child(1) {
   background-color: white;
+} */
+.dotWhite {
+  background-color: white !important;
 }
 .questionBarProgress .progressBar {
   position: absolute;

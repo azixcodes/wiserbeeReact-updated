@@ -1,16 +1,20 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Check, X } from "lucide-react";
 import Counter from "../Components/Common/Counter";
+import { postRequest } from "../services";
 
 const AddQuestions = ({ onRequestClose, questions }) => {
   const ref1 = useRef();
   const ref2 = useRef();
   const ref3 = useRef();
   const ref4 = useRef();
+
   const [question, SetQuestion] = useState("");
   const [click, setClick] = useState(1);
   const [percentage, setPercentage] = useState(0);
   const refs = [ref1, ref2, ref3, ref4];
+  const [apiData, setApiData] = useState(null);
+  const [count, setcount] = useState(0);
 
   const [quiz, setQuiz] = useState([]);
 
@@ -58,7 +62,7 @@ const AddQuestions = ({ onRequestClose, questions }) => {
     }
   };
   const handleOptionSelect = (questionIndex, mcqIndex) => {
-    const updatedOptions = options.map((option, index) => {
+    const updatedOptions = options.map((option) => {
       return {
         ...option,
         mcqs: option.mcqs.map((mcq, i) => ({
@@ -74,9 +78,11 @@ const AddQuestions = ({ onRequestClose, questions }) => {
 
   const handleClickNext = () => {
     const oldOptions = [...options];
+
+    // call an api if it's the last question...
     if (click >= questions) {
       alert("Question completed");
-      return;
+      postQuestion();
     }
     const newMcqs = options[0].mcqs;
 
@@ -110,8 +116,14 @@ const AddQuestions = ({ onRequestClose, questions }) => {
       marks: questionCounter,
       mcqs: newMcqs,
     };
-    setQuiz([...quiz, newQuestion]);
-    setClick(click + 1);
+
+    setQuiz((prev) => [...prev, newQuestion]);
+    if (click >= questions) {
+      setClick(click);
+    } else {
+      setClick(click + 1);
+    }
+    setcount(count + 1);
     setPercentage((prev) => prev + 100 / questions);
     setquestionCounter(0);
     setOptions(oldOptions);
@@ -124,6 +136,7 @@ const AddQuestions = ({ onRequestClose, questions }) => {
   useEffect(() => {
     setPercentage((prev) => prev + 100 / questions);
   }, []);
+
   const handleOptionChange = (index, e) => {
     const newMcqs = options[0].mcqs;
 
@@ -134,12 +147,34 @@ const AddQuestions = ({ onRequestClose, questions }) => {
     oldOptions[0].mcqs = newMcqs;
 
     setOptions(oldOptions);
-
-    // call an api it was the last question...
-
-    if (click >= questions) {
-    }
   };
+  async function postQuestion() {
+    const payload = { mcqs: apiData };
+    const res = await postRequest("/quiz/choice/", payload);
+    const data = await res.json();
+    if (res.ok) {
+      alert("Exam added successfully");
+      onRequestClose();
+    } else {
+      alert("something went wrong, please try again.");
+    }
+  }
+  useEffect(() => {
+    const transformedData = quiz.map((option) => ({
+      exam_quiz: option.id,
+      mcquestion: option.question,
+      option_1: option.mcqs[0].answer,
+      option_1_is_correct: option.mcqs[0].isCorrect,
+      option_2: option.mcqs[1].answer,
+      option_2_is_correct: option.mcqs[1].isCorrect,
+      option_3: option.mcqs[2].answer,
+      option_3_is_correct: option.mcqs[2].isCorrect,
+      option_4: option.mcqs[3].answer,
+      option_4_is_correct: option.mcqs[3].isCorrect,
+    }));
+    // arr.push(transformedData);
+    setApiData(transformedData);
+  }, [quiz.length]);
 
   return (
     <div className="container-fluid p-0 m-0 pb-4 modalWrapper">
@@ -165,8 +200,14 @@ const AddQuestions = ({ onRequestClose, questions }) => {
               {click}/{questions}
             </label>
             <div className="questionBarProgress">
-              {dots.map((_, index) => (
+              {/* {dots.map((_, index) => (
                 <div className="dot" key={index} style={{}}></div>
+              ))} */}
+              {dots.map((_, index) => (
+                <div
+                  className={`dot ${index < click ? "dotWhite" : ""}`}
+                  key={index}
+                ></div>
               ))}
               <div
                 className="progressBar"
@@ -183,7 +224,7 @@ const AddQuestions = ({ onRequestClose, questions }) => {
               isFullWidth={true}
               counter="question"
               handleClick={handleClick}
-              disable={click >= questions}
+              disable={click > questions}
             />
           </div>
         </div>
