@@ -1,12 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import ProgressbarPrimary from "../Components/PrimaryProgressbar/ProgressbarPrimary";
 import { examQuestions } from "../Constant/questions";
-
+import { useParams } from "react-router-dom";
 import Question from "../Components/Common/Question";
-
+import useFetch from "../hooks/UseFetch";
 const ExamQuestions = () => {
-  const [questions, setQuestions] = useState(examQuestions);
+  const { id } = useParams();
+  const { loading, data, error } = useFetch("/quiz/choice/get_list/");
+  const [examId, setExamId] = useState(null);
+
+  useEffect(() => {
+    setExamId(id);
+  }, [id]);
+  const mcqForID = data[id];
+
+  const [questions, setQuestions] = useState(mcqForID);
   const handleSelectQuestion = (questionIndex, choiceIndex) => {
     const updatedQuestions = questions.map((question, qIndex) => {
       if (qIndex === questionIndex) {
@@ -44,14 +53,14 @@ const ExamQuestions = () => {
       </div>
       {/* Questions */}
       <div className="row px-2">
-        {questions.map((question, index) => (
-          <Question
-            question={question}
-            key={index}
-            num={index}
-            handleSelectQuestion={handleSelectQuestion}
-          />
-        ))}
+        <Question
+          question={mcqForID}
+          num={0}
+          // handleSelectQuestion={handleSelectQuestion}
+          examId={examId}
+          loading={loading}
+          error={error}
+        />
       </div>
       <div className="row mt-3 px-2">
         <div className="col-md-12 ">

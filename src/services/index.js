@@ -8,7 +8,6 @@ export const getRequest = async (endpoint) => {
 };
 
 export const postRequest = async (endPoint, data) => {
-  console.log(`${BASE_URL}${endPoint}`);
   return await fetch(`${BASE_URL}${endPoint}`, {
     method: "POST",
     headers: {

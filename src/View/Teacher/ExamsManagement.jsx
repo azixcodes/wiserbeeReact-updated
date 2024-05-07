@@ -27,6 +27,7 @@ const ExamsManagement = () => {
   const [numberOfQuestions, setNumberOfQuestions] = useState(0);
   const [scheduleExamOpen, setScheduleExamOpen] = useState(false);
   const [questionsOpen, setQuestionsOpen] = useState(false);
+  const [questionID, setQuestionID] = useState(null);
 
   const handleAddNewExamClick = () => {
     setIsOpen(true);
@@ -38,9 +39,10 @@ const ExamsManagement = () => {
     setQuestionsOpen(false);
     refetch("/quiz/exam-schedule/");
   };
-  const handleClickQuestions = (question) => {
+  const handleClickQuestions = (question, exam) => {
     setNumberOfQuestions(question);
     setQuestionsOpen(true);
+    setQuestionID(exam);
   };
 
   const customStyles = {
@@ -59,10 +61,13 @@ const ExamsManagement = () => {
   async function closeModal() {
     setIsOpen(false);
     setScheduleExamOpen(false);
-    setQuestionsOpen(false);
+
     await refetch();
   }
-
+  async function closeQuestionModal() {
+    setQuestionsOpen(false);
+    await refetch("/quiz/exam-quizes/");
+  }
   return (
     <>
       <Modal
@@ -87,8 +92,9 @@ const ExamsManagement = () => {
         onRequestClose={closeModal}
       >
         <AddQuestions
-          onRequestClose={closeModal}
+          onRequestClose={closeQuestionModal}
           questions={numberOfQuestions}
+          questionID={questionID}
         />
       </Modal>
       <div className="container-fluid bg-white rounded px-2 py-2">

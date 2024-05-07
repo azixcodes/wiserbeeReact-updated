@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { CalendarCheck2, CalendarClock } from "lucide-react";
-import { bulbSvg, clockSvg } from "../../Constant/svgs";
+import { bulbSvg, activeBulbSvg, clockSvg } from "../../Constant/svgs";
 import useFetch from "../../hooks/UseFetch";
 import { formatDate } from "../../Constant/helpers";
 const ExamCards = ({ exam, handleClickScheduleExam, handleClickQuestions }) => {
@@ -10,12 +10,19 @@ const ExamCards = ({ exam, handleClickScheduleExam, handleClickQuestions }) => {
     error: quizError,
   } = useFetch("/quiz/exam-schedule/");
 
+  const {
+    loading: questionLoading,
+    data: questionData,
+    error: questionError,
+    refetch,
+  } = useFetch("/quiz/choice/get_list");
+
   const renderButtons = (id) => {
     const index = quizData.findIndex((item) => item.exam_quiz === id);
 
     if (index !== -1) {
       const date = quizData[index].end_date;
-      const timing = `${quizData[index].start_time.substring(0, 5)}- ${quizData[
+      const timing = `${quizData[index].start_time.substring(0, 5)}-${quizData[
         index
       ].end_time.substring(0, 5)}`;
       return (
@@ -68,7 +75,27 @@ const ExamCards = ({ exam, handleClickScheduleExam, handleClickQuestions }) => {
       </button>
     );
   };
+  const checkQuestions = (id) => {
+    const arr = [];
+    for (let res in questionData) {
+      arr.push(questionData[res]);
+    }
 
+    const index = arr.flat().findIndex((item) => item.exam_quiz === id);
+    if (index !== -1) {
+      return <span>{activeBulbSvg}</span>;
+    } else {
+      return (
+        <span
+          onClick={() =>
+            handleClickQuestions(exam.number_of_questions, exam.id)
+          }
+        >
+          {bulbSvg}
+        </span>
+      );
+    }
+  };
   return (
     <div className="col-md-4 mb-3">
       <div className="d-flex flex-column align-items-between examDataWrapper px-2 py-3">
@@ -82,18 +109,19 @@ const ExamCards = ({ exam, handleClickScheduleExam, handleClickQuestions }) => {
         </div>
         <div className="d-flex gap-3 mt-3 align-items-center examSvgsText">
           <div className="d-flex gap-1 align-items-center">
-            {clockSvg}{" "}
+            {clockSvg}
             <span>
-              {exam.duration_in_minutes}{" "}
+              {exam.duration_in_minutes}
               {exam.duration_in_minutes > 1 ? " Mins" : " Min"}
             </span>
           </div>
-          <div
-            className="d-flex gap-1 align-items-center cursor-pointer"
-            onClick={() => handleClickQuestions(exam.number_of_questions)}
-          >
-            {bulbSvg}{" "}
-            <span>
+          <div className="d-flex gap-1 align-items-center cursor-pointer">
+            {checkQuestions(exam.id)}
+            <span
+            // onClick={() =>
+            //   handleClickQuestions(exam.number_of_questions, exam.id)
+            // }
+            >
               {exam.number_of_questions}
               {exam.number_of_questions > 1 ? " Questions" : " Question"}
             </span>

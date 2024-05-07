@@ -64,9 +64,6 @@ const Sidebar = () => {
     };
   }, []);
 
-  console.log(auth);
-  console.log("user role is ", user);
-
   return (
     <aside
       className={`${

@@ -1,20 +1,22 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useMemo } from "react";
 import { Check, X } from "lucide-react";
 import Counter from "../Components/Common/Counter";
 import { postRequest } from "../services";
 
-const AddQuestions = ({ onRequestClose, questions }) => {
+const AddQuestions = ({ onRequestClose, questions, questionID }) => {
+  console.log(questionID);
   const ref1 = useRef();
   const ref2 = useRef();
   const ref3 = useRef();
   const ref4 = useRef();
 
-  const [question, SetQuestion] = useState("");
+  const [question, setQuestion] = useState("");
   const [click, setClick] = useState(1);
   const [percentage, setPercentage] = useState(0);
   const refs = [ref1, ref2, ref3, ref4];
+  const [makeApiReq, setMakeApiReq] = useState(false);
   const [apiData, setApiData] = useState(null);
-  const [count, setcount] = useState(0);
+  const [count, setCount] = useState(0);
 
   const [quiz, setQuiz] = useState([]);
 
@@ -47,7 +49,7 @@ const AddQuestions = ({ onRequestClose, questions }) => {
       ],
     },
   ]);
-  const [questionCounter, setquestionCounter] = useState(0);
+  const [questionCounter, setQuestionCounter] = useState(1);
 
   let dots = [];
   for (let i = 0; i < questions; i++) {
@@ -55,9 +57,9 @@ const AddQuestions = ({ onRequestClose, questions }) => {
   }
   const handleClick = (counter, action) => {
     if (counter === "question") {
-      if (action === "increment") setquestionCounter((prev) => prev + 1);
+      if (action === "increment") setQuestionCounter((prev) => prev + 1);
       else if (action === "decrement" && questionCounter > 0) {
-        setquestionCounter(questionCounter - 1);
+        setQuestionCounter(questionCounter - 1);
       }
     }
   };
@@ -78,31 +80,18 @@ const AddQuestions = ({ onRequestClose, questions }) => {
 
   const handleClickNext = () => {
     const oldOptions = [...options];
-
-    // call an api if it's the last question...
-    if (click >= questions) {
-      alert("Question completed");
-      postQuestion();
+    if (click === questions) {
+      setMakeApiReq(true);
     }
     const newMcqs = options[0].mcqs;
 
     if (question === "") {
       alert("Please add a question");
       return;
-    } else if (
-      newMcqs[0].answer === "" ||
-      newMcqs[1].answer === "" ||
-      newMcqs[2].answer === "" ||
-      newMcqs[3].answer === ""
-    ) {
+    } else if (newMcqs.some((mcq) => mcq.answer === "")) {
       alert("please provide all options");
       return;
-    } else if (
-      newMcqs[0].isCorrect === false &&
-      newMcqs[1].isCorrect === false &&
-      newMcqs[2].isCorrect === false &&
-      newMcqs[3].isCorrect === false
-    ) {
+    } else if (!newMcqs.some((mcq) => mcq.isCorrect)) {
       alert("Please mark at least one option as correct");
       return;
     } else if (questionCounter === 0) {
@@ -111,34 +100,33 @@ const AddQuestions = ({ onRequestClose, questions }) => {
     }
 
     const newQuestion = {
-      id: quiz.length + 1,
+      exam_quiz: questionID,
       question: question,
       marks: questionCounter,
       mcqs: newMcqs,
     };
 
-    setQuiz((prev) => [...prev, newQuestion]);
+    setQuiz([...quiz, newQuestion]);
     if (click >= questions) {
       setClick(click);
     } else {
-      setClick(click + 1);
+      setClick((prev) => prev + 1);
     }
-    setcount(count + 1);
+    setCount(count + 1);
     setPercentage((prev) => prev + 100 / questions);
-    setquestionCounter(0);
+    setQuestionCounter(1);
     setOptions(oldOptions);
 
-    SetQuestion("");
-    for (let i = 0; i < refs.length; i++) {
-      refs[i].current.value = "";
-    }
+    setQuestion("");
+    refs.forEach((ref) => (ref.current.value = ""));
   };
+
   useEffect(() => {
     setPercentage((prev) => prev + 100 / questions);
   }, []);
 
   const handleOptionChange = (index, e) => {
-    const newMcqs = options[0].mcqs;
+    const newMcqs = options[0].mcqs.slice();
 
     newMcqs[index].answer = e.target.value;
 
@@ -148,20 +136,14 @@ const AddQuestions = ({ onRequestClose, questions }) => {
 
     setOptions(oldOptions);
   };
-  async function postQuestion() {
-    const payload = { mcqs: apiData };
-    const res = await postRequest("/quiz/choice/", payload);
-    const data = await res.json();
-    if (res.ok) {
-      alert("Exam added successfully");
-      onRequestClose();
-    } else {
-      alert("something went wrong, please try again.");
-    }
-  }
+
   useEffect(() => {
-    const transformedData = quiz.map((option) => ({
-      exam_quiz: option.id,
+    setApiData(quiz);
+  }, [quiz]);
+
+  async function postQuestion() {
+    const format = quiz.map((option) => ({
+      exam_quiz: option.exam_quiz,
       mcquestion: option.question,
       option_1: option.mcqs[0].answer,
       option_1_is_correct: option.mcqs[0].isCorrect,
@@ -172,14 +154,30 @@ const AddQuestions = ({ onRequestClose, questions }) => {
       option_4: option.mcqs[3].answer,
       option_4_is_correct: option.mcqs[3].isCorrect,
     }));
-    // arr.push(transformedData);
-    setApiData(transformedData);
-  }, [quiz.length]);
+    const payload = {
+      mcqs: format,
+    };
+    const res = await postRequest("/quiz/choice/", payload);
+    // const data = await res.json();
+    if (res.ok) {
+      alert("Questions added successfully");
 
+      onRequestClose();
+    } else {
+      alert("something went wrong, please try again.");
+    }
+  }
+
+  useEffect(() => {
+    if (makeApiReq === true) {
+      postQuestion();
+    }
+  }, [makeApiReq]);
+  console.log(quiz);
   return (
     <div className="container-fluid p-0 m-0 pb-4 modalWrapper">
       <div className="row  d-flex justify-contents-center p-0 m-0">
-        <div className="col-md-12    examModalWrapper p-0 m-0">
+        <div className="col-md-12 examModalWrapper p-0 m-0">
           <div className="d-flex justify-content-between  align-items-center px-4  col-md-12 examModalHeader">
             <h4 style={{ color: "#060317" }} className="fw-bold">
               Question Details
@@ -254,7 +252,7 @@ const AddQuestions = ({ onRequestClose, questions }) => {
                   type="text"
                   className="form-control"
                   placeholder="Enter possible question here"
-                  onChange={(e) => SetQuestion(e.target.value)}
+                  onChange={(e) => setQuestion(e.target.value)}
                   value={question}
                 />
               </div>
