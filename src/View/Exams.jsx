@@ -95,7 +95,7 @@ const Exams = () => {
               <div
                 className="col-md-4 cursor-pointer py-2 px-2"
                 key={index}
-                onClick={() => handleQuestionNavigate(index)}
+                onClick={() => handleQuestionNavigate(exam.id)}
               >
                 <div className="d-flex flex-column align-items-between examDataWrapper px-2 py-3">
                   <h4 className="fw-bold p-0 m-0 fs-6 cursor-pointer">

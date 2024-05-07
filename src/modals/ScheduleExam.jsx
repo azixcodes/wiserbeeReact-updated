@@ -41,8 +41,6 @@ const ScheduleExam = ({ onRequestClose, examId }) => {
         console.log(err);
       }
     }
-
-    console.log(examSchedule);
   };
   return (
     <div className="container-fluid p-0 m-0 pb-4 modalWrapper">
