@@ -22,7 +22,7 @@ const Exams = () => {
         index
       ].end_time.substring(0, 5)}`;
       return (
-        <div className="d-flex   align-items-center gap-2 fs-6 ">
+        <div className="d-flex align-items-center gap-2 fs-6 ">
           <button
             className="text-capitalize fs-6 d-flex gap-2  align-items-center"
             style={{
@@ -75,7 +75,10 @@ const Exams = () => {
   const navigate = useNavigate();
 
   const handleQuestionNavigate = (id) => {
-    navigate(`/exams/${id}`);
+    const index = quizData.findIndex((item) => item.exam_quiz === id);
+    if (index !== -1) {
+      navigate(`/exams/${id}`);
+    } else return;
   };
   return (
     <>
@@ -101,13 +104,7 @@ const Exams = () => {
                   <h4 className="fw-bold p-0 m-0 fs-6 cursor-pointer">
                     {exam.Exam_title}
                   </h4>
-                  {/* <div className="d-flex flex-column flex-md-row gap-3 examChipsWrapper mt-3">
-      {exam.tags.map((tag, index) => (
-        <div className="examChip" key={index}>
-          {tag}
-        </div>
-      ))}
-    </div> */}
+
                   <div className="d-flex gap-3 mt-3 align-items-center examSvgsText">
                     <div className="d-flex gap-1 align-items-center">
                       {clockSvg}{" "}
