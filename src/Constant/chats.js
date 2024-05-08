@@ -17,14 +17,14 @@ export const chats = [
   {
     user: "John Doe",
     tag: "Student",
-    dp: null,
+    dp: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHJhbmRvbSUyMHBlb3BsZXxlbnwwfHwwfHx8MA%3D%3D",
     lastMessage: "Hey! Did you finish Hi-Fi wireframes for flora app design",
     timestamp: "30 mints ago",
   },
   {
     user: "Jennifer Markus",
     tag: "Instructor",
-    dp: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHJhbmRvbSUyMHBlb3BsZXxlbnwwfHwwfHx8MA%3D%3D",
+    dp: null,
     lastMessage: "Hey! Did you finish Hi-Fi wireframes for flora app design",
     timestamp: "30 mints ago",
   },

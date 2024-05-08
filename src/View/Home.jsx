@@ -11,35 +11,17 @@ import { chatSvg } from "../Constant/svgs";
 import Chatbot from "../Components/Common/Chatbot";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
+import ChildCards from "../Components/parent/ChildCards";
+import WelcomeSection from "../Components/Common/WelcomeSection";
+import UpcomingClasses from "../Components/parent/UpcomingClasses";
 
 const Home = () => {
   const [chatOpened, setChatOpened] = useState(false);
   const chatRef = useRef(null);
   const { auth } = Store();
   const user = auth.user;
-  const EntrollCourseValue = [
-    {
-      id: "1",
-      heading: "Courses",
-      price: "1,240",
-    },
-    {
-      id: "2",
-      heading: "Courses",
-      price: "1,240",
-    },
-    {
-      id: "3",
-      heading: "Courses",
-      price: "1,240",
-    },
-    {
-      id: "4",
-      heading: "Courses",
-      price: "1,240",
-    },
-  ];
-  const CoursesListValue = [
+
+  const [CoursesListValue, setCourseList] = useState([
     {
       id: "1",
       imgesLect: images.courseImges,
@@ -76,7 +58,7 @@ const Home = () => {
       durationLect: "15 Lessons (10h 5m)",
       completedLect: "65%",
     },
-  ];
+  ]);
   const handleChatClick = () => {
     setChatOpened(!chatOpened);
   };
@@ -97,33 +79,63 @@ const Home = () => {
   return (
     <>
       <section className="dashboardWrapper d-flex flex-column ">
-        <div className="welcomeBox">
+        {/* <div className="welcomeBox">
           <div className="logoWithText d-flex justify-content-start align-items-start flex-wrap">
             <div className="welcomeTxtP">
               <div className="mt-2">
                 <h6>Welcome back, John!</h6>
-                <p>Always stay updated in your student portal</p>
+                <p>Always stay updated in your {user} portal</p>
               </div>
-              <div className="welcomeTilles d-flex justify-content-start mt-5 flex-wrap">
-                {EntrollCourseValue.map((item, index) => (
-                  <EntrollCourseTiles
-                    key={index}
-                    id={index}
-                    heading={item.heading}
-                    price={item.price}
-                  />
+              {user === "parent" && <ChildCards />}
+              {user === "teacher" ||
+                (user === "student" && (
+                  <div className="welcomeTilles d-flex justify-content-start mt-5 flex-wrap">
+                    {EntrollCourseValue.map((item, index) => (
+                      <EntrollCourseTiles
+                        key={index}
+                        id={index}
+                        heading={item.heading}
+                        price={item.price}
+                      />
+                    ))}
+                  </div>
                 ))}
-              </div>
             </div>
           </div>
-        </div>
-        <div className="col-lg-12 ">
-          <div className="row ">
+        </div> */}
+        {user === "parent" ? null : <WelcomeSection user={user} />}
+        {user === "teacher" && (
+          <div className="col-lg-12 ">
+            <div className="row ">
+              <div className="align-self-start mt-4 col-12 col-md-4 ">
+                <div className="taskListView shadow">
+                  <h4 className="mb-4">Tasks</h4>
+                  <TaskNotifications />
+                </div>
+              </div>
+            </div>
+            {user === "Teacher" && (
+              <div className="row mt-5">
+                <div className="col-12 col-md-8">
+                  <h3 className="myClassesHeading">My Classes</h3>
+                  <div className="row">
+                    <ClassView />
+                  </div>
+                </div>
+                <div className="col-12 col-md-4 d-flex align-items-stretch">
+                  <QuickMessages />
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+        {user === "student" ? (
+          <div className="row">
             <div className="col-12 col-md-8">
               <div className="CoursesDetails">
                 <h3 className="myClassesHeading">My Courses</h3>
-                {user === "Student" ? (
-                  CoursesListValue.map((item, index) => (
+                <>
+                  {CoursesListValue.map((item, index) => (
                     <CoursesList
                       key={index}
                       id={index}
@@ -134,10 +146,8 @@ const Home = () => {
                       durationLect={item.durationLect}
                       completedLect={item.completedLect}
                     />
-                  ))
-                ) : (
-                  <Course useToggle={false} count={3} homeRender={true} />
-                )}
+                  ))}
+                </>
               </div>
             </div>
             <div className="align-self-start mt-4 col-12 col-md-4 ">
@@ -147,20 +157,37 @@ const Home = () => {
               </div>
             </div>
           </div>
-          {user === "Teacher" && (
-            <div className="row mt-5">
-              <div className="col-12 col-md-8">
-                <h3 className="myClassesHeading">My Classes</h3>
-                <div className="row">
-                  <ClassView />
+        ) : null}
+        {user === "parent" && (
+          <>
+            <div className="row">
+              <div className="col-md-9">Student Performance</div>
+              <div className="col-md-3">
+                <div className="taskListView shadow">
+                  <h4 className="mb-4">Tasks</h4>
+                  <TaskNotifications />
                 </div>
               </div>
-              <div className="col-12 col-md-4 d-flex align-items-stretch">
+            </div>
+            <div className="row">
+              <div className="col-md-3 mt-4">
+                <UpcomingClasses />
+              </div>
+
+              <div className="col-md-3 mt-4">
+                <UpcomingClasses />
+              </div>
+
+              <div className="col-md-3 mt-4">
+                <UpcomingClasses />
+              </div>
+
+              <div className="col-12 col-md-3 d-flex align-items-stretch">
                 <QuickMessages />
               </div>
             </div>
-          )}
-        </div>
+          </>
+        )}
         <AnimatePresence>
           <div
             className={`chatbotIconWrapper ${

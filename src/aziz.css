@@ -1741,14 +1741,6 @@ tr:nth-child(even) {
 /* awais css ends*/
 /* Media Queries */
 /* <>.....................................<BILAL CSS FOR TEACHER COMPONENTS STARTS>......................................... */
-.test {
-  background-color: #c4afff4d;
-  color: --bg-primary;
-  font-size: 12px;
-  font-weight: bold;
-  border-radius: 7px;
-  text-align: center;
-}
 
 .seven-class {
   background-color: #52afa626;
@@ -2035,6 +2027,80 @@ tr:nth-child(even) {
   border-top-left-radius: 7px;
 }
 /* <>............................<Attendance Buttons> ........................................*/
+
+/* <>.............................<Parent CSS Starts Here>....................................<> */
+.childChip {
+  width: 200px;
+  padding: 20px 9px;
+  border-radius: 15px;
+  color: white;
+  background-color: var(--bg-primary);
+}
+.childChip h6 {
+  /* color: var(--bg-primary) !important; */
+  font-weight: 400 !important;
+  font-size: 14px !important;
+}
+.childChip span {
+  /* color: #7a7a7a; */
+  color: white;
+  font-family: poppins;
+  font-style: italic;
+}
+.childAvatar {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.childAvatar img {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+/* upcomingClasses */
+.upComingClassMain {
+  background-color: white;
+  /* width: 50%; */
+  padding: 10px;
+}
+.upComingHeading {
+  font-size: 17px !important;
+  margin-left: 5px;
+}
+.clock_Dp {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.upcomingClassCardImage {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+.upcomingClassChips .test:nth-child(1) {
+  background-color: #ede7ff;
+  color: #8d66fe;
+}
+.upcomingClassChips .test:nth-child(2) {
+  color: #30ada1;
+  background-color: #e5f3f2;
+}
+.upcomingClassChips .test:nth-child(3) {
+  color: #3d87dc;
+  background-color: #e4effc;
+}
+.test {
+  font-size: 11px;
+  font-weight: bold;
+  border-radius: 7px;
+  text-align: center;
+  white-space: nowrap;
+}
+/* upcomingClasses */
+/* <>.............................<Parent CSS ends Here>....................................<> */
+
 @media (max-width: 990px) {
   .weakform-text {
     font-size: 14px !important;

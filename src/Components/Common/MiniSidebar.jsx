@@ -1,6 +1,10 @@
 import React, { useMemo, useState } from "react";
 import { SidebarLogo } from "../../Constant/images";
-import { studentLinks, teacherLinks } from "../../Constant/sidebarlinks";
+import {
+  studentLinks,
+  teacherLinks,
+  parentLinks,
+} from "../../Constant/sidebarlinks";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { Store } from "../../ContextAPI/Context";
@@ -8,7 +12,7 @@ import { Store } from "../../ContextAPI/Context";
 const MiniSidebar = ({ toggle, setToggle }) => {
   const { auth } = Store();
   const [navLinks, setNavLinks] = useState([]);
-  let user = auth?.user || "student" || "teacher";
+  let user = auth?.user || "student" || "teacher" || "parent";
   const test = JSON.parse(localStorage.getItem("user"));
   if (test) {
     user = test.user;
@@ -18,6 +22,8 @@ const MiniSidebar = ({ toggle, setToggle }) => {
       setNavLinks(studentLinks);
     } else if (user === "teacher") {
       setNavLinks(teacherLinks);
+    } else if (user === "parent") {
+      setNavLinks(parentLinks);
     }
   }, [user]);
 
