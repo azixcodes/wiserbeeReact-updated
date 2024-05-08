@@ -74,6 +74,7 @@ const Classes = () => {
                   <span className="px-1 py-1   fw-4 rounded p-0 addButtonSty">
                     <Plus />
                   </span>
+                  <span>add new</span>
                 </button>
               </div>
             </div>

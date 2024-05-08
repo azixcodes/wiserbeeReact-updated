@@ -145,7 +145,10 @@ const ScheduleClass = ({ onRequestClose, exam }) => {
           <div className="col-4">
             <div className="d-flex flex-column gap-2  ">
               <label for="category">Category</label>
-              <select class="form-select" aria-label="Default select example">
+              <select
+                class="form-select py-2"
+                aria-label="Default select example"
+              >
                 <option selected>Choose a Class Type</option>
                 <option value="1">Physical</option>
                 <option value="2">Online</option>
@@ -158,8 +161,11 @@ const ScheduleClass = ({ onRequestClose, exam }) => {
               <div className="d-flex justify-conten-between py-1 rounded px-1 border align-items-center">
                 <input
                   type="text"
-                  className="form-control locationInput"
-                  placeholder="class location"
+                  className="form-control py-1 fs-6 px-2 border-0"
+                  id="location"
+                  aria-describedby="location"
+                  placeholder="Location"
+                  name="location"
                 />
 
                 <Locate />
