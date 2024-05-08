@@ -61,11 +61,12 @@ const SignIn = () => {
         const data = await response.json();
         if (response.ok) {
           const { access } = data.token;
+          const { user } = data;
           localStorage.setItem(
             "user",
             JSON.stringify({
               token: access,
-              user: selectedAccount,
+              user,
             })
           );
           navigate("/home");

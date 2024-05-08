@@ -21,7 +21,7 @@ const Home = () => {
   const { auth } = Store();
   const user = auth.user;
 
-  const CoursesListValue = [
+  const [CoursesListValue, setCourseList] = useState([
     {
       id: "1",
       imgesLect: images.courseImges,
@@ -58,7 +58,7 @@ const Home = () => {
       durationLect: "15 Lessons (10h 5m)",
       completedLect: "65%",
     },
-  ];
+  ]);
   const handleChatClick = () => {
     setChatOpened(!chatOpened);
   };
@@ -129,13 +129,13 @@ const Home = () => {
             )}
           </div>
         )}
-        {user === "student" && (
+        {user === "student" ? (
           <div className="row">
             <div className="col-12 col-md-8">
               <div className="CoursesDetails">
                 <h3 className="myClassesHeading">My Courses</h3>
-                {user === "student" ? (
-                  CoursesListValue.map((item, index) => (
+                <>
+                  {CoursesListValue.map((item, index) => (
                     <CoursesList
                       key={index}
                       id={index}
@@ -146,10 +146,8 @@ const Home = () => {
                       durationLect={item.durationLect}
                       completedLect={item.completedLect}
                     />
-                  ))
-                ) : (
-                  <Course useToggle={false} count={3} homeRender={true} />
-                )}
+                  ))}
+                </>
               </div>
             </div>
             <div className="align-self-start mt-4 col-12 col-md-4 ">
@@ -159,10 +157,9 @@ const Home = () => {
               </div>
             </div>
           </div>
-        )}
+        ) : null}
         {user === "parent" && (
           <>
-            {" "}
             <div className="row">
               <div className="col-md-9">Student Performance</div>
               <div className="col-md-3">
