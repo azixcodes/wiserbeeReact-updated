@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Plus } from "lucide-react";
 import { classes } from "../../Constant/classes";
 import { useNavigate } from "react-router-dom";
 import { clockSvg, calanderSvg, studentSvg } from "../../Constant/svgs";
 import Modal from "react-modal";
 import ScheduleClass from "../../modals/ScheduleClass";
+import UserAvatars from "./UserAvatars";
 const customStyles = {
   content: {
     top: "50%",
@@ -20,10 +21,30 @@ const customStyles = {
 };
 const Classes = () => {
   const [open, setOpen] = useState(false);
+  const [users, setUsers] = useState({
+    loading: false,
+    data: [],
+    error: null,
+  });
   const navigate = useNavigate();
   const closeModal = () => {
     setOpen(false);
   };
+
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        setUsers({ ...users, loading: true });
+        const res = await fetch("https://reqres.in/api/users");
+        const { data } = await res.json();
+        setUsers({ ...users, loading: false, data: data });
+      } catch (err) {
+        console.log(err);
+        setUsers({ ...users, loading: false, error: "Something went wrong." });
+      }
+    };
+    getUser();
+  }, []);
   return (
     <>
       <Modal isOpen={open} onRequestClose={closeModal} style={customStyles}>
@@ -42,7 +63,6 @@ const Classes = () => {
                   <span className="px-1 py-1   fw-4 rounded p-0 addButtonSty">
                     <Plus />
                   </span>
-                  <span>add new</span>
                 </button>
               </div>
             </div>
@@ -59,9 +79,14 @@ const Classes = () => {
                 className="d-flex flex-column align-items-between  bg-white examDataWrapper px-2 py-3 borderRadius_15"
                 onClick={() => navigate("/attendance")}
               >
-                <h4 className="fw-bold p-0 m-0 fs-6 cursor-pointer px-2">
-                  {exam.title}
-                </h4>
+                <div className="d-flex justify-content-between px-2">
+                  <h4 className="fw-bold p-0 m-0 fs-6 cursor-pointer ">
+                    {exam.title}
+                  </h4>
+                  {users.loading && "loading..."}
+                  {users.error && users.error}
+                  <UserAvatars users={users.data} />
+                </div>
                 <div className="d-flex flex-column flex-md-row gap-3 examChipsWrapper mt-3 px-2">
                   {exam.tags.map((tag, index) => (
                     <div className="examChip" key={index}>

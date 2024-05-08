@@ -1,7 +1,13 @@
-import React, { useState } from "react";
-import { X } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { X, PlusIcon, Locate } from "lucide-react";
+import UserAvatar from "../Components/Common/UserAvatar";
 
 const ScheduleClass = ({ onRequestClose, exam }) => {
+  const [users, setUsers] = useState({
+    loading: false,
+    data: [],
+    error: null,
+  });
   const [classData, setClassData] = useState({
     title: "",
     start_date: null,
@@ -16,6 +22,21 @@ const ScheduleClass = ({ onRequestClose, exam }) => {
   const handleSubmitForm = () => {
     console.log(classData);
   };
+
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        setUsers({ ...users, loading: true });
+        const res = await fetch("https://reqres.in/api/users");
+        const { data } = await res.json();
+        setUsers({ ...users, loading: false, data: data });
+      } catch (err) {
+        console.log(err);
+        setUsers({ ...users, loading: false, error: "Something went wrong." });
+      }
+    };
+    getUser();
+  }, []);
   return (
     <div className="container-fluid p-0 m-0 pb-4 modalWrapper">
       <div className="row  d-flex justify-content-center p-0 m-0">
@@ -93,6 +114,46 @@ const ScheduleClass = ({ onRequestClose, exam }) => {
               onChange={handleChange}
               value={classData.end_time}
             />
+          </div>
+        </div>
+        <div className="col-md-6 col-12 mt-4 d-flex flex-column">
+          <label for="questions">Participants</label>
+          <div className="d-flex gap-0.5">
+            {users.loading && "Loading participants"}
+            {users.error && users.error}
+            {users &&
+              users.data.map((user, index) => (
+                <UserAvatar user={user} key={index} />
+              ))}
+            <div className="addParticipantBtn" title="add new participant">
+              <PlusIcon />
+            </div>
+          </div>
+        </div>
+        <div className="row mt-4 ">
+          <div className="col-4">
+            <div className="d-flex flex-column gap-2  ">
+              <label for="category">Category</label>
+              <select class="form-select" aria-label="Default select example">
+                <option selected>Choose a Class Type</option>
+                <option value="1">Physical</option>
+                <option value="2">Online</option>
+              </select>
+            </div>
+          </div>
+          <div className="col-8">
+            <div className="d-flex flex-column gap-2  ">
+              <label for="category">Location</label>
+              <div className="d-flex justify-conten-between py-1 rounded px-1 border align-items-center">
+                <input
+                  type="text"
+                  className="form-control locationInput"
+                  placeholder="class location"
+                />
+
+                <Locate />
+              </div>
+            </div>
           </div>
         </div>
       </div>
