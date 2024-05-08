@@ -34,13 +34,24 @@ const Classes = () => {
   useEffect(() => {
     const getUser = async () => {
       try {
-        setUsers({ ...users, loading: true });
+        setUsers((prev) => ({
+          ...prev,
+          loading: true,
+        }));
         const res = await fetch("https://reqres.in/api/users");
         const { data } = await res.json();
-        setUsers({ ...users, loading: false, data: data });
+        setUsers((prev) => ({
+          ...prev,
+          loading: false,
+          data,
+        }));
       } catch (err) {
         console.log(err);
-        setUsers({ ...users, loading: false, error: "Something went wrong." });
+        setUsers((prev) => ({
+          ...prev,
+          loading: false,
+          error: "Something went wrong",
+        }));
       }
     };
     getUser();
@@ -63,6 +74,7 @@ const Classes = () => {
                   <span className="px-1 py-1   fw-4 rounded p-0 addButtonSty">
                     <Plus />
                   </span>
+                  <span>add new</span>
                 </button>
               </div>
             </div>
