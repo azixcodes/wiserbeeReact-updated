@@ -12,7 +12,7 @@ const SignUpFirst = () => {
   const [options, setOption] = useState([
     { label: "student", isActive: true },
     { label: "teacher", isActive: false },
-    { label: "parents", isActive: false },
+    { label: "parent", isActive: false },
     { label: "management", isActive: false },
   ]);
   const [selectAccountValue, setSelectAccountValue] = useState("student");

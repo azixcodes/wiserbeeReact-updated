@@ -14,7 +14,7 @@ const CoursesList = (props) => {
   } = props;
 
   return (
-    <div className="courseBox  w-100 mt-3 customShadow  ">
+    <div className="courseBox  w-100 mt-3 customShadow d-flex ">
       <div className="thubnailCourse">
         <img src={imgesLect} alt="coursesImg" />
         <span>{tagLect}</span>

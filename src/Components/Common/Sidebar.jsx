@@ -1,6 +1,10 @@
 import React, { useRef, useEffect, useState } from "react";
 import { SidebarLogo } from "../../Constant/images";
-import { studentLinks, teacherLinks } from "../../Constant/sidebarlinks";
+import {
+  studentLinks,
+  teacherLinks,
+  parentLinks,
+} from "../../Constant/sidebarlinks";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
 import { Store } from "../../ContextAPI/Context";
@@ -15,7 +19,7 @@ const Sidebar = () => {
   const handleSidebarToggle = () => {
     setToggleSidebar((prev) => !prev);
   };
-  let user = auth?.user || "student" || "teacher";
+  let user = auth?.user || "student" || "teacher" || "parent";
   const userRole = JSON.parse(localStorage.getItem("user"));
   if (userRole) {
     user = userRole.user;
@@ -25,6 +29,8 @@ const Sidebar = () => {
       setNavLinks(studentLinks);
     } else if (user === "teacher") {
       setNavLinks(teacherLinks);
+    } else if (user === "parent") {
+      setNavLinks(parentLinks);
     }
   }, []);
 

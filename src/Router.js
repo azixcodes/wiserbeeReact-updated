@@ -32,6 +32,18 @@ import {
   ClassSchedule as TeacherClassSchedule,
 } from "./View/Teacher/index";
 
+// Parent route
+import {
+  AccountSetting,
+  Calendar,
+  Exam,
+  Fees,
+  ParentSurvey,
+  Performance,
+} from "./View/parent/index";
+
+import { Store } from "./ContextAPI/Context";
+
 import Sign from "./View/SignInFirst";
 import SignIn from "./View/SignIn";
 import SignUpFirst from "./View/SignUpFirst";
@@ -42,19 +54,15 @@ import ResetPassword from "./View/ResetPassword";
 import Test from "./View/Test";
 
 const AppRouter = () => {
-  const user = JSON.parse(localStorage.getItem("user"));
-  const navigate = useNavigate();
+  const { auth } = Store();
 
   // Initialize role with a default value
-  let role = "student";
-  if (user && user.user) {
-    role = user.user;
-  }
+  const user = auth.user;
 
   return (
     <Routes>
       <Route path="/" element={<Sign />} />
-      {role === "student" ? (
+      {user === "student" && (
         <>
           <Route path="/home" element={<ProtectedRoute Component={Home} />} />
           <Route
@@ -107,7 +115,9 @@ const AppRouter = () => {
             element={<ProtectedRoute Component={Messages} />}
           /> */}
         </>
-      ) : (
+      )}
+
+      {user === "teacher" && (
         <>
           {/* Teacher routes */}
           <Route path="/home" element={<ProtectedRoute Component={Home} />} />
@@ -170,6 +180,32 @@ const AppRouter = () => {
         </>
       )}
 
+      {user === "parent" && (
+        <>
+          <Route path="/home" element={<ProtectedRoute Component={Home} />} />
+          <Route path="/exam" element={<ProtectedRoute Component={Exam} />} />
+          <Route
+            path="/calendar"
+            element={<ProtectedRoute Component={Calendar} />}
+          />
+          <Route
+            path="/account-setting"
+            element={<ProtectedRoute Component={AccountSetting} />}
+          />
+          <Route
+            path="/fees-dues"
+            element={<ProtectedRoute Component={Fees} />}
+          />
+          <Route
+            path="/parent-survey"
+            element={<ProtectedRoute Component={ParentSurvey} />}
+          />
+          <Route
+            path="/performance"
+            element={<ProtectedRoute Component={Performance} />}
+          />
+        </>
+      )}
       {/* public routes */}
       {/* <Route path="/sign-in-first" element={<Sign />} /> */}
       <Route path="/sign-in" element={<SignIn />} />

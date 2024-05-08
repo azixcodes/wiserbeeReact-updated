@@ -4,6 +4,7 @@ import Sidebar from "./Components/Common/Sidebar";
 import Navbar from "./Components/Common/Navbar";
 import MiniSidebar from "./Components/Common/MiniSidebar";
 import { useNavigate } from "react-router-dom";
+import ParentLayout from "./layouts/ParentLayout";
 const ProtectedRoute = (props) => {
   const [toggle, setToggle] = useState(false);
   const navigate = useNavigate();
@@ -46,7 +47,12 @@ const ProtectedRoute = (props) => {
                   : "routesWrapper mainComponent "
               }
             >
-              <Component />
+              {auth.user === "parent" ? (
+                <ParentLayout>{<Component />}</ParentLayout>
+              ) : (
+                <Component />
+              )}
+
               {/* <Footer /> */}
             </main>
           </div>

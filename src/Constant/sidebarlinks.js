@@ -14,6 +14,10 @@ import {
   singleUserBoldSvg,
   ExamsSvg,
   gradesSvg,
+  performanceSvg,
+  feesSvg,
+  parentCalenderSvg,
+  surverySvg,
 } from "./svgs";
 export const studentLinks = [
   {
@@ -124,5 +128,43 @@ export const teacherLinks = [
     label: "Account Setting",
     path: "/account-settings",
     icon: settingsSvg,
+  },
+];
+
+export const parentLinks = [
+  {
+    label: "Dashboard",
+    path: "/home",
+    icon: dashboardSvg,
+  },
+  {
+    label: "Exam",
+    path: "/exam",
+    icon: ExamsSvg,
+  },
+  {
+    label: "Fees & Dues",
+    path: "/fees-dues",
+    icon: feesSvg,
+  },
+  {
+    label: "Performance",
+    path: "/performance",
+    icon: performanceSvg,
+  },
+  {
+    label: "Parental Survey",
+    path: "/parent-survey",
+    icon: feesSvg,
+  },
+  {
+    label: "Account Setting",
+    path: "/account-setting",
+    icon: settingsSvg,
+  },
+  {
+    label: "Calendar",
+    path: "/calendar",
+    icon: parentCalenderSvg,
   },
 ];
