@@ -107,6 +107,10 @@ const Home = () => {
         {user === "teacher" && (
           <div className="col-lg-12 ">
             <div className="row ">
+              <div className="col-md-8">
+                <h3 className="myClassesHeading">My Courses</h3>
+                <Course useToggle={false} count={3} homeRender={true} />
+              </div>
               <div className="align-self-start mt-4 col-12 col-md-4 ">
                 <div className="taskListView shadow">
                   <h4 className="mb-4">Tasks</h4>
@@ -114,7 +118,7 @@ const Home = () => {
                 </div>
               </div>
             </div>
-            {user === "Teacher" && (
+            {user === "teacher" && (
               <div className="row mt-5">
                 <div className="col-12 col-md-8">
                   <h3 className="myClassesHeading">My Classes</h3>
