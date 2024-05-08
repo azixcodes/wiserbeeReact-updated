@@ -848,7 +848,67 @@ h4 {
   justify-content: center;
   align-items: center;
 }
+.userAvatar {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* padding: 2px; */
+  border: 2px solid #ffffff;
+}
+.userAvatar img {
+  border-radius: 50%;
+}
+.addParticipantBtn {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dotted #463c77;
+  background-color: #c4afff4d;
+  cursor: pointer;
+}
+.locationInput {
+  border: none !important;
+}
+.userAvatars {
+  display: flex;
+  gap: -5px;
+  position: relative;
+}
+.userAvatars .userAvatar.lists {
+  margin-left: -15px;
+}
+.userAvatars .userAvatar.mask {
+  margin-left: -15px !important;
+  filter: blur(0.3);
+}
+.avatarBackdrop {
+  position: absolute;
+  background-color: #283b43;
+  height: 100%;
+  width: 100%;
+  opacity: 0.7;
+}
+.avatarBackdrop span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99999;
+  color: white;
 
+  font-size: 12px;
+}
+.userAvatars .userAvatar {
+  height: 32px;
+  width: 32px;
+}
 /* <>...........<Add Question Modal CSS> */
 .questionBarProgress {
   width: 100%;
