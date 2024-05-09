@@ -10,6 +10,15 @@
   /* transform: translate(12.6667px, 206.667px) !important; */
   left: 20px !important;
 }
+.text-xs {
+  font-size: 11px;
+}
+.text-gray {
+  background-color: #ececec !important;
+}
+.divider {
+  height: 2px !important;
+}
 .bg-main {
   background-color: var(--bg-primary);
 }
@@ -2097,6 +2106,12 @@ tr:nth-child(even) {
   border-radius: 7px;
   text-align: center;
   white-space: nowrap;
+}
+.cardMini {
+  width: 30% !important;
+}
+.analyticsCard {
+  height: 400px;
 }
 /* upcomingClasses */
 /* <>.............................<Parent CSS ends Here>....................................<> */

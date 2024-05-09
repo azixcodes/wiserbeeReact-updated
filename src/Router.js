@@ -31,8 +31,6 @@ import {
   Attendance,
   ClassSchedule as TeacherClassSchedule,
 } from "./View/Teacher/index";
-
-// Parent route
 import {
   AccountSetting,
   Calendar,
@@ -41,9 +39,6 @@ import {
   ParentSurvey,
   Performance,
 } from "./View/parent/index";
-
-import { Store } from "./ContextAPI/Context";
-
 import Sign from "./View/SignInFirst";
 import SignIn from "./View/SignIn";
 import SignUpFirst from "./View/SignUpFirst";
@@ -54,15 +49,19 @@ import ResetPassword from "./View/ResetPassword";
 import Test from "./View/Test";
 
 const AppRouter = () => {
-  const { auth } = Store();
+  const user = JSON.parse(localStorage.getItem("user"));
+  const navigate = useNavigate();
 
   // Initialize role with a default value
-  const user = auth.user;
+  let role = "student";
+  if (user && user.user) {
+    role = user.user;
+  }
 
   return (
     <Routes>
-      <Route path="/" element={<Sign />} />
-      {user === "student" && (
+      <Route path="/" element={<SignIn />} />
+      {role === "student" ? (
         <>
           <Route path="/home" element={<ProtectedRoute Component={Home} />} />
           <Route
@@ -115,9 +114,7 @@ const AppRouter = () => {
             element={<ProtectedRoute Component={Messages} />}
           /> */}
         </>
-      )}
-
-      {user === "teacher" && (
+      ) : role === "teacher" ? (
         <>
           {/* Teacher routes */}
           <Route path="/home" element={<ProtectedRoute Component={Home} />} />
@@ -178,9 +175,7 @@ const AppRouter = () => {
             element={<ProtectedRoute Component={Community} />}
           />
         </>
-      )}
-
-      {user === "parent" && (
+      ) : role === "parent" ? (
         <>
           <Route path="/home" element={<ProtectedRoute Component={Home} />} />
           <Route path="/exam" element={<ProtectedRoute Component={Exam} />} />
@@ -205,7 +200,10 @@ const AppRouter = () => {
             element={<ProtectedRoute Component={Performance} />}
           />
         </>
+      ) : (
+        "Not found"
       )}
+
       {/* public routes */}
       {/* <Route path="/sign-in-first" element={<Sign />} /> */}
       <Route path="/sign-in" element={<SignIn />} />

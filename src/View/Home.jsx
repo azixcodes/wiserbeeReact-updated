@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import EntrollCourseTiles from "../Components/Home/EntrollCourseTiles";
 import CoursesList from "../Components/Home/CoursesList";
 import * as images from "../Constant/images";
@@ -17,8 +17,10 @@ import UpcomingClasses from "../Components/parent/UpcomingClasses";
 
 const Home = () => {
   const [chatOpened, setChatOpened] = useState(false);
+
   const chatRef = useRef(null);
-  const { auth } = Store();
+  const auth = JSON.parse(localStorage.getItem("user"));
+
   const user = auth.user;
 
   const [CoursesListValue, setCourseList] = useState([
@@ -104,7 +106,7 @@ const Home = () => {
           </div>
         </div> */}
         {user === "parent" ? null : <WelcomeSection user={user} />}
-        {user === "teacher" && (
+        {user === "student" && (
           <div className="col-lg-12 ">
             <div className="row ">
               <div className="col-md-8">
@@ -118,7 +120,7 @@ const Home = () => {
                 </div>
               </div>
             </div>
-            {user === "teacher" && (
+            {user === "student" && (
               <div className="row mt-5">
                 <div className="col-12 col-md-8">
                   <h3 className="myClassesHeading">My Classes</h3>
@@ -133,7 +135,7 @@ const Home = () => {
             )}
           </div>
         )}
-        {user === "student" ? (
+        {user === "teacher" ? (
           <div className="row">
             <div className="col-12 col-md-8">
               <div className="CoursesDetails">

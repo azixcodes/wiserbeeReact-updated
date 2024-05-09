@@ -12,11 +12,13 @@ const ProtectedRoute = (props) => {
   const { Component } = props;
   const location = useLocation();
   const auth = JSON.parse(localStorage.getItem("user"));
+  console.log("protected route", auth);
   useEffect(() => {
     if (!auth) {
+      console.log("no auth");
       return navigate("/");
     }
-  }, []);
+  }, [auth]);
 
   useEffect(() => {
     if (toggle) {
@@ -53,6 +55,7 @@ const ProtectedRoute = (props) => {
                 <Component />
               )}
 
+              {/* <Component /> */}
               {/* <Footer /> */}
             </main>
           </div>

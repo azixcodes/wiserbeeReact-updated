@@ -19,12 +19,7 @@ const SignIn = () => {
   });
 
   const location = useLocation();
-  const selectedAccount = location.state && location.state.selectedAccount;
-  useEffect(() => {
-    if (selectedAccount === null) {
-      navigate("/");
-    }
-  }, []);
+
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
@@ -53,8 +48,6 @@ const SignIn = () => {
     const validate = validator(obj);
     if (validate !== "success") {
       alert(validate);
-    } else if (selectedAccount === "" || selectedAccount === null) {
-      alert("No role  was selected");
     } else {
       try {
         const response = await postRequest("/accounts/login/", obj);
@@ -83,13 +76,7 @@ const SignIn = () => {
       }
     }
   };
-  useEffect(() => {
-    setAuth({
-      user: selectedAccount,
-      email: signInForm.userEmail,
-      password: signInForm.userPassword,
-    });
-  }, [selectedAccount]);
+
   return (
     <>
       <div className="signin_page">

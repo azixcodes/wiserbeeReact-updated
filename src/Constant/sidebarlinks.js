@@ -93,6 +93,7 @@ export const teacherLinks = [
     label: "Class Management",
     path: "/class-management",
     icon: classManagementSvg,
+    childRoute: "/attendance",
   },
   {
     label: "Personal Profile",
