@@ -181,3 +181,50 @@ export const attendaceData = [
     performance: "80%",
   },
 ];
+
+export const feesHeadings = [
+  "Student Name",
+  "Student ID",
+  "Payable Fee",
+  "Paid Fee",
+  "Pending Fee",
+  "Action",
+];
+
+export const feesData = [
+  {
+    name: "eneh mercy",
+    id: "01234",
+    payable: "4,500.00",
+    paid: "2,500.00", // Corrected spelling
+    pending: "2,500.00",
+  },
+  {
+    name: "eneh mercy",
+    id: "01234",
+    payable: "4,500.00",
+    paid: "2,500.00", // Corrected spelling
+    pending: "2,500.00",
+  },
+  {
+    name: "eneh mercy",
+    id: "01234",
+    payable: "4,500.00",
+    paid: "2,500.00", // Corrected spelling
+    pending: "2,500.00",
+  },
+  {
+    name: "eneh mercy",
+    id: "01234",
+    payable: "4,500.00",
+    paid: "2,500.00", // Corrected spelling
+    pending: "2,500.00",
+  },
+  {
+    name: "eneh mercy",
+    id: "01234",
+    payable: "4,500.00",
+    paid: "2,500.00", // Corrected spelling
+    pending: "2,500.00",
+  },
+];

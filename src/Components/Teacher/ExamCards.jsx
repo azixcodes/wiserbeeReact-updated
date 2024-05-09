@@ -83,17 +83,17 @@ const ExamCards = ({ exam, handleClickScheduleExam, handleClickQuestions }) => {
 
     const index = arr.flat().findIndex((item) => item.exam_quiz === id);
     if (index !== -1) {
-      return <span>{activeBulbSvg}</span>;
-    } else {
       return (
         <span
           onClick={() =>
             handleClickQuestions(exam.number_of_questions, exam.id)
           }
         >
-          {bulbSvg}
+          {activeBulbSvg}
         </span>
       );
+    } else {
+      return <span>{bulbSvg}</span>;
     }
   };
   return (

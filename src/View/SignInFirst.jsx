@@ -31,9 +31,7 @@ const Sign = () => {
   const svgPaths = [studenticon, teachericon, parenticon, managementicon];
 
   const handlerClick = () => {
-    navigate("/sign-in", {
-      state: { selectedAccount: selectAccountValue },
-    });
+    navigate("/sign-in");
   };
 
   return (
