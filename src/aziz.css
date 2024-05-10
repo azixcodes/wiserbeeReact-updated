@@ -27,14 +27,14 @@
 }
 .donotPercentage {
   position: absolute;
-  left: 45%;
-  top: 35%;
+  left: 50%;
+  top: 40%;
   color: black;
   font-weight: bold;
   z-index: 99999;
   font-weight: bold;
 
-  /* transform: translate(-35%, -45%); */
+  transform: translate(-50%, -50%);
 }
 .donotMatrics {
   position: absolute;
@@ -2083,6 +2083,14 @@ tr:nth-child(even) {
   color: white;
   background-color: var(--bg-primary);
 }
+.childChipActive {
+  background-color: white;
+  width: 200px;
+  padding: 20px 9px;
+  border-radius: 15px;
+  color: var(--bg-primary);
+  border: 0.8px solid #2417634d;
+}
 .childChip h6 {
   /* color: var(--bg-primary) !important; */
   font-weight: 400 !important;
@@ -2091,6 +2099,17 @@ tr:nth-child(even) {
 .childChip span {
   /* color: #7a7a7a; */
   color: white;
+  font-family: poppins;
+  font-style: italic;
+}
+.childChipActive h6 {
+  /* color: var(--bg-primary) !important; */
+  font-weight: 400 !important;
+  font-size: 14px !important;
+}
+.childChipActive span {
+  /* color: #7a7a7a; */
+  color: rgb(170, 169, 169);
   font-family: poppins;
   font-style: italic;
 }

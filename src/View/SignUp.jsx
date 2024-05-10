@@ -25,7 +25,7 @@ const SignUp = () => {
     if (selectedAccount === null) {
       navigate("/sign-up-first");
     }
-  }, []);
+  }, [selectedAccount, navigate]);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);

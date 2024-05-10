@@ -36,11 +36,16 @@ const AddExamModal = ({ onRequestClose }) => {
     }
   };
   useEffect(() => {
-    setExamData({
-      ...examData,
-      mins: minsCounter.toString(),
+    // setExamData({
+    //   ...examData,
+    //   mins: minsCounter.toString(),
+    //   questionCounter: questionCounter,
+    // });
+
+    setExamData((prev) => ({
+      ...prev,
       questionCounter: questionCounter,
-    });
+    }));
   }, [questionCounter, minsCounter]);
   const handleChange = (e) => {
     const { name, value } = e.target;

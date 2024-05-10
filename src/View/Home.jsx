@@ -1,9 +1,8 @@
-import React, { useState, useRef, useEffect } from "react";
-import EntrollCourseTiles from "../Components/Home/EntrollCourseTiles";
+import { useState, useRef } from "react";
 import CoursesList from "../Components/Home/CoursesList";
 import * as images from "../Constant/images";
 import TaskNotifications from "../Components/Home/TaskNotifications";
-import { Store } from "../ContextAPI/Context";
+
 import ClassView from "../Components/Teacher/ClassView";
 import QuickMessages from "../Components/Teacher/QuickMessages";
 import Course from "../Components/Common/Course";
@@ -11,7 +10,7 @@ import { chatSvg } from "../Constant/svgs";
 import Chatbot from "../Components/Common/Chatbot";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
-import ChildCards from "../Components/parent/ChildCards";
+
 import WelcomeSection from "../Components/Common/WelcomeSection";
 import UpcomingClasses from "../Components/parent/UpcomingClasses";
 import Chart from "../Components/parent/analytics/Chart";
@@ -168,7 +167,7 @@ const Home = () => {
         {user === "parent" && (
           <>
             <div className="row mt-3 px-2">
-              <div className="col-md-9 bg-white shadow taskListView d-flex flex-column gap-3">
+              <div className="col-md-9 bg-white shadow taskListView d-flex flex-column gap-3 overflow-hidden">
                 <div className="d-flex justify-content-between px-2 ">
                   <div>
                     <h4>Student Performance</h4>

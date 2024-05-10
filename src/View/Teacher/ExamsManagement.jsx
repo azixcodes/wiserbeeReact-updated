@@ -19,7 +19,7 @@ const ExamsManagement = () => {
 
   const {
     loading: quizLoading,
-    data: quizData,
+
     error: quizError,
   } = useFetch("/quiz/exam-schedule/");
 

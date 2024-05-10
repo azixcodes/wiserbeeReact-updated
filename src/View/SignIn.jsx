@@ -1,15 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import * as images from "../Constant/images";
 import { Eye, EyeOff } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import { useLocation } from "react-router-dom";
+
 import { validator } from "../Constant/validator";
-import { Store } from "../ContextAPI/Context";
+
 import { postRequest } from "../services/index";
 const SignIn = () => {
   const navigate = useNavigate();
-
-  const { setAuth } = Store();
 
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
@@ -17,8 +15,6 @@ const SignIn = () => {
     userEmail: "",
     userPassword: "",
   });
-
-  const location = useLocation();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);

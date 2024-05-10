@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ChevronDown, CalendarDays } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import ReactDatePicker from "../../Components/Common/ReactDatePicker";
 const AddLessonPlan = () => {
@@ -24,27 +24,27 @@ const AddLessonPlan = () => {
   });
   const navigate = useNavigate();
   const handleSectionSelect = (section) => {
-    setLessonPlanData({ ...lessonPlanData, ["section"]: section });
+    setLessonPlanData({ ...lessonPlanData, section });
   };
   const handleSubjectSelect = (subject) => {
-    setLessonPlanData({ ...lessonPlanData, ["subject"]: subject });
+    setLessonPlanData({ ...lessonPlanData, subject });
   };
   const handleTypeSelect = (type) => {
-    setLessonPlanData({ ...lessonPlanData, ["type"]: type });
+    setLessonPlanData({ ...lessonPlanData, type });
   };
 
   const handleAcademicyearSelect = (academic) => {
-    setLessonPlanData({ ...lessonPlanData, ["academic"]: academic });
+    setLessonPlanData({ ...lessonPlanData, academic });
   };
 
   const handleselectTarget = (selected_attainment_target) => {
     setLessonPlanData({
       ...lessonPlanData,
-      ["selected_attainment_target"]: selected_attainment_target,
+      selected_attainment_target,
     });
   };
   const handleselectDay = (day) => {
-    setLessonPlanData({ ...lessonPlanData, ["day"]: day });
+    setLessonPlanData({ ...lessonPlanData, day });
   };
 
   const handleInputChange = (e) => {

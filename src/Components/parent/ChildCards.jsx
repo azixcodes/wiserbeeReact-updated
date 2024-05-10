@@ -1,19 +1,32 @@
-import React from "react";
-import { chats as child } from "../../Constant/chats";
+import React, { useState } from "react";
+
+import { useParentContext } from "../../ContextAPI/ParentContext";
 const ChildCards = () => {
+  const { users, setusers } = useParentContext();
+
+  const handleClick = (index) => {
+    const updatedUsers = users.map((user, i) => ({
+      ...user,
+      isActive: index === i,
+    }));
+    setusers(updatedUsers);
+  };
   return (
     <div className="d-flex gap-3 flex-column flex-md-row">
-      {child.slice(0, 3).map((child, index) => (
+      {users.map((child, index) => (
         <div
           key={index}
-          className="childChip d-flex flex-row  gap-2 align-items-center"
+          className={` ${
+            child.isActive ? "childChipActive" : "childChip"
+          } d-flex flex-row  gap-2 align-items-center cursor-pointer`}
+          onClick={() => handleClick(index)}
         >
           <div className="childAvatar">
-            <img src={child.dp} alt="name" className="h-100 w-100" />
+            <img src={child.avatar} alt="name" className="h-100 w-100" />
           </div>
           <div className="d-flex flex-column">
-            <h6 className="p-0 m-0">{child.user}</h6>
-            <span>class {index + 2}</span>
+            <h6 className="p-0 m-0">{child.name}</h6>
+            <span>{child.class}</span>
           </div>
         </div>
       ))}

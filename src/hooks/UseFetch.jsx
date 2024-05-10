@@ -13,7 +13,10 @@ const useFetch = (endpoint) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      setApiData({ ...apiData, loading: true });
+      setApiData((prevState) => ({
+        ...prevState,
+        loading: true,
+      }));
       try {
         const response = await getRequest(endpoint);
         const data = await response.json();
@@ -23,7 +26,11 @@ const useFetch = (endpoint) => {
           data: data,
         }));
       } catch (err) {
-        setApiData({ ...apiData, loading: false, error: err });
+        setApiData((prevState) => ({
+          ...prevState,
+          loading: false,
+          error: err,
+        }));
       }
     };
 
