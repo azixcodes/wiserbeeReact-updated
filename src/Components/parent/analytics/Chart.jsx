@@ -7,22 +7,13 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import { useParentContext } from "../../../ContextAPI/ParentContext";
 
 const Chart = () => {
-  const data = [
-    { month: "Jan", percentage: 0 },
-    { month: "Feb", percentage: 20 },
-    { month: "Mar", percentage: 40 },
-    { month: "Apr", percentage: 20 },
-    { month: "May", percentage: 80 },
-    { month: "Jun", percentage: 30 },
-    { month: "Jul", percentage: 50 },
-    { month: "Aug", percentage: 60 },
-    { month: "Sep", percentage: 70 },
-    { month: "Oct", percentage: 80 },
-    { month: "Nov", percentage: 0 },
-    { month: "Dec", percentage: 20 }, // Extra point for a closed loop
-  ];
+  const { users } = useParentContext();
+
+  const activeUser = users.filter((user) => user.isActive === true);
+  const data = activeUser[0].singleData;
 
   return (
     <ResponsiveContainer>

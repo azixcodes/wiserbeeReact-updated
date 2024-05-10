@@ -48,6 +48,10 @@ import OtpVerification from "./View/OtpVerification";
 import ResetPassword from "./View/ResetPassword";
 import Test from "./View/Test";
 
+//  admin routes..
+
+import { AdminClasses, AdminDashboard, AdminTeachers } from "./View/admin";
+
 const AppRouter = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
@@ -200,8 +204,23 @@ const AppRouter = () => {
             element={<ProtectedRoute Component={Performance} />}
           />
         </>
+      ) : role === "admin" ? (
+        <>
+          <Route
+            path="/teachers"
+            element={<ProtectedRoute Component={AdminTeachers} />}
+          />
+          <Route
+            path="/classes"
+            element={<ProtectedRoute Component={AdminClasses} />}
+          />
+          <Route
+            path="/home"
+            element={<ProtectedRoute Component={AdminDashboard} />}
+          />
+        </>
       ) : (
-        "Not found"
+        "not found"
       )}
 
       {/* public routes */}

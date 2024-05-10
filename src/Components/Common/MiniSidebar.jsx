@@ -4,6 +4,7 @@ import {
   studentLinks,
   teacherLinks,
   parentLinks,
+  adminLinks,
 } from "../../Constant/sidebarlinks";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { NavLink } from "react-router-dom";
@@ -17,14 +18,23 @@ const MiniSidebar = ({ toggle, setToggle }) => {
   if (test) {
     user = test.user;
   }
+
+  const roles = {
+    teacher: teacherLinks,
+    parent: parentLinks,
+    student: studentLinks,
+    admin: adminLinks,
+  };
+
   useMemo(() => {
-    if (user === "student") {
-      setNavLinks(studentLinks);
-    } else if (user === "teacher") {
-      setNavLinks(teacherLinks);
-    } else if (user === "parent") {
-      setNavLinks(parentLinks);
-    }
+    // if (user === "student") {
+    //   setNavLinks(studentLinks);
+    // } else if (user === "teacher") {
+    //   setNavLinks(teacherLinks);
+    // } else if (user === "parent") {
+    //   setNavLinks(parentLinks);
+    // }
+    setNavLinks(roles[user]);
   }, [user]);
 
   return (

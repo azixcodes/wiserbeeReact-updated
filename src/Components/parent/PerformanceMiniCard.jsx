@@ -1,4 +1,3 @@
-import { AlarmClockPlus } from "lucide-react";
 import React from "react";
 import { arrowPrimary, arrowPink, arrowSucces } from "../../Constant/svgs";
 const PerformanceMiniCard = () => {
@@ -24,7 +23,7 @@ const PerformanceMiniCard = () => {
           <div>
             <h3 className="fw-bold p-0 m-0 fs-5">80%</h3>
             <p className="text-capitalize p-0 m-0 text-capitalize p-0 m-0  text-xs">
-              behavioral assesment
+              student attendance
             </p>
           </div>
         </div>
@@ -36,7 +35,7 @@ const PerformanceMiniCard = () => {
           <div>
             <h3 className="fw-bold p-0 m-0 fs-5">80%</h3>
             <p className="text-capitalize p-0 m-0 text-capitalize p-0 m-0  text-xs">
-              behavioral assesment
+              exam performance
             </p>
           </div>
         </div>

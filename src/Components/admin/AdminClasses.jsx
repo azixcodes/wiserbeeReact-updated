@@ -4,8 +4,9 @@ import { classes } from "../../Constant/classes";
 import { useNavigate } from "react-router-dom";
 import { clockSvg, calanderSvg, studentSvg } from "../../Constant/svgs";
 import Modal from "react-modal";
-import ScheduleClass from "../../modals/ScheduleClass";
-import UserAvatars from "./UserAvatars";
+
+import UserAvatars from "../Common/UserAvatars";
+import AddClass from "../../modals/admin/AddClass";
 const customStyles = {
   content: {
     top: "50%",
@@ -19,7 +20,7 @@ const customStyles = {
     overFlow: "auto",
   },
 };
-const Classes = ({ title }) => {
+const AdminClasses = ({ title }) => {
   const [open, setOpen] = useState(false);
   const [users, setUsers] = useState({
     loading: false,
@@ -59,7 +60,7 @@ const Classes = ({ title }) => {
   return (
     <>
       <Modal isOpen={open} onRequestClose={closeModal} style={customStyles}>
-        <ScheduleClass onRequestClose={closeModal} />
+        <AddClass onRequestClose={closeModal} />
       </Modal>
       <div className="container-fluid">
         <div className="row p-0 m-0">
@@ -89,7 +90,7 @@ const Classes = ({ title }) => {
             >
               <div
                 className="d-flex flex-column align-items-between  bg-white examDataWrapper px-2 py-3 borderRadius_15"
-                onClick={() => navigate("/attendance")}
+                // onClick={() => navigate("/attendance")}
               >
                 <div className="d-flex justify-content-between px-2">
                   <h4 className="fw-bold p-0 m-0 fs-6 cursor-pointer ">
@@ -129,4 +130,4 @@ const Classes = ({ title }) => {
   );
 };
 
-export default Classes;
+export default AdminClasses;

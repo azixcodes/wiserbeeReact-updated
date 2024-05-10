@@ -188,6 +188,7 @@ export const feesHeadings = [
   "Payable Fee",
   "Paid Fee",
   "Pending Fee",
+  "description",
   "Action",
 ];
 
@@ -198,6 +199,7 @@ export const feesData = [
     payable: "4,500.00",
     paid: "2,500.00", // Corrected spelling
     pending: "2,500.00",
+    description: "Fees",
   },
   {
     name: "eneh mercy",
@@ -205,6 +207,7 @@ export const feesData = [
     payable: "4,500.00",
     paid: "2,500.00", // Corrected spelling
     pending: "2,500.00",
+    description: "Fine",
   },
   {
     name: "eneh mercy",
@@ -212,19 +215,6 @@ export const feesData = [
     payable: "4,500.00",
     paid: "2,500.00", // Corrected spelling
     pending: "2,500.00",
-  },
-  {
-    name: "eneh mercy",
-    id: "01234",
-    payable: "4,500.00",
-    paid: "2,500.00", // Corrected spelling
-    pending: "2,500.00",
-  },
-  {
-    name: "eneh mercy",
-    id: "01234",
-    payable: "4,500.00",
-    paid: "2,500.00", // Corrected spelling
-    pending: "2,500.00",
+    description: "Charges",
   },
 ];

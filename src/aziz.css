@@ -1156,8 +1156,8 @@ h4 {
   text-transform: uppercase;
 }
 .roundedNameAvatar {
-  width: 24px;
-  height: 24px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   border: 0.5px solid var(--bg-primary) 80;
   display: flex;

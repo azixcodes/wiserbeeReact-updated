@@ -10,6 +10,7 @@ const SignIn = () => {
   const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [signInForm, setSignInForm] = useState({
     userEmail: "",
@@ -32,10 +33,6 @@ const SignIn = () => {
     setRememberMe(event.target.checked);
   };
 
-  // if (rememberMe) {
-  //   console.log("llll")
-  //   localStorage.setItem("signInput", JSON.stringify(signInForm));
-  // }
   const handleLogin = async () => {
     const obj = {
       email: signInForm.userEmail,
@@ -46,6 +43,7 @@ const SignIn = () => {
       alert(validate);
     } else {
       try {
+        setLoading(true);
         const response = await postRequest("/accounts/login/", obj);
         const data = await response.json();
         if (response.ok) {
@@ -55,24 +53,32 @@ const SignIn = () => {
             "user",
             JSON.stringify({
               token: access,
-              user,
+              user: user,
             })
           );
+          setLoading(false);
           navigate("/home");
         } else {
           if (data.errors["non_field_errors"]) {
             alert(data.errors["non_field_errors"][0]);
+            setLoading(false);
           } else {
             alert("Something went wrong, please try again..");
+            setLoading(false);
           }
         }
       } catch (err) {
         console.log(err);
         alert(err.message);
+        setLoading(false);
       }
     }
   };
-
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleLogin();
+    }
+  };
   return (
     <>
       <div className="signin_page">
@@ -108,6 +114,7 @@ const SignIn = () => {
                         type={showPassword ? "text" : "password"}
                         className="sign_in_input password-input"
                         placeholder="Enter Password"
+                        onKeyDown={handleKeyPress}
                       />
                       <button
                         className="password-toggle-btn"
@@ -148,7 +155,7 @@ const SignIn = () => {
                         type="button"
                         onClick={handleLogin}
                       >
-                        Login
+                        {loading ? "Loading ..." : "Login"}
                       </button>
                     </div>
                   </div>

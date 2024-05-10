@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
-import { MoreVertical } from "lucide-react";
-import { Eye, Trash2 } from "lucide-react";
+import { CreditCard, MoreVertical } from "lucide-react";
+import { Eye } from "lucide-react";
 import Modal from "react-modal";
 import ReportCardModel from "../../modals/ReportCardsModel";
 import { Link } from "react-router-dom";
 import { chats } from "../../Constant/chats";
-import UserAvatar from "../Common/UserAvatar";
 import Avatar from "../../View/parent/Avatar";
-
+import NameAvatar from "../Common/NameAvatar";
 const FeesTable = ({ headings, data }) => {
   const [openIndexes, setOpenIndexes] = useState([]);
   const [open, setOpen] = useState(false);
@@ -57,21 +56,19 @@ const FeesTable = ({ headings, data }) => {
 
   const items = [
     {
-      label: "View",
+      label: "View Slip",
       icon: <Eye style={{ height: "30px", width: "30px;", color: "black" }} />,
     },
     {
-      label: "Delete",
-      icon: (
-        <Trash2 style={{ height: "30px", width: "30px;", color: "#BF2929" }} />
-      ),
+      label: "Pay Now",
+      icon: <CreditCard style={{ height: "30px", width: "30px;" }} />,
     },
   ];
 
   const handleClick = (label) => {
-    if (label === "View") {
-      setOpen(true);
-    }
+    // if (label === "View") {
+    //   setOpen(true);
+    // }
   };
 
   return (
@@ -108,14 +105,19 @@ const FeesTable = ({ headings, data }) => {
                     <tr className="row100 body " key={index}>
                       <td className={`cell100 column1`}>
                         <div className="d-flex align-items-center gap-1">
-                          <Avatar image={chats[0].dp} />{" "}
-                          <span>{item.name}</span>
+                          {index === 2 ? (
+                            <NameAvatar name={item.name} rounded />
+                          ) : (
+                            <Avatar image={item.avatar} />
+                          )}
+                          <span className="text-capitalize">{item.name}</span>
                         </div>
                       </td>
                       <td className={`cell100 column2`}>{item.id}</td>
                       <td className={`cell100 column3`}>{item.payable}</td>
                       <td className={`cell100 column4`}>{item.paid}</td>
                       <td className={`cell100 column5`}>{item.pending}</td>
+                      <td className={`cell100 column5`}>{item.description}</td>
 
                       <td className={`cell100 column7`}>
                         <div className="dropdown d-flex justify-content-end">
@@ -144,11 +146,7 @@ const FeesTable = ({ headings, data }) => {
                                 >
                                   <span
                                     className="h6 p-0 m-0"
-                                    style={
-                                      i === 1
-                                        ? { color: "#BF2929" }
-                                        : { color: "black" }
-                                    }
+                                    style={{ color: "black" }}
                                   >
                                     {item.label}
                                   </span>
