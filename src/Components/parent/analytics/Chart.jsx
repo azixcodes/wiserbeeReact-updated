@@ -2,10 +2,10 @@ import React from "react";
 import {
   LineChart,
   Line,
-  CartesianGrid,
   XAxis,
   YAxis,
   Tooltip,
+  ResponsiveContainer,
 } from "recharts";
 
 const Chart = () => {
@@ -25,19 +25,22 @@ const Chart = () => {
   ];
 
   return (
-    <LineChart width={700} height={400} data={data}>
-      <Line
-        type="monotone"
-        dataKey="percentage"
-        stroke="#241763"
-        strokeWidth={4}
-        dot={{ fill: "white" }}
-      />
-      {/* <CartesianGrid stroke="#ccc" /> */}
-      <XAxis dataKey="month" />
-      <YAxis ticks={[0, 20, 40, 60, 80, 100]} />
-      <Tooltip />
-    </LineChart>
+    <ResponsiveContainer>
+      {" "}
+      <LineChart width={800} height={400} data={data}>
+        <Line
+          type="monotone"
+          dataKey="percentage"
+          stroke="#241763"
+          strokeWidth={4}
+          dot={{ fill: "white" }}
+        />
+        {/* <CartesianGrid stroke="#ccc" /> */}
+        <XAxis dataKey="month" />
+        <YAxis ticks={[0, 20, 40, 60, 80, 100]} />
+        <Tooltip />
+      </LineChart>
+    </ResponsiveContainer>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useMemo } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Check, X } from "lucide-react";
 import Counter from "../Components/Common/Counter";
 import { postRequest } from "../services";
@@ -15,7 +15,7 @@ const AddQuestions = ({ onRequestClose, questions, questionID }) => {
   const [percentage, setPercentage] = useState(0);
   const refs = [ref1, ref2, ref3, ref4];
   const [makeApiReq, setMakeApiReq] = useState(false);
-  const [apiData, setApiData] = useState(null);
+  // const [apiData, setApiData] = useState(null);
   const [count, setCount] = useState(0);
 
   const [quiz, setQuiz] = useState([]);
@@ -123,7 +123,7 @@ const AddQuestions = ({ onRequestClose, questions, questionID }) => {
 
   useEffect(() => {
     setPercentage((prev) => prev + 100 / questions);
-  }, []);
+  }, [questions]);
 
   const handleOptionChange = (index, e) => {
     const newMcqs = options[0].mcqs.slice();
@@ -137,43 +137,42 @@ const AddQuestions = ({ onRequestClose, questions, questionID }) => {
     setOptions(oldOptions);
   };
 
+  // useEffect(() => {
+  //   setApiData(quiz);
+  // }, [quiz]);
+
   useEffect(() => {
-    setApiData(quiz);
-  }, [quiz]);
+    async function postQuestion() {
+      const format = quiz.map((option) => ({
+        exam_quiz: option.exam_quiz,
+        mcquestion: option.question,
+        option_1: option.mcqs[0].answer,
+        option_1_is_correct: option.mcqs[0].isCorrect,
+        option_2: option.mcqs[1].answer,
+        option_2_is_correct: option.mcqs[1].isCorrect,
+        option_3: option.mcqs[2].answer,
+        option_3_is_correct: option.mcqs[2].isCorrect,
+        option_4: option.mcqs[3].answer,
+        option_4_is_correct: option.mcqs[3].isCorrect,
+      }));
+      const payload = {
+        mcqs: format,
+      };
+      const res = await postRequest("/quiz/choice/", payload);
+      // const data = await res.json();
+      if (res.ok) {
+        alert("Questions added successfully");
 
-  async function postQuestion() {
-    const format = quiz.map((option) => ({
-      exam_quiz: option.exam_quiz,
-      mcquestion: option.question,
-      option_1: option.mcqs[0].answer,
-      option_1_is_correct: option.mcqs[0].isCorrect,
-      option_2: option.mcqs[1].answer,
-      option_2_is_correct: option.mcqs[1].isCorrect,
-      option_3: option.mcqs[2].answer,
-      option_3_is_correct: option.mcqs[2].isCorrect,
-      option_4: option.mcqs[3].answer,
-      option_4_is_correct: option.mcqs[3].isCorrect,
-    }));
-    const payload = {
-      mcqs: format,
-    };
-    const res = await postRequest("/quiz/choice/", payload);
-    // const data = await res.json();
-    if (res.ok) {
-      alert("Questions added successfully");
-
-      onRequestClose();
-    } else {
-      alert("something went wrong, please try again.");
+        onRequestClose();
+      } else {
+        alert("something went wrong, please try again.");
+      }
     }
-  }
-
-  useEffect(() => {
     if (makeApiReq === true) {
       postQuestion();
     }
-  }, [makeApiReq]);
-  console.log(quiz);
+  }, [makeApiReq, onRequestClose, quiz]);
+
   return (
     <div className="container-fluid p-0 m-0 pb-4 modalWrapper">
       <div className="row  d-flex justify-contents-center p-0 m-0">
