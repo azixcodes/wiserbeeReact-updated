@@ -4,6 +4,7 @@ import {
   studentLinks,
   teacherLinks,
   parentLinks,
+  adminLinks,
 } from "../../Constant/sidebarlinks";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
@@ -24,14 +25,23 @@ const Sidebar = () => {
   if (userRole) {
     user = userRole.user;
   }
+
+  const roles = {
+    teacher: teacherLinks,
+    parent: parentLinks,
+    student: studentLinks,
+    admin: adminLinks,
+  };
+
   useEffect(() => {
-    if (user === "student") {
-      setNavLinks(studentLinks);
-    } else if (user === "teacher") {
-      setNavLinks(teacherLinks);
-    } else if (user === "parent") {
-      setNavLinks(parentLinks);
-    }
+    // if (user === "student") {
+    //   setNavLinks(studentLinks);
+    // } else if (user === "teacher") {
+    //   setNavLinks(teacherLinks);
+    // } else if (user === "parent") {
+    //   setNavLinks(parentLinks);
+    // }
+    setNavLinks(roles[user]);
   }, []);
 
   useEffect(() => {

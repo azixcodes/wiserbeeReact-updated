@@ -14,8 +14,11 @@ import { X } from "lucide-react";
 import WelcomeSection from "../Components/Common/WelcomeSection";
 import UpcomingClasses from "../Components/parent/UpcomingClasses";
 import Chart from "../Components/parent/analytics/Chart";
-
+import { useParentContext } from "../ContextAPI/ParentContext";
 const Home = () => {
+  const { users } = useParentContext();
+
+  const activeUser = users.filter((user) => user.isActive === true);
   const [chatOpened, setChatOpened] = useState(false);
 
   const chatRef = useRef(null);
@@ -81,32 +84,8 @@ const Home = () => {
   return (
     <>
       <section className="dashboardWrapper d-flex flex-column ">
-        {/* <div className="welcomeBox">
-          <div className="logoWithText d-flex justify-content-start align-items-start flex-wrap">
-            <div className="welcomeTxtP">
-              <div className="mt-2">
-                <h6>Welcome back, John!</h6>
-                <p>Always stay updated in your {user} portal</p>
-              </div>
-              {user === "parent" && <ChildCards />}
-              {user === "teacher" ||
-                (user === "student" && (
-                  <div className="welcomeTilles d-flex justify-content-start mt-5 flex-wrap">
-                    {EntrollCourseValue.map((item, index) => (
-                      <EntrollCourseTiles
-                        key={index}
-                        id={index}
-                        heading={item.heading}
-                        price={item.price}
-                      />
-                    ))}
-                  </div>
-                ))}
-            </div>
-          </div>
-        </div> */}
         {user === "parent" ? null : <WelcomeSection user={user} />}
-        {user === "student" && (
+        {user === "teacher" && (
           <div className="col-lg-12 ">
             <div className="row ">
               <div className="col-md-8">
@@ -120,7 +99,7 @@ const Home = () => {
                 </div>
               </div>
             </div>
-            {user === "student" && (
+            {user === "teacher" && (
               <div className="row mt-5">
                 <div className="col-12 col-md-8">
                   <h3 className="myClassesHeading">My Classes</h3>
@@ -135,7 +114,7 @@ const Home = () => {
             )}
           </div>
         )}
-        {user === "teacher" ? (
+        {user === "student" ? (
           <div className="row">
             <div className="col-12 col-md-8">
               <div className="CoursesDetails">
@@ -175,7 +154,7 @@ const Home = () => {
                   </div>
                   <div className="d-flex align-items-center gap-2">
                     <div className="dotGraph"></div>
-                    <h4 className="m-0 p-0 fs-6">John Smith</h4>
+                    <h4 className="m-0 p-0 fs-6">{activeUser[0].name}</h4>
                   </div>
                 </div>
                 <Chart />

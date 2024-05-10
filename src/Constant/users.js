@@ -1,5 +1,5 @@
 import { chats } from "./chats";
-
+import { user1Data, user2Data, user3Data } from "./graphs";
 const getRandomNumber = (min = 0, max = 100) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
@@ -10,6 +10,7 @@ export const users = [
     avatar: chats[0].dp,
     percentage: "60",
     isActive: true,
+    singleData: user1Data,
     graphData: [
       {
         month: "Jan",
@@ -94,6 +95,7 @@ export const users = [
   },
   {
     name: chats[1].user,
+    singleData: user2Data,
     class: "class III",
     avatar: chats[1].dp,
     percentage: "80",
@@ -182,6 +184,7 @@ export const users = [
   },
   {
     name: chats[2].user,
+    singleData: user3Data,
     class: "class IV",
     avatar: chats[0].dp,
     percentage: "40",

@@ -18,6 +18,8 @@ import {
   feesSvg,
   parentCalenderSvg,
   surverySvg,
+  teachericon,
+  userSvg,
 } from "./svgs";
 export const studentLinks = [
   {
@@ -167,5 +169,23 @@ export const parentLinks = [
     label: "Calendar",
     path: "/calendar",
     icon: parentCalenderSvg,
+  },
+];
+
+export const adminLinks = [
+  {
+    label: "Dashboard",
+    path: "/home",
+    icon: dashboardSvg,
+  },
+  {
+    label: "Teachers",
+    path: "/teachers",
+    icon: singleUserBoldSvg,
+  },
+  {
+    label: "Classes",
+    path: "/classes",
+    icon: classScheduleSvg,
   },
 ];
