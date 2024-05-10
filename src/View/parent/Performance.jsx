@@ -1,6 +1,14 @@
 import React from "react";
 import PerformanceMiniCard from "../../Components/parent/PerformanceMiniCard";
 
+import DonotChart from "../../Components/parent/analytics/PieChart";
+const data = [
+  { name: "English", value: 400 },
+  { name: "Maths", value: 300 },
+  { name: "Biology", value: 300 },
+  { name: "Physics", value: 200 },
+];
+const COLORS = ["#1DDD8D", "#241763", "#927CFB", "#F50788"];
 const Performance = () => {
   return (
     <div className="row mt-4 d-flex">
@@ -13,9 +21,20 @@ const Performance = () => {
             <h3 className="fw-bold">Exam Results</h3>
             <p className="fs-6 text-secondary">Grades in overall subjects</p>
           </div>
-          <div className="divider w-100 p-0 m-0 text-gray h-1"></div>
-          <div className="d-flex align-items-center justify-content-center">
-            Graph Data
+          <div className="divider w-100 p-0 m-0 text-gray h-1 "></div>
+          <div className="position-relative overflow-hidden d-flex flex-column gap-2">
+            <DonotChart data={data} COLORS={COLORS} />
+            <div className="donotMatrics mt-3">
+              {data.map((sub, index) => (
+                <div className="d-flex align-items-center gap-1 mx-auto">
+                  <div
+                    className="subjectColor "
+                    style={{ backgroundColor: COLORS[index] }}
+                  ></div>
+                  <span className="text-xs">{sub.name}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

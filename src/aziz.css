@@ -16,6 +16,44 @@
 .text-gray {
   background-color: #ececec !important;
 }
+.text-gray-font {
+  color: #ececec !important;
+}
+.dotGraph {
+  height: 8px;
+  width: 8px;
+  background-color: var(--bg-primary);
+  border-radius: 50%;
+}
+.donotPercentage {
+  position: absolute;
+  left: 45%;
+  top: 35%;
+  color: black;
+  font-weight: bold;
+  z-index: 99999;
+  font-weight: bold;
+
+  /* transform: translate(-35%, -45%); */
+}
+.donotMatrics {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 4px 15px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  align-content: center;
+  /* place-items: center; */
+
+  width: 100%;
+}
+.subjectColor {
+  height: 12px;
+  width: 40px;
+  border-radius: 5px;
+}
 .divider {
   height: 2px !important;
 }

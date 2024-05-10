@@ -14,6 +14,7 @@ import { X } from "lucide-react";
 import ChildCards from "../Components/parent/ChildCards";
 import WelcomeSection from "../Components/Common/WelcomeSection";
 import UpcomingClasses from "../Components/parent/UpcomingClasses";
+import Chart from "../Components/parent/analytics/Chart";
 
 const Home = () => {
   const [chatOpened, setChatOpened] = useState(false);
@@ -166,8 +167,20 @@ const Home = () => {
         ) : null}
         {user === "parent" && (
           <>
-            <div className="row">
-              <div className="col-md-9">Student Performance</div>
+            <div className="row mt-3 px-2">
+              <div className="col-md-9 bg-white shadow taskListView d-flex flex-column gap-3">
+                <div className="d-flex justify-content-between px-2 ">
+                  <div>
+                    <h4>Student Performance</h4>
+                    <p className="text-secondary">June 2022</p>
+                  </div>
+                  <div className="d-flex align-items-center gap-2">
+                    <div className="dotGraph"></div>
+                    <h4 className="m-0 p-0 fs-6">John Smith</h4>
+                  </div>
+                </div>
+                <Chart />
+              </div>
               <div className="col-md-3">
                 <div className="taskListView shadow">
                   <h4 className="mb-4">Tasks</h4>
