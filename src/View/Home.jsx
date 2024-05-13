@@ -144,10 +144,10 @@ const Home = () => {
           </div>
         ) : null}
         {user === "parent" && (
-          <>
-            <div className="row mt-3 px-2">
-              <div className="col-md-9 bg-white shadow taskListView d-flex flex-column gap-3 overflow-hidden">
-                <div className="d-flex justify-content-between px-2 ">
+          <div className="container-fluid">
+            <div className="row mt-3 p-0 m-0">
+              <div className="col-12 col-sm-12 col-lg-9 bg-white shadow taskListView d-flex flex-column gap-3 overflow-hidden">
+                <div className="d-flex justify-content-between ">
                   <div>
                     <h4>Student Performance</h4>
                     <p className="text-secondary">June 2022</p>
@@ -159,31 +159,31 @@ const Home = () => {
                 </div>
                 <Chart />
               </div>
-              <div className="col-md-3">
+              <div className="col-lg-3 mt-2 ">
                 <div className="taskListView shadow">
                   <h4 className="mb-4">Tasks</h4>
                   <TaskNotifications />
                 </div>
               </div>
             </div>
-            <div className="row">
-              <div className="col-md-3 mt-4">
+            <div className="row pb-4">
+              <div className="col-6 col-md-3 mt-4">
                 <UpcomingClasses />
               </div>
 
-              <div className="col-md-3 mt-4">
+              <div className="col-6 col-md-3 mt-4">
                 <UpcomingClasses />
               </div>
 
-              <div className="col-md-3 mt-4">
+              <div className="col-6 col-md-3 mt-4">
                 <UpcomingClasses />
               </div>
 
-              <div className="col-12 col-md-3 d-flex align-items-stretch">
+              <div className="col-12 col-md-3 d-flex align-items-stretch mt-4">
                 <QuickMessages />
               </div>
             </div>
-          </>
+          </div>
         )}
         <AnimatePresence>
           <div
