@@ -17,7 +17,6 @@ const Chart = () => {
 
   return (
     <ResponsiveContainer>
-      {" "}
       <LineChart width={800} height={400} data={data}>
         <Line
           type="monotone"

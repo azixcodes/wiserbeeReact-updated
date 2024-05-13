@@ -2165,7 +2165,7 @@ tr:nth-child(even) {
   white-space: nowrap;
 }
 .cardMini {
-  width: 30% !important;
+  /* width: 30% !important; */
 }
 .analyticsCard {
   height: 400px;

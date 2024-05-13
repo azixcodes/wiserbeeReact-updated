@@ -1,5 +1,5 @@
 import React from "react";
-import { CalendarCheck2, CalendarClock } from "lucide-react";
+import { CalendarClock } from "lucide-react";
 import { chats } from "../../Constant/chats";
 import { clockSvg, parentCalenderSvg2 } from "../../Constant/svgs";
 const ExamCards = () => {
@@ -10,7 +10,7 @@ const ExamCards = () => {
         <img
           className="upcomingClassCardImage rounded-md"
           src={chats[0].dp}
-          alt="Photo"
+          alt="user"
         />
       </div>
       <div className="clock_Dp ">
@@ -18,7 +18,7 @@ const ExamCards = () => {
           {clockSvg} 30/4/2024 09:41AM
         </p>
       </div>
-      <div className="upcomingClassChips row gap-1 justify-content-center ">
+      <div className="upcomingClassChips row gap-1 justify-content-center px-1">
         <p className="test text-capitalize col-md-3 py-2 px-1">24 Lectures</p>
         <p className="test text-capitalize col-md-3 py-2 px-1">English</p>
         <p className="test text-capitalize col-md-3 py-2 px-1">Section B</p>

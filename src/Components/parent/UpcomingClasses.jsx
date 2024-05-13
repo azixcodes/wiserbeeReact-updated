@@ -14,10 +14,10 @@ const UpcomingClasses = () => {
         <img
           className="upcomingClassCardImage rounded-md"
           src={chats[0].dp}
-          alt="Photo"
+          alt="user"
         />
       </div>
-      <div className="upcomingClassChips row gap-1 justify-content-center ">
+      <div className="upcomingClassChips row gap-1 justify-content-center">
         <p className="test text-capitalize col-md-3 py-2 px-1">test</p>
         <p className="test text-capitalize col-md-3 py-2 px-1">7th Class</p>
         <p className="test text-capitalize col-md-3 py-2 px-1">Online</p>
