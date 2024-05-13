@@ -27,7 +27,7 @@ const WelcomeSection = ({ user }) => {
   return (
     <div className="welcomeBox">
       <div className="logoWithText d-flex justify-content-start align-items-start flex-wrap">
-        <div className="welcomeTxtP">
+        <div className="welcomeTxtP w-100">
           <div className="mt-2">
             <h6>Welcome back, John!</h6>
             <p>Always stay updated in your {user} portal</p>

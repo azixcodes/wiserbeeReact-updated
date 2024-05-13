@@ -12,7 +12,7 @@ const ChildCards = () => {
     setusers(updatedUsers);
   };
   return (
-    <div className="d-flex gap-3 flex-column flex-md-row">
+    <div className="d-flex gap-3 justify-content-start flex-wrap smFlexScreen">
       {users.map((child, index) => (
         <div
           key={index}
