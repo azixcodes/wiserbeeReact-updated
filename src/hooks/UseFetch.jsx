@@ -35,7 +35,7 @@ const useFetch = (endpoint) => {
     };
 
     fetchData();
-  }, [endpoint]);
+  }, [endpoint]); 
 
   //this function will trigger fetch again...
   const refetch = async (endpoint2) => {

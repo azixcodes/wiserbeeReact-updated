@@ -145,12 +145,9 @@ const Home = () => {
         ) : null}
         {user === "parent" && (
           <div className="container-fluid">
-            <div className="row mt-4 d-flex flex-column flex-md-row gap-3">
+            <div className="row mt-4 gy-2">
               {/* <div className="w-100 bg-primary"></div> */}
-              <div
-                // className="col-12 col-sm-12 col-lg-8 bg-white shadow taskListView d-flex flex-column gap-3 overflow-hidden"
-                className="lg:w-75 w-100 bg-white shadow taskListView d-flex flex-column gap-3 overflow-hidden"
-              >
+              <div className="col-12 col-sm-12 col-lg-9 bg-white shadow taskListView d-flex flex-column gap-3 overflow-hidden">
                 <div className="d-flex justify-content-between ">
                   <div>
                     <h4>Student Performance</h4>
@@ -163,7 +160,7 @@ const Home = () => {
                 </div>
                 <Chart />
               </div>
-              <div className="w-100 w-md-25 p-0 m-0">
+              <div className="col-12 col-lg-3 mt-4 p-0 p-lg-3">
                 <div className="taskListView shadow">
                   <h4 className="mb-4">Tasks</h4>
                   <TaskNotifications />

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { X, PlusIcon, Locate } from "lucide-react";
 import UserAvatar from "../Components/Common/UserAvatar";
-
+import { postRequest } from "../services/index";
 const ScheduleClass = ({ onRequestClose, exam }) => {
+  const [loading, setLoading] = useState(false);
   const [users, setUsers] = useState({
     loading: false,
     data: [],
@@ -10,8 +11,11 @@ const ScheduleClass = ({ onRequestClose, exam }) => {
   });
   const [classData, setClassData] = useState({
     title: "",
+    participants: "Aziz",
     start_date: null,
     end_date: null,
+    location: "",
+    type: "",
     start_time: null,
     end_time: null,
   });
@@ -19,8 +23,34 @@ const ScheduleClass = ({ onRequestClose, exam }) => {
     const { value, name } = e.target;
     setClassData({ ...classData, [name]: value });
   };
-  const handleSubmitForm = () => {
-    console.log(classData);
+  const handleSubmitForm = async () => {
+    const payload = {
+      class_type: classData.type,
+      participants: classData.participants,
+      subject_title: classData.title,
+      location: classData.location,
+      start_date: classData.start_date,
+      end_date: classData.end_date,
+      start_time: classData.start_time,
+      end_date: classData.end_date,
+      end_time: classData.end_time,
+    };
+    console.log(payload);
+    try {
+      setLoading(true);
+      const res = await postRequest("/quiz/class-schedule/", payload);
+      const data = await res.json();
+      if (res.ok) {
+        alert("class added");
+        setLoading(false);
+      } else {
+        alert("something went wrong, please try again");
+        setLoading(false);
+      }
+    } catch (err) {
+      console.log(err);
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -146,12 +176,15 @@ const ScheduleClass = ({ onRequestClose, exam }) => {
             <div className="d-flex flex-column gap-2  ">
               <label for="category">Category</label>
               <select
+                onChange={handleChange}
+                value={classData.type}
+                name="type"
                 class="form-select py-2"
                 aria-label="Default select example"
               >
                 <option selected>Choose a Class Type</option>
-                <option value="1">Physical</option>
-                <option value="2">Online</option>
+                <option value="Physical">Physical</option>
+                <option value="Online">Online</option>
               </select>
             </div>
           </div>
@@ -166,6 +199,8 @@ const ScheduleClass = ({ onRequestClose, exam }) => {
                   aria-describedby="location"
                   placeholder="Location"
                   name="location"
+                  onChange={handleChange}
+                  value={classData.location}
                 />
 
                 <Locate />
@@ -192,7 +227,7 @@ const ScheduleClass = ({ onRequestClose, exam }) => {
                 style={{ color: "white" }}
                 onClick={handleSubmitForm}
               >
-                Create
+                {loading ? "Loading..." : "Create"}
               </button>
             </div>
           </div>
