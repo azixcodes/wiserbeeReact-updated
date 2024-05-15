@@ -17,7 +17,7 @@ const customStyles = {
   },
 };
 const ClassSchedule = () => {
-  const { data, error, loading } = useFetch("/quiz/exam-quizes/");
+  const { data } = useFetch("/quiz/exam-quizes/");
   const [add, setAdd] = useState(false);
 
   const [myDays, setMyDays] = useState([]);
@@ -306,10 +306,10 @@ const ClassSchedule = () => {
       );
     });
   };
-  console.log(myDays);
+
   function getNextWeek() {
     const nextWeekStart = new Date(currentDate);
-    nextWeekStart.setDate(nextWeekStart.getDate() + 7);
+    nextWeekStart.setDate(nextWeekStart.getDate() + 1);
 
     const daysOfWeek = [
       "Sunday",
@@ -400,8 +400,8 @@ const ClassSchedule = () => {
                 {daysOfWeek.map((day, index) => {
                   const matchingClass = newDataFormat.find(
                     (classInfo) =>
+                      // console.log("classInfo.date",classInfo?.date),
                       classInfo.time === time.toString() &&
-                      classInfo.day === day &&
                       classInfo.date === awaisDate[index].getDate() &&
                       classInfo.month === months[currentDate.getMonth()]
                   );
