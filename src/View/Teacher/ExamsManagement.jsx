@@ -37,7 +37,7 @@ const ExamsManagement = () => {
     setExamId(exam);
     setScheduleExamOpen(true);
     setQuestionsOpen(false);
-    refetch("/quiz/exam-schedule/");
+    refetch("/quiz/exam-quizes/");
   };
   const handleClickQuestions = (question, exam) => {
     setNumberOfQuestions(question);

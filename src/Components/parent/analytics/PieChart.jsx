@@ -10,17 +10,17 @@ const DonotChart = ({ COLORS }) => {
 
   return (
     <ResponsiveContainer>
-      <PieChart width={1000} height={400}>
+      <PieChart height={400} width={400}>
         <Pie
           data={data}
-          // cx={91}
-          // cy={100}
+          // cx={50}
+          // cy={80}
           innerRadius={40}
-          outerRadius={80}
+          outerRadius={60}
           fill="#8884d8"
           dataKey="value"
         >
-          {data.map((entry, index) => (
+          {data.map((_, index) => (
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}
         </Pie>

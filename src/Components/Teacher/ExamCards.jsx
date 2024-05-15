@@ -1,30 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
 import { CalendarCheck2, CalendarClock } from "lucide-react";
 import { bulbSvg, activeBulbSvg, clockSvg } from "../../Constant/svgs";
 import useFetch from "../../hooks/UseFetch";
 import { formatDate } from "../../Constant/helpers";
 const ExamCards = ({ exam, handleClickScheduleExam, handleClickQuestions }) => {
-  const {
-    loading: quizLoading,
-    data: quizData,
-    error: quizError,
-  } = useFetch("/quiz/exam-schedule/");
+  const { data: questionData } = useFetch("/quiz/choice/get_list");
 
-  const {
-    loading: questionLoading,
-    data: questionData,
-    error: questionError,
-    refetch,
-  } = useFetch("/quiz/choice/get_list");
+  const renderButtons = (start_date, end_date, start_time, end_time, id) => {
+    console.log(start_date, end_date, start_time, end_time);
+    // // const index = quizData.findIndex((item) => item.exam_quiz === id);
 
-  const renderButtons = (id) => {
-    const index = quizData.findIndex((item) => item.exam_quiz === id);
-
-    if (index !== -1) {
-      const date = quizData[index].end_date;
-      const timing = `${quizData[index].start_time.substring(0, 5)}-${quizData[
-        index
-      ].end_time.substring(0, 5)}`;
+    if (
+      start_date !== null &&
+      end_date !== null &&
+      start_time !== null &&
+      end_time !== null
+    ) {
+      // const date = quizData[index].end_date;
+      const timing = `${start_time.substring(0, 5)}-${end_time.substring(
+        0,
+        5
+      )}`;
       return (
         <div className="d-flex   align-items-center gap-2 fs-6 ">
           <button
@@ -48,7 +44,7 @@ const ExamCards = ({ exam, handleClickScheduleExam, handleClickQuestions }) => {
             className="p-0 m-0  "
             style={{ color: "#857EA5", fontSize: "10px" }}
           >
-            {formatDate(date)} ({timing})
+            {formatDate(end_date)} ({timing})
           </span>
         </div>
       );
@@ -64,7 +60,7 @@ const ExamCards = ({ exam, handleClickScheduleExam, handleClickQuestions }) => {
           fontSize: "12px",
           border: "none",
         }}
-        onClick={() => handleClickScheduleExam(exam.id)}
+        // onClick={() => handleClickScheduleExam(id)}
       >
         <span className="rounded p-0 m-0">
           <CalendarClock style={{ height: "16px", width: "16px" }} />
@@ -156,9 +152,13 @@ const ExamCards = ({ exam, handleClickScheduleExam, handleClickQuestions }) => {
             </div>
           ) : (
             <div className="d-flex   align-items-center fs-6 ">
-              {quizLoading && "Loading..."}
-              {quizError && "error loading exam"}
-              {quizData && renderButtons(exam.id)}
+              {renderButtons(
+                exam.start_end,
+                exam.end_date,
+                exam.start_time,
+                exam.end_time,
+                exam.id
+              )}
             </div>
           )}
         </div>
