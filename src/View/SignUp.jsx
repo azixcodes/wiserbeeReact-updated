@@ -20,7 +20,7 @@ const SignUp = () => {
 
   const location = useLocation();
   const selectedAccount = location.state && location.state.selectedAccount;
-
+  console.log(selectedAccount);
   useEffect(() => {
     if (selectedAccount === null) {
       navigate("/sign-up-first");
@@ -73,14 +73,17 @@ const SignUp = () => {
           password2: obj["confirm password"],
           phone: obj["phone number"],
         };
-        const response = await postRequest("/accounts/register/", data);
+        const payload = { user: data };
+        const response = await postRequest(
+          `/api/user/${selectedAccount}/register/`,
+          payload
+        );
         const result = await response.json();
-        if (result.msg === "Registration Successful") {
-          alert("resgistration success");
+        if (response.ok) {
+          alert("Registration successful");
           navigate("/");
         } else {
-          alert("something went wrong, please try again..");
-          console.log(result);
+          alert("something went wrong, please try again.");
         }
       } catch (err) {
         console.log(err);

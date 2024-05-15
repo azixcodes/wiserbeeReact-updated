@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight, Plus } from "lucide-react";
 import Modal from "react-modal";
 
 import ScheduleClass from "../../modals/ScheduleClass";
-
+import useFetch from "../../hooks/UseFetch";
 const customStyles = {
   content: {
     top: "50%",
@@ -17,6 +17,73 @@ const customStyles = {
   },
 };
 const ClassSchedule = () => {
+  const { data, error, loading } = useFetch("/quiz/exam-quizes/");
+  const [add, setAdd] = useState(false);
+
+  const [myDays, setMyDays] = useState([]);
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const daysOfWeek = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  const scheduledExams = data.filter(
+    (exam) => exam.start_date !== null && exam.start_time !== null
+  );
+
+  const getDay = (d) => {
+    const date = new Date(d);
+
+    const currentDay = date.getDay();
+    return daysOfWeek[currentDay];
+  };
+
+  const getTime = (startTimeString) => {
+    const dummyDate = new Date("2000-01-01 " + startTimeString);
+
+    const hours = dummyDate.getHours();
+
+    const formattedHours = hours % 12 || 12;
+    return formattedHours.toString();
+  };
+
+  const getDate = (d) => {
+    const date = new Date(d);
+
+    return date.getDate();
+  };
+  const getMonth = (dt) => {
+    const date = new Date(dt);
+    return months[date.getMonth()];
+  };
+  const newDataFormat = scheduledExams.map((exam, index) => ({
+    section: exam.Exam_title,
+    day: getDay(exam.start_date),
+    time: getTime(exam.start_time),
+    date: getDate(exam.start_date),
+    month: getMonth(exam.start_date),
+  }));
+
+  console.log(newDataFormat);
+
   const date = new Date();
   console.log(date.getHours());
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -27,20 +94,14 @@ const ClassSchedule = () => {
   };
 
   const dates = [];
-  const daysOfWeek = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday",
-  ];
+  const awaisDate = [];
+  const days = [];
 
   const handleLeftArrowClick = () => {
     const updatedDate = new Date(currentDate);
     updatedDate.setDate(updatedDate.getDate() - 1); // Move one day back
     setCurrentDate(updatedDate);
+    renderDates();
   };
 
   // Function to handle clicking on the right arrow icon
@@ -48,146 +109,139 @@ const ClassSchedule = () => {
     const updatedDate = new Date(currentDate);
     updatedDate.setDate(updatedDate.getDate() + 1); // Move one day forward
     setCurrentDate(updatedDate);
+    renderDates();
   };
   let timeZone = [8, 9, 10, 11, 12, 1, 2, 3, 4, 5];
 
-  const classData = [
-    {
-      section: "Programming Fundamental",
-      day: "Monday",
-      time: "8",
-      date: 3,
-    },
-    {
-      section: "React Native",
-      day: "Monday",
-      time: "9",
-      date: 3,
-    },
+  // const classData = [
+  //   {
+  //     section: "Programming Fundamental",
+  //     day: "Monday",
+  //     time: "8",
+  //     date: 3,
+  //   },
+  //   {
+  //     section: "React Native",
+  //     day: "Monday",
+  //     time: "9",
+  //     date: 3,
+  //   },
 
-    {
-      section: "FU",
-      day: "Monday",
-      time: "5",
-      date: 3,
-    },
+  //   {
+  //     section: "FU",
+  //     day: "Monday",
+  //     time: "5",
+  //     date: 3,
+  //   },
 
-    {
-      section: "1:1 ",
-      day: "Wednesday",
-      time: "2",
-      date: 3,
-    },
+  //   {
+  //     section: "1:1 ",
+  //     day: "Wednesday",
+  //     time: "2",
+  //     date: 3,
+  //   },
 
-    {
-      section: "DB",
-      day: "Tuesday",
-      time: "9",
-      date: 3,
-    },
-    {
-      section: "DS",
-      day: "Tuesday",
-      time: "12",
-      date: 3,
-    },
+  //   {
+  //     section: "DB",
+  //     day: "Tuesday",
+  //     time: "9",
+  //     date: 3,
+  //   },
+  //   {
+  //     section: "DS",
+  //     day: "Tuesday",
+  //     time: "12",
+  //     date: 3,
+  //   },
 
-    {
-      section: "CD",
-      day: "Tuesday",
-      time: "2",
-      date: 3,
-    },
-    {
-      section: "DR",
-      day: "Tuesday",
-      time: "4",
-      date: 3,
-    },
-    {
-      section: "Figma",
-      day: "Wednesday",
-      time: "9",
-      date: 3,
-    },
-    {
-      section: "OP",
-      day: "Wednesday",
-      time: "11",
-      date: 3,
-    },
-    {
-      section: "MVP",
-      day: "Wednesday",
-      time: "1",
-      date: 3,
-    },
-    {
-      section: "HBW",
-      day: "Thursday",
-      time: "10",
-      date: 3,
-    },
-    {
-      section: "DR",
-      day: "Thursday",
-      time: "1",
-      date: 3,
-    },
-    {
-      section: "EP",
-      day: "Friday",
-      time: "9",
-      date: 3,
-    },
-    {
-      section: "MVP",
-      day: "Friday",
-      time: "12",
-      date: 3,
-    },
-    {
-      section: "DR",
-      day: "Friday",
-      time: "2",
-      date: 4,
-    },
-    {
-      section: "MS",
-      day: "Friday",
-      time: "8",
-      date: 4,
-    },
-  ];
+  //   {
+  //     section: "CD",
+  //     day: "Tuesday",
+  //     time: "2",
+  //     date: 3,
+  //   },
+  //   {
+  //     section: "DR",
+  //     day: "Tuesday",
+  //     time: "4",
+  //     date: 3,
+  //   },
+  //   {
+  //     section: "Figma",
+  //     day: "Wednesday",
+  //     time: "9",
+  //     date: 3,
+  //   },
+  //   {
+  //     section: "OP",
+  //     day: "Wednesday",
+  //     time: "11",
+  //     date: 3,
+  //   },
+  //   {
+  //     section: "MVP",
+  //     day: "Wednesday",
+  //     time: "1",
+  //     date: 3,
+  //   },
+  //   {
+  //     section: "HBW",
+  //     day: "Thursday",
+  //     time: "10",
+  //     date: 3,
+  //   },
+  //   {
+  //     section: "DR",
+  //     day: "Thursday",
+  //     time: "1",
+  //     date: 3,
+  //   },
+  //   {
+  //     section: "EP",
+  //     day: "Friday",
+  //     time: "9",
+  //     date: 3,
+  //   },
+  //   {
+  //     section: "MVP",
+  //     day: "Friday",
+  //     time: "12",
+  //     date: 3,
+  //   },
+  //   {
+  //     section: "DR",
+  //     day: "Friday",
+  //     time: "2",
+  //     date: 4,
+  //   },
+  //   {
+  //     section: "MS",
+  //     day: "Friday",
+  //     time: "8",
+  //     date: 4,
+  //   },
+  // ];
 
   const generateDates = () => {
     const days = [
+      "Sunday",
       "Monday",
       "Tuesday",
       "Wednesday",
       "Thursday",
       "Friday",
       "Saturday",
-      "Sunday",
     ];
 
     for (let i = 0; i < 7; i++) {
       const date = new Date(currentDate);
       date.setDate(date.getDate() + i);
-      dates.push(date);
+      awaisDate.push(date);
     }
-
-    return days.map((date, index) => {
-      const d = dates[index];
-      return (
-        <th key={index} className="text-uppercase">
-          <b>{date}</b>
-          <br />
-          {d.getDate()} <br />
-        </th>
-      );
-    });
   };
+
+  generateDates();
+
   const setAMPM = (hour) => {
     const amPM = {
       8: "08 AM",
@@ -204,6 +258,84 @@ const ClassSchedule = () => {
 
     return amPM[hour];
   };
+
+  const getCurrentWeek = () => {
+    const daysOfWeek = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    // const currentDate = new Date();
+    const currentDayIndex = currentDate.getDay();
+
+    // Calculate the start of the week (Sunday)
+    const startOfWeek = new Date(currentDate);
+    startOfWeek.setDate(startOfWeek.getDate());
+
+    // Generate data for each day of the week
+    for (let i = 0; i < 7; i++) {
+      const date = new Date(startOfWeek);
+      date.setDate(date.getDate() + i);
+      const dayIndex = date.getDay();
+      const dayName = daysOfWeek[dayIndex];
+      const dayOfMonth = date.getDate();
+
+      days.push({ day: dayName, date: dayOfMonth });
+    }
+    return days;
+  };
+
+  useEffect(() => {
+    setMyDays(days);
+  }, [days.length]);
+
+  const renderDates = () => {
+    const weekData = getCurrentWeek();
+    return weekData.map((dayData, index) => {
+      const { day, date } = dayData;
+      return (
+        <th key={index} className="text-uppercase">
+          <b>{day}</b>
+          <br />
+          {date} <br />
+        </th>
+      );
+    });
+  };
+  console.log(myDays);
+  function getNextWeek() {
+    const nextWeekStart = new Date(currentDate);
+    nextWeekStart.setDate(nextWeekStart.getDate() + 7);
+
+    const daysOfWeek = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    const days = [];
+
+    for (let i = 0; i < 7; i++) {
+      const date = new Date(nextWeekStart);
+      date.setDate(date.getDate() + i);
+      const dayIndex = date.getDay();
+      const dayName = daysOfWeek[dayIndex];
+      const dayOfMonth = date.getDate();
+
+      dates.push({ day: dayName, date: dayOfMonth });
+    }
+    setAdd(!add);
+
+    return dates;
+  }
+
   return (
     <>
       <Modal isOpen={open} onRequestClose={closeModal} style={customStyles}>
@@ -255,26 +387,23 @@ const ClassSchedule = () => {
         <table className="table table-bordered">
           <thead>
             <tr className="bg-light-gray">
-              <th className=" "></th>
-              {generateDates()}
+              <th className=""></th>
+              {renderDates()}
             </tr>
           </thead>
           <tbody>
             {timeZone.map((time) => (
               <tr key={time} className="">
-                <td className="clocK_time">
-                  {/* {time >= 12
-                    ? time.toString().padStart(2, "0") + " PM"
-                    : time.toString().padStart(2, "0") + " AM"} */}
-                  {setAMPM(time)}
-                </td>
+                <td className="clocK_time">{setAMPM(time)}</td>
+                {/* time  = 10  */}
 
                 {daysOfWeek.map((day, index) => {
-                  const matchingClass = classData.find(
+                  const matchingClass = newDataFormat.find(
                     (classInfo) =>
                       classInfo.time === time.toString() &&
                       classInfo.day === day &&
-                      classInfo.date === dates[0].getDate()
+                      classInfo.date === awaisDate[index].getDate() &&
+                      classInfo.month === months[currentDate.getMonth()]
                   );
                   return (
                     <td

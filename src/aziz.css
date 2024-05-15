@@ -28,7 +28,7 @@
 .donotPercentage {
   position: absolute;
   left: 50%;
-  top: 40%;
+  top: 43%;
   color: black;
   font-weight: bold;
   z-index: 99999;
@@ -2167,9 +2167,14 @@ tr:nth-child(even) {
 .cardMini {
   /* width: 30% !important; */
 }
-.analyticsCard {
-  height: 400px;
+.userDots {
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
 }
+/* .analyticsCard {
+  height: 535px;
+} */
 /* upcomingClasses */
 /* <>.............................<Parent CSS ends Here>....................................<> */
 

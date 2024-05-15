@@ -16,3 +16,13 @@ export const postRequest = async (endPoint, data) => {
     body: JSON.stringify(data),
   });
 };
+
+export const updateRequest = async (endpoint, data) => {
+  return await fetch(`${BASE_URL}${endpoint}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+};

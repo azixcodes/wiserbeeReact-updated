@@ -14,9 +14,13 @@ const AddExamModal = ({ onRequestClose }) => {
     class: "8th Class",
     section: "All Sections",
     category: "Exam",
-    mins: "",
+    mins: 0,
     standard: "Test",
     questions: 0,
+    start_date: null,
+    end_date: null,
+    start_time: null,
+    end_time: null,
   });
 
   const handleClick = (counter, action) => {
@@ -36,17 +40,18 @@ const AddExamModal = ({ onRequestClose }) => {
     }
   };
   useEffect(() => {
-    // setExamData({
-    //   ...examData,
-    //   mins: minsCounter.toString(),
-    //   questionCounter: questionCounter,
-    // });
-
     setExamData((prev) => ({
       ...prev,
       questionCounter: questionCounter,
     }));
-  }, [questionCounter, minsCounter]);
+  }, [questionCounter]);
+  useEffect(() => {
+    setExamData((prev) => ({
+      ...prev,
+      mins: minsCounter,
+    }));
+  }, [minsCounter]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setExamData({ ...examData, [name]: value });
@@ -60,6 +65,10 @@ const AddExamModal = ({ onRequestClose }) => {
       category: examData.category.toLowerCase(),
       number_of_questions: questionCounter,
       duration_in_minutes: examData.mins,
+      start_date: examData.start_date,
+      end_date: examData.end_date,
+      start_time: examData.start_time,
+      end_time: examData.end_time,
     };
     const validate = validator(examData);
     if (validate === "success") {
@@ -81,6 +90,7 @@ const AddExamModal = ({ onRequestClose }) => {
     } else {
       alert(validate);
     }
+    console.log(examData);
   };
 
   return (
@@ -117,8 +127,9 @@ const AddExamModal = ({ onRequestClose }) => {
           </div>
         </div>
       </div>
+
       <div className="row  m-0 p-0 mt-3 px-2">
-        <div className="col-md-6 ">
+        <div className="col-md-6">
           <div className=" d-flex flex-column gap-2">
             <label for="classSelect">Class</label>
             <select
@@ -135,32 +146,8 @@ const AddExamModal = ({ onRequestClose }) => {
               <option>3rd Class</option>
             </select>
           </div>
-          <div className=" d-flex flex-column gap-2 mt-3">
-            <label for="category">Category</label>
-            <select
-              className="form-control py-1 fs-6 px-2"
-              id="category"
-              name="category"
-              onChange={handleChange}
-              value={examData.category}
-            >
-              <option>Exam</option>
-              <option>Assignment</option>
-              <option>Practice</option>
-              <option>Tests</option>
-            </select>
-          </div>
-          <div className=" d-flex flex-column gap-2 mt-3">
-            <label for="duration">Duration in Mints</label>
-            <Counter
-              isFullWidth={true}
-              handleClick={handleClick}
-              counter="mins"
-              value={minsCounter}
-            />
-          </div>
         </div>
-        <div className="col-md-6 ">
+        <div className="col-md-6">
           <div className=" d-flex flex-column gap-2">
             <label for="sectionSelect">Section</label>
             <select
@@ -176,6 +163,73 @@ const AddExamModal = ({ onRequestClose }) => {
               <option>Section C</option>
             </select>
           </div>
+        </div>
+        <div className="col-md-6">
+          <div className=" d-flex flex-column gap-2 mt-3">
+            <label for="category">Category</label>
+            <select
+              className="form-control py-1 fs-6 px-2"
+              id="category"
+              name="category"
+              onChange={handleChange}
+              value={examData.category}
+            >
+              <option>Exam</option>
+              <option>Assignment</option>
+              <option>Practice</option>
+              <option>Tests</option>
+            </select>
+          </div>
+        </div>
+        <div className="col-md-6">
+          <div className=" d-flex flex-column gap-2 mt-3">
+            <label for="classSelect">Start Date</label>
+            <input
+              type="date"
+              className="form-control py-1 fs-6 px-2"
+              name="start_date"
+              value={examData.start_date}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+        <div className="col-md-6">
+          <div className=" d-flex flex-column gap-2 mt-3">
+            <label for="category">Start Time</label>
+            <input
+              type="time"
+              className="form-control py-1 fs-6 px-2"
+              name="start_time"
+              value={examData.start_time}
+              onChange={handleChange}
+            />
+          </div>
+        </div>
+        <div className="col-md-6">
+          <div className=" d-flex flex-column gap-2 mt-3">
+            <label for="sectionSelect">End Date</label>
+            <input
+              type="date"
+              className="form-control py-1 fs-6 px-2"
+              name="end_date"
+              onChange={handleChange}
+              value={examData.end_date}
+            />
+          </div>
+        </div>
+        <div className="col-md-6">
+          <div className=" d-flex flex-column gap-2 mt-3">
+            <label for="questions">End Time</label>
+            <input
+              type="time"
+              className="form-control py-1 fs-6 px-2"
+              name="end_time"
+              onChange={handleChange}
+              value={examData.end_time}
+            />
+          </div>
+        </div>
+        <div className="col-md-6">
           <div className=" d-flex flex-column gap-2 mt-3">
             <label for="questions">Number of Questions</label>
             <Counter
@@ -186,27 +240,40 @@ const AddExamModal = ({ onRequestClose }) => {
             />
           </div>
         </div>
-      </div>
-      <div className="row px-4 py-2 ">
-        <div className="col-md-12 d-flex justify-content-center justify-content-md-end">
-          <div className="row">
-            <div className="col-md-6 mt-2">
-              <button
-                className="btnFooter"
-                style={{ backgroundColor: "#EDEBF1", color: "#463C77" }}
-                onClick={onRequestClose}
-              >
-                Cancel
-              </button>
-            </div>
-            <div className="col-md-6 mt-2">
-              <button
-                className="btnFooter"
-                style={{ backgroundColor: "#463C77", color: "white" }}
-                onClick={handleSubmitData}
-              >
-                Create
-              </button>
+        <div className="col-md-6">
+          <div className=" d-flex flex-column gap-2 mt-3">
+            <label for="duration">Duration in Mints</label>
+            <Counter
+              isFullWidth={true}
+              handleClick={handleClick}
+              counter="mins"
+              value={minsCounter}
+            />
+          </div>
+        </div>
+
+        {/* footer */}
+        <div className="row px-4 py-2 ">
+          <div className="col-md-12 d-flex justify-content-center justify-content-md-end">
+            <div className="row">
+              <div className="col-md-6 mt-2">
+                <button
+                  className="btnFooter"
+                  style={{ backgroundColor: "#EDEBF1", color: "#463C77" }}
+                  onClick={onRequestClose}
+                >
+                  Cancel
+                </button>
+              </div>
+              <div className="col-md-6 mt-2">
+                <button
+                  className="btnFooter"
+                  style={{ backgroundColor: "#463C77", color: "white" }}
+                  onClick={handleSubmitData}
+                >
+                  Create
+                </button>
+              </div>
             </div>
           </div>
         </div>

@@ -160,7 +160,7 @@ const Home = () => {
                 </div>
                 <Chart />
               </div>
-              <div className="col-12 col-lg-3 mt-4 p-0 p-lg-3">
+              <div className="col-12 col-lg-3  p-0  px-lg-3">
                 <div className="taskListView shadow">
                   <h4 className="mb-4">Tasks</h4>
                   <TaskNotifications />

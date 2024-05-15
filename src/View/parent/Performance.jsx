@@ -1,6 +1,6 @@
 import React from "react";
 import PerformanceMiniCard from "../../Components/parent/PerformanceMiniCard";
-// import { useParentContext } from "../../ContextAPI/ParentContext";
+import { useParentContext } from "../../ContextAPI/ParentContext";
 import DonotChart from "../../Components/parent/analytics/PieChart";
 
 import MultiLineChart from "../../Components/parent/analytics/MultiLineChart";
@@ -12,50 +12,69 @@ const data = [
 ];
 const COLORS = ["#1DDD8D", "#241763", "#927CFB", "#F50788"];
 const Performance = () => {
-  // const { users } = useParentContext();
+  const { users } = useParentContext();
+
+  const userData = users.map((user, index) => ({
+    name: user.name,
+    color: COLORS[index],
+  }));
 
   // const activeUser = users.filter((user) => user.isActive === true);
   return (
-    // <div className="row mt-4 d-flex ">
-    //   <div className="w-100 px-3 d-flex  ">
-    //     <div className="w-75 d-flex flex-column px-3 h-100">
-    //       <PerformanceMiniCard />
-    //       <div
-    //         className="w-100 px-1 mt-4 d-flex flex-column gap-3 pb-3 pt-2 bg-white h-100"
-    //         // style={{ height: "400px" }}
-    //       >
-    //         <div className="d-flex justify-content-between px-2 ">
-    //           <div>
-    //             <h4 className="fw-bold">Overall Student Performance</h4>
-    //             <p className="text-secondary">June 2022</p>
-    //           </div>
-    //           <div className="d-flex align-items-center gap-2">
-    //             <div className="dotGraph"></div>
-    //             <h4 className="m-0 p-0 fs-6">{activeUser[0].name}</h4>
-    //           </div>
-    //         </div>
-    //         <MultiLineChart />
-    //       </div>
-    //     </div>
-
-    //   </div>
-    // </div>
     <div className="container-fluid mt-4">
       <div className="row">
-        <div className="col-lg-9 m-0 p-0">
-          <div className="w-100 d-flex flex-column h-100 gap-4 px-3">
-            <PerformanceMiniCard />
-            <div
-              className="rounded p-0 m-0 bg-white shadow"
-              style={{ height: "300px" }}
-            >
-              <MultiLineChart />
+        {/* First Column */}
+        <div className="col-lg-8">
+          {/* Cards */}
+          <PerformanceMiniCard />
+          {/* Chart */}
+          <div className="row mt-4">
+            <div className="col-lg-12">
+              <div className="card  border-0 shadow">
+                <div className="card-body">
+                  <div className="row px-3">
+                    <div className="col-md-6 px-2 m-0">
+                      <div className="d-flex flex-column gap-1">
+                        <h4 className="fw-bold fs-5">Behavorial Assesment</h4>
+                        <p className="text-secondary">22 June 2024</p>
+                      </div>
+                    </div>
+                    <div className="col-md-6 p-0 m-0">
+                      <div className="d-flex gap-3 align-items-center">
+                        {userData.map((user, index) => (
+                          <div
+                            className="d-flex align-items-center gap-2"
+                            key={index}
+                          >
+                            <div
+                              className="userDots"
+                              style={{ backgroundColor: user.color }}
+                            ></div>
+                            <p className="p-0 m-0 fw-bold text-xs white-space-nowrap">
+                              {user.name}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div
+                      className="col-md-12 p-0 m-0"
+                      style={{ height: "300px" }}
+                    >
+                      <MultiLineChart />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div className="col-lg-3 p-0 mt-4">
-          <div className="w-100">
-            <div className="card bg-white shadow rounded border-0 analyticsCard py-4  d-flex   w-100 ">
+        {/* Second Column */}
+        <div className="col-lg-4 mt-4 mt-lg-0">
+          <div className="card h-100 shadow border-0">
+            <div className="card-body">
               <div className="d-flex flex-column px-2 py-2 text-center">
                 <h3 className="fw-bold">Exam Results</h3>
                 <p className="fs-6 text-secondary">
@@ -63,8 +82,10 @@ const Performance = () => {
                 </p>
               </div>
               <div className="divider w-100 p-0 m-0 text-gray h-1 "></div>
-              <div className="position-relative overflow-hidden d-flex flex-column gap-2  align-items-center h-100 pb-5">
-                <DonotChart COLORS={COLORS} />
+              <div className="position-relative overflow-hidden d-flex flex-column gap-2   align-items-center  pb-5 ">
+                <div className="   w-100  " style={{ height: "300px" }}>
+                  <DonotChart COLORS={COLORS} />
+                </div>
 
                 {/* <h4>Helo</h4> */}
 

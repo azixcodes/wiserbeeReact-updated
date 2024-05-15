@@ -258,6 +258,7 @@ a {
   background-color: #fff;
   padding: 30px;
   border-radius: 15px;
+  height: inherit;
 }
 .taskImg {
   width: 50px;
@@ -822,7 +823,7 @@ td {
   .courseTiles {
     width: 97%;
   }
-  .smFlexScreen{
+  .smFlexScreen {
     justify-content: center !important;
   }
 }
