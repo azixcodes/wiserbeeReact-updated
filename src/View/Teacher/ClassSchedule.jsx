@@ -420,7 +420,19 @@ const ClassSchedule = () => {
                             : "5px solid green",
                       }}
                     >
-                      {matchingClass ? matchingClass.section : "-"}
+                      {matchingClass ? (
+                        <div className="d-flex flex-column ">
+                          {" "}
+                          <p className="fw-bold p-0 ">
+                            {matchingClass.section}
+                          </p>
+                          <span className="">
+                            {setAMPM(matchingClass.time)}
+                          </span>
+                        </div>
+                      ) : (
+                        "-"
+                      )}
                     </td>
                   );
                 })}
