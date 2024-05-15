@@ -144,10 +144,10 @@ const Home = () => {
           </div>
         ) : null}
         {user === "parent" && (
-          <div className="container-fluid">
+          <div className="container-fluid pr-0">
             <div className="row mt-4 gy-2">
               {/* <div className="w-100 bg-primary"></div> */}
-              <div className="col-12 col-sm-12 col-lg-9 bg-white shadow taskListView d-flex flex-column gap-3 overflow-hidden">
+              <div className="col-12 col-sm-12 col-lg-8 bg-white shadow taskListView d-flex flex-column gap-3 overflow-hidden">
                 <div className="d-flex justify-content-between ">
                   <div>
                     <h4>Student Performance</h4>
@@ -160,7 +160,7 @@ const Home = () => {
                 </div>
                 <Chart />
               </div>
-              <div className="col-12 col-lg-3  p-0  px-lg-3">
+              <div className="col-12 col-lg-4  p-0  px-lg-3">
                 <div className="taskListView shadow">
                   <h4 className="mb-4">Tasks</h4>
                   <TaskNotifications />
@@ -168,19 +168,25 @@ const Home = () => {
               </div>
             </div>
             <div className="row pb-4">
-              <div className="col-12 col-sm-6 col-lg-3 mt-4">
-                <UpcomingClasses />
-              </div>
+              <div className="col-lg-8">
+                <div className="row">
+                  <div className="col-12 col-sm-6 col-lg-4 mt-4">
+                    <UpcomingClasses />
+                  </div>
 
-              <div className="col-12 col-sm-6 col-lg-3 mt-4">
-                <UpcomingClasses />
-              </div>
+                  <div className="col-12 col-sm-6 col-lg-4 mt-4">
+                    <UpcomingClasses />
+                  </div>
 
-              <div className="col-12 col-sm-6 col-lg-3 mt-4">
-                <UpcomingClasses />
+                  <div className="col-12 col-sm-6 col-lg-4 mt-4">
+                    <UpcomingClasses />
+                  </div>
+                </div>
               </div>
+              {/* <div className="col-lg-4"></div> */}
 
-              <div className="col-12 col-lg-3 d-flex align-items-stretch mt-4">
+
+              <div className="col-12 col-lg-4 d-flex align-items-stretch mt-4">
                 <QuickMessages />
               </div>
             </div>
@@ -188,9 +194,8 @@ const Home = () => {
         )}
         <AnimatePresence>
           <div
-            className={`chatbotIconWrapper ${
-              chatOpened ? "chatOpened" : "chatClosed"
-            }`}
+            className={`chatbotIconWrapper ${chatOpened ? "chatOpened" : "chatClosed"
+              }`}
             onClick={handleChatClick}
           >
             {chatOpened ? <X className="closeIcon" /> : chatSvg}

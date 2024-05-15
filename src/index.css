@@ -46,6 +46,9 @@ span {
 .font13px {
   font-size: 13px;
 }
+.pr-0{
+  padding-right: 0 !important;
+}
 body {
   background-color: #f8f8f8;
 }
