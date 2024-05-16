@@ -5,14 +5,28 @@ import useFetch from "../hooks/UseFetch";
 import { formatDate } from "../Constant/helpers";
 const Exams = () => {
   const { data, loading, error } = useFetch("/quiz/exam-quizes/");
+  const {
+    data: choicesData,
+    error: choiceError,
+    loading: choiceLoading,
+  } = useFetch("/quiz/choice/get_list/");
+  const choicesArr = Object.values(choicesData).flat();
 
   const navigate = useNavigate();
 
   const handleQuestionNavigate = (id) => {
-    const index = data.findIndex((item) => item.id === id);
+    const index = choicesArr.findIndex((exam) => exam.exam_quiz === id);
+
     if (index !== -1) {
       navigate(`/exams/${id}`);
-    } else return;
+    } else {
+      alert("no question added for this exam");
+    }
+
+    // const index = data.findIndex((item) => item.id === id);
+    // if (index !== -1) {
+    //   navigate(`/exams/${id}`);
+    // } else return;
   };
   return (
     <>

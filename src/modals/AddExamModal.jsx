@@ -177,7 +177,6 @@ const AddExamModal = ({ onRequestClose }) => {
               <option>Exam</option>
               <option>Assignment</option>
               <option>Practice</option>
-              <option>Tests</option>
             </select>
           </div>
         </div>
