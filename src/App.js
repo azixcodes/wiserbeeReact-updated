@@ -10,3 +10,5 @@ const App = () => {
   return <Routes />;
 };
 export default App;
+
+// Redux toolkit will be implemented next to this commit
