@@ -1,5 +1,5 @@
 import React from "react";
-import { useParentContext } from "../../../ContextAPI/ParentContext";
+
 import {
   LineChart,
   Line,
@@ -8,9 +8,10 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import { useSelector } from "react-redux";
 
 const MultiLineChart = () => {
-  const { users } = useParentContext();
+  const users = useSelector((state) => state.parent.users);
   const activeUser = users.filter((user) => user.isActive === true);
   const data = activeUser[0].graphData;
 

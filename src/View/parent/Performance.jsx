@@ -1,8 +1,8 @@
 import React from "react";
 import PerformanceMiniCard from "../../Components/parent/PerformanceMiniCard";
-import { useParentContext } from "../../ContextAPI/ParentContext";
-import DonotChart from "../../Components/parent/analytics/PieChart";
 
+import DonotChart from "../../Components/parent/analytics/PieChart";
+import { useSelector } from "react-redux";
 import MultiLineChart from "../../Components/parent/analytics/MultiLineChart";
 const data = [
   { name: "English", value: 400 },
@@ -12,14 +12,12 @@ const data = [
 ];
 const COLORS = ["#1DDD8D", "#241763", "#927CFB", "#F50788"];
 const Performance = () => {
-  const { users } = useParentContext();
-
+  const users = useSelector((state) => state.parent.users);
   const userData = users.map((user, index) => ({
     name: user.name,
     color: COLORS[index],
   }));
 
-  // const activeUser = users.filter((user) => user.isActive === true);
   return (
     <div className="container-fluid mt-4">
       <div className="row">

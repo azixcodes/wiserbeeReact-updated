@@ -3,14 +3,16 @@ import { createRoot } from "react-dom/client";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { AppContextProvider } from "./ContextAPI/Context";
-import { ParentContexProvider } from "./ContextAPI/ParentContext";
+
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 const root = createRoot(document.getElementById("root"));
 root.render(
-  <ParentContexProvider>
-    <AppContextProvider>
-      <BrowserRouter>
+  <AppContextProvider>
+    <BrowserRouter>
+      <Provider store={store}>
         <App />
-      </BrowserRouter>
-    </AppContextProvider>
-  </ParentContexProvider>
+      </Provider>
+    </BrowserRouter>
+  </AppContextProvider>
 );
