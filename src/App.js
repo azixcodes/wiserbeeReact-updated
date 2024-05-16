@@ -10,5 +10,3 @@ const App = () => {
   return <Routes />;
 };
 export default App;
-
-// Redux toolkit code goes here.
