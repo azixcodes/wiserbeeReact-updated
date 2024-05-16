@@ -158,20 +158,26 @@ const AddQuestions = ({ onRequestClose, questions, questionID }) => {
       const payload = {
         mcqs: format,
       };
-      const res = await postRequest("/quiz/choice/", payload);
-      // const data = await res.json();
-      if (res.ok) {
-        alert("Questions added successfully");
+      if (quiz.length > 0) {
+        try {
+          const res = await postRequest("/quiz/choice/", payload);
+          // const data = await res.json();
+          if (res.ok) {
+            alert("Questions added successfully");
 
-        onRequestClose();
-      } else {
-        alert("something went wrong, please try again.");
-      }
+            onRequestClose();
+          } else {
+            alert("something went wrong, please try again.");
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      } else return;
     }
     if (makeApiReq === true) {
       postQuestion();
     }
-  }, [makeApiReq, onRequestClose, quiz]);
+  }, [makeApiReq]);
 
   return (
     <div className="container-fluid p-0 m-0 pb-4 modalWrapper">

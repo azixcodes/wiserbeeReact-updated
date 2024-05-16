@@ -5,11 +5,8 @@ import useFetch from "../../hooks/UseFetch";
 import { formatDate } from "../../Constant/helpers";
 const ExamCards = ({ exam, handleClickScheduleExam, handleClickQuestions }) => {
   const { data: questionData } = useFetch("/quiz/choice/get_list");
-
-  const renderButtons = (start_date, end_date, start_time, end_time, id) => {
-    console.log(start_date, end_date, start_time, end_time);
-    // // const index = quizData.findIndex((item) => item.exam_quiz === id);
-
+  console.log(questionData);
+  const renderButtons = (start_date, end_date, start_time, end_time) => {
     if (
       start_date !== null &&
       end_date !== null &&
@@ -76,20 +73,21 @@ const ExamCards = ({ exam, handleClickScheduleExam, handleClickQuestions }) => {
     for (let res in questionData) {
       arr.push(questionData[res]);
     }
+    console.log(arr.flat());
 
     const index = arr.flat().findIndex((item) => item.exam_quiz === id);
     if (index !== -1) {
+      return <span>{activeBulbSvg}</span>;
+    } else {
       return (
         <span
           onClick={() =>
             handleClickQuestions(exam.number_of_questions, exam.id)
           }
         >
-          {activeBulbSvg}
+          {bulbSvg}
         </span>
       );
-    } else {
-      return <span>{bulbSvg}</span>;
     }
   };
   return (
