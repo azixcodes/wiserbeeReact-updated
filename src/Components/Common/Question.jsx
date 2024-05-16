@@ -91,7 +91,7 @@ const Question = ({ question, num, loading, error, examId }) => {
               ))}
             </div>
           ))
-        : "Error listing questions, try again later"}
+        : "No questions have been added."}
     </>
   );
 };

@@ -1,81 +1,15 @@
-import React from "react";
-import { examsData } from "../Constant/exams";
 import { useNavigate } from "react-router-dom";
-import { CalendarCheck2, CalendarClock } from "lucide-react";
+import { CalendarCheck2 } from "lucide-react";
 import { bulbSvg, clockSvg } from "../Constant/svgs";
 import useFetch from "../hooks/UseFetch";
 import { formatDate } from "../Constant/helpers";
 const Exams = () => {
   const { data, loading, error } = useFetch("/quiz/exam-quizes/");
-  const {
-    loading: quizLoading,
-    data: quizData,
-    error: quizError,
-  } = useFetch("/quiz/exam-schedule/");
-
-  const renderButtons = (id) => {
-    const index = quizData.findIndex((item) => item.exam_quiz === id);
-
-    if (index !== -1) {
-      const date = quizData[index].end_date;
-      const timing = `${quizData[index].start_time.substring(0, 5)}- ${quizData[
-        index
-      ].end_time.substring(0, 5)}`;
-      return (
-        <div className="d-flex align-items-center gap-2 fs-6 ">
-          <button
-            className="text-capitalize fs-6 d-flex gap-2  align-items-center"
-            style={{
-              backgroundColor: "#EDEBF1",
-              padding: "4px 4px",
-              borderRadius: "8px",
-              color: "#463C77",
-              width: "auto",
-              border: "none",
-            }}
-          >
-            <CalendarCheck2 style={{ height: "16px", width: "16px" }} />
-
-            <span className="p-0 m-0" style={{ fontSize: "12px" }}>
-              Scheduled
-            </span>
-          </button>
-          <span
-            className="p-0 m-0  "
-            style={{ color: "#857EA5", fontSize: "10px" }}
-          >
-            {formatDate(date)} ({timing})
-          </span>
-        </div>
-      );
-    }
-    return (
-      <button
-        className="text-capitalize fs-6 d-flex gap-2 align-items-center bgMain"
-        style={{
-          padding: "4px 4px",
-          borderRadius: "8px",
-          color: "white",
-          width: "auto",
-          fontSize: "12px",
-          border: "none",
-        }}
-        // onClick={() => handleClickScheduleExam(exam.id)}
-      >
-        <span className="rounded p-0 m-0">
-          <CalendarClock style={{ height: "16px", width: "16px" }} />
-        </span>
-        <span style={{ fontSize: "11px" }} className="p-0 m-0">
-          Pending...
-        </span>
-      </button>
-    );
-  };
 
   const navigate = useNavigate();
 
   const handleQuestionNavigate = (id) => {
-    const index = quizData.findIndex((item) => item.exam_quiz === id);
+    const index = data.findIndex((item) => item.id === id);
     if (index !== -1) {
       navigate(`/exams/${id}`);
     } else return;
@@ -124,7 +58,39 @@ const Exams = () => {
                     </div>
                   </div>
                   <div className="d-flex mt-3">
-                    {quizData && renderButtons(exam.id)}
+                    {/* {quizData && renderButtons(exam.id)} */}
+                    <div className="d-flex align-items-center gap-2 fs-6 ">
+                      <button
+                        className="text-capitalize fs-6 d-flex gap-2  align-items-center"
+                        style={{
+                          backgroundColor: "#EDEBF1",
+                          padding: "4px 4px",
+                          borderRadius: "8px",
+                          color: "#463C77",
+                          width: "auto",
+                          border: "none",
+                        }}
+                      >
+                        <CalendarCheck2
+                          style={{ height: "16px", width: "16px" }}
+                        />
+
+                        <span className="p-0 m-0" style={{ fontSize: "12px" }}>
+                          Scheduled
+                        </span>
+                      </button>
+                      <span
+                        className="p-0 m-0  "
+                        style={{ color: "#857EA5", fontSize: "10px" }}
+                      >
+                        {/* {formatDate(date)} ({timing}) */}
+                        {formatDate(exam.start_date)}
+                        {` ${exam.start_time.substring(
+                          0,
+                          5
+                        )}-${exam.end_time.substring(0, 5)}`}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
