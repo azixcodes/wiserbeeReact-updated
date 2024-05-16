@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import { Filter } from "lucide-react";
 import { Store } from "../../ContextAPI/Context";
+import { setToggleFilter } from "../../redux/ToggleSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const FilterHeader = (props) => {
-  const { toggleFilter, setToggleFilter } = Store();
+  const dispatch = useDispatch();
+  const toggleFilter = useSelector((state) => state.toggler.toggleFilter);
+
   const [test, setTest] = useState(false);
   const [filter, setFilter] = useState("Most Popular");
   const toggleFilterAside = () => {
-    setToggleFilter(!toggleFilter);
+    dispatch(setToggleFilter());
     setTest(!test);
   };
   const { searchTerm, openFilter } = props;

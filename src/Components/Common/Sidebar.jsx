@@ -9,17 +9,18 @@ import {
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
 import { Store } from "../../ContextAPI/Context";
-
+import { useSelector, useDispatch } from "react-redux";
+import { setToggleSidebar } from "../../redux/ToggleSlice";
 const Sidebar = () => {
-  const { toggleSidebar, setToggleSidebar, auth } = Store();
+  const dispatch = useDispatch();
+  const { auth } = Store();
   const [navLinks, setNavLinks] = useState([]);
   const [windowWidth, setWindowWidth] = useState(undefined);
   const location = useLocation();
+  const toggleSidebar = useSelector((state) => state.toggler.toggleSidebar);
 
   const sidebarRef = useRef(null);
-  const handleSidebarToggle = () => {
-    setToggleSidebar((prev) => !prev);
-  };
+
   let user = auth?.user || "student" || "teacher" || "parent";
   const userRole = JSON.parse(localStorage.getItem("user"));
   if (userRole) {
@@ -34,13 +35,6 @@ const Sidebar = () => {
   };
 
   useEffect(() => {
-    // if (user === "student") {
-    //   setNavLinks(studentLinks);
-    // } else if (user === "teacher") {
-    //   setNavLinks(teacherLinks);
-    // } else if (user === "parent") {
-    //   setNavLinks(parentLinks);
-    // }
     setNavLinks(roles[user]);
   }, []);
 
@@ -53,9 +47,7 @@ const Sidebar = () => {
   }, []);
   useEffect(() => {
     if (windowWidth < 993) {
-      setToggleSidebar(true);
-    } else {
-      setToggleSidebar(false);
+      dispatch(setToggleSidebar());
     }
   }, [windowWidth]);
 
@@ -131,7 +123,7 @@ const Sidebar = () => {
         </div>
         <div
           className="sidebarToggle cursor-pointer "
-          onClick={handleSidebarToggle}
+          onClick={() => dispatch(setToggleSidebar())}
         >
           {toggleSidebar ? <ChevronRight /> : <ChevronLeft />}
         </div>

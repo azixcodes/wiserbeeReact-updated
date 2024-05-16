@@ -1,7 +1,9 @@
 import React from "react";
-import { Store } from "../../ContextAPI/Context";
+
+import { useSelector } from "react-redux";
 const SideFilter = ({ children, filterationRef }) => {
-  const { toggleFilter } = Store();
+  const toggleFilter = useSelector((state) => state.toggler.toggleFilter);
+
   return (
     <>
       {toggleFilter && (

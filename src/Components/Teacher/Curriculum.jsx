@@ -2,12 +2,13 @@ import React from "react";
 import { curriculum } from "../../Constant/curriculum";
 import Chip from "../Common/Chip";
 import { User } from "lucide-react";
-import { Store } from "../../ContextAPI/Context";
 
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { courseSvg, languageSvg } from "../../Constant/svgs";
 const Curriculum = () => {
-  const { toggleFilter } = Store();
+  const toggleFilter = useSelector((state) => state.toggler.toggleFilter);
+
   const navigate = useNavigate();
   function getInitials(name) {
     const parts = name.split(" ");

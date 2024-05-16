@@ -1,14 +1,13 @@
 import { setUser } from "../../redux/ParentSlice";
-import { useParentContext } from "../../ContextAPI/ParentContext";
 import { useSelector, useDispatch } from "react-redux";
 const ChildCards = () => {
-  const users2 = useSelector((state) => state.parent.users);
+  const users = useSelector((state) => state.parent.users);
 
   const dispatch = useDispatch();
 
   return (
     <div className="d-flex gap-3 justify-content-start flex-wrap smFlexScreen">
-      {users2.map((child, index) => (
+      {users.map((child, index) => (
         <div
           key={index}
           className={` ${
