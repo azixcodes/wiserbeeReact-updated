@@ -32,16 +32,21 @@ const ExamQuestions = () => {
 
     setQuestions(updatedQuestions);
   };
+  const totalQuestions = mcqForID?.length;
   return (
     <div className="container-fluid px-4 py-4 rounded shadow bg-white">
       {!mcqForID ? (
-        <h4>No Questions have been added</h4>
+        <h4>
+          We're sorry, but it seems there's no exam available for the Exam..
+        </h4>
       ) : (
         <>
           <div className="row ">
             <div className="col-md-11">
               <div className="w-100 d-flex flex-column gap-1 justify-content-center ">
-                <p className="m-0 p-0 h6 text-secondary">Your progress</p>
+                <p className="m-0 p-0 h6 text-secondary">
+                  Your progress {totalQuestions}
+                </p>
                 <label className="fs-6 fw-bold">15% to complete</label>
                 <div className="questionBarProgress">
                   {examQuestions.map((_, index) => (

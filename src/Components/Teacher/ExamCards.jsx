@@ -1,11 +1,15 @@
-import React from "react";
 import { CalendarCheck2, CalendarClock } from "lucide-react";
 import { bulbSvg, activeBulbSvg, clockSvg } from "../../Constant/svgs";
 import useFetch from "../../hooks/UseFetch";
 import { formatDate } from "../../Constant/helpers";
-const ExamCards = ({ exam, handleClickScheduleExam, handleClickQuestions }) => {
-  const { data: questionData } = useFetch("/quiz/choice/get_list");
-  console.log(questionData);
+const ExamCards = ({
+  exam,
+
+  handleClickQuestions,
+  refetchLists,
+}) => {
+  const { data: questionData, refetch } = useFetch("/quiz/choice/get_list");
+
   const renderButtons = (start_date, end_date, start_time, end_time) => {
     if (
       start_date !== null &&
@@ -18,6 +22,10 @@ const ExamCards = ({ exam, handleClickScheduleExam, handleClickQuestions }) => {
         0,
         5
       )}`;
+
+      if (refetchLists === true) {
+        refetch("/quiz/choice/get_list/");
+      }
       return (
         <div className="d-flex   align-items-center gap-2 fs-6 ">
           <button
@@ -73,7 +81,6 @@ const ExamCards = ({ exam, handleClickScheduleExam, handleClickQuestions }) => {
     for (let res in questionData) {
       arr.push(questionData[res]);
     }
-    console.log(arr.flat());
 
     const index = arr.flat().findIndex((item) => item.exam_quiz === id);
     if (index !== -1) {

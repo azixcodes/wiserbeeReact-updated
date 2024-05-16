@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Plus } from "lucide-react";
 
@@ -28,6 +28,7 @@ const ExamsManagement = () => {
   const [scheduleExamOpen, setScheduleExamOpen] = useState(false);
   const [questionsOpen, setQuestionsOpen] = useState(false);
   const [questionID, setQuestionID] = useState(null);
+  const [refetchList, setRefetchList] = useState(false);
 
   const handleAddNewExamClick = () => {
     setIsOpen(true);
@@ -66,8 +67,10 @@ const ExamsManagement = () => {
   }
   async function closeQuestionModal() {
     setQuestionsOpen(false);
+    setRefetchList(true);
     await refetch("/quiz/exam-quizes/");
   }
+
   return (
     <>
       <Modal
@@ -128,17 +131,19 @@ const ExamsManagement = () => {
           ))} */}
           {loading && <h2>Loading Exams...</h2>}
           {error && <h4>Error Loading Exams</h4>}
-          {examData &&
-            examData.map((exam, index) => (
-              <ExamCards
-                exam={exam}
-                key={index}
-                handleClickScheduleExam={handleClickScheduleExam}
-                quizLoading={quizLoading}
-                quizError={quizError}
-                handleClickQuestions={handleClickQuestions}
-              />
-            ))}
+          {examData && examData.length > 0
+            ? examData?.map((exam, index) => (
+                <ExamCards
+                  exam={exam}
+                  key={index}
+                  handleClickScheduleExam={handleClickScheduleExam}
+                  quizLoading={quizLoading}
+                  quizError={quizError}
+                  handleClickQuestions={handleClickQuestions}
+                  refetchLists={refetchList}
+                />
+              ))
+            : "Loading..."}
         </div>
       </div>
     </>

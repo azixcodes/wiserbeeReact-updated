@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 
 const Question = ({ question, num, loading, error, examId }) => {
-  const [update, setUpdate] = useState(false);
   const [data, setData] = useState(question);
   const formatData = question?.map((item, index) => ({
     question: item.mcquestion,
@@ -69,17 +68,17 @@ const Question = ({ question, num, loading, error, examId }) => {
                   <div className="py-2 px-2 rounded chipBg">{item.marks}</div>
                 </div>
               </div>
-
               {item.choices?.map((choice, index) => (
                 <div className="col-md-6 " key={index}>
                   <div className="mt-2 d-flex align-items-center gap-2">
                     <input
                       className="form-check-input cursor-pointer"
                       type="radio"
-                      name={num}
                       onChange={() => handleSelectQuestion(--num, index)}
+                      name="options"
                     />
                     <div
+                      id="options"
                       className={`w-100 ${
                         choice.isSelected ? "selectedQuestion" : "question"
                       }`}
