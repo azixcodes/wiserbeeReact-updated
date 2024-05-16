@@ -27,12 +27,8 @@ export const AppContextProvider = ({ children }) => {
     }
   }, []);
   const value = {
-    toggleSidebar,
-    setToggleSidebar,
     user,
     setUser,
-    toggleFilter,
-    setToggleFilter,
     auth,
     setAuth,
   };
