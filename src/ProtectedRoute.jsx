@@ -1,10 +1,11 @@
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Sidebar from "./Components/Common/Sidebar";
 import Navbar from "./Components/Common/Navbar";
 import MiniSidebar from "./Components/Common/MiniSidebar";
 import { useNavigate } from "react-router-dom";
 import ParentLayout from "./layouts/ParentLayout";
+
 const ProtectedRoute = (props) => {
   const [toggle, setToggle] = useState(false);
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ const ProtectedRoute = (props) => {
   const { Component } = props;
   const location = useLocation();
   const auth = JSON.parse(localStorage.getItem("user"));
-  console.log("protected route", auth);
+
   useEffect(() => {
     if (!auth) {
       console.log("no auth");

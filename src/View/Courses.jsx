@@ -4,10 +4,13 @@ import Course from "../Components/Common/Course";
 import FilterHeader from "../Components/Common/FilterHeader";
 import CourseFilter from "../Components/Filters/CourseFilter";
 import SideFilter from "../Components/Filters/SideFilter";
-import { Store } from "../ContextAPI/Context";
+
+import { useSelector } from "react-redux";
+
 const Courses = () => {
   const filterationRef = useRef(null);
-  const { toggleFilter } = Store();
+
+  const toggleFilter = useSelector((state) => state.toggler.toggleFilter);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   let searchTerm = "UI Design";

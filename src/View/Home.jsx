@@ -14,9 +14,10 @@ import { X } from "lucide-react";
 import WelcomeSection from "../Components/Common/WelcomeSection";
 import UpcomingClasses from "../Components/parent/UpcomingClasses";
 import Chart from "../Components/parent/analytics/Chart";
-import { useParentContext } from "../ContextAPI/ParentContext";
+
+import { useSelector } from "react-redux";
 const Home = () => {
-  const { users } = useParentContext();
+  const users = useSelector((state) => state.parent.users);
 
   const activeUser = users.filter((user) => user.isActive === true);
   const [chatOpened, setChatOpened] = useState(false);
@@ -185,7 +186,6 @@ const Home = () => {
               </div>
               {/* <div className="col-lg-4"></div> */}
 
-
               <div className="col-12 col-lg-4 d-flex align-items-stretch mt-4">
                 <QuickMessages />
               </div>
@@ -194,8 +194,9 @@ const Home = () => {
         )}
         <AnimatePresence>
           <div
-            className={`chatbotIconWrapper ${chatOpened ? "chatOpened" : "chatClosed"
-              }`}
+            className={`chatbotIconWrapper ${
+              chatOpened ? "chatOpened" : "chatClosed"
+            }`}
             onClick={handleChatClick}
           >
             {chatOpened ? <X className="closeIcon" /> : chatSvg}

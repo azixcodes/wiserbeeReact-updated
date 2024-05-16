@@ -7,10 +7,11 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import { useParentContext } from "../../../ContextAPI/ParentContext";
+
+import { useSelector } from "react-redux";
 
 const Chart = () => {
-  const { users } = useParentContext();
+  const users = useSelector((state) => state.parent.users);
 
   const activeUser = users.filter((user) => user.isActive === true);
   const data = activeUser[0].singleData;

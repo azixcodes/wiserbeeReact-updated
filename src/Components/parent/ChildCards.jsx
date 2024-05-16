@@ -1,16 +1,10 @@
-import React, { useState } from "react";
-
-import { useParentContext } from "../../ContextAPI/ParentContext";
+import { setUser } from "../../redux/ParentSlice";
+import { useSelector, useDispatch } from "react-redux";
 const ChildCards = () => {
-  const { users, setusers } = useParentContext();
+  const users = useSelector((state) => state.parent.users);
 
-  const handleClick = (index) => {
-    const updatedUsers = users.map((user, i) => ({
-      ...user,
-      isActive: index === i,
-    }));
-    setusers(updatedUsers);
-  };
+  const dispatch = useDispatch();
+
   return (
     <div className="d-flex gap-3 justify-content-start flex-wrap smFlexScreen">
       {users.map((child, index) => (
@@ -19,7 +13,7 @@ const ChildCards = () => {
           className={` ${
             child.isActive ? "childChipActive" : "childChip"
           } d-flex flex-row  gap-2 align-items-center cursor-pointer`}
-          onClick={() => handleClick(index)}
+          onClick={() => dispatch(setUser(index))}
         >
           <div className="childAvatar">
             <img src={child.avatar} alt="name" className="h-100 w-100" />

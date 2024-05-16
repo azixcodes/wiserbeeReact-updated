@@ -2,12 +2,13 @@ import React from "react";
 import { courses } from "../../Constant/courses";
 import Chip from "./Chip";
 import { User } from "lucide-react";
-import { Store } from "../../ContextAPI/Context";
 
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const Course = ({ count = 4, useToggle = true, homeRender }) => {
-  const { toggleFilter } = Store();
+  const toggleFilter = useSelector((state) => state.toggler.toggleFilter);
+
   const navigate = useNavigate();
   function getInitials(name) {
     const parts = name.split(" ");

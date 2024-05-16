@@ -26,14 +26,9 @@ export const AppContextProvider = ({ children }) => {
       setAuth(session);
     }
   }, []);
-
   const value = {
-    toggleSidebar,
-    setToggleSidebar,
     user,
     setUser,
-    toggleFilter,
-    setToggleFilter,
     auth,
     setAuth,
   };

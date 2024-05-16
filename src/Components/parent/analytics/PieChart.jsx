@@ -1,8 +1,9 @@
 import React from "react";
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from "recharts";
-import { useParentContext } from "../../../ContextAPI/ParentContext";
+import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
+
+import { useSelector } from "react-redux";
 const DonotChart = ({ COLORS }) => {
-  const { users } = useParentContext();
+  const users = useSelector((state) => state.parent.users);
 
   const activeUser = users.filter((user) => user.isActive === true);
   const data = activeUser[0]?.pieData;

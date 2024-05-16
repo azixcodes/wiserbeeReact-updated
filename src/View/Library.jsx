@@ -1,12 +1,13 @@
 import React, { useRef, useEffect, useState } from "react";
 import LibraryCards from "../Components/Common/LibraryCards";
-import { Store } from "../ContextAPI/Context";
+
 import FilterHeader from "../Components/Common/FilterHeader";
 import SideFilter from "../Components/Filters/SideFilter";
 import LibraryFilter from "../Components/Filters/LibraryFilter";
+import { useSelector } from "react-redux";
 
 const Library = () => {
-  const { toggleFilter } = Store();
+  const toggleFilter = useSelector((state) => state.toggler.toggleFilter);
   console.log(toggleFilter);
   const filterationRef = useRef(null);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
