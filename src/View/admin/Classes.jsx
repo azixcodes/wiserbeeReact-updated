@@ -7,7 +7,7 @@ const Classes = () => {
   };
 
   return (
-    <div className="container-fluid card shadow">
+    <div className="container-fluid card shadow h-auto">
       <div className="row ">
         <div className="col-md-12 d-flex justify-content-center py-2 fw-bold fs-6">
           Class Information
@@ -39,16 +39,23 @@ const Classes = () => {
             />
           </div>
         </div>
+        <div className="col-md-6 mt-3 d-flex justify-content-end">
+          <div className="form-group mt-4">
+            <button className="btn bg-main  text-white btn-primary">
+              Save
+            </button>
+          </div>
+        </div>
       </div>
       <div className="row py-3">
-        <div className="col-md-12">
+        <div className="col-md-12 pb-4">
           <button className="btn btn-secondary " onClick={handleAddInputs}>
-            Add Class
+            + Add Subject
           </button>
         </div>
         <div
           className="col-md-12"
-          style={{ height: "400px", overflowY: "auto" }}
+          style={{ height: "300px", overflowY: "auto" }}
         >
           <div className="row mb-4">
             {classFields.map((_, index) => (

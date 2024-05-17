@@ -9,29 +9,16 @@ const Student = () => {
         </h4>
       </div>
       <div className="row">
-        <div className="col-md-6">
-          <div className="form-group">
-            <label htmlFor="fname" className="text-capitalize">
-              first name
-            </label>
-            <input
-              type="text"
-              placeholder="Peter"
-              className="form-control"
-              id="fname"
-            />
-          </div>
-        </div>
         <div className="col-md-6 mb-3">
           <div className="form-group">
-            <label htmlFor="lname" className="text-capitalize">
-              last name
+            <label htmlFor="fname" className="text-capitalize">
+              full name
             </label>
             <input
               type="text"
-              placeholder="Parker"
+              placeholder="Peter Parker"
               className="form-control"
-              id="lname"
+              id="fname"
             />
           </div>
         </div>
@@ -53,7 +40,7 @@ const Student = () => {
         <div className="col-md-6 mb-3">
           <div className="form-group">
             <label htmlFor="location" className="text-capitalize">
-              Phone
+              Location
             </label>
             <input
               type="text"
@@ -67,7 +54,7 @@ const Student = () => {
         <div className="col-md-6 mb-3">
           <div className="form-group">
             <label htmlFor="" className="text-capitalize">
-              Birthday
+              Date of birth
             </label>
             <div className="row">
               <div className="col-md-4">
@@ -124,7 +111,7 @@ const Student = () => {
         <div className="col-md-6 mb-3">
           <div className="form-group">
             <label htmlFor="location" className="text-capitalize">
-              Class
+              Section
             </label>
             <select className="form-select" aria-label="Default select example">
               <option>Section I</option>
@@ -173,10 +160,15 @@ const Student = () => {
               parent
             </label>
             <select className="form-select" aria-label="Default select example">
-              <option>Section I</option>
-              <option>Section II</option>
-              <option>Section III</option>
+              <option>Parent I</option>
+              <option>Parent II</option>
+              <option>Parent III</option>
             </select>
+          </div>
+        </div>
+        <div className="col-md-6">
+          <div className="form-group mt-4">
+            <button className="btn btn-primary bg-main">Save</button>
           </div>
         </div>
       </div>

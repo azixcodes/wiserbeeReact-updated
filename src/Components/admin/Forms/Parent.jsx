@@ -53,7 +53,7 @@ const Parent = () => {
         <div className="col-md-6 mb-3">
           <div className="form-group">
             <label htmlFor="location" className="text-capitalize">
-              Phone
+              Location
             </label>
             <input
               type="text"
@@ -67,7 +67,7 @@ const Parent = () => {
         <div className="col-md-6 mb-3">
           <div className="form-group">
             <label htmlFor="" className="text-capitalize">
-              Birthday
+              Date of Birth
             </label>
             <div className="row">
               <div className="col-md-4">
@@ -108,6 +108,9 @@ const Parent = () => {
               <option>Can't say(N)</option>
             </select>
           </div>
+        </div>
+        <div className="col-md-6 mt-3">
+          <button className="btn btn-primary bg-main">Save</button>
         </div>
       </div>
     </div>

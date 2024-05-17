@@ -174,6 +174,11 @@ export const parentLinks = [
 
 export const adminLinks = [
   {
+    label: "Dashboard",
+    path: "/home",
+    icon: dashboardSvg,
+  },
+  {
     label: "Users",
     path: "/users",
     icon: singleUserBoldSvg,
@@ -182,10 +187,5 @@ export const adminLinks = [
     label: "Classes",
     path: "/classes",
     icon: classScheduleSvg,
-  },
-  {
-    label: "Dashboard",
-    path: "/home",
-    icon: dashboardSvg,
   },
 ];
