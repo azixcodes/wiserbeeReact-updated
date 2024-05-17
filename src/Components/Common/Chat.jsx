@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import IconWrapper from "../Common/IconWrapper";
 import TextChip from "./TextChip";
-import { Store } from "../../ContextAPI/Context";
+
 import { paperPlaneSvg } from "../../Constant/svgs";
 import { Mic, MoreVertical, Plus, Search, Smile } from "lucide-react";
 import NameAvatar from "./NameAvatar";
-
+import { useSelector } from "react-redux";
 const Chat = () => {
-  const { user } = Store();
+  const user = useSelector((state) => state.user.users);
+
   const [message, setMessage] = useState("");
   const [id, setId] = useState(0);
   const [chat, setChat] = useState([
