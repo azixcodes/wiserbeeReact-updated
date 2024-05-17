@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const Teacher = () => {
-  const [classFields, setClassFields] = useState([]);
+  const [classFields, setClassFields] = useState([{ class: "", section: "" }]);
 
   const handleAddInputs = () => {
     setClassFields([...classFields, { class: "", section: "" }]);
@@ -14,29 +14,16 @@ const Teacher = () => {
         </h4>
       </div>
       <div className="row">
-        <div className="col-md-6">
-          <div className="form-group">
-            <label htmlFor="fname" className="text-capitalize">
-              first name
-            </label>
-            <input
-              type="text"
-              placeholder="Peter"
-              className="form-control"
-              id="fname"
-            />
-          </div>
-        </div>
         <div className="col-md-6 mb-3">
           <div className="form-group">
-            <label htmlFor="lname" className="text-capitalize">
-              last name
+            <label htmlFor="fname" className="text-capitalize">
+              full name
             </label>
             <input
               type="text"
-              placeholder="Parker"
+              placeholder="Peter Parker"
               className="form-control"
-              id="lname"
+              id="fname"
             />
           </div>
         </div>
@@ -58,7 +45,7 @@ const Teacher = () => {
         <div className="col-md-6 mb-3">
           <div className="form-group">
             <label htmlFor="location" className="text-capitalize">
-              Phone
+              Location
             </label>
             <input
               type="text"
@@ -72,7 +59,7 @@ const Teacher = () => {
         <div className="col-md-6 mb-3">
           <div className="form-group">
             <label htmlFor="" className="text-capitalize">
-              Birthday
+              Date of birth
             </label>
             <div className="row">
               <div className="col-md-4">
@@ -116,18 +103,19 @@ const Teacher = () => {
         </div>
         <div className="col-md-6">
           <div className="form-group">
-            <label htmlFor="class">Start Date</label>
+            <label htmlFor="class">Joining Date</label>
 
             <input type="date" className="form-control" />
           </div>
         </div>
       </div>
       <div className="row">
-        <div className="col-md-12 d-flex justify-content-end">
+        <div className="col-md-6 d-flex mt-3 mb-2">
           <button className="btn btn-secondary " onClick={handleAddInputs}>
             Add Class
           </button>
         </div>
+
         <div
           className="col-md-12"
           style={{ height: "80px", overflowY: "auto" }}
@@ -162,6 +150,9 @@ const Teacher = () => {
               </div>
             </div>
           ))}
+        </div>
+        <div className="col-md-12 d-flex mt-3 mb-2 justify-content-end">
+          <button className="btn btn-primary bg-main ">Save</button>
         </div>
       </div>
     </div>

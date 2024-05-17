@@ -48,12 +48,15 @@ const SignIn = () => {
         const data = await response.json();
         if (response.ok) {
           const { access } = data.token;
-          const { user } = data;
+          let { user } = data;
+          if (user === "management") {
+            user = "admin";
+          }
           localStorage.setItem(
             "user",
             JSON.stringify({
               token: access,
-              user: "admin",
+              user: user,
             })
           );
           setLoading(false);
