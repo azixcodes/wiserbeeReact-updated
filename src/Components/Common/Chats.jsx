@@ -2,16 +2,14 @@ import React, { useState } from "react";
 import { Clock, MoreVertical, Search } from "lucide-react";
 import { chats } from "../../Constant/chats";
 import TextChip from "./TextChip";
-import { Store } from "../../ContextAPI/Context";
+
 import NameAvatar from "./NameAvatar";
-import {
-  unreadSvg,
-  recentSvg,
-  chatsChatSvg,
-} from "../../Constant/svgs";
+import { useDispatch } from "react-redux";
+import { updateUser } from "../../redux/UserSlice";
+import { unreadSvg, recentSvg, chatsChatSvg } from "../../Constant/svgs";
 
 const Chats = () => {
-  const { setUser } = Store();
+  const dispatch = useDispatch();
   const messageFilters = [
     { label: "All Messages", icon: chatsChatSvg },
     { label: "Unread", icon: unreadSvg },
@@ -20,7 +18,7 @@ const Chats = () => {
 
   const [filter, setFilter] = useState("All Messages");
   const handleChatClick = (chat) => {
-    setUser(chat);
+    dispatch(updateUser(chat));
   };
   return (
     <div className="w-100 d-flex flex-column bg-white  ChatsWrapper">
@@ -80,7 +78,7 @@ const Chats = () => {
             {chat.dp === null ? (
               <NameAvatar name={chat.user} />
             ) : (
-              <img src={chat.dp} className="chatUserDP" />
+              <img src={chat.dp} className="chatUserDP" alt="dp" />
             )}
             <div className="d-flex flex-column justify-content-center">
               <div className="d-flex gap-3 align-items-center">
