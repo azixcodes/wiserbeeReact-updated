@@ -50,7 +50,7 @@ import Test from "./View/Test";
 
 //  admin routes..
 
-import { AdminClasses, AdminDashboard, AdminTeachers } from "./View/admin";
+import { AdminClasses, AdminDashboard, AdminUsers } from "./View/admin";
 
 const AppRouter = () => {
   const user = JSON.parse(localStorage.getItem("user"));
@@ -207,8 +207,8 @@ const AppRouter = () => {
       ) : role === "admin" ? (
         <>
           <Route
-            path="/teachers"
-            element={<ProtectedRoute Component={AdminTeachers} />}
+            path="/users"
+            element={<ProtectedRoute Component={AdminUsers} />}
           />
           <Route
             path="/classes"
