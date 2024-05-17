@@ -53,7 +53,7 @@ const SignIn = () => {
             "user",
             JSON.stringify({
               token: access,
-              user: user,
+              user: "admin",
             })
           );
           setLoading(false);
