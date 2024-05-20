@@ -1,9 +1,9 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import * as images from "../Constant/images";
-import { Link } from "react-router-dom";
+
 import { validator } from "../Constant/validator";
 import { useNavigate } from "react-router-dom";
-
+import toast, { Toaster } from "react-hot-toast";
 const OtpVerification = () => {
   const [otpCode, setOtpCode] = useState();
   const [isTimerRunning, setIsTimerRunning] = useState(false);
@@ -11,8 +11,8 @@ const OtpVerification = () => {
   const navigate = useNavigate();
 
   const handlerChange = (e) => {
-    setOtpCode(e.target.value)
-  }
+    setOtpCode(e.target.value);
+  };
 
   const handlerClick = () => {
     const obj = {
@@ -20,17 +20,15 @@ const OtpVerification = () => {
     };
     const validate = validator(obj);
     if (validate !== "success") {
-      alert(validate);
-    }
-    else {
-      if (otpCode !== '1111') {
-        alert(`${otpCode} is not valid OTP`);
-      }
-      else {
-        navigate('/reset-password');
+      toast.error(validate);
+    } else {
+      if (otpCode !== "1111") {
+        toast.error(`${otpCode} is not valid OTP`);
+      } else {
+        navigate("/reset-password");
       }
     }
-  }
+  };
   const HandleGetOTP = () => {
     setCurrentTime(10);
     setIsTimerRunning(true);
@@ -53,6 +51,7 @@ const OtpVerification = () => {
 
   return (
     <>
+      <Toaster />
       <div className="signin_page">
         <div className="container">
           <div className="logo_img">
@@ -90,14 +89,22 @@ const OtpVerification = () => {
                   </div>
                   <div className="mt-3 pb-1">
                     <p className="poppins-medium text-center otp_error_msg">
-                      {(!isTimerRunning) ?
-                        <p className='pt-4 text-capitalize text-secondary'>
-                          didn’t receive the code? <span className='poppins-semibold sign-in-forgot'
-                            onClick={HandleGetOTP}>RESEND ?</span>
+                      {!isTimerRunning ? (
+                        <p className="pt-4 text-capitalize text-secondary">
+                          didn’t receive the code?{" "}
+                          <span
+                            className="poppins-semibold sign-in-forgot"
+                            onClick={HandleGetOTP}
+                          >
+                            RESEND ?
+                          </span>
                         </p>
-                        :
-                        <p className=' pt-4 poppins-semibold sign-in-forgot'>Resend OTP <span className='otp-span'>{currentTime} sec</span></p>
-                      }
+                      ) : (
+                        <p className=" pt-4 poppins-semibold sign-in-forgot">
+                          Resend OTP{" "}
+                          <span className="otp-span">{currentTime} sec</span>
+                        </p>
+                      )}
                     </p>
                   </div>
                 </div>

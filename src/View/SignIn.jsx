@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import * as images from "../Constant/images";
 import { Eye, EyeOff } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-
+import toast, { Toaster } from "react-hot-toast";
 import { validator } from "../Constant/validator";
 
 import { postRequest } from "../services/index";
@@ -40,7 +40,7 @@ const SignIn = () => {
     };
     const validate = validator(obj);
     if (validate !== "success") {
-      alert(validate);
+      toast.error(validate);
     } else {
       try {
         setLoading(true);
@@ -63,16 +63,16 @@ const SignIn = () => {
           navigate("/home");
         } else {
           if (data.errors["non_field_errors"]) {
-            alert(data.errors["non_field_errors"][0]);
+            toast.error(data.errors["non_field_errors"][0]);
             setLoading(false);
           } else {
-            alert("Something went wrong, please try again..");
+            toast.error("Something went wrong, please try again..");
             setLoading(false);
           }
         }
       } catch (err) {
         console.log(err);
-        alert(err.message);
+        toast.error(err.message);
         setLoading(false);
       }
     }
@@ -84,6 +84,7 @@ const SignIn = () => {
   };
   return (
     <>
+      <Toaster />
       <div className="signin_page">
         <div className="container">
           <div className="logo_img">

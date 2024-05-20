@@ -3,13 +3,10 @@ import { CalendarCheck2 } from "lucide-react";
 import { bulbSvg, clockSvg } from "../Constant/svgs";
 import useFetch from "../hooks/UseFetch";
 import { formatDate } from "../Constant/helpers";
+import toast, { Toaster } from "react-hot-toast";
 const Exams = () => {
   const { data, loading, error } = useFetch("/quiz/exam-quizes/");
-  const {
-    data: choicesData,
-    error: choiceError,
-    loading: choiceLoading,
-  } = useFetch("/quiz/choice/get_list/");
+  const { data: choicesData } = useFetch("/quiz/choice/get_list/");
   const choicesArr = Object.values(choicesData).flat();
 
   const navigate = useNavigate();
@@ -20,7 +17,7 @@ const Exams = () => {
     if (index !== -1) {
       navigate(`/exams/${id}`);
     } else {
-      alert("no question added for this exam");
+      toast.error("no question added for this exam");
     }
 
     // const index = data.findIndex((item) => item.id === id);
@@ -30,6 +27,7 @@ const Exams = () => {
   };
   return (
     <>
+      <Toaster />
       <div className="container-fluid bg-white rounded px-2 py-2">
         <div className="row d-flex align-items-center">
           <div className="col-md-12">
@@ -99,10 +97,10 @@ const Exams = () => {
                       >
                         {/* {formatDate(date)} ({timing}) */}
                         {formatDate(exam.start_date)}
-                        {` ${exam.start_time.substring(
+                        {` ${exam.start_time?.substring(
                           0,
                           5
-                        )}-${exam.end_time.substring(0, 5)}`}
+                        )} - ${exam.end_time?.substring(0, 5)}`}
                       </span>
                     </div>
                   </div>

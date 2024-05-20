@@ -3,7 +3,7 @@ import { X } from "lucide-react";
 import Counter from "../Components/Common/Counter";
 import { postRequest } from "../services/index";
 import { validator } from "../Constant/validator";
-
+import toast, { Toaster } from "react-hot-toast";
 const AddExamModal = ({ onRequestClose }) => {
   const [questionCounter, setquestionCounter] = useState(0);
   const [minsCounter, setMinsCounter] = useState(0);
@@ -77,24 +77,25 @@ const AddExamModal = ({ onRequestClose }) => {
         const data = await response.json();
 
         if (response.ok) {
-          alert("Exam added successfully");
+          toast.success("Exam added successfully");
 
           onRequestClose();
         } else {
-          alert(data.response.message);
+          toast.error(data.response.message);
         }
         // console.log(exam);
       } catch (err) {
         console.log(err);
       }
     } else {
-      alert(validate);
+      toast.error(validate);
     }
     console.log(examData);
   };
 
   return (
     <div className="container-fluid p-0 m-0 pb-4 modalWrapper">
+      <Toaster />
       <div className="row  d-flex justify-content-center p-0 m-0">
         <div className="col-md-12    examModalWrapper p-0 m-0">
           <div className="d-flex justify-content-between  align-items-center px-4  col-md-12 examModalHeader">

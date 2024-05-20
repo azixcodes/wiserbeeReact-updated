@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Check, X } from "lucide-react";
 import Counter from "../Components/Common/Counter";
 import { postRequest } from "../services";
-
+import toast, { Toaster } from "react-hot-toast";
 const AddQuestions = ({ onRequestClose, questions, questionID }) => {
   console.log(questionID);
   const ref1 = useRef();
@@ -86,16 +86,16 @@ const AddQuestions = ({ onRequestClose, questions, questionID }) => {
     const newMcqs = options[0].mcqs;
 
     if (question === "") {
-      alert("Please add a question");
+      toast("Please add a question");
       return;
     } else if (newMcqs.some((mcq) => mcq.answer === "")) {
-      alert("please provide all options");
+      toast("please provide all options");
       return;
     } else if (!newMcqs.some((mcq) => mcq.isCorrect)) {
-      alert("Please mark at least one option as correct");
+      toast("Please mark at least one option as correct");
       return;
     } else if (questionCounter === 0) {
-      alert("Marks should be greater than 0");
+      toast("Marks should be greater than 0");
       return;
     }
 
@@ -163,11 +163,11 @@ const AddQuestions = ({ onRequestClose, questions, questionID }) => {
           const res = await postRequest("/quiz/choice/", payload);
           // const data = await res.json();
           if (res.ok) {
-            alert("Questions added successfully");
+            toast.success("Questions added successfully");
 
             onRequestClose();
           } else {
-            alert("something went wrong, please try again.");
+            toast.error("something went wrong, please try again.");
           }
         } catch (err) {
           console.log(err);
@@ -177,10 +177,11 @@ const AddQuestions = ({ onRequestClose, questions, questionID }) => {
     if (makeApiReq === true) {
       postQuestion();
     }
-  }, [makeApiReq]);
+  }, [makeApiReq, onRequestClose, quiz]);
 
   return (
     <div className="container-fluid p-0 m-0 pb-4 modalWrapper">
+      <Toaster />
       <div className="row  d-flex justify-contents-center p-0 m-0">
         <div className="col-md-12 examModalWrapper p-0 m-0">
           <div className="d-flex justify-content-between  align-items-center px-4  col-md-12 examModalHeader">

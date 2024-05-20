@@ -4,7 +4,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { Link } from "react-router-dom";
 import { validator } from "../Constant/validator";
 import { useNavigate } from "react-router-dom";
-
+import toast, { Toaster } from "react-hot-toast";
 const ResetPassword = () => {
   // Password States
   const [password, setPassword] = useState("");
@@ -34,25 +34,25 @@ const ResetPassword = () => {
   const handlerClick = () => {
     const obj = {
       password: password,
-      confirm_Password: confirmPassword
+      confirm_Password: confirmPassword,
     };
     const validate = validator(obj);
     if (validate !== "success") {
-      alert(validate);
+      toast.error(validate);
+    } else {
+      navigate("/sign-in");
     }
-    else {
-        navigate('/sign-in');
-    }
-  }
+  };
   return (
     <>
+      <Toaster />
       <div className="signin_page">
         <div className="container">
           <div className="logo_img">
             <img src={images.SidebarLogo} alt="logo-img" width={100} />
           </div>
           <div className="row sign_in_box2 g-0">
-          <div className="col-lg-5 col-md-8 col-sm-10">
+            <div className="col-lg-5 col-md-8 col-sm-10">
               <div className="bg-white rounded-4">
                 <div className="pt-3 ps-4 pe-4">
                   <h3 className="poppins-bold sign_in_heading mt-3">
@@ -100,7 +100,7 @@ const ResetPassword = () => {
                   </div>
                   <div className="d-grid gap-2 mt-4 pt-3 pb-3">
                     <button
-                    onClick={handlerClick}
+                      onClick={handlerClick}
                       className="btn sign_in_btn pt-3 pb-3 text-uppercase poppins-semibold rounded-3"
                       type="button"
                     >
