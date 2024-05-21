@@ -122,7 +122,7 @@ const Teacher = () => {
         >
           {classFields.map((_, index) => (
             <div className="row mb-4" key={index}>
-              <div className="col-md-6">
+              <div className="col-md-4">
                 <div className="form-group">
                   <label htmlFor="class">Class</label>
                   <select
@@ -135,7 +135,7 @@ const Teacher = () => {
                   </select>
                 </div>
               </div>
-              <div className="col-md-6">
+              <div className="col-md-4">
                 <div className="form-group">
                   <label htmlFor="class">Section</label>
                   <select
@@ -145,6 +145,19 @@ const Teacher = () => {
                     <option>Section I</option>
                     <option>Section II</option>
                     <option>Section III</option>
+                  </select>
+                </div>
+              </div>
+              <div className="col-md-4">
+                <div className="form-group">
+                  <label htmlFor="class">Subject</label>
+                  <select
+                    className="form-select"
+                    aria-label="Default select example"
+                  >
+                    <option>Subject I</option>
+                    <option>Subject II</option>
+                    <option>Subject III</option>
                   </select>
                 </div>
               </div>

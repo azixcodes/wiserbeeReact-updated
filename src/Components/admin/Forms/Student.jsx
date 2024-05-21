@@ -154,18 +154,7 @@ const Student = () => {
             </div>
           </div>
         </div>
-        <div className="col-md-6 mb-3">
-          <div className="form-group">
-            <label htmlFor="location" className="text-capitalize">
-              parent
-            </label>
-            <select className="form-select" aria-label="Default select example">
-              <option>Parent I</option>
-              <option>Parent II</option>
-              <option>Parent III</option>
-            </select>
-          </div>
-        </div>
+        
         <div className="col-md-6">
           <div className="form-group mt-4">
             <button className="btn btn-primary bg-main">Save</button>

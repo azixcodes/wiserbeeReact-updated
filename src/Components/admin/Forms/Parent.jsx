@@ -109,7 +109,19 @@ const Parent = () => {
             </select>
           </div>
         </div>
-        <div className="col-md-6 mt-3">
+        <div className="col-md-6 mb-3">
+          <div className="form-group">
+            <label htmlFor="location" className="text-capitalize">
+              Children
+            </label>
+            <select className="form-select" aria-label="Default select example">
+              <option>Children I</option>
+              <option>Children II</option>
+              <option>Children III</option>
+            </select>
+          </div>
+        </div>
+        <div className="col-md-6 mt-4">
           <button className="btn btn-primary bg-main">Save</button>
         </div>
       </div>
