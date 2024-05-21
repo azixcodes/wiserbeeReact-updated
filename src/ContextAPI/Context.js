@@ -9,12 +9,12 @@ export const AppContextProvider = ({ children }) => {
 
   const session = JSON.parse(localStorage.getItem("user"));
   useEffect(() => {
-    if (session.user) {
+    if (session && session.user) {
       setAuth({
         user: session.user,
       });
     }
-  }, [session.user]);
+  }, []);
   const value = {
     auth,
     setAuth,
