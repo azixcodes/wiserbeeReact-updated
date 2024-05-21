@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { X, PlusIcon, Locate } from "lucide-react";
 import UserAvatar from "../Components/Common/UserAvatar";
 import { postRequest } from "../services/index";
+import toast, { Toaster } from "react-hot-toast";
 const ScheduleClass = ({ onRequestClose, exam }) => {
   const [loading, setLoading] = useState(false);
   const [users, setUsers] = useState({
@@ -41,10 +42,10 @@ const ScheduleClass = ({ onRequestClose, exam }) => {
       const res = await postRequest("/quiz/class-schedule/", payload);
       // const data = await res.json();
       if (res.ok) {
-        alert("class added");
+        toast.success("class added");
         setLoading(false);
       } else {
-        alert("something went wrong, please try again");
+        toast.error("something went wrong, please try again");
         setLoading(false);
       }
     } catch (err) {
@@ -80,6 +81,7 @@ const ScheduleClass = ({ onRequestClose, exam }) => {
   }, []);
   return (
     <div className="container-fluid p-0 m-0 pb-4 modalWrapper">
+      <Toaster />
       <div className="row  d-flex justify-content-center p-0 m-0">
         <div className="col-md-12    examModalWrapper p-0 m-0">
           <div className="d-flex justify-content-between  align-items-center px-4  col-md-12 examModalHeader">

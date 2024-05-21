@@ -3,37 +3,37 @@ import * as images from "../Constant/images";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { validator } from "../Constant/validator";
-
+import toast, { Toaster } from "react-hot-toast";
 const ForgotPassword = () => {
-
-  const [reqEmail,setReqEmail] = useState();
+  const [reqEmail, setReqEmail] = useState();
   const navigate = useNavigate();
 
-  const handlerClick = () =>{
+  const handlerClick = () => {
     const obj = {
       verifiedEmail: reqEmail,
     };
     const validate = validator(obj);
     if (validate !== "success") {
-      alert(validate);
+      toast.error(validate);
     } else {
-      navigate('/otp-verification');
+      navigate("/otp-verification");
     }
-  }
+  };
 
-  const handlerChange = (e) =>{
+  const handlerChange = (e) => {
     setReqEmail(e.target.value);
-  }
-  console.log(reqEmail)
+  };
+
   return (
     <>
+      <Toaster />
       <div className="signin_page">
         <div className="container">
           <div className="logo_img">
             <img src={images.SidebarLogo} alt="logo-img" width={100} />
           </div>
           <div className="row sign_in_box2 g-0">
-          <div className="col-lg-5 col-md-8 col-sm-10">
+            <div className="col-lg-5 col-md-8 col-sm-10">
               <div className="bg-white signin_box rounded-4">
                 <div className="pt-3 ps-4 pe-4">
                   <h3 className="poppins-bold sign_in_heading mt-3">
@@ -44,7 +44,7 @@ const ForgotPassword = () => {
                   </p>
                   <div className="pt-1">
                     <input
-                      name= 'reqEmail'
+                      name="reqEmail"
                       value={reqEmail}
                       onChange={handlerChange}
                       type="email"

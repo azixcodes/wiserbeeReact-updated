@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { X } from "lucide-react";
 import { postRequest } from "../services";
 import { validator } from "../Constant/validator";
+import toast, { Toaster } from "react-hot-toast";
 const ScheduleExam = ({ onRequestClose, examId }) => {
   const [examSchedule, setExamSchedule] = useState({
     exam_quiz: examId,
@@ -21,7 +22,7 @@ const ScheduleExam = ({ onRequestClose, examId }) => {
   const handleSubmit = async () => {
     const validate = validator(examSchedule);
     if (validate !== "success") {
-      alert(validate);
+      toast.error(validate);
     } else {
       //call the api.
 
@@ -32,7 +33,7 @@ const ScheduleExam = ({ onRequestClose, examId }) => {
         );
         const data = await response.json();
         if (response.ok) {
-          alert("Exam Scheduled");
+          toast.success("Exam Scheduled");
           onRequestClose();
         } else {
           console.log(data);
@@ -44,6 +45,7 @@ const ScheduleExam = ({ onRequestClose, examId }) => {
   };
   return (
     <div className="container-fluid p-0 m-0 pb-4 modalWrapper">
+      <Toaster />
       <div className="row  d-flex justify-content-center p-0 m-0">
         <div className="col-md-12    examModalWrapper p-0 m-0">
           <div className="d-flex justify-content-between  align-items-center px-4  col-md-12 examModalHeader">

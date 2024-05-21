@@ -6,6 +6,7 @@ import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { validator } from "../Constant/validator";
 import { postRequest } from "../services";
+import toast, { Toaster } from "react-hot-toast";
 const SignUp = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
@@ -53,15 +54,15 @@ const SignUp = () => {
     };
     const validate = validator(obj);
     if (validate !== "success") {
-      alert(validate);
+      toast(validate);
     } else if (obj.password !== obj["confirm password"]) {
-      alert("passwords do not match..");
+      toast.error("passwords does not match..");
     } else if (
       selectedAccount === null ||
       selectedAccount === undefined ||
       selectedAccount === ""
     ) {
-      alert("Please select your desired role first..");
+      toast.error("Please select your desired role first..");
     } else {
       // navigate("/home");
       try {
@@ -78,12 +79,12 @@ const SignUp = () => {
           `/api/user/${selectedAccount}/register/`,
           payload
         );
-        const result = await response.json();
+        // const result = await response.json();
         if (response.ok) {
-          alert("Registration successful");
+          toast.success("Registration successful");
           navigate("/");
         } else {
-          alert("something went wrong, please try again.");
+          toast.error("something went wrong, please try again.");
         }
       } catch (err) {
         console.log(err);
@@ -93,6 +94,7 @@ const SignUp = () => {
 
   return (
     <>
+      <Toaster />
       <div className="signin_page">
         <div className="container">
           <div className="logo_img">
