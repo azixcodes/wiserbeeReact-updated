@@ -164,19 +164,19 @@ export const parentLinks = (t) => [
 ];
 
 
-export const adminLinks = [
+export const adminLinks = (t) => [
   {
-    label: "Dashboard",
+    label: t("dashboard"),
     path: "/home",
     icon: dashboardSvg,
   },
   {
-    label: "Users",
+    label: t("users"),
     path: "/users",
     icon: singleUserBoldSvg,
   },
   {
-    label: "Classes",
+    label: t("classes"),
     path: "/classes",
     icon: classScheduleSvg,
   },
