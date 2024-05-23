@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Plus } from "lucide-react";
 import { classes } from "../../Constant/classes";
-import { useNavigate } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import { clockSvg, calanderSvg, studentSvg } from "../../Constant/svgs";
 import Modal from "react-modal";
 import ScheduleClass from "../../modals/ScheduleClass";
 import useFetch from "../../hooks/UseFetch";
 import UserAvatars from "./UserAvatars";
 import { createDateInterval, formatTime } from "../../Constant/date";
+
 const customStyles = {
   content: {
     top: "50%",
@@ -110,10 +111,10 @@ const Classes = ({ title }) => {
                 >
                   <div
                     className="d-flex flex-column align-items-between  bg-white examDataWrapper px-2 py-3 borderRadius_15"
-                    onClick={() => navigate("/attendance")}
+                    
                   >
                     <div className="d-flex justify-content-between px-2">
-                      <h4 className="fw-bold p-0 m-0 fs-6 cursor-pointer ">
+                      <h4 className="fw-bold p-0 m-0 fs-6 cursor-pointer" onClick={() => navigate("/attendance")}>
                         {exam.title}
                       </h4>
                       {users.loading && "loading..."}
@@ -128,10 +129,10 @@ const Classes = ({ title }) => {
                       ))}
                     </div>
                     <div className="d-flex gap-3 mt-3 align-items-center justify-content-between examSvgsText px-2">
-                      <div className="d-flex gap-2 align-items-center">
+                      <Link to="https://sym.swatitech.com/join/math-lecture-2.2" target="_blank" className="d-flex gap-2 align-items-center">
                         {calanderSvg}{" "}
                         <span className="p-0 m-0">{exam.date}</span>
-                      </div>
+                      </Link>
                       <div className="d-flex gap-2 align-items-center">
                         {studentSvg}{" "}
                         <span className="m-0 p-0">

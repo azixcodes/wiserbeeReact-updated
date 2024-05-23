@@ -17,160 +17,152 @@ import {
   performanceSvg,
   feesSvg,
   parentCalenderSvg,
-  surverySvg,
-  teachericon,
-  userSvg,
+  // surverySvg,
+  // teachericon,
+  // userSvg,
 } from "./svgs";
-export const studentLinks = [
+export const studentLinks = (t) => [
   {
-    label: "Dashboard",
+    label: t("dashboard"),
     path: "/home",
     icon: dashboardSvg,
   },
   {
-    label: "Courses",
+    label: t("courses"),
     path: "/courses",
     icon: coursesSvg,
   },
   {
-    label: "Class Schedule",
+    label: t("classSchedule"),
     path: "/class-schedule",
     icon: classScheduleSvg,
   },
   {
-    label: "Grade Book",
+    label: t("gradeBook"),
     path: "/grade-book",
     icon: gradeBookSvg,
   },
   {
-    label: "Exams",
+    label: t("exams"),
     path: "/exams",
     icon: examsSvg,
   },
   {
-    label: "Community",
+    label: t("community"),
     path: "/community",
     icon: communitySvg,
   },
-  // {
-  //   label: "Admin Panel",
-  //   path: "/admin-panel",
-  //   icon: adminSvg,
-  // },
   {
-    label: "Library",
+    label: t("library"),
     path: "/library",
     icon: librarySvg,
   },
-  // {
-  //   label: "Message",
-  //   path: "/messages",
-  //   icon: messagesSvg,
-  // },
   {
-    label: "Account Setting",
+    label: t("accountSettings"),
     path: "/account-settings",
     icon: settingsSvg,
-  },
+  }
 ];
 
-export const teacherLinks = [
+export const teacherLinks = (t) => [
   {
-    label: "Dashboard",
+    label: t("dashboard"),
     path: "/home",
     icon: dashboardSvg,
   },
   {
-    label: "Lesson Plan",
+    label: t("lessonPlan"),
     path: "/lesson-plan",
     icon: lessonPlanSvg,
     childRoute: "/add-lesson-plan",
   },
   {
-    label: "Curriculum Design",
+    label: t("curriculumDesign"),
     path: "/curriculum-design",
     icon: lessonPlanSvg,
   },
   {
-    label: "Class Management",
+    label: t("classManagement"),
     path: "/class-management",
     icon: classManagementSvg,
     childRoute: "/attendance",
   },
   {
-    label: "Personal Profile",
+    label: t("personalProfile"),
     path: "/personal-profile",
     icon: singleUserBoldSvg,
   },
   {
-    label: "Exams Management",
+    label: t("examsManagement"),
     path: "/exams-management",
     icon: ExamsSvg,
   },
   {
-    label: "Class Schedule",
+    label: t("classSchedule"),
     path: "/class-schedule",
     icon: classManagementSvg,
   },
   {
-    label: "Grades Management",
+    label: t("gradesManagement"),
     path: "/grades-management",
     icon: gradesSvg,
   },
   {
-    label: "Community",
+    label: t("community"),
     path: "/community",
     icon: communitySvg,
   },
   {
-    label: "Library",
+    label: t("library"),
     path: "/library",
     icon: librarySvg,
   },
   {
-    label: "Account Setting",
+    label: t("accountSetting"),
     path: "/account-settings",
     icon: settingsSvg,
   },
 ];
 
-export const parentLinks = [
+
+export const parentLinks = (t) => [
   {
-    label: "Dashboard",
+    label: t("dashboard"),
     path: "/home",
     icon: dashboardSvg,
   },
   {
-    label: "Exam",
+    label: t("exam"),
     path: "/exam",
     icon: ExamsSvg,
   },
   {
-    label: "Fees & Dues",
+    label: t("feesDues"),
     path: "/fees-dues",
     icon: feesSvg,
   },
   {
-    label: "Performance",
+    label: t("performance"),
     path: "/performance",
     icon: performanceSvg,
   },
   {
-    label: "Parental Survey",
+    label: t("parentalSurvey"),
     path: "/parent-survey",
     icon: feesSvg,
   },
   {
-    label: "Account Setting",
+    label: t("accountSetting"),
     path: "/account-setting",
     icon: settingsSvg,
   },
   {
-    label: "Calendar",
+    label: t("calendar"),
     path: "/calendar",
     icon: parentCalenderSvg,
   },
 ];
+
 
 export const adminLinks = [
   {

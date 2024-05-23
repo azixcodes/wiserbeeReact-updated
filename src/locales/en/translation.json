@@ -1,4 +1,26 @@
 {
-    "welcome": "Welcome",
-    "description": "This is a sample description"
-  }
+  "welcome" : "Welcome back,",
+  "always": "Always stay updated in your student ",
+  "portal": "portal",
+
+  "dashboard": "Dashboard",
+  "courses": "Courses",
+  "classSchedule": "Class Schedule",
+  "gradeBook": "Grade Book",
+  "exams": "Exams",
+  "community": "Community",
+  "library": "Library",
+  "accountSettings": "Account Settings",
+  "lessonPlan": "Lesson Plan",
+  "curriculumDesign": "Curriculum Design",
+  "classManagement": "Class Management",
+  "personalProfile": "Personal Profile",
+  "examsManagement": "Exams Management",
+  "gradesManagement": "Grades Management",
+  "accountSetting": "Account Setting",
+  "exam": "Exam",
+  "feesDues": "Fees & Dues",
+  "performance": "Performance",
+  "parentalSurvey": "Parental Survey",
+  "calendar": "Calendar"
+}

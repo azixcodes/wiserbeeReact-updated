@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import { SidebarLogo } from "../../Constant/images";
 import {
   studentLinks,
@@ -9,9 +9,11 @@ import {
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { Store } from "../../ContextAPI/Context";
+import { useTranslation } from 'react-i18next';
 
 const MiniSidebar = ({ toggle, setToggle }) => {
   const { auth } = Store();
+  const { t } = useTranslation();
   const [navLinks, setNavLinks] = useState([]);
   let user = auth?.user || "student" || "teacher" || "parent";
   const test = JSON.parse(localStorage.getItem("user"));
@@ -26,16 +28,14 @@ const MiniSidebar = ({ toggle, setToggle }) => {
     admin: adminLinks,
   };
 
-  useMemo(() => {
-    // if (user === "student") {
-    //   setNavLinks(studentLinks);
-    // } else if (user === "teacher") {
-    //   setNavLinks(teacherLinks);
-    // } else if (user === "parent") {
-    //   setNavLinks(parentLinks);
-    // }
-    setNavLinks(roles[user]);
-  }, [user]);
+  useEffect(() => {
+    console.log('typeof', t);
+    if (roles[user]) {
+      setNavLinks(roles[user](t));
+    } else {
+      console.error('User role is not defined in roles object');
+    }
+  }, [user, t]);
 
   return (
     <aside className={`miniSidebar ${toggle ? "open" : "closed"}`}>

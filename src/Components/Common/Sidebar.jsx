@@ -11,8 +11,11 @@ import { NavLink, useLocation } from "react-router-dom";
 import { Store } from "../../ContextAPI/Context";
 import { useSelector, useDispatch } from "react-redux";
 import { setToggleSidebar } from "../../redux/ToggleSlice";
+import { useTranslation } from 'react-i18next';
+
 const Sidebar = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const { auth } = Store();
   const [navLinks, setNavLinks] = useState([]);
   const [windowWidth, setWindowWidth] = useState(undefined);
@@ -35,8 +38,12 @@ const Sidebar = () => {
   };
 
   useEffect(() => {
-    setNavLinks(roles[user]);
-  }, []);
+    if (roles[user]) {
+      setNavLinks(roles[user](t));
+    } else {
+      console.error('User role is not defined in roles object');
+    }
+  }, [user, t]);
 
   useEffect(() => {
     const handleResize = () => {
