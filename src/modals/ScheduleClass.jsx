@@ -33,6 +33,8 @@ const ScheduleClass = ({ onRequestClose, exam }) => {
       start_date: classData.start_date,
       end_date: classData.end_date,
       start_time: classData.start_time,
+      section: "Section A",
+      standard: "10",
 
       end_time: classData.end_time,
     };

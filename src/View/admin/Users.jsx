@@ -24,7 +24,10 @@ const Users = () => {
           </div>
         </div>
         <div className="col-lg-8 col-md-8 col-sm-12 mt-3 mt-lg-0 m-0 p-0 px-0 px-lg-2">
-          <div className="card shadow p-0" style={{ height: "29rem" }}>
+          <div
+            className="card shadow p-0 "
+            style={{ minHeight: "29rem", maxHeight: "auto" }}
+          >
             {renderForms()}
           </div>
         </div>
