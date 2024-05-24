@@ -9,7 +9,7 @@ import {
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { Store } from "../../ContextAPI/Context";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 const MiniSidebar = ({ toggle, setToggle }) => {
   const { auth } = Store();
@@ -29,11 +29,10 @@ const MiniSidebar = ({ toggle, setToggle }) => {
   };
 
   useEffect(() => {
-    console.log('typeof', t);
     if (roles[user]) {
       setNavLinks(roles[user](t));
     } else {
-      console.error('User role is not defined in roles object');
+      console.error("User role is not defined in roles object");
     }
   }, [user, t]);
 

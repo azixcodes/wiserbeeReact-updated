@@ -11,7 +11,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import { Store } from "../../ContextAPI/Context";
 import { useSelector, useDispatch } from "react-redux";
 import { setToggleSidebar } from "../../redux/ToggleSlice";
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 const Sidebar = () => {
   const dispatch = useDispatch();
@@ -41,7 +41,7 @@ const Sidebar = () => {
     if (roles[user]) {
       setNavLinks(roles[user](t));
     } else {
-      console.error('User role is not defined in roles object');
+      console.error("User role is not defined in roles object");
     }
   }, [user, t]);
 

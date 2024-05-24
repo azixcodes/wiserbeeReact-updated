@@ -1,12 +1,14 @@
 import React from "react";
-
+import { useDispatch } from "react-redux";
+import { getPassword, getUserName } from "../../redux/adminCredSlice";
 const UserType = ({ itemClick }) => {
+  const dispatch = useDispatch();
   const userTypes = ["Student", "Teacher", "Parent"];
   const rememberMe = true;
   return (
     <div className="row">
       <div
-        className="col-md-12  py-2 px-2 card shadow d-flex flex-column justify-content-between py-3"
+        className="col-md-12   px-2 card shadow d-flex flex-column justify-content-between"
         style={{ height: "29rem" }}
       >
         <div className="form-group">
@@ -34,6 +36,7 @@ const UserType = ({ itemClick }) => {
               placeholder="Email"
               id="email"
               autoComplete="false"
+              onChange={(e) => dispatch(getUserName(e.target.value))}
             />
           </div>
           <div className="form-group mb-2">
@@ -45,9 +48,10 @@ const UserType = ({ itemClick }) => {
               className="form-control"
               placeholder="Password"
               id="password"
+              onChange={(e) => dispatch(getPassword(e.target.value))}
             />
           </div>
-          <div className="form-check form-switch d-flex align-items-center gap-2">
+          <div className="form-check form-switch d-flex align-items-center gap-2 py-2 ">
             <input
               className="form-check-input"
               type="checkbox"
