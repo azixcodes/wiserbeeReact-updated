@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import Modal from "react-modal";
 import useFetch from "../hooks/UseFetch";
 import ScheduleClass from "../modals/ScheduleClass";
+import { NavLink } from "react-router-dom";
 const customStyles = {
   content: {
     top: "50%",
@@ -18,6 +19,11 @@ const customStyles = {
 };
 const ClassSchedule = () => {
   const { data } = useFetch("/quiz/exam-quizes/");
+  const { data: classData } = useFetch("/quiz/class-schedule/");
+
+  console.log("exams data", data);
+  console.log("class data", classData);
+
   const [add, setAdd] = useState(false);
 
   const [myDays, setMyDays] = useState([]);
@@ -47,6 +53,10 @@ const ClassSchedule = () => {
 
   const scheduledExams = data.filter(
     (exam) => exam.start_date !== null && exam.start_time !== null
+  );
+
+  const scheduledClass = classData.filter(
+    (cls) => cls.start_date !== null && cls.start_time !== null
   );
 
   const getDay = (d) => {
@@ -80,12 +90,19 @@ const ClassSchedule = () => {
     time: getTime(exam.start_time),
     date: getDate(exam.start_date),
     month: getMonth(exam.start_date),
+    link: `/exams/${exam.id}`,
   }));
 
-  console.log(newDataFormat);
+  const newClassDataFormat = scheduledClass.map((cls, index) => ({
+    section: cls.subject_title,
+    day: getDay(cls.start_date),
+    time: getTime(cls.start_time),
+    date: getDate(cls.start_date),
+    month: getMonth(cls.start_date),
+    link: "https://sym.swatitech.com/join/math-lecture-2.2",
+  }));
+  const allData = [...newDataFormat, ...newClassDataFormat];
 
-  const date = new Date();
-  console.log(date.getHours());
   const [currentDate, setCurrentDate] = useState(new Date());
   const [open, setOpen] = useState(false);
 
@@ -260,18 +277,6 @@ const ClassSchedule = () => {
                 <ChevronRight className="h-75 w-75" />
               </div>
             </div>
-
-            {/* <div className="col-lg-4 col-md-4 col-sm-6 mt-lg-0 d-flex  justify-content-center justify-content-lg-end p-0 m-0">
-              <button
-                className="text-capitalize fs-6 gap-3 d-flex justify-content-between align-items-center btnWithIcon bg-main"
-                onClick={() => setOpen(true)}
-              >
-                <span className="px-1 py-1 flex align-items-center justify-content-center  fw-4 rounded p-0 addButtonSty">
-                  <Plus />
-                </span>
-                <span>add new</span>
-              </button>
-            </div> */}
           </div>
         </div>
         <table className="table table-bordered">
@@ -288,7 +293,7 @@ const ClassSchedule = () => {
                 {/* time  = 10  */}
 
                 {daysOfWeek.map((day, index) => {
-                  const matchingClass = newDataFormat.find(
+                  const matchingClass = allData.find(
                     (classInfo) =>
                       // console.log("classInfo.date",classInfo?.date),
                       classInfo.time === time.toString() &&
@@ -298,7 +303,7 @@ const ClassSchedule = () => {
                   return (
                     <td
                       key={`${day}-${time}`}
-                      className={`class-cell  px-2 py-2 ${
+                      className={`class-cell  ${
                         matchingClass ? "has-class" : ""
                       }`}
                       style={{
@@ -311,15 +316,20 @@ const ClassSchedule = () => {
                       }}
                     >
                       {matchingClass ? (
-                        <div className="d-flex flex-column ">
-                          {" "}
-                          <p className="fw-bold p-0 ">
+                        <NavLink
+                          className="d-flex flex-column font-poppins"
+                          to={matchingClass.link}
+                        >
+                          <h4
+                            className="p-0 font-poppins"
+                            style={{ color: "#0369A1" }}
+                          >
                             {matchingClass.section}
-                          </p>
-                          <span className="">
+                          </h4>
+                          <span className="font-poppins">
                             {setAMPM(matchingClass.time)}
                           </span>
-                        </div>
+                        </NavLink>
                       ) : (
                         "-"
                       )}

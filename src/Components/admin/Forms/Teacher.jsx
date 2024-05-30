@@ -1,14 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { postRequest } from "../../../services/index";
 import toast, { Toaster } from "react-hot-toast";
+import useFetch from "../../../hooks/UseFetch";
+import { getErrorMessages } from "../../../Constant/helpers";
 const Teacher = () => {
   const email = useSelector((state) => state.admincredslice.username);
   const password = useSelector((state) => state.admincredslice.password);
-
+  const { data, error, loading } = useFetch("/api/quiz/classes_data/");
   const [classFields, setClassFields] = useState([
     { class: "", section: "", subject: "" },
   ]);
+
+  const [currentClass, setCurrentClass] = useState("");
 
   const [formData, setFormData] = useState({
     username: "",
@@ -17,7 +21,7 @@ const Teacher = () => {
     phone: "",
     location: "",
     dob: null,
-    gender: "",
+    gender: "male",
     joiningDate: null,
     combinations: null,
   });
@@ -30,15 +34,55 @@ const Teacher = () => {
       [name]: value,
     }));
   };
+  const filteredSection = useMemo(() => {
+    const newData = [...data];
+    return newData.filter((item) => item.standard === currentClass);
+  }, [currentClass]);
 
+  console.log(filteredSection);
   const handleAddInputs = () => {
     setClassFields([...classFields, { class: "", section: "", subject: "" }]);
   };
   const handleDynamicFields = (value, field, index) => {
+    setCurrentClass(value);
     const newFields = [...classFields];
     newFields[index][field] = value;
     setClassFields(newFields);
   };
+
+  // dynamic options
+  const renderSectionOptions = (index) => {
+    const oldFields = [...classFields];
+    const classFieldValue = oldFields[index]["class"];
+
+    if (classFieldValue) {
+      const filteredSections = data.filter(
+        (item) => item.standard === classFieldValue
+      );
+
+      const sections = filteredSections.flatMap((item) => item.section);
+
+      return sections.map((section, index) => (
+        <option key={index}>{section}</option>
+      ));
+    }
+  };
+
+  const renderSubjectOptions = (index) => {
+    const oldFields = [...classFields];
+    const classFieldValue = oldFields[index]["class"];
+    if (classFieldValue) {
+      const filteredSubjects = data.filter(
+        (item) => item.standard === classFieldValue
+      );
+
+      const subjects = filteredSubjects.flatMap((item) => item.add_subjects);
+      return subjects.map((subject, index) => (
+        <option key={index}>{subject}</option>
+      ));
+    }
+  };
+
   const handleSave = async () => {
     const { username, phone, location, dob, gender, joiningDate } = formData;
     const payload = {
@@ -52,14 +96,16 @@ const Teacher = () => {
       joining_date: joiningDate,
       combinations: classFields,
     };
-    console.log(payload);
+
     try {
       const res = await postRequest("/teacher_admin/teacheradmin/", payload);
       // const data = await res.json();
       if (res.ok) {
         toast.success("Teacher registered successfully.");
       } else {
-        toast.error("something went wrong,please try again later");
+        const data = await res.json();
+        const message = getErrorMessages(data);
+        toast.error(message);
       }
     } catch (err) {
       toast.error("connection failed");
@@ -147,6 +193,7 @@ const Teacher = () => {
                 aria-label="Default select example"
                 name="gender"
                 onChange={handleInputChange}
+                value={formData.gender}
               >
                 <option>male</option>
                 <option>female</option>
@@ -193,9 +240,15 @@ const Teacher = () => {
                       }
                       name="class"
                     >
-                      <option>Class I</option>
-                      <option>Class II</option>
-                      <option>Class III</option>
+                      <option disabled selected>
+                        select class{" "}
+                      </option>
+                      {loading && "Loading classes"}
+                      {error && "an error occured"}
+                      {data &&
+                        data.map((cls, index) => (
+                          <option key={index}>{cls.standard}</option>
+                        ))}
                     </select>
                   </div>
                 </div>
@@ -210,9 +263,7 @@ const Teacher = () => {
                       }
                       name="section"
                     >
-                      <option>Section I</option>
-                      <option>Section II</option>
-                      <option>Section III</option>
+                      {renderSectionOptions(index)}
                     </select>
                   </div>
                 </div>
@@ -227,9 +278,7 @@ const Teacher = () => {
                       }
                       name="subject"
                     >
-                      <option>Subject I</option>
-                      <option>Subject II</option>
-                      <option>Subject III</option>
+                      {renderSubjectOptions(index)}
                     </select>
                   </div>
                 </div>

@@ -1,0 +1,104 @@
+/* CustomDropdown.css */
+
+/* second one */
+
+.formControl {
+  width: 100%;
+
+  box-sizing: border-box;
+}
+
+.spinner,
+.error {
+  margin-top: 10px;
+}
+
+.dropdownMenu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border: 1px solid #ccc;
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: white;
+  position: absolute;
+  width: 100%;
+  z-index: 1000;
+}
+
+.dropdownItem {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdownItem:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdownContainer {
+  position: relative;
+}
+
+.inputContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 5px;
+
+  border-radius: 4px;
+}
+
+.spinner,
+.error {
+  margin-top: 10px;
+}
+
+.dropdownMenu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border: 1px solid #ccc;
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: white;
+  position: absolute;
+  width: 100%;
+  z-index: 1000;
+}
+
+.dropdownItem {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdownItem:hover {
+  background-color: #f1f1f1;
+}
+
+.chipClose {
+  background: none;
+  border: none;
+  font-size: 16px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+.sectionChip {
+  display: flex;
+  align-items: center;
+  background: #e0e0e0;
+  border-radius: 5px;
+  padding: 5px 10px;
+  width: auto;
+  margin: 2px;
+}
+
+.sectionChip .closebtn {
+  margin-left: 10px;
+  color: #888;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.sectionChip .closebtn:hover {
+  color: #444;
+}

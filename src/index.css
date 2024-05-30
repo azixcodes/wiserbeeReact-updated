@@ -37,7 +37,11 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "PoppinsReg";
+  font-family: "PoppinsReg" !important;
+}
+.font-poppins {
+  font-family: "PoppinsReg" !important;
+  font-weight: 500;
 }
 p,
 span {
@@ -46,7 +50,7 @@ span {
 .font13px {
   font-size: 13px;
 }
-.pr-0{
+.pr-0 {
   padding-right: 0 !important;
 }
 body {
@@ -95,14 +99,16 @@ a {
   border-color: #493f7b;
   box-shadow: 0 0 0 0.25rem rgba(73, 63, 123, 0.25);
 }
-.form-switch .form-check-input {
-}
+
 .form-control:focus,
 .form-select:focus {
   border-color: none !important;
   border: 1px solid #e4e7eb;
   box-shadow: none;
 }
+/* overwriting progressbar styles */
+
+/* overwriting progressbar styles */
 /* primery button */
 .welcomeBox {
   background-color: rgba(214, 212, 225, 0.5);
@@ -337,6 +343,7 @@ input[type="number"]::-webkit-outer-spin-button {
   font-weight: 700 !important;
   color: var(--bs-heading-color);
 }
+
 .navbarWrapper h4 {
   font-size: 24px;
   font-family: PoppinsSemiBold;
@@ -821,7 +828,6 @@ td {
 }
 /* ---------------Complete design for table in grade book page END---------------- */
 
-
 .navbarDropdown {
   position: relative;
   display: inline-block;
@@ -870,19 +876,6 @@ td {
 .flag-language {
   margin-left: 10px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* Media queries */
 @media (max-width: 600px) {

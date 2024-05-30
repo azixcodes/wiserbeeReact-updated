@@ -18,6 +18,7 @@ const customStyles = {
 };
 const ClassSchedule = () => {
   const { data } = useFetch("/quiz/exam-quizes/");
+  const { data: classData } = useFetch("/quiz/class-schedule/");
   const [add, setAdd] = useState(false);
 
   const [myDays, setMyDays] = useState([]);
@@ -48,7 +49,9 @@ const ClassSchedule = () => {
   const scheduledExams = data.filter(
     (exam) => exam.start_date !== null && exam.start_time !== null
   );
-
+  const scheduledClass = classData.filter(
+    (cls) => cls.start_date !== null && cls.start_time !== null
+  );
   const getDay = (d) => {
     const date = new Date(d);
 
@@ -82,8 +85,14 @@ const ClassSchedule = () => {
     month: getMonth(exam.start_date),
   }));
 
-  console.log(newDataFormat);
-
+  const newClassDataFormat = scheduledClass.map((cls, index) => ({
+    section: cls.subject_title,
+    day: getDay(cls.start_date),
+    time: getTime(cls.start_time),
+    date: getDate(cls.start_date),
+    month: getMonth(cls.start_date),
+  }));
+  const allData = [...newDataFormat, ...newClassDataFormat];
   const date = new Date();
   console.log(date.getHours());
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -288,7 +297,7 @@ const ClassSchedule = () => {
                 {/* time  = 10  */}
 
                 {daysOfWeek.map((day, index) => {
-                  const matchingClass = newDataFormat.find(
+                  const matchingClass = allData.find(
                     (classInfo) =>
                       // console.log("classInfo.date",classInfo?.date),
                       classInfo.time === time.toString() &&

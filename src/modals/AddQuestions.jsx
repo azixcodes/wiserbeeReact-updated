@@ -145,6 +145,7 @@ const AddQuestions = ({ onRequestClose, questions, questionID }) => {
     async function postQuestion() {
       const format = quiz.map((option) => ({
         exam_quiz: option.exam_quiz,
+        marks: option.marks,
         mcquestion: option.question,
         option_1: option.mcqs[0].answer,
         option_1_is_correct: option.mcqs[0].isCorrect,
@@ -164,7 +165,6 @@ const AddQuestions = ({ onRequestClose, questions, questionID }) => {
           // const data = await res.json();
           if (res.ok) {
             toast.success("Questions added successfully");
-
             onRequestClose();
           } else {
             toast.error("something went wrong, please try again.");
