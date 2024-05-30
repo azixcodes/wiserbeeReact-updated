@@ -113,115 +113,6 @@ const ClassSchedule = () => {
   };
   let timeZone = [8, 9, 10, 11, 12, 1, 2, 3, 4, 5];
 
-  // const classData = [
-  //   {
-  //     section: "Programming Fundamental",
-  //     day: "Monday",
-  //     time: "8",
-  //     date: 3,
-  //   },
-  //   {
-  //     section: "React Native",
-  //     day: "Monday",
-  //     time: "9",
-  //     date: 3,
-  //   },
-
-  //   {
-  //     section: "FU",
-  //     day: "Monday",
-  //     time: "5",
-  //     date: 3,
-  //   },
-
-  //   {
-  //     section: "1:1 ",
-  //     day: "Wednesday",
-  //     time: "2",
-  //     date: 3,
-  //   },
-
-  //   {
-  //     section: "DB",
-  //     day: "Tuesday",
-  //     time: "9",
-  //     date: 3,
-  //   },
-  //   {
-  //     section: "DS",
-  //     day: "Tuesday",
-  //     time: "12",
-  //     date: 3,
-  //   },
-
-  //   {
-  //     section: "CD",
-  //     day: "Tuesday",
-  //     time: "2",
-  //     date: 3,
-  //   },
-  //   {
-  //     section: "DR",
-  //     day: "Tuesday",
-  //     time: "4",
-  //     date: 3,
-  //   },
-  //   {
-  //     section: "Figma",
-  //     day: "Wednesday",
-  //     time: "9",
-  //     date: 3,
-  //   },
-  //   {
-  //     section: "OP",
-  //     day: "Wednesday",
-  //     time: "11",
-  //     date: 3,
-  //   },
-  //   {
-  //     section: "MVP",
-  //     day: "Wednesday",
-  //     time: "1",
-  //     date: 3,
-  //   },
-  //   {
-  //     section: "HBW",
-  //     day: "Thursday",
-  //     time: "10",
-  //     date: 3,
-  //   },
-  //   {
-  //     section: "DR",
-  //     day: "Thursday",
-  //     time: "1",
-  //     date: 3,
-  //   },
-  //   {
-  //     section: "EP",
-  //     day: "Friday",
-  //     time: "9",
-  //     date: 3,
-  //   },
-  //   {
-  //     section: "MVP",
-  //     day: "Friday",
-  //     time: "12",
-  //     date: 3,
-  //   },
-  //   {
-  //     section: "DR",
-  //     day: "Friday",
-  //     time: "2",
-  //     date: 4,
-  //   },
-  //   {
-  //     section: "MS",
-  //     day: "Friday",
-  //     time: "8",
-  //     date: 4,
-  //   },
-  // ];
-
   const generateDates = () => {
     const days = [
       "Sunday",
@@ -320,7 +211,6 @@ const ClassSchedule = () => {
       "Friday",
       "Saturday",
     ];
-    const days = [];
 
     for (let i = 0; i < 7; i++) {
       const date = new Date(nextWeekStart);

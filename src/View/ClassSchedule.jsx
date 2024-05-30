@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { ChevronLeft, ChevronRight, Plus } from "lucide-react";
-import { Store } from "../ContextAPI/Context";
-import Modal from "react-modal";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
+import Modal from "react-modal";
+import useFetch from "../hooks/UseFetch";
 import ScheduleClass from "../modals/ScheduleClass";
 const customStyles = {
   content: {
@@ -17,7 +17,75 @@ const customStyles = {
   },
 };
 const ClassSchedule = () => {
-  const { auth } = Store();
+  const { data } = useFetch("/quiz/exam-quizes/");
+  const [add, setAdd] = useState(false);
+
+  const [myDays, setMyDays] = useState([]);
+  const months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  const daysOfWeek = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  const scheduledExams = data.filter(
+    (exam) => exam.start_date !== null && exam.start_time !== null
+  );
+
+  const getDay = (d) => {
+    const date = new Date(d);
+
+    const currentDay = date.getDay();
+    return daysOfWeek[currentDay];
+  };
+
+  const getTime = (startTimeString) => {
+    const dummyDate = new Date("2000-01-01 " + startTimeString);
+
+    const hours = dummyDate.getHours();
+
+    const formattedHours = hours % 12 || 12;
+    return formattedHours.toString();
+  };
+
+  const getDate = (d) => {
+    const date = new Date(d);
+
+    return date.getDate();
+  };
+  const getMonth = (dt) => {
+    const date = new Date(dt);
+    return months[date.getMonth()];
+  };
+  const newDataFormat = scheduledExams.map((exam, index) => ({
+    section: exam.Exam_title,
+    day: getDay(exam.start_date),
+    time: getTime(exam.start_time),
+    date: getDate(exam.start_date),
+    month: getMonth(exam.start_date),
+  }));
+
+  console.log(newDataFormat);
+
+  const date = new Date();
+  console.log(date.getHours());
   const [currentDate, setCurrentDate] = useState(new Date());
   const [open, setOpen] = useState(false);
 
@@ -25,11 +93,15 @@ const ClassSchedule = () => {
     setOpen(false);
   };
 
-  // Function to handle clicking on the left arrow icon
+  const dates = [];
+  const awaisDate = [];
+  const days = [];
+
   const handleLeftArrowClick = () => {
     const updatedDate = new Date(currentDate);
     updatedDate.setDate(updatedDate.getDate() - 1); // Move one day back
     setCurrentDate(updatedDate);
+    renderDates();
   };
 
   // Function to handle clicking on the right arrow icon
@@ -37,36 +109,133 @@ const ClassSchedule = () => {
     const updatedDate = new Date(currentDate);
     updatedDate.setDate(updatedDate.getDate() + 1); // Move one day forward
     setCurrentDate(updatedDate);
+    renderDates();
   };
+  let timeZone = [8, 9, 10, 11, 12, 1, 2, 3, 4, 5];
 
-  // Function to generate an array of dates for the table header
   const generateDates = () => {
-    const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    const dates = [];
+    const days = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+
     for (let i = 0; i < 7; i++) {
       const date = new Date(currentDate);
       date.setDate(date.getDate() + i);
-      dates.push(date);
+      awaisDate.push(date);
     }
-
-    return dates.map((date, index) => (
-      <th key={index} className="text-uppercase">
-        {days[date.getDay()]} <br />
-        <b>{date.getDate()}</b>
-      </th>
-    ));
   };
+
+  generateDates();
+
+  const setAMPM = (hour) => {
+    const amPM = {
+      8: "08 AM",
+      9: "09 AM",
+      10: "10 AM",
+      11: "11 AM",
+      12: "12 PM",
+      1: "01 PM",
+      2: "02 PM",
+      3: "03 PM",
+      4: "04 PM",
+      5: "05 PM",
+    };
+
+    return amPM[hour];
+  };
+
+  const getCurrentWeek = () => {
+    const daysOfWeek = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    // const currentDate = new Date();
+    const currentDayIndex = currentDate.getDay();
+
+    // Calculate the start of the week (Sunday)
+    const startOfWeek = new Date(currentDate);
+    startOfWeek.setDate(startOfWeek.getDate());
+
+    // Generate data for each day of the week
+    for (let i = 0; i < 7; i++) {
+      const date = new Date(startOfWeek);
+      date.setDate(date.getDate() + i);
+      const dayIndex = date.getDay();
+      const dayName = daysOfWeek[dayIndex];
+      const dayOfMonth = date.getDate();
+
+      days.push({ day: dayName, date: dayOfMonth });
+    }
+    return days;
+  };
+
+  useEffect(() => {
+    setMyDays(days);
+  }, [days.length]);
+
+  const renderDates = () => {
+    const weekData = getCurrentWeek();
+    return weekData.map((dayData, index) => {
+      const { day, date } = dayData;
+      return (
+        <th key={index} className="text-uppercase">
+          <b>{day}</b>
+          <br />
+          {date} <br />
+        </th>
+      );
+    });
+  };
+
+  function getNextWeek() {
+    const nextWeekStart = new Date(currentDate);
+    nextWeekStart.setDate(nextWeekStart.getDate() + 1);
+
+    const daysOfWeek = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+
+    for (let i = 0; i < 7; i++) {
+      const date = new Date(nextWeekStart);
+      date.setDate(date.getDate() + i);
+      const dayIndex = date.getDay();
+      const dayName = daysOfWeek[dayIndex];
+      const dayOfMonth = date.getDate();
+
+      dates.push({ day: dayName, date: dayOfMonth });
+    }
+    setAdd(!add);
+
+    return dates;
+  }
 
   return (
     <>
       <Modal isOpen={open} onRequestClose={closeModal} style={customStyles}>
         <ScheduleClass onRequestClose={closeModal} />
       </Modal>
-      <div className="Time_Table">
+      <div className="timetable ">
         <div className="container text-center">
-          <div className="row">
-            <div className="col-lg-2 col-md-4 col-sm-6 d-flex  align-items-center justify-content-lg-start">
-              <b>
+          <div className="row d-flex align-items-center">
+            <div className="col-lg-2 col-md-4 col-sm-6 d-flex  align-items-center justify-content-lg-start p-0 m-0">
+              <b className="classManagementDate">
                 {currentDate.toLocaleDateString("en-US", {
                   month: "long",
                   day: "numeric",
@@ -74,7 +243,7 @@ const ClassSchedule = () => {
                 })}
               </b>
             </div>
-            <div className="col-lg-6 col-md-4 col-sm-6 gap-1 mt-3 mt-lg-0  d-flex justify-content-center justify-content-lg-start calender_left">
+            <div className="col-lg-6 col-md-4 col-sm-6 gap-1   mt-lg-0  d-flex justify-content-center justify-content-lg-start calender_left">
               <div
                 className=" rounded-start d-flex align-items-center justify-content-center left_angle"
                 onClick={handleLeftArrowClick}
@@ -92,370 +261,75 @@ const ClassSchedule = () => {
               </div>
             </div>
 
-            {auth.user && auth.user === "Teacher" && (
-              <div className="col-lg-4 col-md-4 col-sm-6 mt-3 mt-lg-0 d-flex  justify-content-center justify-content-lg-end">
-                <button
-                  className="text-capitalize fs-6 gap-3 d-flex justify-content-between align-items-center"
-                  style={{
-                    backgroundColor: "#463C77",
-                    padding: "4px 8px",
-                    borderRadius: "8px",
-                    color: "white",
-                    width: "auto",
-                    whiteSpace: "nowrap",
-                    border: "none",
-                  }}
-                  onClick={() => setOpen(true)}
-                >
-                  <span className="px-1 py-1   fw-4 rounded p-0 addButtonSty">
-                    <Plus />
-                  </span>
-                  <span>Add New</span>
-                </button>
-              </div>
-            )}
+            {/* <div className="col-lg-4 col-md-4 col-sm-6 mt-lg-0 d-flex  justify-content-center justify-content-lg-end p-0 m-0">
+              <button
+                className="text-capitalize fs-6 gap-3 d-flex justify-content-between align-items-center btnWithIcon bg-main"
+                onClick={() => setOpen(true)}
+              >
+                <span className="px-1 py-1 flex align-items-center justify-content-center  fw-4 rounded p-0 addButtonSty">
+                  <Plus />
+                </span>
+                <span>add new</span>
+              </button>
+            </div> */}
           </div>
         </div>
+        <table className="table table-bordered">
+          <thead>
+            <tr className="bg-light-gray">
+              <th className=""></th>
+              {renderDates()}
+            </tr>
+          </thead>
+          <tbody>
+            {timeZone.map((time) => (
+              <tr key={time} className="">
+                <td className="clocK_time">{setAMPM(time)}</td>
+                {/* time  = 10  */}
 
-        <div className="table-responsive">
-          <table className="table table-bordered">
-            <thead>
-              <tr className="bg-light-gray">
-                <th className="exact_time"></th>
-                {generateDates()}
+                {daysOfWeek.map((day, index) => {
+                  const matchingClass = newDataFormat.find(
+                    (classInfo) =>
+                      // console.log("classInfo.date",classInfo?.date),
+                      classInfo.time === time.toString() &&
+                      classInfo.date === awaisDate[index].getDate() &&
+                      classInfo.month === months[currentDate.getMonth()]
+                  );
+                  return (
+                    <td
+                      key={`${day}-${time}`}
+                      className={`class-cell  px-2 py-2 ${
+                        matchingClass ? "has-class" : ""
+                      }`}
+                      style={{
+                        // backgroundColor: matchingClass ? "#0EA5E9" : "#E6F6FD",
+                        color: "#0369A1",
+                        borderLeft:
+                          index % 2 === 0
+                            ? "5px solid #0EA5E9"
+                            : "5px solid green",
+                      }}
+                    >
+                      {matchingClass ? (
+                        <div className="d-flex flex-column ">
+                          {" "}
+                          <p className="fw-bold p-0 ">
+                            {matchingClass.section}
+                          </p>
+                          <span className="">
+                            {setAMPM(matchingClass.time)}
+                          </span>
+                        </div>
+                      ) : (
+                        "-"
+                      )}
+                    </td>
+                  );
+                })}
               </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td className="clocK_time">7 AM</td>
-                <td className="Time"></td>
-                <td className=""></td>
-                <td className=""></td>
-
-                <td className=""></td>
-                <td className="" style={{ backgroundColor: "#EFF6FF" }}></td>
-                <td className=""></td>
-                <td className=""></td>
-              </tr>
-
-              <tr>
-                <td className="clocK_time">8 AM</td>
-                <td className="Time"></td>
-                <td
-                  style={{
-                    backgroundColor: "#0EA5E91A",
-                    color: "#0369A1",
-                    borderLeft: "5px solid #0EA5E9",
-                  }}
-                >
-                  <div className="margin-10px-top font-size14">8:00 AM</div>
-                  <div className="font-size13">Programming Fundamental</div>
-                </td>
-                <td className="bg-light-gray"></td>
-                <td></td>
-                <td className="" style={{ backgroundColor: "#EFF6FF" }}></td>
-                <td></td>
-                <td className=""></td>
-              </tr>
-
-              <tr>
-                <td className="clocK_time">9 AM</td>
-                <td className="Time"></td>
-                <td
-                  style={{
-                    backgroundColor: "#0EA5E91A",
-                    color: "#0369A1",
-                    borderLeft: "5px solid #0EA5E9",
-                  }}
-                >
-                  <div className="margin-10px-top font-size14">9:00 AM</div>
-                  <div className="margin-10px-top font-size14">
-                    React Native and for <br></br> Mobile App
-                  </div>
-                </td>
-                <td
-                  style={{
-                    backgroundColor: "#10B9811A",
-                    color: "#047857",
-                    borderLeft: "5px solid #047857",
-                  }}
-                >
-                  <div className="margin-10px-top font-size14">9:00 AM</div>
-                  <div className="margin-10px-top font-size14">
-                    Design Basic & <br></br> Figma Tool
-                  </div>
-                </td>
-                <td
-                  style={{
-                    backgroundColor: "#0EA5E91A",
-                    color: "#0369A1",
-                    borderLeft: "5px solid #0EA5E9",
-                  }}
-                >
-                  <div className="margin-10px-top font-size14">9:00 AM</div>
-                  <div className="margin-10px-top font-size14">
-                    Presentation
-                  </div>
-                </td>
-                <td className="" style={{ backgroundColor: "#EFF6FF" }}></td>
-                <td
-                  style={{
-                    backgroundColor: "#0EA5E91A",
-                    color: "#0369A1",
-                    borderLeft: "5px solid #0EA5E9",
-                  }}
-                >
-                  <div className="margin-10px-top font-size14">9:00 AM</div>
-                  <div className="margin-10px-top font-size14">
-                    English Proficieny
-                  </div>
-                </td>
-                <td className=""></td>
-              </tr>
-
-              <tr>
-                <td className="clocK_time">10 AM</td>
-                <td className="Time"></td>
-                <td
-                  style={{
-                    backgroundColor: "#0EA5E91A",
-                    color: "#0369A1",
-                    borderLeft: "5px solid #0EA5E9",
-                  }}
-                >
-                  <div className="margin-10px-top font-size14">10:00 AM</div>
-                  <div className="margin-10px-top font-size14">
-                    Financial Update
-                  </div>
-                </td>
-                <td
-                  className=""
-                  style={{
-                    backgroundColor: "#0EA5E91A",
-                    borderLeft: "5px solid #0EA5E9",
-                  }}
-                ></td>
-                <td className=""></td>
-                <td
-                  style={{
-                    backgroundColor: "#8B5CF61A",
-                    color: "#6D28D9",
-                    borderLeft: "5px solid #6D28D9",
-                  }}
-                >
-                  <div className="margin-10px-top font-size14">10:00 AM</div>
-                  <div className="margin-10px-top font-size14">
-                    Health Benefits<br></br>Walkthrough
-                  </div>
-                </td>
-                <td className=""></td>
-                <td className=""></td>
-              </tr>
-
-              <tr>
-                <td className="clocK_time">11 AM</td>
-                <td className="Time"></td>
-                <td
-                  style={{
-                    backgroundColor: "#8B5CF61A",
-                    color: "#6D28D9",
-                    borderLeft: "5px solid #6D28D9",
-                  }}
-                >
-                  <div className="margin-10px-top font-size14">11:00 AM</div>
-                  <div className="font-size13">
-                    Design Basic &<br></br>Basic
-                  </div>
-                </td>
-                <td className=""></td>
-                <td
-                  style={{
-                    backgroundColor: "#8B5CF61A",
-                    color: "#6D28D9",
-                    borderLeft: "5px solid #6D28D9",
-                  }}
-                >
-                  <div className="margin-10px-top font-size14">11:00 AM</div>
-                  <div className="font-size13">
-                    Onbording<br></br>Presentation
-                  </div>
-                </td>
-                <td className="" style={{ backgroundColor: "#EFF6FF" }}></td>
-                <td className=""></td>
-                <td className=""></td>
-              </tr>
-
-              <tr>
-                <td className="clocK_time">12 PM</td>
-                <td className="Time"></td>
-                <td
-                  className=""
-                  style={{
-                    backgroundColor: "#EFF6FF",
-                    borderLeft: "5px solid #6D28D9",
-                  }}
-                ></td>
-                <td
-                  style={{
-                    backgroundColor: "#0EA5E91A",
-                    color: "#0369A1",
-                    borderLeft: "5px solid #0369A1",
-                  }}
-                >
-                  <div className="margin-10px-top font-size14">12:00 PM</div>
-                  <div className="font-size13">
-                    Design System<br></br>Kickoff Lunch
-                  </div>
-                </td>
-                <td className=""></td>
-                <td className="" style={{ backgroundColor: "#EFF6FF" }}></td>
-                <td
-                  style={{
-                    backgroundColor: "#0EA5E91A",
-                    color: "#0369A1",
-                    borderLeft: "5px solid #0369A1",
-                  }}
-                >
-                  <div className="margin-10px-top font-size14">12:00 PM</div>
-                  <div className="font-size13">
-                    MVP Prioritization <br></br>workShop
-                  </div>
-                </td>
-                <td className=""></td>
-              </tr>
-
-              <tr>
-                <td className="clocK_time">1 PM</td>
-                <td className="Time"></td>
-                <td
-                  style={{
-                    backgroundColor: "#0EA5E91A",
-                    color: "#0369A1",
-                    borderLeft: "5px solid #0369A1",
-                  }}
-                >
-                  <div className="margin-10px-top font-size14">1:00 PM</div>
-                  <div className="font-size13">Design Review</div>
-                </td>
-                <td className=""></td>
-                <td
-                  style={{
-                    backgroundColor: "#0EA5E91A",
-                    color: "#0369A1",
-                    borderLeft: "5px solid #0369A1",
-                  }}
-                >
-                  <div className="margin-10px-top font-size14">1:00 PM</div>
-                  <div className="font-size13">
-                    MVP Prioritization <br></br>workShop
-                  </div>
-                </td>
-                <td
-                  style={{
-                    backgroundColor: "#0EA5E91A",
-                    color: "#0369A1",
-                    borderLeft: "5px solid #0369A1",
-                  }}
-                >
-                  <div className="margin-10px-top font-size14">1:00 PM</div>
-                  <div className="font-size13">Design Review</div>
-                </td>
-                <td className=""></td>
-                <td className=""></td>
-              </tr>
-
-              <tr>
-                <td className="clocK_time">2 PM</td>
-                <td className="Time"></td>
-                <td
-                  style={{
-                    backgroundColor: "#F59E0B1A",
-                    color: "#B45309",
-                    borderLeft: "5px solid #B45309",
-                  }}
-                >
-                  <div className="margin-10px-top font-size14">2:00 PM</div>
-                  <div className="font-size13">1:1 with Jon</div>
-                </td>
-                <td
-                  style={{
-                    backgroundColor: "#0EA5E91A",
-                    color: "#0369A1",
-                    borderLeft: "5px solid #0369A1",
-                  }}
-                >
-                  <div className="margin-10px-top font-size14">2:00 PM</div>
-                  <div className="font-size13">
-                    Concept Design <br></br>Review II
-                  </div>
-                </td>
-                <td
-                  style={{
-                    backgroundColor: "#0EA5E91A",
-                    borderLeft: "5px solid #0369A1",
-                  }}
-                ></td>
-                <td style={{ backgroundColor: "#EFF6FF" }}></td>
-                <td
-                  style={{
-                    backgroundColor: "#F59E0B1A",
-                    color: "#B45309",
-                    borderLeft: "5px solid #B45309",
-                  }}
-                >
-                  <div className="margin-10px-top font-size14">2:00 PM</div>
-                  <div className="font-size13">Design Review</div>
-                </td>
-                <td className=""></td>
-              </tr>
-
-              <tr>
-                <td className="clocK_time">3 PM</td>
-                <td className="Time"></td>
-                <td className=""></td>
-                <td
-                  style={{
-                    backgroundColor: "#0EA5E91A",
-                    borderLeft: "5px solid #0369A1",
-                  }}
-                ></td>
-                <td className=""></td>
-                <td style={{ backgroundColor: "#EFF6FF" }}></td>
-                <td className=""></td>
-                <td className=""></td>
-              </tr>
-
-              <tr>
-                <td className="clocK_time">4 PM</td>
-                <td className="Time"></td>
-                <td className=""></td>
-                <td
-                  style={{
-                    backgroundColor: "#FFE4E6",
-                    color: "#BE123C",
-                    borderLeft: "5px solid #BE123C",
-                  }}
-                >
-                  <div className="margin-10px-top font-size14">4:00 PM</div>
-                  <div className="font-size13">Design Review</div>
-                </td>
-                <td className=""></td>
-                <td style={{ backgroundColor: "#EFF6FF" }}></td>
-                <td
-                  style={{
-                    backgroundColor: "#FFE4E6",
-                    color: "#BE123C",
-                    borderLeft: "5px solid #BE123C",
-                  }}
-                >
-                  <div className="margin-10px-top font-size14">4:00 PM</div>
-                  <div className="font-size13">Mathematics className</div>
-                </td>
-                <td className=""></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+            ))}
+          </tbody>
+        </table>
       </div>
     </>
   );
