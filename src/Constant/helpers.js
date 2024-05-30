@@ -15,3 +15,14 @@ export const formatDate = (dateString) => {
 
   return `${day} ${month} ${year}`;
 };
+
+// this function will return api errors
+
+export const getErrorMessages = (data) => {
+  const errorArray = Object.entries(data).map(([field, messages]) => ({
+    field,
+    messages,
+  }));
+  const field = errorArray[0].field;
+  return `${field} : ${errorArray[0].messages}`;
+};

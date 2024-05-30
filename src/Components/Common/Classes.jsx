@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Plus } from "lucide-react";
-import { classes } from "../../Constant/classes";
-import { Link,useNavigate } from "react-router-dom";
+
+import { Link, useNavigate } from "react-router-dom";
 import { clockSvg, calanderSvg, studentSvg } from "../../Constant/svgs";
 import Modal from "react-modal";
 import ScheduleClass from "../../modals/ScheduleClass";
 import useFetch from "../../hooks/UseFetch";
 import UserAvatars from "./UserAvatars";
 import { createDateInterval, formatTime } from "../../Constant/date";
+import { useTranslation } from "react-i18next";
 
 const customStyles = {
   content: {
@@ -23,7 +24,8 @@ const customStyles = {
   },
 };
 const Classes = ({ title }) => {
-  const { data, error, loading, refetch } = useFetch("/quiz/class-schedule/");
+  const { data, error, loading } = useFetch("/quiz/class-schedule/");
+  const { t } = useTranslation();
 
   const [examData, setExamData] = useState([]);
 
@@ -84,7 +86,7 @@ const Classes = ({ title }) => {
         <div className="row p-0 m-0">
           <div className="col-md-12 p-0 m-0">
             <div className="leassonPlanheader d-flex justify-content-between">
-              <h4 className="p-0 m-0 fw-bold ">{title || "My Classes"}</h4>
+              <h4 className="p-0 m-0 fw-bold ">{title || t("MyClasses")}</h4>
               <div className="col-lg-4 col-md-4 col-sm-6 mt-3 mt-lg-0 d-flex  justify-content-center justify-content-lg-end">
                 <button
                   className="text-capitalize fs-6 gap-3 d-flex justify-content-between align-items-center btnWithIcon bg-main"
@@ -109,12 +111,12 @@ const Classes = ({ title }) => {
                   key={index}
                   //   onClick={() => handleQuestionNavigate(index)}
                 >
-                  <div
-                    className="d-flex flex-column align-items-between  bg-white examDataWrapper px-2 py-3 borderRadius_15"
-                    
-                  >
+                  <div className="d-flex flex-column align-items-between  bg-white examDataWrapper px-2 py-3 borderRadius_15">
                     <div className="d-flex justify-content-between px-2">
-                      <h4 className="fw-bold p-0 m-0 fs-6 cursor-pointer" onClick={() => navigate("/attendance")}>
+                      <h4
+                        className="fw-bold p-0 m-0 fs-6 cursor-pointer"
+                        onClick={() => navigate("/attendance")}
+                      >
                         {exam.title}
                       </h4>
                       {users.loading && "loading..."}
@@ -129,7 +131,11 @@ const Classes = ({ title }) => {
                       ))}
                     </div>
                     <div className="d-flex gap-3 mt-3 align-items-center justify-content-between examSvgsText px-2">
-                      <Link to="https://sym.swatitech.com/join/math-lecture-2.2" target="_blank" className="d-flex gap-2 align-items-center">
+                      <Link
+                        to="https://sym.swatitech.com/join/math-lecture-2.2"
+                        target="_blank"
+                        className="d-flex gap-2 align-items-center"
+                      >
                         {calanderSvg}{" "}
                         <span className="p-0 m-0">{exam.date}</span>
                       </Link>

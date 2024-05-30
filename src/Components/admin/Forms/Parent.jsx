@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
+import { getErrorMessages } from "../../../Constant/helpers";
 import { postRequest } from "../../../services";
+import MultiSelectionDropdown from "../../customs/dropdowns/MultiSelectionDropdown";
 const Parent = () => {
   const [fields, setFeilds] = useState({
     firstname: "",
@@ -14,7 +16,7 @@ const Parent = () => {
     gender: "",
     child: [1, 3],
   });
-  const [errors, setErrors] = useState([]);
+
   const email = useSelector((state) => state.admincredslice.username);
   const password = useSelector((state) => state.admincredslice.username);
   const handleChange = (e) => {
@@ -42,19 +44,21 @@ const Parent = () => {
         toast.success("Parent saved successfully");
       } else {
         const data = await res.json();
-        const errorArray = Object.entries(data).map(([field, messages]) => ({
-          field,
-          messages,
-        }));
-
-        const field = errorArray[0].field;
-        toast.error(`${field} : ${errorArray[0].messages}`);
+        const message = getErrorMessages(data);
+        toast.error(message);
       }
     } catch (err) {
-      toast.error("Connection Failed");
+      toast.error("Server error, please try again later.");
     }
   };
-
+  const getChild = (child) => {
+    const items = child.map((item) => item.student_id);
+    setFeilds((prev) => ({
+      ...prev,
+      child: items,
+    }));
+  };
+  console.log(fields);
   return (
     <>
       <Toaster />
@@ -162,18 +166,13 @@ const Parent = () => {
               <label htmlFor="location" className="text-capitalize">
                 Children
               </label>
-              <select
-                className="form-select"
-                aria-label="Default select example"
-                disabled
-              >
-                <option>Children I</option>
-                <option>Children II</option>
-                <option>Children III</option>
-              </select>
+              <MultiSelectionDropdown
+                apiEndpoint="/api/studentadmin/studentadmin/"
+                getChild={getChild}
+              />
             </div>
           </div>
-          <div className="col-md-6 mt-4">
+          <div className="col-md-12 mt-2 py-2">
             <button className="btn btn-primary bg-main" onClick={handleSave}>
               Save
             </button>

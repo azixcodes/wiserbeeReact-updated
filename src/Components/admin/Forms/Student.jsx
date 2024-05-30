@@ -2,10 +2,14 @@ import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { postRequest } from "../../../services";
-
+import { getErrorMessages } from "../../../Constant/helpers";
+import SelectionDropdown from "../../customs/dropdowns/SelectionDropdown";
+import useFetch from "../../../hooks/UseFetch";
 const Student = () => {
   const email = useSelector((state) => state.admincredslice.username);
   const password = useSelector((state) => state.admincredslice.password);
+  const { data, error, loading } = useFetch("/api/quiz/classes_data/");
+  console.log(data);
   const [fields, setFields] = useState({
     name: "",
     phone: "",
@@ -44,11 +48,11 @@ const Student = () => {
       standard: fields.class,
       section,
       admission_date: admissionDate,
-      parent: parent,
+      parent,
     };
     try {
       const res = await postRequest("/api/studentadmin/studentadmin/", payload);
-      console.log(payload);
+
       if (res.ok) {
         toast.success("Student registered successfully.");
         setFields({
@@ -60,22 +64,25 @@ const Student = () => {
           class: "",
           section: "",
           admissionDate: null,
-          parent: 1,
+          parent,
         });
       } else {
         const data = await res.json();
-        const errors = Object.entries(data).map((field, messages) => ({
-          field,
-          messages,
-        }));
-
-        const field = errors[0].field;
-        toast.error(`${field}: ${errors[0].messages}`);
+        const message = getErrorMessages(data);
+        toast.error(message);
       }
     } catch (err) {
-      toast.error("Connection failed, please try again later.");
+      toast.error("Server error, please try again later.");
     }
   };
+
+  const getParent = (parent) => {
+    setFields((prev) => ({
+      ...prev,
+      parent,
+    }));
+  };
+
   return (
     <>
       <Toaster />
@@ -180,9 +187,12 @@ const Student = () => {
                 onChange={handleChange}
                 value={fields.class}
               >
-                <option>Class I</option>
-                <option>Class II</option>
-                <option>Clcass III</option>
+                {error && "something went wrong"}
+                {loading && "loading..."}
+                {data &&
+                  data.map((item, index) => (
+                    <option key={index}>{item.standard}</option>
+                  ))}
               </select>
             </div>
           </div>
@@ -198,9 +208,12 @@ const Student = () => {
                 onChange={handleChange}
                 value={fields.section}
               >
-                <option>Section I</option>
-                <option>Section II</option>
-                <option>Section III</option>
+                {error && "something went wrong"}
+                {loading && "loading..."}
+                {data &&
+                  data
+                    .flatMap((item) => item.section)
+                    .map((sc, index) => <option key={index}>{sc}</option>)}
               </select>
             </div>
           </div>
@@ -224,15 +237,10 @@ const Student = () => {
               <label htmlFor="location" className="text-capitalize">
                 parent
               </label>
-              <select
-                className="form-select"
-                aria-label="Default select example"
-                disabled
-              >
-                <option>Parent I</option>
-                <option>Parent II</option>
-                <option>Parent III</option>
-              </select>
+              <SelectionDropdown
+                apiEndpoint="/api/parentadmin/parentadmin/"
+                getParent={getParent}
+              />
             </div>
           </div>
           <div className="col-md-6">

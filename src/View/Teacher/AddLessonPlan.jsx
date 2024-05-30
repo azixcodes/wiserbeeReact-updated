@@ -379,7 +379,7 @@ const AddLessonPlan = () => {
                   htmlFor="weakform-text"
                   className="weakform-text form-label fs-6 "
                 >
-                  CYCLE/WEAK FORM
+                  CYCLE/WEEK FORM
                 </label>
                 <div className="mb-3 d-flex">
                   {/* <input
@@ -438,7 +438,7 @@ const AddLessonPlan = () => {
                   htmlFor="genderInput"
                   className=" weakform-text form-label fs-lg-5"
                 >
-                  CYCLE/WEAK TILL
+                  CYCLE/WEEK TILL
                 </label>
                 <div className="mb-3 d-flex">
                   {/* <input
