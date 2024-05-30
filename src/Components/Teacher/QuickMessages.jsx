@@ -1,11 +1,14 @@
 import React from "react";
 import TextChip from "../Common/TextChip";
 import { Clock } from "lucide-react";
-const QuickMessages = () => {
+import { useTranslation } from "react-i18next";
+
+const QuickMessages = (props) => {
+  const {t} = useTranslation();
   return (
     <>
       <div className="bg-white  rounded-4 shadow w-100">
-        <h4 className="fw-bold p-3">Inbox</h4>
+        <h4 className={`fw-bold p-3 ${props.isArabic==="sa" ? "text-end" : ""}`}>{t('Inbox')}</h4>
         <div className=" msg d-flex ps-3 pe-2 pt-3">
           <div className="inbox-image ">
             <img

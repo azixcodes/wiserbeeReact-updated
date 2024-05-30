@@ -14,10 +14,12 @@ import { X } from "lucide-react";
 import WelcomeSection from "../Components/Common/WelcomeSection";
 import UpcomingClasses from "../Components/parent/UpcomingClasses";
 import Chart from "../Components/parent/analytics/Chart";
-
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
+
 const Home = () => {
   const users = useSelector((state) => state.parent.users);
+  const {t, i18n} = useTranslation();
 
   const activeUser = users.filter((user) => user.isActive === true);
   const [chatOpened, setChatOpened] = useState(false);
@@ -26,6 +28,7 @@ const Home = () => {
   const auth = JSON.parse(localStorage.getItem("user"));
 
   const user = auth.user;
+  const isArabic = i18n.language;
 
   const [CoursesListValue, setCourseList] = useState([
     {
@@ -88,28 +91,28 @@ const Home = () => {
         {user === "parent" ? null : <WelcomeSection user={user} />}
         {user === "teacher" && (
           <div className="col-lg-12 ">
-            <div className="row ">
+            <div className={`row ${isArabic === "sa" ? 'flex-row-reverse' : ''}`}>
               <div className="col-md-8">
-                <h3 className="myClassesHeading">My Courses</h3>
+                <h3 className={`myClassesHeading ${isArabic==="sa" ? "text-end" : ""}`}>{t('MyCourses')}</h3>
                 <Course useToggle={false} count={3} homeRender={true} />
               </div>
               <div className="align-self-start mt-4 col-12 col-md-4 ">
                 <div className="taskListView shadow">
-                  <h4 className="mb-4">Tasks</h4>
-                  <TaskNotifications />
+                  <h4 className={`mb-4 ${isArabic==="sa" ? "text-end" : ""}`}>{t('Tasks')}</h4>
+                  <TaskNotifications isArabic={isArabic}/>
                 </div>
               </div>
             </div>
             {user === "teacher" && (
-              <div className="row mt-5">
+              <div className={`row mt-5 ${isArabic === "sa" ? 'flex-row-reverse' : ''}`}>
                 <div className="col-12 col-md-8">
-                  <h3 className="myClassesHeading">My Classes</h3>
+                  <h3 className={`myClassesHeading ${isArabic==="sa" ? "text-end" : ""}`}>{t('MyClasses')}</h3>
                   <div className="row">
                     <ClassView />
                   </div>
                 </div>
                 <div className="col-12 col-md-4 d-flex align-items-stretch">
-                  <QuickMessages />
+                  <QuickMessages isArabic={isArabic}/>
                 </div>
               </div>
             )}
@@ -119,7 +122,7 @@ const Home = () => {
           <div className="row">
             <div className="col-12 col-md-8">
               <div className="CoursesDetails">
-                <h3 className="myClassesHeading">My Courses</h3>
+                <h3 className="myClassesHeading">{t('MyCourses')}</h3>
                 <>
                   {CoursesListValue.map((item, index) => (
                     <CoursesList
@@ -138,7 +141,7 @@ const Home = () => {
             </div>
             <div className="align-self-start mt-4 col-12 col-md-4 ">
               <div className="taskListView shadow">
-                <h4 className="mb-4">Tasks</h4>
+              <h4 className="mb-4">{t('Tasks')}</h4>
                 <TaskNotifications />
               </div>
             </div>
@@ -163,7 +166,7 @@ const Home = () => {
               </div>
               <div className="col-12 col-lg-4  p-0  px-lg-3">
                 <div className="taskListView shadow">
-                  <h4 className="mb-4">Tasks</h4>
+                <h4 className="mb-4">{t('Tasks')}</h4>
                   <TaskNotifications />
                 </div>
               </div>

@@ -10,7 +10,7 @@ import { setLanguage } from "../../redux/languageSlice";
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-const Nav2 = (props) => {
+const Navbar = (props) => {
   const location = useLocation();
   const { handleToggleSidebar } = props;
   const dropDownRef = useRef(null);
@@ -22,17 +22,19 @@ const Nav2 = (props) => {
 
   const countries = [
     { code: 'US', language: 'English' },
-    { code: 'AR', language: 'Arabic' },
-    { code: 'FR', language: 'French' }, 
+    { code: 'SA', language: 'عربي' },
+    { code: 'FR', language: 'French' },
     { code: 'ES', language: 'Spanish' },
     { code: 'DE', language: 'German' },
   ];
 
-  let role = "Student"; // Default role
+  let role = "student"; // Default role
   const user = JSON.parse(localStorage.getItem("user"));
   if (user && user.user) {
     role = user.user;
   }
+
+  const translatedRole = t(`roles.${role.toLowerCase()}`);
 
   useEffect(() => {
     const handleClickWindow = (e) => {
@@ -49,7 +51,6 @@ const Nav2 = (props) => {
   }, []);
 
   useEffect(() => {
-    // Update i18n language whenever the Redux state changes
     i18n.changeLanguage(language.code.toLowerCase());
   }, [language, i18n]);
 
@@ -61,29 +62,32 @@ const Nav2 = (props) => {
   const currentUrl = window.location.pathname;
   const modifiedUrl = currentUrl.replace("/", "");
   const { id } = useParams();
+  const isArabic = i18n.language;
+
   const layoutTitles = {
-    courses: "Courses",
-    "class-schedule": "Class Schedule",
-    "grade-book": "Grade Book",
-    exams: "Exams",
-    community: "Community",
-    messages: "Messages",
-    "account-settings": "Account Settings",
-    "lesson-plan": "Lesson Plan",
-    "curriculum-design": "Curriculum Design",
-    "class-management": "Class Management",
-    "personal-profile": "Personal Profile",
-    "exams-management": "Exams Management",
-    "grades-management": "Grades Management",
-    library: "Library",
-    attendance: "Class Management",
+    courses: t('courses'),
+    "class-schedule": t('classSchedule'),
+    "grade-book": t('gradeBook'),
+    exams: t('exams'),
+    community: t('community'),
+    messages: t('messages'),
+    "account-settings": t('accountSettings'),
+    "lesson-plan": t('lessonPlan'),
+    "curriculum-design": t('curriculumDesign'),
+    "class-management": t('classManagement'),
+    "personal-profile": t('personalProfile'),
+    "exams-management": t('examsManagement'),
+    "grades-management": t('gradesManagement'),
+    library: t('library'),
+    attendance: t('classManagement'),
   };
-  let labelContent = layoutTitles[modifiedUrl] || "Dashboard";
+
+  let labelContent = layoutTitles[modifiedUrl] || t('dashboard');
   if (id) {
     if (modifiedUrl === "exams" || modifiedUrl === `exams/${id}`) {
-      labelContent = "Exams";
+      labelContent = t('exams');
     } else if (modifiedUrl === "course" || modifiedUrl === `course/${id}`) {
-      labelContent = "Course";
+      labelContent = t('course');
     }
   }
 
@@ -91,8 +95,8 @@ const Nav2 = (props) => {
     "navbarWrapper d-flex justify-content-between align-items-center flex-wrap customShadow";
 
   const useDropDownList = [
-    { label: "My Profile", icon: person, path: "/my-profile" },
-    { label: "Logout", icon: logoutSvg, path: "/" },
+    { label: t('myProfile'), icon: person, path: "/my-profile" },
+    { label: t('logout'), icon: logoutSvg, path: "/" },
   ];
 
   const handleDropdownClick = (path) => {
@@ -113,15 +117,20 @@ const Nav2 = (props) => {
         {location.pathname === "/assesment" || location.pathname === "/assesment-welcome" ? (
           <Link to="/home" className="d-flex gap-4 align-items-center">
             <img src={NavLogo} className="blackLogos" alt="logo" />
-            <span>Cognitive Assessment</span>
+            <span>{t('cognitiveAssessment')}</span>
           </Link>
         ) : (
           labelContent
         )}
       </h4>
-      <div className="searchBox align-items-center d-none d-md-flex">
+      <div className={`searchBox align-items-center ${isArabic === "sa" ? 'flex-row-reverse' : ''} d-none d-md-flex`}>
         <Search />
-        <input type="text" placeholder="Search" className="w-100" />
+        <input
+          type="text"
+          placeholder={t('search')}
+          className="w-100"
+          style={{ textAlign: isArabic === "sa" ? 'right' : 'left' }}
+        />
       </div>
       <div className="position-relative">
         <span>{notificationSvg}</span>
@@ -166,8 +175,8 @@ const Nav2 = (props) => {
           {userSvg}
         </div>
         <div className="align-items-center userName mx-2 d-none d-lg-block">
-          <h6 className="fs-6 fw-bold">John Doe</h6>
-          <h5 className="font-sm">{role}</h5>
+          <h6 className="fs-6 fw-bold"> John Doe</h6>
+          <h5 className="font-sm">{translatedRole}</h5>
         </div>
         <div className="userUpIcon">
           <div className="form-group d-flex align-items-center gap-1">
@@ -203,4 +212,4 @@ const Nav2 = (props) => {
   );
 };
 
-export default Nav2;
+export default Navbar;

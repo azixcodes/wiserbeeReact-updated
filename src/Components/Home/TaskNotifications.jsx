@@ -57,7 +57,7 @@ const EntrollCourseTiles = (props) => {
     <>
       {taskDetails.map((item, index) => (
         <div
-          className="d-flex justify-content-start align-item-center"
+          className={`d-flex justify-content-start align-item-center ${props.isArabic === "sa" ? 'flex-row-reverse' : ''}`}
           key={index}
         >
           <div

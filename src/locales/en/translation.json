@@ -1,7 +1,17 @@
 {
-  "welcome" : "Welcome back,",
-  "always": "Always stay updated in your student ",
-  "portal": "portal",
+  "welcome": "Welcome back,",
+  "alwaysStudent": "Always stay updated in your student portal",
+  "alwaysTeacher": "Always stay updated in your teacher portal",
+  "alwaysParent": "Always stay updated in your parent portal",
+  "alwaysAdmin": "Always stay updated in your admin portal",
+
+  "MyCourses": "My Courses",
+  "MyClasses": "My Classes",
+  "MyTask": "My Task",
+  "Tasks": "Tasks",
+  "Inbox":"Inbox",
+  "Scheduled":"Scheduled",
+  "search":"search",
 
   "dashboard": "Dashboard",
   "courses": "Courses",
@@ -24,5 +34,11 @@
   "parentalSurvey": "Parental Survey",
   "calendar": "Calendar",
   "users": "Users",
-  "classes": "Classes"
+  "classes": "Classes",
+  "roles": {
+    "student": "Student",
+    "teacher": "Teacher",
+    "admin": "Admin",
+    "parent": "Parents"
+  }
 }

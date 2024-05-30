@@ -1,0 +1,46 @@
+{
+  "welcome": "مرحبا بعودتك،",
+  "alwaysStudent": "كن دائمًا مُحدّثًا في بوابتك الطلابية",
+  "alwaysTeacher": "كن دائمًا مُحدّثًا في بوابتك الأستاذية",
+  "alwaysParent": "كن دائمًا مُحدّثًا في بوابتك الأهلية",
+  "alwaysAdmin": "كن دائمًا مُحدّثًا في بوابتك الإدارية",
+
+  "MyCourses": "دوراتي",
+  "MyClasses": "فصولي",
+  "MyTask": "مهمتي",
+  "Tasks": "مهام",
+  "Inbox":"صندوق الوارد",
+  "Scheduled":"المقرر",
+  "search":"يبحث",
+
+
+
+  "dashboard": "لوحة القيادة",
+  "courses": "الدورات",
+  "classSchedule": "جدول الحصص",
+  "gradeBook": "سجل الدرجات",
+  "exams": "الامتحانات",
+  "community": "المجتمع",
+  "library": "المكتبة",
+  "accountSettings": "إعدادات الحساب",
+  "lessonPlan": "خطة الدرس",
+  "curriculumDesign": "تصميم المنهج",
+  "classManagement": "إدارة الفصل",
+  "personalProfile": "الملف الشخصي",
+  "examsManagement": "إدارة الامتحانات",
+  "gradesManagement": "إدارة الدرجات",
+  "accountSetting": "إعدادات الحساب",
+  "exam": "امتحان",
+  "feesDues": "الرسوم المستحقة",
+  "performance": "الأداء",
+  "parentalSurvey": "استطلاع الآباء",
+  "calendar": "التقويم",
+  "users": "المستخدمين",
+  "classes": "الصفوف",
+  "roles": {
+    "student": "طالب",
+    "teacher": "معلم",
+    "admin": "مسؤول",
+    "parent": "الآباء"
+  }
+}

@@ -55,9 +55,6 @@ const ProtectedRoute = (props) => {
               ) : (
                 <Component />
               )}
-
-              {/* <Component /> */}
-              {/* <Footer /> */}
             </main>
           </div>
         </section>
