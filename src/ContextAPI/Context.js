@@ -14,7 +14,7 @@ export const AppContextProvider = ({ children }) => {
         user: session.user,
       });
     }
-  }, [session.user]);
+  }, []);
   const value = {
     auth,
     setAuth,
