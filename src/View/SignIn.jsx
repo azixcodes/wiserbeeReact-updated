@@ -1,14 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as images from "../Constant/images";
 import { Eye, EyeOff } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { validator } from "../Constant/validator";
 
 import { postRequest } from "../services/index";
 const SignIn = () => {
   const navigate = useNavigate();
-
+  const location = useLocation();
+  const userRole = location.state && location.state.selectedAccount;
+  useEffect(() => {
+    if (userRole === "" || userRole === undefined || userRole === null) {
+      return navigate("/sign-in-first");
+    }
+  }, [navigate]);
+  console.log(userRole);
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
@@ -29,6 +36,18 @@ const SignIn = () => {
     }));
   };
 
+  const apiRoutes = {
+    parent: "/api/parentadmin/parentadmin_login/",
+    teacher: "/api/teacheradmin/teacheradmin_login/",
+    student: "/api/studentadmin/studentadmin_login/",
+  };
+
+  //   http://127.0.0.1:8000/api/parentadmin/parentadmin_login/
+  // [4:11 PM] Kashaf Arooj
+  // http://127.0.0.1:8000/api/studentadmin/studentadmin_login/
+  // [4:12 PM] Kashaf Arooj
+  // http://127.0.0.1:8000/api/teacheradmin/teacheradmin_login/
+
   const handleCheckboxChange = (event) => {
     setRememberMe(event.target.checked);
   };
@@ -44,10 +63,11 @@ const SignIn = () => {
     } else {
       try {
         setLoading(true);
-        const response = await postRequest("/accounts/login/", obj);
+        const response = await postRequest(apiRoutes[userRole], obj);
         const data = await response.json();
+        console.log(data);
         if (response.ok) {
-          const { access } = data.token;
+          // const { access } = data.token;
           let { user } = data;
           if (user === "management") {
             user = "admin";
@@ -55,7 +75,7 @@ const SignIn = () => {
           localStorage.setItem(
             "user",
             JSON.stringify({
-              token: access,
+              token: "access",
               user: user,
             })
           );

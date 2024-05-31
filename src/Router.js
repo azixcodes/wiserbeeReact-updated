@@ -224,7 +224,7 @@ const AppRouter = () => {
       )}
 
       {/* public routes */}
-      {/* <Route path="/sign-in-first" element={<Sign />} /> */}
+      <Route path="/sign-in-first" element={<Sign />} />
       <Route path="/sign-in" element={<SignIn />} />
       <Route path="/sign-up-first" element={<SignUpFirst />} />
       <Route path="/sign-up" element={<SignUp />} />
