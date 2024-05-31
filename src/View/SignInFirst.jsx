@@ -9,6 +9,7 @@ import {
 } from "../Constant/svgs";
 
 const Sign = () => {
+  const [selectAccountValue, setSelectAccountValue] = useState("student");
   const [options, setOption] = useState([
     { label: "student", isActive: true },
     { label: "teacher", isActive: false },
@@ -24,11 +25,12 @@ const Sign = () => {
     }));
 
     setOption(updatedItems);
+    setSelectAccountValue(options[index].label);
   };
   const svgPaths = [studenticon, teachericon, parenticon, managementicon];
 
   const handlerClick = () => {
-    navigate("/sign-in");
+    navigate("/sign-in", { state: { selectedAccount: selectAccountValue } });
   };
 
   return (
