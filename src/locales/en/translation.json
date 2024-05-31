@@ -12,6 +12,10 @@
   "Inbox":"Inbox",
   "Scheduled":"Scheduled",
   "search":"search",
+  "MyLessonPlans":"My Lesson Plans",
+  "addNew":"Add New",
+  "logout":"log out",
+  "myProfile":"My Profile",
 
   "dashboard": "Dashboard",
   "courses": "Courses",

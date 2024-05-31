@@ -10,12 +10,12 @@ const WelcomeSection = ({ user }) => {
     {
       id: "1",
       heading: t("MyCourses"),
-      price: "04",
+      price: "4",
     },
     {
       id: "2",
       heading: t("MyClasses"),
-      price: "08",
+      price: "8",
     },
     {
       id: "3",
@@ -24,6 +24,7 @@ const WelcomeSection = ({ user }) => {
     },
   ];
   const isArabic = i18n.language;
+  console.log("kkkkkkkkashif", t)
   return (
     <div className="welcomeBox">
       <div className="logoWithText d-flex justify-content-start align-items-start flex-wrap">

@@ -3,23 +3,29 @@ import { Plus } from "lucide-react";
 import { lessonplan } from "../../Constant/lessonplan";
 import { useNavigate } from "react-router-dom";
 import { bookSvg, calanderSvg, studentSvg } from "../../Constant/svgs";
+import { useTranslation } from "react-i18next";
+
 const LessonPlans = () => {
+
   const navigate = useNavigate();
+  const{t, i18n} = useTranslation();
+  const isArabic = i18n.language;
+
   return (
     <div className="container-fluid">
       <div className="row p-0 m-0">
         <div className="col-md-12 p-0 m-0">
-          <div className="leassonPlanheader d-flex justify-content-between">
-            <h4 className="p-0 m-0 fw-bold ">My Lesson Plans</h4>
-            <div className="col-lg-4 col-md-4 col-sm-6 mt-3 mt-lg-0 d-flex  justify-content-center justify-content-lg-end">
+          <div className={`leassonPlanheader d-flex justify-content-between ${isArabic === "sa" ? 'flex-row-reverse' : ''}`}>
+            <h4 className="p-0 m-0 fw-bold ">{t("MyLessonPlans")}</h4>
+            <div className=" d-flex justify-content-center justify-content-lg-end">
               <button
-                className="text-capitalize fs-6 gap-3 d-flex justify-content-between align-items-center btnWithIcon bg-main"
+                className={`text-capitalize fs-6 gap-3 d-flex justify-content-between align-items-center btnWithIcon bg-main ${isArabic === "sa" ? 'flex-row-reverse  ' : ''}`}
                 onClick={() => navigate("/add-lesson-plan")}
               >
                 <span className="px-1 py-1   fw-4 rounded p-0 addButtonSty">
                   <Plus />
                 </span>
-                <span>add new</span>
+                <span> {t('addNew')} </span>
               </button>
             </div>
           </div>

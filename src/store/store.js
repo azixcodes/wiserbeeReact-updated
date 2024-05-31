@@ -6,6 +6,7 @@ import toggleSlice from "../redux/ToggleSlice";
 import userSlice from "../redux/UserSlice";
 import languageSlice from "../redux/languageSlice";
 import adminCredSlice from "../redux/adminCredSlice";
+
 export const store = configureStore({
   reducer: {
     parent: parentReducer,
@@ -16,7 +17,14 @@ export const store = configureStore({
   },
 });
 
+let previousLanguageCode = store.getState().language.code;
+
 store.subscribe(() => {
   const state = store.getState();
-  i18n.changeLanguage(state.language.code);
+  const currentLanguageCode = state.language.code;
+
+  if (previousLanguageCode !== currentLanguageCode) {
+    i18n.changeLanguage(currentLanguageCode);
+    previousLanguageCode = currentLanguageCode; 
+  }
 });

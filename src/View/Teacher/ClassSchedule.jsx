@@ -4,6 +4,8 @@ import Modal from "react-modal";
 
 import ScheduleClass from "../../modals/ScheduleClass";
 import useFetch from "../../hooks/UseFetch";
+import { useTranslation } from "react-i18next";
+
 const customStyles = {
   content: {
     top: "50%",
@@ -17,10 +19,11 @@ const customStyles = {
   },
 };
 const ClassSchedule = () => {
+
   const { data } = useFetch("/quiz/exam-quizes/");
   const { data: classData } = useFetch("/quiz/class-schedule/");
   const [add, setAdd] = useState(false);
-
+  const {t} = useTranslation();
   const [myDays, setMyDays] = useState([]);
   const months = [
     "January",
@@ -278,7 +281,7 @@ const ClassSchedule = () => {
                 <span className="px-1 py-1 flex align-items-center justify-content-center  fw-4 rounded p-0 addButtonSty">
                   <Plus />
                 </span>
-                <span>add new</span>
+                <span>{t('addNew')} </span>
               </button>
             </div>
           </div>

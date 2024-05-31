@@ -4,9 +4,10 @@ import { classes } from "../../Constant/classes";
 import { useNavigate } from "react-router-dom";
 import { clockSvg, calanderSvg, studentSvg } from "../../Constant/svgs";
 import Modal from "react-modal";
-
+import { useTranslation } from "react-i18next";
 import UserAvatars from "../Common/UserAvatars";
 import AddClass from "../../modals/admin/AddClass";
+
 const customStyles = {
   content: {
     top: "50%",
@@ -20,7 +21,9 @@ const customStyles = {
     overFlow: "auto",
   },
 };
+
 const AdminClasses = ({ title }) => {
+
   const [open, setOpen] = useState(false);
   const [users, setUsers] = useState({
     loading: false,
@@ -31,6 +34,7 @@ const AdminClasses = ({ title }) => {
   const closeModal = () => {
     setOpen(false);
   };
+  const {t} = useTranslation();
 
   useEffect(() => {
     const getUser = async () => {
@@ -75,7 +79,7 @@ const AdminClasses = ({ title }) => {
                   <span className="px-1 py-1   fw-4 rounded p-0 addButtonSty">
                     <Plus />
                   </span>
-                  <span>add new</span>
+                  <span>{t('addNew')} </span>
                 </button>
               </div>
             </div>
