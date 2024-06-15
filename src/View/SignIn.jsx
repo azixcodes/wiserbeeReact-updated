@@ -76,7 +76,7 @@ const SignIn = () => {
             "user",
             JSON.stringify({
               token: "access",
-              user: user,
+              user: userRole,
             })
           );
           setLoading(false);
