@@ -3,9 +3,14 @@ import EntrollCourseTiles from "../Home/EntrollCourseTiles";
 import ChildCards from "../parent/ChildCards";
 import { useTranslation } from "react-i18next";
 import { formatNumber } from "../../Constant/numberFormatter"; // Correct import path
+import { use } from "i18next";
 
-const WelcomeSection = ({ user }) => {
+const WelcomeSection = () => {
+  const auth = JSON.parse(localStorage.getItem("user"));
+
+  const user = auth.user;
   const { t,i18n } = useTranslation();
+  console.log("users",user);
   const EntrollCourseValue = [
     {
       id: "1",
@@ -24,7 +29,7 @@ const WelcomeSection = ({ user }) => {
     },
   ];
   const isArabic = i18n.language;
-  console.log("kkkkkkkkashif", t)
+  // alert("jjj")
   return (
     <div className="welcomeBox">
       <div className="logoWithText d-flex justify-content-start align-items-start flex-wrap">

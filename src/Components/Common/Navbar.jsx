@@ -14,6 +14,8 @@ import { useNavigate } from "react-router-dom";
 import { setLanguage } from "../../redux/languageSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
+import Modal from "react-modal";
+import NotificationAlert from "../../modals/NotificationAlert";
 
 const Navbar = (props) => {
   const location = useLocation();
@@ -24,6 +26,7 @@ const Navbar = (props) => {
   const dispatch = useDispatch();
   const language = useSelector((state) => state.language);
   const { t, i18n } = useTranslation();
+  const [open, setOpen] = useState(false);
 
   const countries = [
     { code: "US", language: "English" },
@@ -40,7 +43,13 @@ const Navbar = (props) => {
   }
 
   const translatedRole = t(`roles.${role.toLowerCase()}`);
+  const openModal = () => {
+    setOpen(true);
+  };
 
+  const closeModal = () => {
+    setOpen(false);
+  };
   useEffect(() => {
     const handleClickWindow = (e) => {
       if (dropDownRef.current && !dropDownRef.current.contains(e.target)) {
@@ -86,7 +95,19 @@ const Navbar = (props) => {
     library: t("library"),
     attendance: t("classManagement"),
   };
-
+  const customStyles = {
+    content: {
+      top: "50%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+      width: "100%",
+      border: "none",
+      overFlow: "auto",
+    },
+  };
   let labelContent = layoutTitles[modifiedUrl] || t("dashboard");
   if (id) {
     if (modifiedUrl === "exams" || modifiedUrl === `exams/${id}`) {
@@ -116,15 +137,14 @@ const Navbar = (props) => {
   };
 
   return (
-    <div
-      className={`${
-        location.pathname === "/assesment" ? "" : ""
-      } ${commonClassName} ${isArabic === "sa" ? "flex-row-reverse" : ""}`}
+    <><div
+      className={`${location.pathname === "/assesment" ? "" : ""
+        } ${commonClassName} ${isArabic === "sa" ? "flex-row-reverse" : ""}`}
     >
       <MenuIcon onClick={handleToggleSidebar} className="mneuIcon" />
       <h4 className="mb-0 d-none d-md-block">
         {location.pathname === "/assesment" ||
-        location.pathname === "/assesment-welcome" ? (
+          location.pathname === "/assesment-welcome" ? (
           <Link to="/home" className="d-flex gap-4 align-items-center">
             <img src={NavLogo} className="blackLogos" alt="logo" />
             <span>{t("cognitiveAssessment")}</span>
@@ -134,9 +154,8 @@ const Navbar = (props) => {
         )}
       </h4>
       <div
-        className={`searchBox align-items-center ${
-          isArabic === "sa" ? "flex-row-reverse" : ""
-        } d-none d-md-flex`}
+        className={`searchBox align-items-center ${isArabic === "sa" ? "flex-row-reverse" : ""
+          } d-none d-md-flex`}
       >
         <Search />
         <input
@@ -146,7 +165,7 @@ const Navbar = (props) => {
           style={{ textAlign: isArabic === "sa" ? "right" : "left" }}
         />
       </div>
-      <div className="position-relative">
+      <div className="position-relative cursor-pointer" onClick={openModal}>
         <span>{notificationSvg}</span>
         <div className="chip position-absolute d-flex justify-content-center align-items-center text-white">
           5
@@ -184,9 +203,8 @@ const Navbar = (props) => {
         </div>
       </div>
       <div
-        className={`d-flex justify-content-between align-items-center userAccount ${
-          isArabic === "sa" ? "flex-row-reverse" : ""
-        }`}
+        className={`d-flex justify-content-between align-items-center userAccount ${isArabic === "sa" ? "flex-row-reverse" : ""
+          }`}
       >
         <div
           className="navAvatar d-flex justify-content-center align-items-center"
@@ -215,9 +233,8 @@ const Navbar = (props) => {
               >
                 {useDropDownList.map((options, index) => (
                   <li
-                    className={`dropdown-item cursor-pointer d-flex justify-content-between py-2 px-2 align-items-center chatFilterDropdownLists ${
-                      isArabic === "sa" ? "flex-row-reverse" : ""
-                    }`}
+                    className={`dropdown-item cursor-pointer d-flex justify-content-between py-2 px-2 align-items-center chatFilterDropdownLists ${isArabic === "sa" ? "flex-row-reverse" : ""
+                      }`}
                     key={index}
                     onClick={() => handleDropdownClick(options.path)}
                   >
@@ -231,6 +248,10 @@ const Navbar = (props) => {
         </div>
       </div>
     </div>
+      <Modal isOpen={open} onRequestClose={closeModal} style={customStyles}>
+        <NotificationAlert onRequestClose={closeModal} />
+      </Modal>
+    </>
   );
 };
 

@@ -40,7 +40,8 @@ const SignIn = () => {
     parent: "/api/parentadmin/parentadmin_login/",
     teacher: "/api/teacheradmin/teacheradmin_login/",
     student: "/api/studentadmin/studentadmin_login/",
-  };
+    management: "/api/user/login/",
+  };  
 
   //   http://127.0.0.1:8000/api/parentadmin/parentadmin_login/
   // [4:11 PM] Kashaf Arooj
@@ -65,18 +66,18 @@ const SignIn = () => {
         setLoading(true);
         const response = await postRequest(apiRoutes[userRole], obj);
         const data = await response.json();
-        console.log(data);
+        console.log(response);
         if (response.ok) {
           // const { access } = data.token;
-          let { user } = data;
-          if (user === "management") {
+          let user = data.user;
+          if (data.user === "management") {
             user = "admin";
           }
           localStorage.setItem(
             "user",
             JSON.stringify({
               token: "access",
-              user: userRole,
+              user
             })
           );
           setLoading(false);

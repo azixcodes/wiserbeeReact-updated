@@ -877,6 +877,100 @@ td {
   margin-left: 10px;
 }
 
+.alertNoti {
+  display: flex; /* Ensure items are displayed in a flex container */
+  align-items: center; /* Center items vertically */
+  margin: 5px 0;
+  padding: 12px;
+  border-radius: 5px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  letter-spacing: 1px;
+  position: relative; /* Relative positioning for absolute icons */
+}
+
+.alertNoti:hover {
+  cursor: pointer;
+}
+
+/* Styling for specific icon types */
+.alertNoti .icon-info {
+  color: #00529B;
+}
+
+.alertNoti .icon-warn {
+  color: #9F6000;
+}
+
+.alertNoti .icon-error {
+  color: #D8000C;
+}
+
+.alertNoti .icon-success {
+  color: #4F8A10;
+}
+
+/* Absolute positioning for icons */
+.alertNoti .icon-info,
+.alertNoti .icon-warn,
+.alertNoti .icon-error,
+.alertNoti .icon-success,
+.alertNoti .icon-default {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 10px; /* Adjusted to place icons on the left side */
+}
+
+/* Background and border styles based on alert type */
+.alertNoti-info {
+  background-color: #BDE5F8;
+  border: 1px solid #a5d4ec;
+}
+
+.alertNoti-warn {
+  background-color: #FEEFB3;
+  border: 1px solid #e6db9d;
+}
+
+.alertNoti-error {
+  background-color: #FFBABA;
+  border: 1px solid #e6a4a4;
+}
+
+.alertNoti-success {
+  background-color: #DFF2BF;
+  border: 1px solid #c7e1a9;
+}
+.notificationScreen{
+  height: 300px;
+  overflow-y: auto;
+}
+.noNotifications{
+  font-size: 18px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Media queries */
 @media (max-width: 600px) {
   .courseTiles {

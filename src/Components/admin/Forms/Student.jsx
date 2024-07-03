@@ -232,7 +232,7 @@ const Student = () => {
               />
             </div>
           </div>
-          <div className="col-md-6 mb-3">
+          {/* <div className="col-md-6 mb-3">
             <div className="form-group">
               <label htmlFor="location" className="text-capitalize">
                 parent
@@ -242,7 +242,7 @@ const Student = () => {
                 getParent={getParent}
               />
             </div>
-          </div>
+          </div> */}
           <div className="col-md-6">
             <div className="form-group mt-4">
               <button

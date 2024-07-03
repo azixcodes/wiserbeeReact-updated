@@ -14,11 +14,11 @@ const Parent = () => {
     location: "",
     dob: null,
     gender: "",
-    child: [1, 3],
+    child: [1],
   });
 
   const email = useSelector((state) => state.admincredslice.username);
-  const password = useSelector((state) => state.admincredslice.username);
+  const password = useSelector((state) => state.admincredslice.password);
   const handleChange = (e) => {
     const { name, value } = e.target;
 
