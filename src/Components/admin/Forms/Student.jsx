@@ -1,15 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { postRequest } from "../../../services";
 import { getErrorMessages } from "../../../Constant/helpers";
 import SelectionDropdown from "../../customs/dropdowns/SelectionDropdown";
 import useFetch from "../../../hooks/UseFetch";
+
 const Student = () => {
   const email = useSelector((state) => state.admincredslice.username);
   const password = useSelector((state) => state.admincredslice.password);
   const { data, error, loading } = useFetch("/api/quiz/classes_data/");
-  console.log(data);
+  console.log("class data", data);
   const [fields, setFields] = useState({
     name: "",
     phone: "",
@@ -21,10 +22,21 @@ const Student = () => {
     admissionDate: new Date(),
     parent: 1,
   });
+  console.log("class data", fields);
+  const [filteredSections, setFilteredSections] = useState([]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFields({ ...fields, [name]: value });
   };
+
+  useEffect(() => {
+    if (fields.class && data) {
+      const selectedClass = data.find((item) => item.standard === fields.class);
+      setFilteredSections(selectedClass ? selectedClass.section : []);
+    }
+  }, [fields.class, data]);
+
   const handleSubmit = async () => {
     const {
       name,
@@ -160,7 +172,7 @@ const Student = () => {
           </div>
           <div className="col-md-6">
             <div className="form-group">
-              <label htmlFor="location" className="text-capitalize">
+              <label htmlFor="gender" className="text-capitalize">
                 Gender
               </label>
               <select
@@ -170,14 +182,17 @@ const Student = () => {
                 name="gender"
                 value={fields.gender}
               >
-                <option>Female</option>
-                <option>Male</option>
+                <option value="" disabled>
+                  Select gender
+                </option>
+                <option value="Female">Female</option>
+                <option value="Male">Male</option>
               </select>
             </div>
           </div>
           <div className="col-md-6 mb-3">
             <div className="form-group">
-              <label htmlFor="location" className="text-capitalize">
+              <label htmlFor="class" className="text-capitalize">
                 Class
               </label>
               <select
@@ -185,20 +200,25 @@ const Student = () => {
                 aria-label="Default select example"
                 name="class"
                 onChange={handleChange}
-                value={fields.class}
+                value={fields.class || ""}
               >
-                {error && "something went wrong"}
-                {loading && "loading..."}
+                <option value="" disabled>
+                  Select class
+                </option>
+                {error && <option>Something went wrong</option>}
+                {loading && <option>Loading...</option>}
                 {data &&
                   data.map((item, index) => (
-                    <option key={index}>{item.standard}</option>
+                    <option key={index} value={item.standard}>
+                      {item.standard}
+                    </option>
                   ))}
               </select>
             </div>
           </div>
           <div className="col-md-6 mb-3">
             <div className="form-group">
-              <label htmlFor="location" className="text-capitalize">
+              <label htmlFor="section" className="text-capitalize">
                 Section
               </label>
               <select
@@ -206,21 +226,25 @@ const Student = () => {
                 aria-label="Default select example"
                 name="section"
                 onChange={handleChange}
-                value={fields.section}
+                value={fields.section || ""}
               >
-                {error && "something went wrong"}
-                {loading && "loading..."}
-                {data &&
-                  data
-                    .flatMap((item) => item.section)
-                    .map((sc, index) => <option key={index}>{sc}</option>)}
+                <option value="" disabled>
+                  Select section
+                </option>
+                {error && <option>Something went wrong</option>}
+                {loading && <option>Loading...</option>}
+                {filteredSections.map((sc, index) => (
+                  <option key={index} value={sc}>
+                    {sc}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
 
           <div className="col-md-6 mb-3">
             <div className="form-group">
-              <label htmlFor="" className="text-capitalize">
+              <label htmlFor="admissionDate" className="text-capitalize">
                 Admission date
               </label>
               <input
@@ -234,8 +258,8 @@ const Student = () => {
           </div>
           {/* <div className="col-md-6 mb-3">
             <div className="form-group">
-              <label htmlFor="location" className="text-capitalize">
-                parent
+              <label htmlFor="parent" className="text-capitalize">
+                Parent
               </label>
               <SelectionDropdown
                 apiEndpoint="/api/parentadmin/parentadmin/"

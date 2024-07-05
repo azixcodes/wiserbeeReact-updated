@@ -241,6 +241,23 @@ a {
   border-radius: 7px;
   cursor: pointer;
 }
+.sidebarToggleLeft {
+  height: 30px;
+  width: 30px;
+  background-color: var(--bg-primary);
+  position: absolute;
+  left: -14px;
+  top: 127px;
+  display: flex;
+  justify-content: centere;
+  align-items: center;
+  color: white;
+  border: 1px solid var(--bg-primary);
+  box-shadow: -6px 0px 22px 0px #191e4566;
+  border-radius: 7px;
+  cursor: pointer;
+  rotate: 180deg;
+}
 .sidebarLinks {
   /* height: 100%; */
   /* background-color: red; */
@@ -252,7 +269,7 @@ a {
 
 .navbarWrapper {
   /* height: 120px !important; */
-  padding: 15px 0px 15px 15px;
+  padding: 15px 15px 15px 15px;
   width: 100%;
   background: #fff;
   /* margin-bottom: 30px; */

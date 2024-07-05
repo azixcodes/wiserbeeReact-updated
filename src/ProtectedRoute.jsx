@@ -5,11 +5,12 @@ import Navbar from "./Components/Common/Navbar";
 import MiniSidebar from "./Components/Common/MiniSidebar";
 import { useNavigate } from "react-router-dom";
 import ParentLayout from "./layouts/ParentLayout";
+import { useTranslation } from "react-i18next";
 
 const ProtectedRoute = (props) => {
   const [toggle, setToggle] = useState(false);
   const navigate = useNavigate();
-
+  const { t, i18n } = useTranslation();
   const { Component } = props;
   const location = useLocation();
   const auth = JSON.parse(localStorage.getItem("user"));
@@ -31,10 +32,12 @@ const ProtectedRoute = (props) => {
   const handleToggleSidebar = () => {
     setToggle(true);
   };
+  const isArabic = i18n.language;
   return (
     <>
       {auth && (
-        <section className="d-flex w-100 custom-scrollbar sidebarMediumS">
+        <section className={`d-flex w-100 custom-scrollbar sidebarMediumS ${isArabic === "sa" ? "flex-row-reverse" : ""
+                      }`}>
           {location.pathname === "/assesment-welcome" ||
           location.pathname === "/assesment" ? null : (
             <>

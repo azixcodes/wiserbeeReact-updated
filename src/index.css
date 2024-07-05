@@ -950,7 +950,9 @@ td {
 .noNotifications{
   font-size: 18px;
 }
-
+.rotate180{
+  rotate: 180deg;
+}
 
 
 

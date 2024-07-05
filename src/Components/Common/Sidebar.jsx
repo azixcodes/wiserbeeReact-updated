@@ -15,13 +15,13 @@ import { useTranslation } from "react-i18next";
 
 const Sidebar = () => {
   const dispatch = useDispatch();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { auth } = Store();
   const [navLinks, setNavLinks] = useState([]);
   const [windowWidth, setWindowWidth] = useState(undefined);
   const location = useLocation();
   const toggleSidebar = useSelector((state) => state.toggler.toggleSidebar);
-
+  const isArabic = i18n.language;
   const sidebarRef = useRef(null);
 
   let user = auth?.user || "student" || "teacher" || "parent";
@@ -81,14 +81,12 @@ const Sidebar = () => {
 
   return (
     <aside
-      className={`${
-        toggleSidebar ? "sidebarOuterSm d-none" : "sidebarOuterLg d-none"
-      }`}
+      className={`${toggleSidebar ? "sidebarOuterSm d-none" : "sidebarOuterLg d-none"
+        }`}
     >
       <div
-        className={`position-fixed ${
-          toggleSidebar ? "sidebarWrapperSm d-none" : "sidebarWrapperLg d-none"
-        }`}
+        className={`position-fixed ${toggleSidebar ? "sidebarWrapperSm d-none" : "sidebarWrapperLg d-none"
+          }`}
         ref={sidebarRef}
       >
         <NavLink
@@ -101,35 +99,37 @@ const Sidebar = () => {
         <div className="divider"></div>
         <div className="linksWrapper d-flex flex-column gap-4 ">
           <div
-            className={`${
-              toggleSidebar
+            className={`${toggleSidebar
                 ? "d-flex flex-column align-items-center gap-4"
                 : "links d-flex flex-column gap-1 w-100 text-white"
-            }`}
+              }`}
           >
             {navLinks.map((link, index) => (
               <NavLink
                 key={index}
                 to={link.path}
                 className={({ isActive }) =>
-                  isActive || link.childRoute === location.pathname
-                    ? "sidebarLinkActive d-flex flex-row align-items-center  justify-content-between"
-                    : "sidebarLink d-flex flex-row align-items-center  justify-content-between"
+                  `${isActive || link.childRoute === location.pathname
+                    ? "sidebarLinkActive"
+                    : "sidebarLink"} d-flex flex-row align-items-center justify-content-between ${isArabic === "sa" ? "flex-row-reverse" : ""}`
                 }
               >
-                <div className="d-flex gap-3 align-items-center">
-                  <span className="linkIcon">{link.icon}</span>
+                <div className={`d-flex gap-3 align-items-center ${isArabic === "sa" ? "flex-row-reverse" : ""
+                      }`}>
+                  <span className={`linkIcon`}>{link.icon}</span>
                   {!toggleSidebar && (
                     <span className="navLabel">{link.label}</span>
                   )}
                 </div>
-                {!toggleSidebar && <ChevronRight className="px-0 m-0" />}
+                {!toggleSidebar && <ChevronRight className={`px-0 m-0  ${isArabic === "sa" ? "rotate180" : ""
+                      }`} />}
               </NavLink>
             ))}
           </div>
         </div>
         <div
-          className="sidebarToggle cursor-pointer "
+          className={` cursor-pointer ${isArabic === "sa" ? "sidebarToggleLeft" : "sidebarToggle"
+            }`}
           onClick={() => dispatch(setToggleSidebar())}
         >
           {toggleSidebar ? <ChevronRight /> : <ChevronLeft />}
