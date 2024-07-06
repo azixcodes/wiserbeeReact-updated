@@ -36,12 +36,15 @@ const ProtectedRoute = (props) => {
   return (
     <>
       {auth && (
-        <section className={`d-flex w-100 custom-scrollbar sidebarMediumS ${isArabic === "sa" ? "flex-row-reverse" : ""
-                      }`}>
+        <section
+          className={`d-flex w-100 custom-scrollbar sidebarMediumS ${
+            isArabic === "sa" ? "flex-row-reverse" : ""
+          }`}
+        >
           {location.pathname === "/assesment-welcome" ||
           location.pathname === "/assesment" ? null : (
             <>
-              <MiniSidebar toggle={toggle} setToggle={setToggle} /> <Sidebar />
+              {/* <MiniSidebar toggle={toggle} setToggle={setToggle} /> <Sidebar /> */}
             </>
           )}
           <div className="d-flex flex-column w-full w-100 position-relative">
