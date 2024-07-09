@@ -4,6 +4,7 @@ import { postRequest } from "../../../services/index";
 import toast, { Toaster } from "react-hot-toast";
 import useFetch from "../../../hooks/UseFetch";
 import { getErrorMessages } from "../../../Constant/helpers";
+
 const Teacher = () => {
   const email = useSelector((state) => state.admincredslice.username);
   const password = useSelector((state) => state.admincredslice.password);
@@ -11,8 +12,6 @@ const Teacher = () => {
   const [classFields, setClassFields] = useState([
     { class: "", section: "", subject: "" },
   ]);
-
-  const [currentClass, setCurrentClass] = useState("");
 
   const [formData, setFormData] = useState({
     username: "",
@@ -34,17 +33,18 @@ const Teacher = () => {
       [name]: value,
     }));
   };
-  const filteredSection = useMemo(() => {
-    const newData = [...data];
-    return newData.filter((item) => item.standard === currentClass);
-  }, [currentClass]);
 
-  console.log(filteredSection);
   const handleAddInputs = () => {
     setClassFields([...classFields, { class: "", section: "", subject: "" }]);
   };
+
+  const handleRemoveInputs = (index) => {
+    const newFields = [...classFields];
+    newFields.splice(index, 1);
+    setClassFields(newFields);
+  };
+
   const handleDynamicFields = (value, field, index) => {
-    setCurrentClass(value);
     const newFields = [...classFields];
     newFields[index][field] = value;
     setClassFields(newFields);
@@ -52,35 +52,41 @@ const Teacher = () => {
 
   // dynamic options
   const renderSectionOptions = (index) => {
-    const oldFields = [...classFields];
-    const classFieldValue = oldFields[index]["class"];
+    const classFieldValue = classFields[index].class;
 
-    if (classFieldValue) {
-      const filteredSections = data.filter(
-        (item) => item.standard === classFieldValue
-      );
-
-      const sections = filteredSections.flatMap((item) => item.section);
-
-      return sections.map((section, index) => (
-        <option key={index}>{section}</option>
-      ));
+    if (!classFieldValue) {
+      return <option disabled selected>Select class first</option>;
     }
+
+    const filteredSections = data.filter(
+      (item) => item.standard === classFieldValue
+    );
+
+    const sections = filteredSections.flatMap((item) => item.section);
+
+    return sections.map((section, index) => (
+      <option key={index}>{section}</option>
+    ));
   };
 
   const renderSubjectOptions = (index) => {
-    const oldFields = [...classFields];
-    const classFieldValue = oldFields[index]["class"];
-    if (classFieldValue) {
-      const filteredSubjects = data.filter(
-        (item) => item.standard === classFieldValue
-      );
+    const classFieldValue = classFields[index].class;
 
-      const subjects = filteredSubjects.flatMap((item) => item.add_subjects);
-      return subjects.map((subject, index) => (
-        <option key={index}>{subject}</option>
-      ));
+    if (!classFieldValue) {
+      return <option disabled selected>Select class first</option>;
     }
+
+    const filteredSubjects = data.filter(
+      (item) => item.standard === classFieldValue
+    );
+
+    const subjects = filteredSubjects.flatMap((item) =>
+      item.add_subjects.map((sub) => sub.name)
+    );
+
+    return subjects.map((subject, index) => (
+      <option key={index}>{subject}</option>
+    ));
   };
 
   const handleSave = async () => {
@@ -99,7 +105,7 @@ const Teacher = () => {
 
     try {
       const res = await postRequest("/teacher_admin/teacheradmin/", payload);
-      // const data = await res.json();
+
       if (res.ok) {
         toast.success("Teacher registered successfully.");
       } else {
@@ -108,14 +114,14 @@ const Teacher = () => {
         toast.error(message);
       }
     } catch (err) {
-      toast.error("connection failed");
+      toast.error("Connection failed");
     }
   };
 
   return (
     <>
       <Toaster />
-      <div className="row px-4 m-0">
+      <div className="row px-4 m-0" style={{ height: "75vh", overflowY: "auto" }}>
         <div className="col-md-12">
           <h4 className="text-center fs-6 fw-bold py-3">
             Teacher General Information
@@ -125,7 +131,7 @@ const Teacher = () => {
           <div className="col-md-6 mb-3">
             <div className="form-group">
               <label htmlFor="fname" className="text-capitalize">
-                full name
+                Full name
               </label>
               <input
                 type="text"
@@ -225,11 +231,11 @@ const Teacher = () => {
 
           <div
             className="col-md-12"
-            style={{ height: "80px", overflowY: "auto" }}
+            
           >
-            {classFields.map((_, index) => (
+            {classFields.map((field, index) => (
               <div className="row mb-4" key={index}>
-                <div className="col-md-4">
+                <div className="col-md-6">
                   <div className="form-group">
                     <label htmlFor="class">Class</label>
                     <select
@@ -239,12 +245,13 @@ const Teacher = () => {
                         handleDynamicFields(e.target.value, "class", index)
                       }
                       name="class"
+                      value={field.class}
                     >
-                      <option disabled selected>
-                        select class{" "}
+                      <option value="" selected>
+                        Select class
                       </option>
-                      {loading && "Loading classes"}
-                      {error && "an error occured"}
+                      {loading && <option>Loading classes...</option>}
+                      {error && <option>An error occurred</option>}
                       {data &&
                         data.map((cls, index) => (
                           <option key={index}>{cls.standard}</option>
@@ -252,7 +259,7 @@ const Teacher = () => {
                     </select>
                   </div>
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-6">
                   <div className="form-group">
                     <label htmlFor="class">Section</label>
                     <select
@@ -262,12 +269,13 @@ const Teacher = () => {
                         handleDynamicFields(e.target.value, "section", index)
                       }
                       name="section"
+                      value={field.section}
                     >
                       {renderSectionOptions(index)}
                     </select>
                   </div>
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-6">
                   <div className="form-group">
                     <label htmlFor="class">Subject</label>
                     <select
@@ -277,16 +285,25 @@ const Teacher = () => {
                         handleDynamicFields(e.target.value, "subject", index)
                       }
                       name="subject"
+                      value={field.subject}
                     >
                       {renderSubjectOptions(index)}
                     </select>
                   </div>
                 </div>
+                <div className="col-md-4 d-flex align-items-center mt-4">
+                  <button
+                    className="btn btn-danger btn-sm"
+                    onClick={() => handleRemoveInputs(index)}
+                  >
+                    Remove Class
+                  </button>
+                </div>
               </div>
             ))}
           </div>
           <div className="col-md-12 d-flex mt-3 mb-2 justify-content-end">
-            <button className="btn btn-primary bg-main " onClick={handleSave}>
+            <button className="btn btn-primary bg-main" onClick={handleSave}>
               Save
             </button>
           </div>

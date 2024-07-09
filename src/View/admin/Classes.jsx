@@ -1,8 +1,8 @@
 import { useState } from "react";
-import CustomDropdown from "../../Components/customs/dropdowns/CustomDropdown";
 import toast, { Toaster } from "react-hot-toast";
 import { postRequest } from "../../services/index";
 import { getErrorMessages } from "../../Constant/helpers";
+import CustomDropdown from "../../Components/customs/dropdowns/CustomDropdown";
 import { CalendarClock } from "lucide-react";
 
 const Classes = () => {
@@ -17,22 +17,22 @@ const Classes = () => {
   const [subjectChips, setSubjectChips] = useState([]);
   const [sectionChips, setSectionChips] = useState([]);
 
+  const days = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    "Sunday",
+  ];
+
   const removeChip = (chipToRemove, chipType) => {
     if (chipType === "subject")
       setSubjectChips(subjectChips.filter((chip) => chip !== chipToRemove));
     if (chipType === "section")
       setSectionChips(sectionChips.filter((chip) => chip !== chipToRemove));
   };
-
-  const days = [
-    "monday",
-    "tuesday",
-    "wednesday",
-    "thursday",
-    "friday",
-    "saturday",
-    "sunday",
-  ];
 
   const removeLastChip = (chipType) => {
     if (chipType === "subject") setSubjectChips(subjectChips.slice(0, -1));
@@ -55,20 +55,20 @@ const Classes = () => {
   const handleSubmit = async () => {
     const { standard, class_type } = formData;
 
-    const format = mainInputs.map((input) => {
-      const formattedData = { name: input.subject };
-      input.days.forEach((day, index) => {
-        formattedData[`day${index + 1}`] = day.day;
-        formattedData[`start_time${index + 1}`] = day.start_time;
-        formattedData[`end_time${index + 1}`] = day.end_time;
-      });
-      return formattedData;
-    });
+    const formattedSubjects = mainInputs.map((input) => ({
+      name: input.subject,
+      days: input.days.map((day, index) => ({
+        day: day.day,
+        start_time: day.start_time,
+        end_time: day.end_time,
+      })),
+    }));
+
     const payload = {
       standard,
       section: sectionChips,
       class_type,
-      add_subjects: format,
+      add_subjects: formattedSubjects,
     };
 
     try {
@@ -118,6 +118,18 @@ const Classes = () => {
     setMainInputs(oldInputs);
   };
 
+  const handleRemoveSubject = (index) => {
+    const newSubjects = [...mainInputs];
+    newSubjects.splice(index, 1);
+    setMainInputs(newSubjects);
+  };
+
+  const handleRemoveDay = (subjectIndex, dayIndex) => {
+    const newSubjects = [...mainInputs];
+    newSubjects[subjectIndex].days.splice(dayIndex, 1);
+    setMainInputs(newSubjects);
+  };
+
   return (
     <>
       <Toaster />
@@ -156,7 +168,7 @@ const Classes = () => {
               </select>
             </div>
           </div>
-          <div className="col-md-6 mt-5">
+          <div className="col-md-6 mt-3">
             <div className="form-group">
               <label htmlFor="class">Sections</label>
               <CustomDropdown
@@ -170,7 +182,7 @@ const Classes = () => {
               />
             </div>
           </div>
-          <div className="col-md-6 mt-5">
+          <div className="col-md-12 mt-3">
             <div className="form-group mt-4">
               <div className="d-flex justify-content-between">
                 <label>Add subject per week</label>
@@ -191,6 +203,7 @@ const Classes = () => {
                         className="form-control"
                         placeholder="subject name"
                         name="subject"
+                        value={inputs.subject}
                         onChange={(e) =>
                           handleChangeMainInputs(
                             e.target.value,
@@ -199,63 +212,20 @@ const Classes = () => {
                           )
                         }
                       />
-                      <select
-                        className="form-select"
-                        name="day"
-                        onChange={(e) =>
-                          handleChangeMainInputs(
-                            e.target.value,
-                            e.target.name,
-                            index,
-                            0
-                          )
-                        }
-                        value={inputs.days[0].day}
+                      <button
+                        className="btn btn-danger btn-sm"
+                        onClick={() => handleRemoveSubject(index)}
                       >
-                        {days.map((day, i) => (
-                          <option value={day} key={i}>
-                            {day}
-                          </option>
-                        ))}
-                      </select>
-                      <input
-                        type="time"
-                        className="form-control"
-                        placeholder="time"
-                        name="start_time"
-                        onChange={(e) =>
-                          handleChangeMainInputs(
-                            e.target.value,
-                            e.target.name,
-                            index,
-                            0
-                          )
-                        }
-                        value={inputs.days[0].time}
-                      />
-                      <label>to</label>
-                      <input
-                        type="time"
-                        className="form-control"
-                        placeholder="time"
-                        name="end_time"
-                        onChange={(e) =>
-                          handleChangeMainInputs(
-                            e.target.value,
-                            e.target.name,
-                            index,
-                            0
-                          )
-                        }
-                        value={inputs.days[0].time}
-                      />
+                        &#x2715;
+                      </button>
                       <CalendarClock
-                        height={90}
-                        width={90}
+                        height={40}
+                        width={40}
                         onClick={() => addMoreDays(index)}
+                        className="cursor-pointer"
                       />
                     </div>
-                    {inputs.days.slice(1).map((day, dayIndex) => (
+                    {inputs.days.map((day, dayIndex) => (
                       <div
                         className="d-flex align-items-center gap-4 px-4 mt-3"
                         key={dayIndex}
@@ -263,15 +233,15 @@ const Classes = () => {
                         <select
                           className="form-select"
                           name="day"
+                          value={day.day}
                           onChange={(e) =>
                             handleChangeMainInputs(
                               e.target.value,
                               e.target.name,
                               index,
-                              dayIndex + 1
+                              dayIndex
                             )
                           }
-                          value={day.day}
                         >
                           {days.map((day, i) => (
                             <option value={day} key={i}>
@@ -283,31 +253,37 @@ const Classes = () => {
                           type="time"
                           className="form-control"
                           name="start_time"
+                          value={day.start_time}
                           onChange={(e) =>
                             handleChangeMainInputs(
                               e.target.value,
                               e.target.name,
                               index,
-                              dayIndex + 1
+                              dayIndex
                             )
                           }
-                          value={day.time}
                         />
                         <label>to</label>
                         <input
                           type="time"
                           className="form-control"
                           name="end_time"
+                          value={day.end_time}
                           onChange={(e) =>
                             handleChangeMainInputs(
                               e.target.value,
                               e.target.name,
                               index,
-                              dayIndex + 1
+                              dayIndex
                             )
                           }
-                          value={day.time}
                         />
+                        <button
+                          className="btn btn-danger btn-sm ms-2"
+                          onClick={() => handleRemoveDay(index, dayIndex)}
+                        >
+                          &#x2715;
+                        </button>
                       </div>
                     ))}
                   </div>

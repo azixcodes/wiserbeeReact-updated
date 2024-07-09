@@ -156,6 +156,7 @@ const Parent = () => {
                 name="gender"
                 onChange={handleChange}
               >
+                <option selected value=""> Please Select one </option>
                 <option>Female</option>
                 <option>Male</option>
               </select>

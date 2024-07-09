@@ -1,16 +1,14 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { postRequest } from "../../../services";
 import { getErrorMessages } from "../../../Constant/helpers";
-import SelectionDropdown from "../../customs/dropdowns/SelectionDropdown";
 import useFetch from "../../../hooks/UseFetch";
 
 const Student = () => {
   const email = useSelector((state) => state.admincredslice.username);
   const password = useSelector((state) => state.admincredslice.password);
   const { data, error, loading } = useFetch("/api/quiz/classes_data/");
-  console.log("class data", data);
   const [fields, setFields] = useState({
     name: "",
     phone: "",
@@ -22,12 +20,17 @@ const Student = () => {
     admissionDate: new Date(),
     parent: 1,
   });
-  console.log("class data", fields);
   const [filteredSections, setFilteredSections] = useState([]);
+  const [classSelected, setClassSelected] = useState(false); // State to track if class is selected
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFields({ ...fields, [name]: value });
+
+    // Update classSelected state based on class selection
+    if (name === "class") {
+      setClassSelected(!!value); // Convert value to boolean
+    }
   };
 
   useEffect(() => {
@@ -62,6 +65,7 @@ const Student = () => {
       admission_date: admissionDate,
       parent,
     };
+
     try {
       const res = await postRequest("/api/studentadmin/studentadmin/", payload);
 
@@ -88,13 +92,6 @@ const Student = () => {
     }
   };
 
-  const getParent = (parent) => {
-    setFields((prev) => ({
-      ...prev,
-      parent,
-    }));
-  };
-
   return (
     <>
       <Toaster />
@@ -108,7 +105,7 @@ const Student = () => {
           <div className="col-md-6 mb-3">
             <div className="form-group">
               <label htmlFor="fname" className="text-capitalize">
-                full name
+                Full name
               </label>
               <input
                 type="text"
@@ -158,28 +155,30 @@ const Student = () => {
 
           <div className="col-md-6 mb-3">
             <div className="form-group">
-              <label htmlFor="" className="text-capitalize">
+              <label htmlFor="dob" className="text-capitalize">
                 Date of birth
               </label>
               <input
                 type="date"
                 className="form-control"
+                id="dob"
                 name="dob"
                 onChange={handleChange}
                 value={fields.dob}
               />
             </div>
           </div>
-          <div className="col-md-6">
+
+          <div className="col-md-6 mb-3">
             <div className="form-group">
               <label htmlFor="gender" className="text-capitalize">
                 Gender
               </label>
               <select
                 className="form-select"
-                aria-label="Default select example"
-                onChange={handleChange}
+                id="gender"
                 name="gender"
+                onChange={handleChange}
                 value={fields.gender}
               >
                 <option value="" disabled>
@@ -190,6 +189,7 @@ const Student = () => {
               </select>
             </div>
           </div>
+
           <div className="col-md-6 mb-3">
             <div className="form-group">
               <label htmlFor="class" className="text-capitalize">
@@ -197,16 +197,16 @@ const Student = () => {
               </label>
               <select
                 className="form-select"
-                aria-label="Default select example"
+                id="class"
                 name="class"
                 onChange={handleChange}
-                value={fields.class || ""}
+                value={fields.class}
               >
                 <option value="" disabled>
                   Select class
                 </option>
-                {error && <option>Something went wrong</option>}
                 {loading && <option>Loading...</option>}
+                {error && <option>Error loading classes</option>}
                 {data &&
                   data.map((item, index) => (
                     <option key={index} value={item.standard}>
@@ -216,6 +216,7 @@ const Student = () => {
               </select>
             </div>
           </div>
+
           <div className="col-md-6 mb-3">
             <div className="form-group">
               <label htmlFor="section" className="text-capitalize">
@@ -223,21 +224,29 @@ const Student = () => {
               </label>
               <select
                 className="form-select"
-                aria-label="Default select example"
+                id="section"
                 name="section"
                 onChange={handleChange}
-                value={fields.section || ""}
+                value={fields.section}
               >
-                <option value="" disabled>
-                  Select section
-                </option>
-                {error && <option>Something went wrong</option>}
-                {loading && <option>Loading...</option>}
-                {filteredSections.map((sc, index) => (
-                  <option key={index} value={sc}>
-                    {sc}
+                {!classSelected && (
+                  <option value="" disabled>
+                    First select the class
                   </option>
-                ))}
+                )}
+                {classSelected &&
+                  (loading ? (
+                    <option>Loading...</option>
+                  ) : (
+                    <>
+                      {error && <option>Error loading sections</option>}
+                      {filteredSections.map((section, index) => (
+                        <option key={index} value={section}>
+                          {section}
+                        </option>
+                      ))}
+                    </>
+                  ))}
               </select>
             </div>
           </div>
@@ -250,23 +259,14 @@ const Student = () => {
               <input
                 type="date"
                 className="form-control"
+                id="admissionDate"
                 name="admissionDate"
                 onChange={handleChange}
                 value={fields.admissionDate}
               />
             </div>
           </div>
-          {/* <div className="col-md-6 mb-3">
-            <div className="form-group">
-              <label htmlFor="parent" className="text-capitalize">
-                Parent
-              </label>
-              <SelectionDropdown
-                apiEndpoint="/api/parentadmin/parentadmin/"
-                getParent={getParent}
-              />
-            </div>
-          </div> */}
+
           <div className="col-md-6">
             <div className="form-group mt-4">
               <button
