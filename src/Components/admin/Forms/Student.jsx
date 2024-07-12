@@ -68,7 +68,6 @@ const Student = () => {
 
     try {
       const res = await postRequest("/api/studentadmin/studentadmin/", payload);
-
       if (res.ok) {
         toast.success("Student registered successfully.");
         setFields({

@@ -44,11 +44,11 @@ const ProtectedRoute = (props) => {
           {location.pathname === "/assesment-welcome" ||
           location.pathname === "/assesment" ? null : (
             <>
-              {/* <MiniSidebar toggle={toggle} setToggle={setToggle} /> <Sidebar /> */}
+              <MiniSidebar toggle={toggle} setToggle={setToggle} /> <Sidebar />
             </>
           )}
           <div className="d-flex flex-column w-full w-100 position-relative">
-            {/* <Navbar handleToggleSidebar={handleToggleSidebar} /> */}
+            <Navbar handleToggleSidebar={handleToggleSidebar} />
             <main
               className={
                 location.pathname === "/assesment"

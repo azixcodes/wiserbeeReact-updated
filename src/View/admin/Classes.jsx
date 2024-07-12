@@ -8,6 +8,8 @@ import { CalendarClock } from "lucide-react";
 const Classes = () => {
   const [formData, setFormData] = useState({
     standard: "",
+    start_date: "",
+    end_date: "",
     section: [],
     class_type: "Online",
     add_subjects: [],
@@ -53,7 +55,7 @@ const Classes = () => {
   };
 
   const handleSubmit = async () => {
-    const { standard, class_type } = formData;
+    const { standard, class_type, start_date, end_date } = formData;
 
     const formattedSubjects = mainInputs.map((input) => ({
       name: input.subject,
@@ -66,6 +68,7 @@ const Classes = () => {
 
     const payload = {
       standard,
+      start_date,end_date,
       section: sectionChips,
       class_type,
       add_subjects: formattedSubjects,
@@ -179,6 +182,34 @@ const Classes = () => {
                 setChips={setSectionChips}
                 removeChip={removeChip}
                 chipType="section"
+              />
+            </div>
+          </div>
+          <div className="col-md-6 mt-3">
+            <div className="form-group">
+              <label htmlFor="" className="text-capitalize">
+                Start Session
+              </label>
+              <input
+                type="date"
+                name="start_date"
+                className="form-control"
+                onChange={handleInputChange}
+                value={formData.start_date}
+              />
+            </div>
+          </div>
+          <div className="col-md-6 mt-3">
+            <div className="form-group">
+              <label htmlFor="" className="text-capitalize">
+                End Session
+              </label>
+              <input
+                type="date"
+                name="end_date"
+                className="form-control"
+                value={formData.end_date}
+                onChange={handleInputChange}
               />
             </div>
           </div>
