@@ -26,3 +26,41 @@ export const getErrorMessages = (data) => {
   const field = errorArray[0].field;
   return `${field} : ${errorArray[0].messages}`;
 };
+
+export function flattenData(data) {
+  // Initialize an empty array to hold the transformed data
+  let transformed = [];
+
+  // Iterate over each item in the data array
+  data.forEach((item, index) => {
+    // Add the week identifier
+    transformed.push(`Week${index + 1}`);
+
+    // Add the main item to the transformed array
+    transformed.push({
+      Toppic: item.topic,
+      date: item.date,
+      details: item.details,
+      completion: item.completion,
+      ContentUpload: item.ContentUpload,
+      VideoUpload: item.VideoUpload,
+    });
+
+    // Check if the item has subRows
+    if (item.subRows && item.subRows.length > 0) {
+      // Iterate over each subRow and push it to the transformed array
+      item.subRows.forEach((subRow) => {
+        transformed.push({
+          Toppic: subRow.topic,
+          date: subRow.date,
+          details: subRow.details,
+          completion: subRow.completion,
+          ContentUpload: subRow.ContentUpload,
+          VideoUpload: subRow.VideoUpload,
+        });
+      });
+    }
+  });
+
+  return transformed;
+}

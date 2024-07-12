@@ -52,9 +52,10 @@ const MultiSelectionDropdown = ({ apiEndpoint, getChild }) => {
       toast.error("This item is already added");
     }
     setSearch("");
+    getChild(item);
     setShowDropdown(false);
     setFilteredData(data);
-    setFocusedIndex(-1); // Reset focused item index after selection
+    setFocusedIndex(-1);
   };
 
   const handleRemove = (item) => {
