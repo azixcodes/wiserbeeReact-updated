@@ -4,6 +4,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { getErrorMessages } from "../../../Constant/helpers";
 import { postRequest } from "../../../services";
 import MultiSelectionDropdown from "../../customs/dropdowns/MultiSelectionDropdown";
+
 const Parent = () => {
   const [fields, setFeilds] = useState({
     firstname: "",
@@ -14,7 +15,7 @@ const Parent = () => {
     location: "",
     dob: null,
     gender: "",
-    child: [1],
+    child: [],
   });
 
   const email = useSelector((state) => state.admincredslice.username);
@@ -52,11 +53,12 @@ const Parent = () => {
     }
   };
   const getChild = (child) => {
-    const items = child.map((item) => item.student_id);
+    const id = child.student_id;
     setFeilds((prev) => ({
       ...prev,
-      child: items,
+      child: [...prev.child, id],
     }));
+    console.log(child);
   };
   console.log(fields);
   return (
@@ -156,7 +158,10 @@ const Parent = () => {
                 name="gender"
                 onChange={handleChange}
               >
-                <option selected value=""> Please Select one </option>
+                <option selected value="">
+                  {" "}
+                  Please Select one{" "}
+                </option>
                 <option>Female</option>
                 <option>Male</option>
               </select>
